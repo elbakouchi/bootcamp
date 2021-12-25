@@ -1,0 +1,36 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+argon2-cffi = "*"
+python-slugify = "*"
+pytz = "*"
+redis = "*"
+whitenoise = "*"
+django-allauth = "*"
+django-contrib-comments = "*"
+django-crispy-forms = "*"
+django-environ = "*"
+django-markdownx = "*"
+django-redis = "*"
+django-taggit = "*"
+sorl-thumbnail = "*"
+channels = "*"
+channels-redis = "*"
+graphene-django = "*"
+beautifulsoup4 = "*"
+boto3 = "*"
+gevent = "*"
+raven = "*"
+psycopg2 = "*"
+django-anymail = "*"
+django-storages = "*"
+Pillow = "*"
+Django = "*"
+
+[requires]
+python_version = "3.6"
