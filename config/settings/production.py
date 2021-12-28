@@ -9,7 +9,7 @@ from .base import env
 SECRET_KEY = env("SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = env.list(
-    "ALLOWED_HOSTS", default=["vitor@freitas.com trybootcamp.vitorfs.com"]
+    "ALLOWED_HOSTS", default=["queneau.herokuapp.com"]
 )
 
 # DATABASES
@@ -112,7 +112,7 @@ TEMPLATES[0]["OPTIONS"]["loaders"] = [  # noqa F405
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
 DEFAULT_FROM_EMAIL = env(
     "DEFAULT_FROM_EMAIL",
-    default="Bootcamp <noreply@vitor@freitas.com trybootcamp.vitorfs.com>",
+    default="Queneau <noreply@queneau.com queneau.herokuapp.com>",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = env("SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
