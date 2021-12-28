@@ -9,7 +9,7 @@ from .base import env
 SECRET_KEY = env("SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = env.list(
-    "ALLOWED_HOSTS", default=["queneau.herokuapp.com"]
+    "ALLOWED_HOSTS", default=["0.0.0.0" "queneau.herokuapp.com"]
 )
 
 # DATABASES
