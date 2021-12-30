@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
+from django.contrib.flatpages import views as flatpages
 
 from graphene_django.views import GraphQLView
 
@@ -33,6 +34,7 @@ urlpatterns = [
     url(r"^messages/", include("bootcamp.messager.urls", namespace="messager")),
     url(r"^qa/", include("bootcamp.qa.urls", namespace="qa")),
     url(r"^search/", include("bootcamp.search.urls", namespace="search")),
+    url(r'^(?P<url>.*/)$', flatpages.flatpage),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
