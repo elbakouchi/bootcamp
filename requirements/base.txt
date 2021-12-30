@@ -19,7 +19,7 @@ django-redis  # https://github.com/niwinz/django-redis
 django-taggit  # https://github.com/alex/django-taggit
 sorl-thumbnail  # https://github.com/jazzband/sorl-thumbnail
 django-debug-toolbar  # https://github.com/jazzband/django-debug-toolbar
-django-summernote   # https://github.com/summernote/django-summernote
+django-summernote  # https://github.com/summernote/django-summernote
 
 
 # Channels
