@@ -63,7 +63,6 @@ DJANGO_APPS = [
     "django.contrib.admin",
     "django.forms",
     "django.contrib.flatpages",
-    "django_summernote",
 ]
 THIRD_PARTY_APPS = [
     "crispy_forms",
@@ -81,6 +80,7 @@ THIRD_PARTY_APPS = [
     "graphene_django",
     "markdownx",
     "taggit",
+    "django_summernote"
 ]
 LOCAL_APPS = [
     "bootcamp.users.apps.UsersConfig",
