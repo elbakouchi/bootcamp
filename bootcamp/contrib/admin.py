@@ -5,7 +5,7 @@ from django.contrib.flatpages.models import FlatPage
 from django.utils.translation import gettext_lazy as _
 
 # Define a new FlatPageAdmin
-class FlatPageAdmin(FlatPageAdmin, SummernoteModelAdmin):
+class FlatPageAdmin(SummernoteModelAdmin, FlatPageAdmin):
     summernote_fields = ('content',)
     fieldsets = (
         (None, {'fields': ('url', 'title', 'content', 'sites')}),
