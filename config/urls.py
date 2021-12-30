@@ -35,6 +35,7 @@ urlpatterns = [
     url(r"^qa/", include("bootcamp.qa.urls", namespace="qa")),
     url(r"^search/", include("bootcamp.search.urls", namespace="search")),
     url(r'^(?P<url>.*/)$', flatpages.flatpage),
+    url('summernote/', include('django_summernote.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
