@@ -35,13 +35,13 @@ SUMMERNOTE_CONFIG = {
         ],
 
         # Or, explicitly set language/locale for editor
-        'lang': 'ko-KR',
-        ...
+        'lang': 'fr-FR',
+        
 
         # You can also add custom settings for external plugins
-        'print': {
-            'stylesheetUrl': '/some_static_folder/printable.css',
-        },
+        #'print': {
+        #    'stylesheetUrl': '/some_static_folder/printable.css',
+        #},
         'codemirror': {
             'mode': 'htmlmixed',
             'lineNumbers': 'true',
@@ -70,10 +70,10 @@ SUMMERNOTE_CONFIG = {
 
     # test_func in summernote upload view. (Allow upload images only when user passes the test)
     # https://docs.djangoproject.com/en/2.2/topics/auth/default/#django.contrib.auth.mixins.UserPassesTestMixin
-    ```
+    '''
     def example_test_func(request):
         return request.user.groups.filter(name='group_name').exists()
-    ```
+    '''
     'test_func_upload_view': example_test_func,
 
     # You can add custom css/js for SummernoteWidget.
