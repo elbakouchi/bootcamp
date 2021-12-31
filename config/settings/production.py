@@ -204,3 +204,5 @@ RAVEN_CONFIG = {
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+from .summernote import SUMMERNOTE_CONFIG, SUMMERNOTE_THEME
