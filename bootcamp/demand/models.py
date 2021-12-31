@@ -49,7 +49,7 @@ class Demand(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
-        related_name="author",
+        related_name="creator",
         on_delete=models.SET_NULL,
     )
     image = models.ImageField(
