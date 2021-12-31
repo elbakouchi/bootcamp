@@ -54,13 +54,13 @@ SUMMERNOTE_CONFIG = {
     'attachment_require_authentication': True,
 
     # Set `upload_to` function for attachments.
-    'attachment_upload_to': my_custom_upload_to_func(),
+    #'attachment_upload_to': my_custom_upload_to_func(),
 
     # Set custom storage class for attachments.
-    'attachment_storage_class': 'my.custom.storage.class.name',
+    #'attachment_storage_class': 'my.custom.storage.class.name',
 
     # Set custom model for attachments (default: 'django_summernote.Attachment')
-    'attachment_model': 'my.custom.attachment.model', # must inherit 'django_summernote.AbstractAttachment'
+    #'attachment_model': 'my.custom.attachment.model', # must inherit 'django_summernote.AbstractAttachment'
 
     # You can completely disable the attachment feature.
     'disable_attachment': False,
@@ -74,7 +74,7 @@ SUMMERNOTE_CONFIG = {
     def example_test_func(request):
         return request.user.groups.filter(name='group_name').exists()
     '''
-    'test_func_upload_view': example_test_func,
+    #'test_func_upload_view': example_test_func,
 
     # You can add custom css/js for SummernoteWidget.
     'css': (
