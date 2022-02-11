@@ -1,0 +1,62 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <!-- icon css-->
+    <link rel="stylesheet" href="{% static 'assets/elagent-icon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/animation/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style-main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+     <title>Redico - Erreur 404</title>
+    <link rel="stylesheet" href="{% static 'scss/_button.scss' %}">
+</head>
+
+<body data-scroll-animation="true">
+
+    <div class="body_wrapper">
+        <section class="error_area bg_color">
+            <div class="error_dot one"></div>
+            <div class="error_dot two"></div>
+            <div class="error_dot three"></div>
+            <div class="error_dot four"></div>
+            <div class="container">
+                <div class="error_content_two text-center">
+                    <div class="error_img">
+                        <img class="p_absolute error_shap"src="{% static 'img/404_bg.png' %}" alt="">
+                        <div class="one wow clipInDown" data-wow-delay="1s"><img class="img_one"src="{% static 'img/404_two.png' %}" alt=""></div>
+                        <div class="two wow clipInDown" data-wow-delay="1.5s"><img class="img_two"src="{% static 'img/404_three.png' %}" alt=""></div>
+                        <div class="three wow clipInDown" data-wow-delay="1.8s"><img class="img_three"src="{% static 'img/404_one.png' %}" alt=""></div>
+                    </div>
+                    <h2>Erreur.<br/> Nous ne pouvons pas trouver la page que vous recherchez.</h2>
+                    <p>Désolé pour le dérangement. Rendez-vous sur notre page d'accueil</p>
+                    
+                    <a href="index.html" class="action_btn box_shadow_none"><i class="arrow_left"></i>Retour à la page d'accueil</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'js/pre-loader.js"> </script>
+    <script src="{% static 'assets/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/parallaxie.js' %}"></script>
+    <script src="{% static 'js/TweenMax.min.js' %}"></script>
+    <script src="{% static 'assets/wow/wow.min.js' %}"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+</body>
+
+</html>
+{% endblock content %}

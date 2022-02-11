@@ -11,6 +11,15 @@ from graphene_django.views import GraphQLView
 urlpatterns = [
     url(r"^$", TemplateView.as_view(template_name="redico/home.html"), name="home"),
     url(r"^categories", TemplateView.as_view(template_name="redico/categories.html"), name="categories"),
+    url(r"^apropos-de-redico", TemplateView.as_view(template_name="redico/about-redico.html"), name="about"),
+    url(r"^article", TemplateView.as_view(template_name="redico/about-single.html"), name="article"),
+    url(r"^articles", TemplateView.as_view(template_name="redico/liste-article.html"), name="articles"),
+    url(r"^contactez-nous", TemplateView.as_view(template_name="redico/contact.html"), name="contact_us"),
+    url(r"^gestion-des-cookies", TemplateView.as_view(template_name="redico/cookies.html"), name="cookies"),
+    url(r"^index", TemplateView.as_view(template_name="redico/index.html"), name="index"),
+    url(r"^nouveau-article", TemplateView.as_view(template_name="redico/new-article.html"), name="new_article"),
+    url(r"^nos-partenaires", TemplateView.as_view(template_name="redico/partners.html"), name="partners"),
+    url(r"^conditions-generales-utilisation", TemplateView.as_view(template_name="redico/privacy-policy.html"), name="privacy"),
     url(
         r"^about/$",
         TemplateView.as_view(template_name="pages/about.html"),
