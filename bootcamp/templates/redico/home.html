@@ -1,5 +1,6 @@
 {% extends "redico/redico_base.html" %}
 {% load static  %}
+    {% block content %}
         <section class="doc_banner_area banner_creative1">
             <ul class="list-unstyled banner_shap_img">
                 <li><img src="{% 'img/new/banner_shap1.png' %}" alt=""></li>
@@ -284,3 +285,6 @@
                   
             </div>
         </section>
+
+        {% endblock content %}
+
