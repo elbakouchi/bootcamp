@@ -39,7 +39,9 @@
                         <div class="divider">
                             <span class="or-text">Ou</span>
                         </div>
-                        <form action="#" class="row login_form">
+                        <form method="POST" action="{% url 'account_login' %}" class="login row login_form">
+                             {% csrf_token %}
+                            {{ form|crispy }}
                             <div class="col-lg-12 form-group">
                                 <div class="small_text">Email</div>
                                 <input type="email" class="form-control" id="email" placeholder="info@Redico.com">
@@ -48,7 +50,7 @@
                                 <div class="small_text">Confirmez le mot de passe</div>
                                 <div class="confirm_password">
                                     <input id="confirm-password" name="confirm-password" type="password" class="form-control" placeholder="5+ characters required" autocomplete="off">
-                                    <a href="#" class="forget_btn">Mot de passe oublié?</a>
+                                    <a href="{% url 'reset_password' %}" class="forget_btn">Mot de passe oublié?</a>
                                 </div>
                             </div>
 
