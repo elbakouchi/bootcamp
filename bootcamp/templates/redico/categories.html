@@ -1,0 +1,358 @@
+{% extends 'redico/redico_base' %}
+{% load static %}
+
+{% block title%}  Redico -  Categories {% endblock title%}  
+
+{% block content %}
+
+{% include 'redico/snippets/breadcumb.html'%}
+  <section class="page_breadcrumb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-sm-5">
+                        <a href="#" class="date"><i class="icon_clock_alt"></i>Updated on March 03, 2020</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================End Forum Breadcrumb Area =================-->
+
+        <section class="doc_blog_grid_area sec_pad forum-page-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="answer-action shadow">
+                            <div class="action-content">
+                                <div class="image-wrap">
+                                    <img src="{% static 'img/home_support/answer.png' %}" alt="answer action">
+                                </div>
+                                <div class="content">
+                                    <h2 class="ans-title">Vous ne trouvez pas de réponse ?</h2>
+                                    <p> Obtenir une aide à la rédaction</p>
+                                </div>
+                            </div>
+                            <!-- /.action-content -->
+                            <div class="action-button-container">
+                                <a href="#" class="action_btn btn-ans">Corriger mon texte</a>
+                            </div>
+                            <!-- /.action-button-container -->
+                        </div>
+                        <!-- /.answer-action -->
+
+                        <div class="post-header forums-header">
+                            <div class="col-md-6 col-sm-6 support-info">
+                                <span> Categories </span>
+                            </div>
+                            <!-- /.support-info -->
+                            <div class="col-md-6 col-sm-6 support-category-menus">
+                                <ul class="forum-titles">
+                                    <li class="forum-topic-count">Correction</li>
+                                    <li class="forum-reply-count">Posts</li>
+                                    <li class="forum-freshness">Dernier article</li>
+                                </ul>
+                            </div>
+                            <!-- /.support-category-menus -->
+                        </div>
+                        <!-- /.post-header -->
+
+                        <div class="community-posts-wrapper bb-radius">
+
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+                                    <div class="author-avatar forum-icon">
+                                        <img src="{% static 'img/home_support/rc1.png' %}" alt="community post">
+                                    </div>
+                                    <div class="entry-content">
+                                        <a href="list-article.html"> <h3 class="post-title"> Extraits d’articles </h3> </a>
+                                        <p>This forum is a special forum for general announcements.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-topic-count">10</li>
+                                        <li class="forum-reply-count">105</li>
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+                                                <div class="freshness-top">
+                                                    <div class="freshness-link">
+                                                        <a href="#" title="Reply To: Main Forum Rules &amp; Policies">
+                                                        2 years, 2 months ago</a>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+                                    <div class="author-avatar forum-icon">
+                                        <img src="{% static 'img/home_support/rc2.png' %}" alt="community post">
+                                    </div>
+                                    <div class="entry-content">
+                                        <a href="list-article.html"><h3 class="post-title">Petits mots</h3></a>
+                                        <p>Lorem Ipsum is simply dummy text of the printing.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-topic-count">20</li>
+                                        <li class="forum-reply-count">305</li>
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+                                                <div class="freshness-top">
+                                                    <div class="freshness-link">
+                                                        <a href="#" title="Reply To: Main Forum Rules &amp; Policies">2 years, 2 months ago</a>
+                                                    </div>
+                                                </div>
+                                                 
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+                                    <div class="author-avatar forum-icon">
+                                        <img src="{% static 'img/home_support/rc8.png' %}" alt="community post">
+                                    </div>
+                                    <div class="entry-content">
+                                        <a href="list-article.html"> <h3 class="post-title">Ecrits professionnels  </h3> </a>
+                                        <p>Lorem Ipsum is simply dummy text of the printing. </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-topic-count">30</li>
+                                        <li class="forum-reply-count">156</li>
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+                                                <div class="freshness-top">
+                                                    <div class="freshness-link">
+                                                        <a href="#" title="Reply To: Main Forum Rules &amp; Policies">2 years, 2 months ago</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+                                    <div class="author-avatar forum-icon">
+                                        <img src="{% static 'img/home_support/rc3.png' %}" alt="community post">
+                                    </div>
+                                    <div class="entry-content">
+                                        <a href="list-article.html"> <h3 class="post-title"> Annonces </h3> </a>
+                                        <p>Lorem Ipsum is simply dummy text of the printing.<p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-topic-count">99</li>
+                                        <li class="forum-reply-count">405</li>
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+                                                <div class="freshness-top">
+                                                    <div class="freshness-link">
+                                                        <a href="#" title="Reply To: Main Forum Rules &amp; Policies">1 years, 2 months ago</a>
+                                                    </div>
+                                                </div>
+                                            
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+                                    <div class="author-avatar forum-icon">
+                                        <img src="{% static 'img/home_support/rc13.png' %}" alt="community post">
+                                    </div>
+                                    <div class="entry-content">
+                                        <a href="list-article.html"> <h3 class="post-title"> Courriers personnels </h3> </a>
+                                        <p>Lorem Ipsum is simply dummy text of the printing.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-topic-count">50</li>
+                                        <li class="forum-reply-count">215</li>
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+                                                <div class="freshness-top">
+                                                    <div class="freshness-link">
+                                                        <a href="#" title="Reply To: Main Forum Rules &amp; Policies">1 years, 3 months ago</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+                                    <div class="author-avatar forum-icon">
+                                        <img src="{% static 'img/home_support/rc13.png' %}" alt="community post">
+                                    </div>
+                                    <div class="entry-content">
+                                        <a href="list-article.html"> <h3 class="post-title"> Posts réseaux sociaux</h3> </a>
+                                        <p>This forum is a special forum for marketplace support.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-topic-count">50</li>
+                                        <li class="forum-reply-count">215</li>
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+                                                <div class="freshness-top">
+                                                    <div class="freshness-link">
+                                                        <a href="#" title="Reply To: Main Forum Rules &amp; Policies">1 years, 3 months ago</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+                            <!-- Forum Item -->
+                            <div class="community-post style-two forum-item bug">
+                                <div class="col-md-6 post-content">
+                                    <div class="author-avatar forum-icon">
+                                        <img src="{% static 'img/home_support/rc13.png' %}" alt="community post">
+                                    </div>
+                                    <div class="entry-content">
+                                        <a href="list-article.html"> <h3 class="post-title">Autre </h3> </a>
+                                        <p>This forum is a special forum for marketplace support.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 post-meta-wrapper">
+                                    <ul class="forum-titles">
+                                        <li class="forum-topic-count">50</li>
+                                        <li class="forum-reply-count">215</li>
+                                        <li class="forum-freshness">
+                                            <div class="freshness-box">
+                                                <div class="freshness-top">
+                                                    <div class="freshness-link">
+                                                        <a href="#" title="Reply To: Main Forum Rules &amp; Policies">1 years, 3 months ago</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /.forum-item  -->
+
+                        </div>
+                        <!-- /.community-posts-wrapper -->
+                    </div>
+                    <!-- /.col-lg-9 -->
+
+                    <div class="col-lg-3">
+                        <div class="forum_sidebar">
+                            <div class="widget recent_news_widget">
+                                <h4 class="c_head">Nouveaux articles</h4>
+                                <div class="media recent_post_item">
+                                    <div class="media-body">
+                                        <a href="article-single.html">
+                                            <h5>Petit mot pour maman.</h5>
+                                        </a>
+                                        <div class="entry_post_date">January 14, 2021</div>
+                                    </div>
+                                </div>
+                                <div class="media recent_post_item">
+                                    <div class="media-body">
+                                        <a href="article-single.html">
+                                            <h5>Petit mot pour Papa</h5>
+                                        </a>
+                                        <div class="entry_post_date">April 16, 2020</div>
+                                    </div>
+                                </div>
+                                <div class="media recent_post_item">
+                                    <div class="media-body">
+                                        <a href="article-single.html">
+                                            <h5> Post Instagram </h5>
+                                        </a>
+                                        <div class="entry_post_date">March 10, 2020</div>
+                                    </div>
+                                </div>
+                                <div class="media recent_post_item">
+                                    <div class="media-body">
+                                        <a href="article-single.html">
+                                            <h5>How to Create GDPR Consent Form In WordPress</h5>
+                                        </a>
+                                        <div class="entry_post_date">January 19, 2020</div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+
+                            <div class="widget ticket_widget" style="display: none;">
+                                <h4 class="c_head">Categories</h4>
+
+                                <ul class="list-unstyled ticket_categories">
+                                    <li><img src="{% static 'img/home_support/cmm5.png' %}" alt="category">
+                                        <a href="#">Extraits d’articles</a> <span class="count">10</span>
+                                    </li>
+                                    <li><img src="{% static 'img/home_support/cmm4.png' %}" alt="category">
+                                        <a href="#">Ecrits professionnels</a>
+                                        <span class="count">54</span>
+                                    </li>
+                                    <li><img src="{% static 'img/home_support/cmm2.png' %}" alt="category">
+                                        <a href="#">Petits mots</a><span class="count">142</span>
+                                    </li>
+                                    <li><img src="{% static 'img/home_support/cmm8.png' %}" alt="category">
+                                        <a href="#">Annonces</a> <span class="count">13</span>
+                                    </li>
+                                    <li><img src="{% static 'img/home_support/cmm9.png' %}" alt="category">
+                                        <a href="#">Courriers personnels</a> <span class="count">123</span>
+                                    </li>
+                                    <li><img src="{% static 'img/home_support/cmm10.png' %}" alt="category">
+                                        <a href="#">Posts réseaux sociaux</a> <span class="count">18</span>
+                                    </li>
+                                    <li><img src="{% static 'img/home_support/cmm10.png' %}" alt="category">
+                                        <a href="#">Autre</a> <span class="count">18</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="widget tag_widget">
+                                <img src="{% static 'img/ads.png" class="rounded mx-auto d-block img-fluid' %}" alt="...">
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.col-lg-3 -->
+                </div>
+            </div>
+        </section>
+
+        {% include 'redico/snippets/joinus.html'%}
+{% endblock content %}

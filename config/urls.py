@@ -10,6 +10,7 @@ from graphene_django.views import GraphQLView
 
 urlpatterns = [
     url(r"^$", TemplateView.as_view(template_name="redico/home.html"), name="home"),
+    url(r"^categories", TemplateView.as_view(template_name="redico/categories.html"), name="categories"),
     url(
         r"^about/$",
         TemplateView.as_view(template_name="pages/about.html"),
