@@ -9,7 +9,7 @@ from django.contrib.flatpages import views as flatpages
 from graphene_django.views import GraphQLView
 
 urlpatterns = [
-    url(r"^$", TemplateView.as_view(template_name="redico/redico_base.html"), name="home"),
+    url(r"^$", TemplateView.as_view(template_name="redico/home.html"), name="home"),
     url(
         r"^about/$",
         TemplateView.as_view(template_name="pages/about.html"),
