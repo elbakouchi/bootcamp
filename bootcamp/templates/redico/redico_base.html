@@ -42,7 +42,7 @@
     <div class="body_wrapper">
         <nav class="navbar navbar-expand-lg menu_one dark_menu sticky-nav">
             <div class="container">
-                    <a class="navbar-brand header_logo" href="index.html">
+                    <a class="navbar-brand header_logo" href="{% url 'home' %}">
                         <img class="first_logo sticky_logo main_logo" src="{% static 'img/logo.png' %}" srcset="{% static 'img/logo.png' %} 2x" alt="logo">
                         <img class="white_logo" src="{% static 'img/logo-w.png' %}" srcset="{% static 'img/logo-w2x.png' %} 2x" alt="logo">
                     </a>
@@ -98,7 +98,7 @@
                         <div class="col-lg-6 col-sm-6">
                             <div class="f_widget doc_about_widget wow fadeInUp" data-wow-delay="0.2s">
                                 <a href="#">
-                                    <img src="{% static 'img/logo.png" srcset="img/logo-2x.png 2x" alt="">
+                                    <img src="{% static 'img/logo.png' %}" srcset="{% static 'img/logo-2x.png' %} 2x" alt="">
                                 </a>
                                 <p>Infrastructure de Rédaction & Reformulation de vos textes en Français!!</p>
                                 <ul class="list-unstyled">
@@ -160,7 +160,7 @@
     <script src="{% static 'assets/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js' %}" type="text/javascript"></script>
     <script src="{% static 'assets/magnify-pop/jquery.magnific-popup.min.js' %}" type="text/javascript"></script>
     <script src="{% static 'js/plugins.js' %}" type="text/javascript"></script>
-    <script src="{% static 'https://unpkg.com/ionicons@5.4.0/dist/ionicons.js' %}" type="text/javascript"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js" type="text/javascript"></script>
     <script src="{% static 'js/main.js' %}" type="text/javascript"></script>
     {% endblock javascript %}
 
