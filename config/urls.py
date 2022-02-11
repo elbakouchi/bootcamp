@@ -12,7 +12,7 @@ urlpatterns = [
     url(r"^$", TemplateView.as_view(template_name="redico/home.html"), name="home"),
     url(r"^categories", TemplateView.as_view(template_name="redico/categories.html"), name="categories"),
     url(r"^apropos-de-redico", TemplateView.as_view(template_name="redico/about-redico.html"), name="about"),
-    url(r"^article", TemplateView.as_view(template_name="redico/about-single.html"), name="article"),
+    url(r"^article", TemplateView.as_view(template_name="redico/article-single.html"), name="article"),
     url(r"^articles", TemplateView.as_view(template_name="redico/liste-article.html"), name="articles"),
     url(r"^contactez-nous", TemplateView.as_view(template_name="redico/contact.html"), name="contact_us"),
     url(r"^gestion-des-cookies", TemplateView.as_view(template_name="redico/cookies.html"), name="cookies"),

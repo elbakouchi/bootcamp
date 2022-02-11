@@ -66,15 +66,15 @@
                                 <a href="{% url 'home' %}" class="nav-link dropdown-toggle">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="list-article.html" class="nav-link">Textes en attente de correction</a>
+                                <a href="{% url 'list-article.html" class="nav-link">Textes en attente de correction</a>
                             </li>
                              
                           
                         </ul>
                         <div class="right-nav">
                         	 {% if request.user.is_authenticated %}
-                            <a href="new-article.html" class="action_btn btn_small">Ajouter un article</a>
                              {% endif %}
+                            <a href="{% url 'new_article' %}" class="action_btn btn_small">Ajouter un article</a>
                             <a class="px-2 ml-3" href="#" title="Subscribe to the newsletter">
                             </a>
                              {% if not request.user.is_authenticated %}
@@ -114,9 +114,9 @@
                             <div class="f_widget doc_service_list_widget pl-100 wow fadeInUp" data-wow-delay="0.4s">
                                 <h3 class="f_title_two">Support</h3>
                                 <ul class="list-unstyled">
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="privacy-policy.html">Privacy and Policy</a></li>
-                                    <li><a href="cookies.html">Cookies</a></li>
+                                    <li><a href="{% url 'contact_us' %}">Contact</a></li>
+                                    <li><a href="{% url 'privacy' %}">Privacy and Policy</a></li>
+                                    <li><a href="{% url 'cookies' %}">Cookies</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -124,9 +124,9 @@
                             <div class="f_widget doc_service_list_widget pl-70 wow fadeInUp" data-wow-delay="0.5s">
                                 <h3 class="f_title_two">Redico</h3>
                                 <ul class="list-unstyled">
-                                    <li><a href="redico.html">À propos</a></li>
-                                    <li><a href="temoignages.html">Témoignages</a></li>
-                                    <li><a href="partners.html">Partenaires</a></li>
+                                    <li><a href="{% url 'about' %}">À propos</a></li>
+                                    <!--li><a href="{% url 'temoignages">Témoignages</a></li-->
+                                    <li><a href="{% url 'partners' %}">Partenaires</a></li>
 
                                 </ul>
                             </div>
