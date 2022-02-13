@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
             model_name="demand",
             name="image",
             field=models.ImageField(
-                        upload_to="articles_pictures/%Y/%m/%d/",
+                        upload_to="redicos/%Y/%m/%d/",
                         verbose_name="Featured image",
                         null=True
                     ),

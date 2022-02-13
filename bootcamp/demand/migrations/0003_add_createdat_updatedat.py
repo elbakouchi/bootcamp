@@ -7,7 +7,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("demand", "0001_initial"),
-        ("category", "0002_add_icon_path_field"),
+        ("demand", "0002_alter_image_null"),
     ]
 
     operations = [

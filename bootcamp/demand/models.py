@@ -54,7 +54,7 @@ class Demand(models.Model):
         on_delete=models.SET_NULL,
     )
     image = models.ImageField(
-        _("Featured image"), upload_to="demands_pictures/%Y/%m/%d/", blank=True
+        _("Featured image"), upload_to="demands/%Y/%m/%d/", blank=True
     )
     timestamp = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=255, null=False, unique=True)
