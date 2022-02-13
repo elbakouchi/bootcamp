@@ -1,3 +1,16 @@
 from django.shortcuts import render
+from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 
-# Create your views here.
+from .models import Category
+
+class CategoriesListView(ListView):
+    model = Category
+    # These next two lines tell the view to index lookups by username
+    slug_field = "slug"
+    slug_url_kwarg = "slug"
+
+class CategoryDetailView(DetailView):
+    model = Category
+    # These next two lines tell the view to index lookups by username
+    slug_field = "slug"
+    slug_url_kwarg = "slug"    
