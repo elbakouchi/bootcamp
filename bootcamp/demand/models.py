@@ -54,14 +54,14 @@ class Demand(models.Model):
         on_delete=models.SET_NULL,
     )
 
-    service = models.ForeignKey(
+    service = models.OneToOneField(
         "bootcamp.category.Service",
         null=True,
         related_name="taxonomy_service",
         on_delete=models.SET_NULL,
     )
 
-    category = models.ForeignKey(
+    category = models.ManyToOneField(
         "bootcamp.category.Category",
         null=True,
         related_name="taxonomy_category",
