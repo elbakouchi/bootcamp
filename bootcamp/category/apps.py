@@ -3,5 +3,5 @@ from django.utils.translation import ugettext_lazy as _
 
 class CategoryConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = "bootcamp.gategory"
+    name = "bootcamp.category"
     verbose_name = _("Categories")
