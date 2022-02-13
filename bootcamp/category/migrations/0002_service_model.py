@@ -54,7 +54,7 @@ class Migration(migrations.Migration):
                     models.ForeignKey(
                         null=True,
                         on_delete=django.db.models.deletion.SET_NULL,
-                        related_name="author",
+                        related_name="tutor",
                         to=settings.AUTH_USER_MODEL,
                     ),
                 ),
