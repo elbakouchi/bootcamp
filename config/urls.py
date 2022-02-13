@@ -8,6 +8,8 @@ from django.contrib.flatpages import views as flatpages
 
 from graphene_django.views import GraphQLView
 
+admin.site.site_header = 'Redico back-office'
+
 urlpatterns = [
     url(r"^$", TemplateView.as_view(template_name="redico/home.html"), name="home"),
     url(r"^categories", TemplateView.as_view(template_name="redico/categories.html"), name="categories"),
