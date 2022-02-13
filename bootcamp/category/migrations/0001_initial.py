@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
     ]'''
     operations = [
         migrations.CreateModel(
-            name="Categoy",
+            name="Category",
             fields=[
                 (
                     "id",
@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
                 (
                     "image",
                     models.ImageField(
-                        upload_to="articles_pictures/%Y/%m/%d/",
+                        upload_to="categories/%Y/%m/%d/",
                         verbose_name="Featured image",
                     ),
                 ),
@@ -64,8 +64,8 @@ class Migration(migrations.Migration):
                 ),
             ],
             options={
-                "verbose_name": "Categoy",
-                "verbose_name_plural": "Categoies",
+                "verbose_name": "Category",
+                "verbose_name_plural": "Categories",
                 "ordering": ("-timestamp",),
             },
         )

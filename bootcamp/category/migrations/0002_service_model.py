@@ -9,16 +9,9 @@ import taggit.managers
 
 class Migration(migrations.Migration):
 
-    initial = True
-
-    dependencies = [
-        ("taggit", "0002_auto_20150616_2121"),
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-    ]
-
     operations = [
         migrations.CreateModel(
-            name="Demand",
+            name="Service",
             fields=[
                 (
                     "id",
@@ -32,23 +25,19 @@ class Migration(migrations.Migration):
                 (
                     "image",
                     models.ImageField(
-                        upload_to="demandes/%Y/%m/%d/",
+                        upload_to="services/%Y/%m/%d/",
                         verbose_name="Featured image",
                     ),
                 ),
                 ("timestamp", models.DateTimeField(auto_now_add=True)),
-                ("title", models.CharField(max_length=255, unique=True)),
+                ("name", models.CharField(max_length=255, unique=True)),
                 ("slug", models.SlugField(blank=True, max_length=80, null=True)),
-                (
-                    "status",
-                    models.CharField(
-                        choices=[("D", "Draft"), ("P", "Published"), ('X', ("Deactivated"))],
-                        default="D",
-                        max_length=1,
-                    ),
-                ),
-                ("content", markdownx.models.MarkdownxField()),
-                ("edited", models.BooleanField(default=False)),
+                
+                ("description", markdownx.models.MarkdownxField()),
+                ("activated", models.BooleanField(default=False)),
+                ("icon", models.CharField(max_length=255, null=True, blank=True)),
+                ("createdAt", models.DateTimeField(auto_now_add=True)),
+                ("updatedAt", models.DateTimeField(auto_now=True)),
                 (
                     "tags",
                     taggit.managers.TaggableManager(
@@ -56,24 +45,6 @@ class Migration(migrations.Migration):
                         through="taggit.TaggedItem",
                         to="taggit.Tag",
                         verbose_name="Tags",
-                    ),
-                ),
-                (
-                    "service",
-                    models.ForeignKey(
-                        null=True,
-                        on_delete=django.db.models.deletion.SET_NULL,
-                        related_name="service",
-                        to="Service",
-                    ),
-                ),
-                (
-                    "category",
-                   models.ForeignKey(
-                        null=True,
-                        on_delete=django.db.models.deletion.SET_NULL,
-                        related_name="category",
-                        to="Category",
                     ),
                 ),
                 (
@@ -87,8 +58,8 @@ class Migration(migrations.Migration):
                 ),
             ],
             options={
-                "verbose_name": "Demand",
-                "verbose_name_plural": "Demand",
+                "verbose_name": "Service",
+                "verbose_name_plural": "Services",
                 "ordering": ("-timestamp",),
             },
         )

@@ -53,8 +53,23 @@ class Demand(models.Model):
         related_name="creator",
         on_delete=models.SET_NULL,
     )
+
+    service = models.ForeignKey(
+        "Service",
+        null=True,
+        related_name="taxonomy_service",
+        on_delete=models.SET_NULL,
+    )
+
+    category = models.ForeignKey(
+        "Category",
+        null=False,
+        related_name="taxonomy_category",
+        on_delete=models.SET_NULL,
+    )
+
     image = models.ImageField(
-        _("Featured image"), upload_to="demands/%Y/%m/%d/", blank=True
+        _("Featured image"), upload_to="demandes/%Y/%m/%d/", blank=True
     )
     timestamp = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=255, null=False, unique=True)
@@ -66,6 +81,7 @@ class Demand(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     objects = DemandQuerySet.as_manager()
+
 
     class Meta:
         verbose_name = _("Demand")
