@@ -12,6 +12,7 @@ from taggit.managers import TaggableManager
 
 
 from bootcamp.notifications.models import Notification, notification_handler
+from bootcamp.category.models import Category, Service
 
 
 class DemandQuerySet(models.query.QuerySet):
@@ -54,15 +55,15 @@ class Demand(models.Model):
         on_delete=models.SET_NULL,
     )
 
-    service = models.OneToOneField(
-        "bootcamp.category.Service",
+    service = models.ManyToManyField(
+        Service,
         null=True,
         related_name="taxonomy_service",
         on_delete=models.SET_NULL,
     )
 
-    category = models.ManyToOneField(
-        "bootcamp.category.Category",
+    category = models.ManyToManyField(
+        Category,
         null=True,
         related_name="taxonomy_category",
         on_delete=models.SET_NULL,

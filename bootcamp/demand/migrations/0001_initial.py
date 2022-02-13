@@ -60,7 +60,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "service",
-                    models.OneToOneField(
+                    models.ManyToManyField(
                         null=True,
                         on_delete=django.db.models.deletion.SET_NULL,
                         related_name="service",
@@ -69,7 +69,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "category",
-                   models.ManyToOneField(
+                   models.ManyToManyField(
                         null=True,
                         on_delete=django.db.models.deletion.SET_NULL,
                         related_name="category",
