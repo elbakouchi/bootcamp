@@ -44,7 +44,8 @@ class DemandQuerySet(models.query.QuerySet):
 class Demand(models.Model):
     DRAFT = "D"
     PUBLISHED = "P"
-    STATUS = ((DRAFT, _("Draft")), (PUBLISHED, _("Published")))
+    DEACTIVATED = "X"
+    STATUS = ((DRAFT, _("Draft")), (PUBLISHED, _("Published")), (DEACTIVATED, _("Deactivated")))
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -62,6 +63,8 @@ class Demand(models.Model):
     content = MarkdownxField()
     edited = models.BooleanField(default=False)
     tags = TaggableManager()
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
     objects = DemandQuerySet.as_manager()
 
     class Meta:
