@@ -580,7 +580,8 @@ p kbd {
   background: #4c4cf1;
   display: inline-block;
   padding: 14px 28px;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.18s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+ border-color 0.15s ease-in-out, box-shadow 0.18s ease-in-out;
 }
 
 /* line 12, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_button.scss */
@@ -1157,14 +1158,95 @@ p kbd {
   display: block;
 }
 
-/* line 154, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 152, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+.dark_menu {
+  box-shadow: none;
+}
+
+/* line 155, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+.dark_menu .menu.justify-content-center {
+  width: 100%;
+}
+
+/* line 159, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+.dark_menu .menu > .nav-item > .nav-link {
+  color: #444444;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* line 163, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+.dark_menu .menu > .nav-item > .nav-link:before {
+  display: none;
+}
+
+/* line 169, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+.dark_menu .menu > .nav-item:hover > .nav-link, .dark_menu .menu > .nav-item.active > .nav-link {
+  color: #4c4cf1;
+}
+
+/* line 177, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+.dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item .nav-link:before {
+  background: #4c4cf1;
+}
+
+/* line 184, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+.dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item:hover > .nav-link, .dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item:focus > .nav-link, .dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item.active > .nav-link {
+  color: #4c4cf1;
+}
+
+/* line 186, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+.dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item:hover > .nav-link h5, .dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item:focus > .nav-link h5, .dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item.active > .nav-link h5 {
+  color: #4c4cf1;
+}
+
+/* line 190, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+.dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item:hover > i, .dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item:focus > i, .dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item.active > i {
+  color: #4c4cf1;
+}
+
+/* line 199, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+.dark_menu .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item {
+  padding: 0 30px;
+}
+
+/* line 201, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+.dark_menu .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:after {
+  content: "\35";
+  color: #4c4cf1;
+}
+
+/* line 207, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+.dark_menu .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:hover:after, .dark_menu .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item.active:after {
+  opacity: 1;
+  right: 20px;
+}
+
+/* line 211, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+.dark_menu .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:hover .nav-link, .dark_menu .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item.active .nav-link {
+  color: #4c4cf1;
+}
+
+/* line 222, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+.dark_menu .right-nav .nav_btn.tp_btn {
+  border-color: rgba(76, 76, 241, 0.15);
+  color: #4c4cf1 !important;
+}
+
+/* line 225, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+.dark_menu .right-nav .nav_btn.tp_btn:hover {
+  color: #fff !important;
+  background: #4c4cf1;
+}
+
+/* line 233, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item {
   padding-bottom: 37px;
   padding-top: 37px;
   transition: all 0.3s linear;
 }
 
-/* line 158, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 237, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item > .nav-link {
   font-size: 14px;
   font-weight: 500;
@@ -1172,12 +1254,12 @@ p kbd {
   padding: 0;
 }
 
-/* line 163, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 242, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item > .nav-link:after {
   display: none;
 }
 
-/* line 168, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 247, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu {
   margin: 0;
   border-radius: 4px;
@@ -1189,7 +1271,7 @@ p kbd {
   box-shadow: 0 30px 40px 0 rgba(4, 73, 89, 0.1);
 }
 
-/* line 177, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 256, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu:before {
   content: "";
   width: 12px;
@@ -1205,7 +1287,7 @@ p kbd {
 }
 
 @media (min-width: 992px) {
-  /* line 168, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+  /* line 247, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
   .menu > .nav-item.submenu .dropdown-menu {
     transform: translateY(20px);
     transition: all 0.3s ease-in;
@@ -1215,46 +1297,46 @@ p kbd {
   }
 }
 
-/* line 198, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 277, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu.dropdown_menu_two .nav-item {
   padding: 0 30px;
 }
 
-/* line 200, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 279, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu.dropdown_menu_two .nav-item + .nav-item {
   margin-top: 8px;
 }
 
-/* line 203, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 282, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu.dropdown_menu_two .nav-item .nav-link {
   display: flex;
   align-items: center;
 }
 
-/* line 206, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 285, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu.dropdown_menu_two .nav-item .nav-link:before {
   display: none;
 }
 
-/* line 209, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 288, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu.dropdown_menu_two .nav-item .nav-link img {
   margin-right: 20px;
   width: 32px;
 }
 
-/* line 216, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 295, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu .nav-item {
   padding: 0 40px 0 30px;
   transition: all 0.3s linear;
   position: relative;
 }
 
-/* line 220, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 299, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu .nav-item + .nav-item {
   margin-top: 18px;
 }
 
-/* line 223, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 302, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu .nav-item .nav-link {
   padding: 0;
   white-space: nowrap;
@@ -1265,12 +1347,12 @@ p kbd {
   display: inline-block;
 }
 
-/* line 231, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 310, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu .nav-item .nav-link:after {
   display: none;
 }
 
-/* line 234, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 313, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu .nav-item .nav-link:before {
   content: "";
   width: 0;
@@ -1282,7 +1364,7 @@ p kbd {
   transition: all 0.2s linear;
 }
 
-/* line 244, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 323, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu .nav-item .nav-link h5 {
   padding-top: 9px;
   margin-bottom: 0;
@@ -1292,7 +1374,7 @@ p kbd {
   transition: all 0.2s linear;
 }
 
-/* line 252, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 331, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu .nav-item .nav-link p {
   margin-bottom: 0;
   line-height: 29px;
@@ -1300,38 +1382,38 @@ p kbd {
   padding-bottom: 0;
 }
 
-/* line 262, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 341, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu .nav-item:hover > .nav-link, .menu > .nav-item.submenu .dropdown-menu .nav-item:focus > .nav-link, .menu > .nav-item.submenu .dropdown-menu .nav-item.active > .nav-link {
   color: #4c4cf1;
 }
 
-/* line 264, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 343, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu .nav-item:hover > .nav-link:before, .menu > .nav-item.submenu .dropdown-menu .nav-item:focus > .nav-link:before, .menu > .nav-item.submenu .dropdown-menu .nav-item.active > .nav-link:before {
   width: 100%;
 }
 
-/* line 267, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 346, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu .nav-item:hover > .nav-link h5, .menu > .nav-item.submenu .dropdown-menu .nav-item:focus > .nav-link h5, .menu > .nav-item.submenu .dropdown-menu .nav-item.active > .nav-link h5 {
   color: #4c4cf1;
 }
 
-/* line 271, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 350, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu .nav-item:hover > i, .menu > .nav-item.submenu .dropdown-menu .nav-item:focus > i, .menu > .nav-item.submenu .dropdown-menu .nav-item.active > i {
   color: #4c4cf1;
 }
 
-/* line 275, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 354, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu .nav-item > .dropdown-menu {
   transition: all 0.3s ease-in;
 }
 
-/* line 277, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 356, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu .dropdown-menu .nav-item > .dropdown-menu:before {
   display: none;
 }
 
 @media (min-width: 992px) {
-  /* line 275, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+  /* line 354, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
   .menu > .nav-item.submenu .dropdown-menu .nav-item > .dropdown-menu {
     position: absolute;
     left: 100%;
@@ -1344,7 +1426,7 @@ p kbd {
   }
 }
 
-/* line 294, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 373, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu {
   min-width: 540px;
   padding: 0;
@@ -1354,18 +1436,18 @@ p kbd {
   border: none;
 }
 
-/* line 302, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 381, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu li .col-lg-7 {
   padding-left: 0;
   margin-left: -5px;
 }
 
-/* line 306, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 385, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu li > div {
   min-height: 309px;
 }
 
-/* line 310, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 389, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .nav-pills {
   padding: 30px 0;
   background: #fff;
@@ -1379,12 +1461,12 @@ p kbd {
   border-left: 1px solid #e6eeef;
 }
 
-/* line 323, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 402, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item {
   padding: 0 30px;
 }
 
-/* line 325, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 404, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:after {
   content: "\35";
   position: absolute;
@@ -1397,7 +1479,7 @@ p kbd {
   opacity: 0;
 }
 
-/* line 336, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 415, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item .nav-link {
   font-size: 14px;
   color: #6b707f;
@@ -1405,78 +1487,78 @@ p kbd {
   border-radius: 0;
 }
 
-/* line 341, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 420, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item .nav-link.active {
   background: transparent;
 }
 
-/* line 345, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 424, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item + .nav-item {
   margin-top: 12px;
 }
 
-/* line 350, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 429, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:hover:after, .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item.active:after {
   opacity: 1;
   right: 20px;
 }
 
-/* line 354, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 433, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:hover .nav-link, .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item.active .nav-link {
   color: #4c4cf1;
 }
 
-/* line 357, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 436, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:hover:nth-child(2) .nav-link::before, .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item.active:nth-child(2) .nav-link::before {
   background: #b03532;
 }
 
-/* line 360, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 439, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:hover:nth-child(3) .nav-link::before, .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item.active:nth-child(3) .nav-link::before {
   background: #59a627;
 }
 
-/* line 363, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 442, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:hover:nth-child(4) .nav-link::before, .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item.active:nth-child(4) .nav-link::before {
   background: #da6f2b;
 }
 
-/* line 366, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 445, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:hover:nth-child(5) .nav-link::before, .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item.active:nth-child(5) .nav-link::before {
   background: #444444;
 }
 
-/* line 369, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 448, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:hover:nth-child(6) .nav-link::before, .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item.active:nth-child(6) .nav-link::before {
   background: #00aa6a;
 }
 
-/* line 372, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 451, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:hover:nth-child(2) .nav-link, .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item.active:nth-child(2) .nav-link {
   color: #b03532;
 }
 
-/* line 375, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 454, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:hover:nth-child(3) .nav-link, .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item.active:nth-child(3) .nav-link {
   color: #59a627;
 }
 
-/* line 378, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 457, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:hover:nth-child(4) .nav-link, .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item.active:nth-child(4) .nav-link {
   color: #da6f2b;
 }
 
-/* line 381, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 460, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:hover:nth-child(5) .nav-link, .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item.active:nth-child(5) .nav-link {
   color: #444444;
 }
 
-/* line 384, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 463, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:hover:nth-child(6) .nav-link, .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item.active:nth-child(6) .nav-link {
   color: #00aa6a;
 }
 
-/* line 391, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 470, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabContent .tab-pane {
   padding: 26px 10px 26px 25px;
   min-height: 309px;
@@ -1484,24 +1566,24 @@ p kbd {
   border-bottom-right-radius: 8px;
 }
 
-/* line 396, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 475, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabContent .tab-pane .tab_list {
   width: 50%;
   padding-bottom: 12px;
 }
 
-/* line 399, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 478, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabContent .tab-pane .tab_list.w_100 {
   width: 100%;
 }
 
-/* line 402, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 481, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabContent .tab-pane .tab_list li {
   margin-bottom: 12px;
   display: block;
 }
 
-/* line 405, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 484, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabContent .tab-pane .tab_list li a {
   font-size: 14px;
   font-weight: 400;
@@ -1512,7 +1594,7 @@ p kbd {
   overflow: visible;
 }
 
-/* line 413, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 492, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabContent .tab-pane .tab_list li a:before {
   content: "";
   width: 0;
@@ -1524,18 +1606,18 @@ p kbd {
   transition: all 0.2s linear;
 }
 
-/* line 425, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 504, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabContent .tab-pane .tab_list li a:hover:before, .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabContent .tab-pane .tab_list li a.active:before {
   width: 100%;
 }
 
-/* line 433, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 512, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabContent .tab-pane .text a {
   display: block;
   padding: 0;
 }
 
-/* line 438, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 517, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabContent .tab-pane p {
   font-size: 14px;
   line-height: 30px;
@@ -1543,64 +1625,64 @@ p kbd {
   margin-bottom: 0;
 }
 
-/* line 444, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 523, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabContent .tab-pane:first-child {
   background: #4c4cf1;
 }
 
-/* line 447, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 526, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabContent .tab-pane:nth-child(2) {
   background: #b03532;
 }
 
-/* line 450, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 529, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabContent .tab-pane:nth-child(3) {
   background: #59a627;
 }
 
-/* line 453, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 532, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabContent .tab-pane:nth-child(4) {
   background: #da6f2b;
 }
 
-/* line 456, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 535, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabContent .tab-pane:nth-child(5) {
   background: #444444;
 }
 
-/* line 459, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 538, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabContent .tab-pane:nth-child(6) {
   background: #00aa6a;
 }
 
-/* line 468, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 547, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.active > i {
   color: #4c4cf1;
 }
 
-/* line 471, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 550, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.active .nav-link {
   color: #4c4cf1;
 }
 
-/* line 473, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 552, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item.active .nav-link:before {
   transform: scaleX(1);
   opacity: 1;
   background: #209ff0;
 }
 
-/* line 481, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 560, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item:hover > i {
   color: #4c4cf1;
 }
 
-/* line 484, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 563, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item:hover .nav-link {
   color: #4c4cf1;
 }
 
-/* line 486, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 565, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item:hover .nav-link:before {
   transform: scaleX(1);
   opacity: 1;
@@ -1608,7 +1690,7 @@ p kbd {
 }
 
 @media (min-width: 992px) {
-  /* line 493, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+  /* line 572, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
   .menu > .nav-item:hover .dropdown-menu {
     opacity: 1;
     transform: translateY(0);
@@ -1617,7 +1699,7 @@ p kbd {
 }
 
 @media (min-width: 992px) and (min-width: 992px) {
-  /* line 500, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+  /* line 579, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
   .menu > .nav-item:hover .dropdown-menu > .nav-item:hover .dropdown-menu {
     transform: scaleY(1);
     opacity: 1;
@@ -1625,12 +1707,12 @@ p kbd {
   }
 }
 
-/* line 511, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 590, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu > .nav-item + .nav-item {
   margin-left: 40px;
 }
 
-/* line 518, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 597, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .mobile-dark-mode ion-icon {
   font-size: 26px;
   color: #9fa6ad;
@@ -1643,24 +1725,24 @@ p kbd {
   transform: translateY(-48%) rotate(235deg);
 }
 
-/* line 528, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 607, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .mobile-dark-mode ion-icon.dark-mode {
   display: none;
 }
 
-/* line 532, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 611, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .mobile-dark-mode input {
   display: none;
 }
 
-/* line 537, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 616, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .right-nav {
   margin-left: 80px;
   display: flex;
   align-items: center;
 }
 
-/* line 541, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 620, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .right-nav ion-icon {
   font-size: 23px;
   color: #9fa6ad;
@@ -1669,17 +1751,17 @@ p kbd {
   cursor: pointer;
 }
 
-/* line 547, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 626, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .right-nav ion-icon:hover {
   color: #7d848d;
 }
 
-/* line 551, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 630, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .right-nav .js-darkmode-btn {
   position: relative;
 }
 
-/* line 553, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 632, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .right-nav .js-darkmode-btn ion-icon {
   position: absolute;
   left: 3px;
@@ -1687,17 +1769,17 @@ p kbd {
   transform: translateY(-48%) rotate(235deg);
 }
 
-/* line 558, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 637, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .right-nav .js-darkmode-btn ion-icon.dark-mode {
   display: none;
 }
 
-/* line 562, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 641, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .right-nav .js-darkmode-btn input {
   display: none;
 }
 
-/* line 566, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 645, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .right-nav .nav_btn {
   font-size: 14px;
   font-weight: 500;
@@ -1710,123 +1792,123 @@ p kbd {
   color: #4c4cf1;
 }
 
-/* line 576, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 655, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .right-nav .nav_btn.round-btn {
   border-radius: 50px;
   background-color: rgba(16, 179, 214, 0.031);
 }
 
-/* line 580, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 659, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .right-nav .nav_btn.icon-btn {
   border-color: rgba(76, 76, 241, 0.3);
 }
 
-/* line 582, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 661, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .right-nav .nav_btn.icon-btn i {
   color: rgba(76, 76, 241, 0.3);
   padding-right: 10px;
 }
 
-/* line 587, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 666, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .right-nav .nav_btn:hover {
   background: #4c4cf1;
   border-color: #4c4cf1;
   color: #fff;
 }
 
-/* line 591, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 670, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .right-nav .nav_btn:hover i {
   color: #fff;
 }
 
-/* line 595, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 674, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .right-nav .nav_btn.tp_btn {
   background: transparent;
   border: 2px solid #fff;
   color: #fff !important;
 }
 
-/* line 603, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 682, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .mCSB_inside > .mCSB_container {
   margin-right: 0;
 }
 
 /*================= header area css ===============*/
 /*=========== dk_menu css ===========*/
-/* line 610, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 689, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_two {
   box-shadow: 0 4px 10px 0 rgba(76, 76, 241, 0.06);
   z-index: 10;
   background: #fff;
 }
 
-/* line 614, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 693, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_two .nav_btn {
   border: 2px solid rgba(76, 76, 241, 0.3);
   color: #4c4cf1;
   background: rgba(76, 76, 241, 0.05);
 }
 
-/* line 618, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 697, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_two .nav_btn i {
   padding-right: 8px;
   font-size: 12px;
 }
 
-/* line 622, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 701, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_two .nav_btn:hover {
   background: #4c4cf1;
   color: #fff;
   border-color: #4c4cf1;
 }
 
-/* line 628, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 707, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_two .menu_toggle .hamburger span,
 .menu_two .menu_toggle .hamburger-cross span {
   background: #1d2746;
 }
 
-/* line 632, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 711, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_two + div,
 .menu_two + section {
   margin-top: 98px;
 }
 
-/* line 639, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 718, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .dk_menu > .nav-item > .nav-link {
   color: #6b707f;
 }
 
-/* line 641, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 720, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .dk_menu > .nav-item > .nav-link i {
   padding-right: 5px;
   font-size: 14px;
 }
 
-/* line 648, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 727, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .mobile_dropdown_icon {
   display: none;
 }
 
 /*=========== dk_menu css ===========*/
 @media (max-width: 991px) {
-  /* line 653, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+  /* line 732, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
   .display_none {
     display: none;
   }
 }
 
-/* line 659, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 738, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .sticky-nav-doc .navbar-brand img + img {
   display: none;
 }
 
-/* line 662, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 741, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .sticky-nav-doc .mobile_main_menu .menu_toggle .hamburger span {
   background: #1d2746;
 }
 
-/* line 667, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 746, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .mobile_main_menu {
   position: absolute;
   top: 0;
@@ -1837,70 +1919,70 @@ p kbd {
 }
 
 @media (min-width: 992px) {
-  /* line 667, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+  /* line 746, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
   .mobile_main_menu {
     display: none;
   }
 }
 
-/* line 677, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 756, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .mobile_main_menu .logo img {
   max-width: 80%;
   margin-left: 5px;
 }
 
-/* line 681, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 760, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .mobile_main_menu .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* line 686, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 765, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .mobile_main_menu .menu_toggle {
   margin-right: 18px;
 }
 
-/* line 689, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 768, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .mobile_main_menu .menu_toggle .hamburger span {
   width: 100%;
 }
 
-/* line 694, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 773, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .mobile_main_menu .mobile_menu_left {
   display: flex;
 }
 
-/* line 697, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 776, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .mobile_main_menu .nav_btn {
   margin: 0;
 }
 
-/* line 700, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 779, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .mobile_main_menu.navbar_fixed {
   box-shadow: 0 4px 10px 0 rgba(76, 76, 241, 0.06);
   background: #fff;
   transition: all 0.2s, top 0.4s linear;
 }
 
-/* line 705, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 784, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .mobile_main_menu.navbar_fixed .nav_btn {
   border-color: #6b707f;
 }
 
-/* line 707, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 786, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .mobile_main_menu.navbar_fixed .nav_btn:hover {
   border-color: #4c4cf1;
 }
 
 /*============ Start menu_purple css ==============*/
 /*============ menu_purple css ==============*/
-/* line 719, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 798, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_purple .menu > .nav-item > .nav-link {
   position: relative;
 }
 
-/* line 721, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 800, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_purple .menu > .nav-item > .nav-link:before {
   content: "";
   width: 0;
@@ -1912,43 +1994,43 @@ p kbd {
   transition: width 0.2s linear;
 }
 
-/* line 735, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 814, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_purple .menu > .nav-item:hover > .nav-link, .menu_purple .menu > .nav-item.current_page_parent > .nav-link, .menu_purple .menu > .nav-item.active > .nav-link {
   color: #fff;
 }
 
-/* line 737, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 816, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_purple .menu > .nav-item:hover > .nav-link::before, .menu_purple .menu > .nav-item.current_page_parent > .nav-link::before, .menu_purple .menu > .nav-item.active > .nav-link::before {
   width: 100%;
 }
 
-/* line 745, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 824, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_purple .menu > .nav-item.submenu.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:after {
   color: #4c4cf1;
 }
 
-/* line 752, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 831, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_purple .menu > .nav-item.submenu .dropdown-menu .nav-item > .nav-link:before {
   background: #4c4cf1;
 }
 
-/* line 758, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 837, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_purple .menu > .nav-item.submenu .dropdown-menu .nav-item:hover > .nav-link, .menu_purple .menu > .nav-item.submenu .dropdown-menu .nav-item.active > .nav-link {
   color: #4c4cf1;
 }
 
-/* line 760, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 839, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_purple .menu > .nav-item.submenu .dropdown-menu .nav-item:hover > .nav-link h5, .menu_purple .menu > .nav-item.submenu .dropdown-menu .nav-item.active > .nav-link h5 {
   color: #4c4cf1;
 }
 
-/* line 769, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 848, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_purple .nav_btn:not(.not-round-btn) {
   color: #4c4cf1;
   border-radius: 45px;
 }
 
-/* line 772, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 851, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_purple .nav_btn:not(.not-round-btn):hover {
   background: #4c4cf1;
   color: #fff;
@@ -1957,7 +2039,7 @@ p kbd {
 
 /*============ End menu_purple css ==============*/
 /*=========== menu_four css ===========*/
-/* line 783, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 862, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .sticky_menu .menu_one {
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
@@ -1967,38 +2049,38 @@ p kbd {
   left: 0;
 }
 
-/* line 790, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 869, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .sticky_menu .menu_one + div,
 .sticky_menu .menu_one + section {
   margin-top: 100px;
 }
 
-/* line 796, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 875, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .sticky_menu .menu_one .menu > .nav-item .nav-link {
   position: relative;
   color: #6b707f;
   font-weight: 400;
 }
 
-/* line 803, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 882, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .sticky_menu .menu_one .menu > .nav-item:hover > .nav-link, .sticky_menu .menu_one .menu > .nav-item.active > .nav-link {
   color: #4c4cf1;
 }
 
-/* line 811, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 890, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_social {
   margin-bottom: 0;
   margin-left: 70px;
 }
 
-/* line 815, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 894, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .search_form {
   width: 250px;
   list-style: none;
   position: relative;
 }
 
-/* line 819, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 898, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .search_form .form-control {
   font-size: 14px;
   font-weight: 400;
@@ -2032,7 +2114,7 @@ p kbd {
   color: #8f94a6;
 }
 
-/* line 834, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 913, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .search_form button {
   position: absolute;
   top: 11px;
@@ -2045,37 +2127,37 @@ p kbd {
   z-index: 3;
 }
 
-/* line 849, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 928, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 #stickyTwo .menu > .nav-item.submenu.mega_menu .dropdown-menu,
 .menu_two .menu > .nav-item.submenu.mega_menu .dropdown-menu {
   border-top: 1px solid #e6eeef;
 }
 
 /*=========== menu_four css ===========*/
-/* line 855, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 934, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .nav_btn_two {
   border-color: rgba(76, 76, 241, 0.3);
   background: #f1f8fc;
 }
 
-/* line 858, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 937, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .nav_btn_two:hover {
   border-color: #4c4cf1;
 }
 
-/* line 863, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 942, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed {
   position: fixed;
   z-index: 35;
 }
 
-/* line 866, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 945, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed .search-input {
   visibility: visible;
   opacity: 1;
 }
 
-/* line 870, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 949, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.menu_one {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
   background: #fff;
@@ -2083,79 +2165,79 @@ p kbd {
   margin-top: 0;
 }
 
-/* line 876, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 955, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.menu_one .menu > .nav-item {
   padding-bottom: 25px;
   padding-top: 25px;
 }
 
-/* line 879, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 958, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.menu_one .menu > .nav-item > .nav-link {
   color: #1d2746;
 }
 
-/* line 884, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 963, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.menu_one .menu > .nav-item:hover > .nav-link, .navbar_fixed.menu_one .menu > .nav-item.active > .nav-link {
   color: #4c4cf1;
 }
 
-/* line 888, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 967, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.menu_one .menu > .nav-item.submenu.mega_menu .dropdown-menu {
   border-top: 1px solid #e6eeef;
 }
 
-/* line 893, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 972, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.menu_one .nav_btn {
   color: #4c4cf1;
   border: 2px solid rgba(76, 76, 241, 0.1);
 }
 
-/* line 896, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 975, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.menu_one .nav_btn:hover {
   background: #4c4cf1;
   color: #fff;
   border-color: #4c4cf1;
 }
 
-/* line 901, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 980, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.menu_one .nav_btn.tp_btn {
   color: #4c4cf1 !important;
 }
 
-/* line 909, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 988, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.menu_one.menu_purple .menu > .nav-item > .nav-link:before {
   display: none;
 }
 
-/* line 915, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 994, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.menu_one.menu_purple .menu > .nav-item:hover > .nav-link, .navbar_fixed.menu_one.menu_purple .menu > .nav-item.active > .nav-link {
   color: #4c4cf1;
 }
 
-/* line 921, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1000, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.menu_one.menu_purple .nav_btn {
   color: #4c4cf1;
   border: 2px solid rgba(76, 76, 241, 0.3);
 }
 
-/* line 924, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1003, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.menu_one.menu_purple .nav_btn:hover {
   background: #4c4cf1;
   color: #fff;
   border-color: #4c4cf1;
 }
 
-/* line 934, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1013, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed .header_logo img:not(.sticky_logo) {
   display: none;
 }
 
-/* line 937, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1016, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed .header_logo img.sticky_logo {
   display: block;
 }
 
-/* line 942, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1021, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.menu_two {
   box-shadow: 0 4px 10px 0 rgba(76, 76, 241, 0.06);
   width: 100%;
@@ -2167,78 +2249,78 @@ p kbd {
 }
 
 @media (min-width: 992px) {
-  /* line 951, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+  /* line 1030, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
   .navbar_fixed.menu_two .menu > .nav-item {
     padding-bottom: 30px;
     padding-top: 30px;
   }
 }
 
-/* line 958, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1037, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.menu_two + div,
 .navbar_fixed.menu_two + section {
   margin-top: 86px;
 }
 
-/* line 963, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1042, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed .menu_toggle .hamburger span,
 .navbar_fixed .menu_toggle .hamburger-cross span {
   background: #1d2746;
 }
 
-/* line 970, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1049, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.dark_menu .menu > .nav-item > .nav-link {
   color: #444444;
 }
 
-/* line 972, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1051, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.dark_menu .menu > .nav-item > .nav-link:before {
   display: none;
 }
 
-/* line 978, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1057, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.dark_menu .menu > .nav-item:hover > .nav-link, .navbar_fixed.dark_menu .menu > .nav-item.active > .nav-link {
   color: #4c4cf1;
 }
 
-/* line 986, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1065, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item .nav-link:before {
   background: #4c4cf1;
 }
 
-/* line 993, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1072, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item:hover > .nav-link, .navbar_fixed.dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item:focus > .nav-link, .navbar_fixed.dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item.active > .nav-link {
   color: #4c4cf1;
 }
 
-/* line 995, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1074, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item:hover > .nav-link h5, .navbar_fixed.dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item:focus > .nav-link h5, .navbar_fixed.dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item.active > .nav-link h5 {
   color: #4c4cf1;
 }
 
-/* line 999, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1078, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item:hover > i, .navbar_fixed.dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item:focus > i, .navbar_fixed.dark_menu .menu > .nav-item.submenu .dropdown-menu .nav-item.active > i {
   color: #4c4cf1;
 }
 
-/* line 1008, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1087, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.dark_menu .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item {
   padding: 0 30px;
 }
 
-/* line 1010, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1089, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.dark_menu .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:after {
   content: "\35";
   color: #4c4cf1;
 }
 
-/* line 1016, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1095, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.dark_menu .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item:hover:after, .navbar_fixed.dark_menu .menu > .nav-item.submenu.mega_menu .dropdown-menu .tabHeader .nav-item.active:after {
   opacity: 1;
   right: 20px;
 }
 
-/* line 1028, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1107, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.dark_menu .nav_btn.tp_btn {
   border-color: rgba(76, 76, 241, 0.3);
   color: #4c4cf1 !important;
@@ -2246,30 +2328,30 @@ p kbd {
   padding: 8px 27px;
 }
 
-/* line 1033, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1112, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar_fixed.dark_menu .nav_btn.tp_btn:hover {
   background: #4c4cf1;
   color: #fff !important;
 }
 
-/* line 1041, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1120, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .dark_menu .menu_toggle .hamburger span, .dark_menu .menu_toggle .hamburger-cross span {
   background: #1d2746;
 }
 
-/* line 1045, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1124, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar-toggler {
   padding-left: 0;
 }
 
-/* line 1048, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1127, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .hamburger {
   height: 100%;
   width: 100%;
   display: block;
 }
 
-/* line 1052, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1131, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .hamburger span {
   width: 0%;
   height: 2px;
@@ -2284,22 +2366,22 @@ p kbd {
   transition: 0.2s ease-in-out;
 }
 
-/* line 1064, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1143, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .hamburger span:nth-child(1) {
   transition-delay: 0s;
 }
 
-/* line 1067, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1146, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .hamburger span:nth-child(2) {
   transition-delay: 0.125s;
 }
 
-/* line 1070, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1149, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .hamburger span:nth-child(3) {
   transition-delay: 0.2s;
 }
 
-/* line 1075, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1154, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_toggle {
   width: 22px;
   height: 22px;
@@ -2308,12 +2390,12 @@ p kbd {
   display: block;
 }
 
-/* line 1081, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1160, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_toggle .hamburger {
   position: absolute;
 }
 
-/* line 1084, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1163, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_toggle .hamburger-cross {
   position: absolute;
   height: 100%;
@@ -2322,7 +2404,7 @@ p kbd {
   display: block;
 }
 
-/* line 1090, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1169, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_toggle .hamburger-cross span {
   display: block;
   background: #fff;
@@ -2331,7 +2413,7 @@ p kbd {
   transition: 0.2s ease-in-out;
 }
 
-/* line 1096, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1175, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_toggle .hamburger-cross span:nth-child(1) {
   height: 100%;
   width: 2px;
@@ -2341,7 +2423,7 @@ p kbd {
   transition-delay: 0.3s;
 }
 
-/* line 1104, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1183, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .menu_toggle .hamburger-cross span:nth-child(2) {
   width: 100%;
   height: 2px;
@@ -2351,40 +2433,40 @@ p kbd {
   transition-delay: 0.4s;
 }
 
-/* line 1118, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1197, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .collapsed .menu_toggle .hamburger span {
   width: 100%;
 }
 
-/* line 1120, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1199, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .collapsed .menu_toggle .hamburger span:nth-child(1) {
   transition-delay: 0.3s;
 }
 
-/* line 1123, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1202, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .collapsed .menu_toggle .hamburger span:nth-child(2) {
   transition-delay: 0.4s;
 }
 
-/* line 1126, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1205, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .collapsed .menu_toggle .hamburger span:nth-child(3) {
   transition-delay: 0.5s;
 }
 
-/* line 1133, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1212, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .collapsed .menu_toggle .hamburger-cross span:nth-child(1) {
   height: 0%;
   transition-delay: 0s;
 }
 
-/* line 1137, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1216, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .collapsed .menu_toggle .hamburger-cross span:nth-child(2) {
   width: 0%;
   transition-delay: 0.2s;
 }
 
 /*=========== side_menu css ===========*/
-/* line 1147, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1226, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .side_menu {
   width: 300px;
   height: 100vh;
@@ -2399,7 +2481,7 @@ p kbd {
   overflow-x: hidden;
 }
 
-/* line 1159, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1238, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .side_menu .mobile_menu_header {
   display: flex;
   align-items: center;
@@ -2407,7 +2489,7 @@ p kbd {
   padding-right: 15px;
 }
 
-/* line 1164, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1243, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .side_menu .mobile_menu_header .close_nav {
   font-size: 28px;
   color: #1d2746;
@@ -2415,34 +2497,34 @@ p kbd {
   margin-top: -5px;
 }
 
-/* line 1170, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1249, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .side_menu .mobile_menu_header .close_nav i + i {
   display: none;
 }
 
-/* line 1176, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1255, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .side_menu .doc_left_sidebarlist {
   border: 0;
 }
 
-/* line 1178, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1257, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .side_menu .doc_left_sidebarlist:before {
   display: none;
 }
 
-/* line 1183, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1262, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .side_menu .nav-sidebar .nav-item {
   padding-right: 0;
 }
 
-/* line 1187, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1266, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .side_menu .mobile_nav_wrapper {
   display: flex;
   transform: translate3d(-300px, 0, 0);
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* line 1192, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1271, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .side_menu .mobile_nav_top,
 .side_menu .mobile_nav_bottom {
   height: calc(100vh - 65px);
@@ -2453,33 +2535,33 @@ p kbd {
   padding-right: 25px;
 }
 
-/* line 1201, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1280, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .side_menu .mobile_nav_top {
   padding-top: 30px;
 }
 
-/* line 1203, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1282, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .side_menu .mobile_nav_top .menu {
   padding-left: 0;
   padding-right: 0;
 }
 
-/* line 1209, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1288, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .side_menu.menu-opened .mobile_nav_wrapper {
   transform: translate3d(0, 0, 0);
 }
 
-/* line 1213, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1292, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .side_menu.menu-opened .close_nav i {
   display: none;
 }
 
-/* line 1215, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1294, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .side_menu.menu-opened .close_nav i + i {
   display: block;
 }
 
-/* line 1223, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1302, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .click_capture {
   position: fixed;
   top: 0;
@@ -2494,28 +2576,28 @@ p kbd {
 }
 
 @media (max-width: 992px) {
-  /* line 1236, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+  /* line 1315, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
   .menu-is-opened {
     overflow: hidden;
     height: 100%;
   }
-  /* line 1239, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+  /* line 1318, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
   .menu-is-opened .click_capture {
     opacity: 1;
     visibility: visible;
   }
-  /* line 1243, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+  /* line 1322, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
   .menu-is-opened .side_menu {
     transform: translate3d(0, 0, 0);
   }
 }
 
-/* line 1250, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1329, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .header_area .main_btn {
   margin-left: 80px;
 }
 
-/* line 1255, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
+/* line 1334, ../D/client/Redico/them HTML/Docy_HTML_Template/scss/_header.scss */
 .navbar:not(.navbar_fixed) .menu > .nav-item.submenu .dropdown-menu {
   margin-top: -15px;
 }
@@ -4847,7 +4929,8 @@ body.remove .header_tabs_area.tab_fixed .header_tab_items {
   transition: background 500ms ease, -webkit-transform 500ms ease;
   -o-transition: transform 500ms ease, background 500ms ease;
   transition: transform 500ms ease, background 500ms ease;
-  transition: transform 500ms ease, background 500ms ease, -webkit-transform 500ms ease;
+  transition: transform 500ms ease, background 500ms ease,
+ -webkit-transform 500ms ease;
   -webkit-transition: transform 500ms ease, background 500ms ease;
   z-index: 30;
 }
