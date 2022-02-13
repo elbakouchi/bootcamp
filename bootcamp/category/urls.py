@@ -1,5 +1,6 @@
-from .views import CategoriesListView, CategoryDetailView
 from django.conf.urls import url
+
+from .views import CategoriesListView, CategoryDetailView
 
 app_name = "categories"
 urlpatterns = [
