@@ -19,7 +19,7 @@ class CategoyQuerySet(models.query.QuerySet):
 
     def get_activated(self):
         """Returns only the published items in the current queryset."""
-        return self.filter(activated=true)
+        return self.filter(activated=True)
 
     def get_drafts(self):
         """Returns only the items marked as DRAFT in the current queryset."""
@@ -58,6 +58,7 @@ class Categoy(models.Model):
     description = models.TextField(max_length=280)
     activated = models.BooleanField(default=False)
     tags = TaggableManager()
+    icon = models.CharField(max_length=255, null=True, blank=True)
     objects = CategoyQuerySet.as_manager()
 
     class Meta:
