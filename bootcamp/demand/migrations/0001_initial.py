@@ -62,7 +62,7 @@ class Migration(migrations.Migration):
                     "service",
                     models.ManyToManyField(
                         null=True,
-                        on_delete=django.db.models.deletion.SET_NULL,
+                 #       on_delete=django.db.models.deletion.SET_NULL,
                         related_name="service",
                         to="bootcamp.category.Service",
                     ),
@@ -71,7 +71,7 @@ class Migration(migrations.Migration):
                     "category",
                    models.ManyToManyField(
                         null=True,
-                        on_delete=django.db.models.deletion.SET_NULL,
+                      #  on_delete=django.db.models.deletion.SET_NULL,
                         related_name="category",
                         to="bootcamp.category.Category",
                     ),
