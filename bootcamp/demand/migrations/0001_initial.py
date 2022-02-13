@@ -62,19 +62,23 @@ class Migration(migrations.Migration):
                 (
                     "service",
                     models.ManyToManyField(
-                        null=True,
-                 #       on_delete=django.db.models.deletion.SET_NULL,
-                        related_name="services",
-                        to="category.Service",
+                       blank=True,
+                       help_text="Specific service for this demand.",
+                       related_query_name="service",
+                       verbose_name="Service",
+                       related_name="services",
+                       to="category.Service",
                     ),
                 ),
                 (
                     "category",
                    models.ManyToManyField(
-                        null=True,
-                      #  on_delete=django.db.models.deletion.SET_NULL,
-                        related_name="categories",
-                        to="category.Category",
+                       blank=True,
+                       help_text="Specific categories for this demand.",
+                       related_query_name="category",
+                       verbose_name="Service",
+                       related_name="categories",
+                       to="category.Category",
                     ),
                 ),
                 (
