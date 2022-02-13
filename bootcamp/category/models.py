@@ -126,7 +126,7 @@ class Service(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
-        related_name="createdBy",
+        related_name="addedBy",
         on_delete=models.SET_NULL,
     )
     image = models.ImageField(
