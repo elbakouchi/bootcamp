@@ -58,15 +58,15 @@ class Demand(models.Model):
     service = models.ManyToManyField(
         Service,
         null=True,
-        related_name="taxonomy_service",
-        on_delete=models.SET_NULL,
+        related_name="taxonomy_service"
+        #on_delete=models.SET_NULL,
     )
 
     category = models.ManyToManyField(
         Category,
         null=True,
-        related_name="taxonomy_category",
-        on_delete=models.SET_NULL,
+        related_name="taxonomy_category"
+        #on_delete=models.SET_NULL,
     )
 
     image = models.ImageField(
