@@ -63,7 +63,7 @@ class Demand(models.Model):
 
     category = models.ForeignKey(
         "category.Category",
-        null=False,
+        null=True,
         related_name="taxonomy_category",
         on_delete=models.SET_NULL,
     )
