@@ -4,5 +4,5 @@ from .models import Category
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("name", "user", "status")
-    list_filter = ("user", "status", "timestamp")
+    list_display = ("name", "user", "activated")
+    list_filter = ("user", "activated", "timestamp")
