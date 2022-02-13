@@ -55,14 +55,14 @@ class Demand(models.Model):
     )
 
     service = models.ForeignKey(
-        "category.Service",
+        "bootcamp.category.Service",
         null=True,
         related_name="taxonomy_service",
         on_delete=models.SET_NULL,
     )
 
     category = models.ForeignKey(
-        "category.Category",
+        "bootcamp.category.Category",
         null=True,
         related_name="taxonomy_category",
         on_delete=models.SET_NULL,

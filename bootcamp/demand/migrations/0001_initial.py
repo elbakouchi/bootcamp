@@ -64,7 +64,7 @@ class Migration(migrations.Migration):
                         null=True,
                         on_delete=django.db.models.deletion.SET_NULL,
                         related_name="service",
-                        to="category.Service",
+                        to="bootcamp.category.Service",
                     ),
                 ),
                 (
@@ -73,7 +73,7 @@ class Migration(migrations.Migration):
                         null=True,
                         on_delete=django.db.models.deletion.SET_NULL,
                         related_name="category",
-                        to="category.Category",
+                        to="bootcamp.category.Category",
                     ),
                 ),
                 (
