@@ -41,7 +41,9 @@ class Migration(migrations.Migration):
                 
                 ("description", markdownx.models.MarkdownxField()),
                 ("activated", models.BooleanField(default=False)),
-                ("icon", models.)
+                ("icon", models.CharField(max_length=255, null=True, blank=True)),
+                ("createdAt", models.DateTimeField(auto_now_add=True)),
+                ("updatedAt", models.DateTimeField(auto_now=True)),
                 (
                     "tags",
                     taggit.managers.TaggableManager(
