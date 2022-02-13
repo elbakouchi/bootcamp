@@ -5,6 +5,7 @@ from django.db import migrations, models
 import django.db.models.deletion
 import markdownx.models
 import taggit.managers
+from bootcamp.category.models import Category, Service
 
 
 class Migration(migrations.Migration):
@@ -64,7 +65,7 @@ class Migration(migrations.Migration):
                         null=True,
                  #       on_delete=django.db.models.deletion.SET_NULL,
                         related_name="service",
-                        to="bootcamp.category.Service",
+                        to=Service,
                     ),
                 ),
                 (
@@ -73,7 +74,7 @@ class Migration(migrations.Migration):
                         null=True,
                       #  on_delete=django.db.models.deletion.SET_NULL,
                         related_name="category",
-                        to="bootcamp.category.Category",
+                        to=Category,
                     ),
                 ),
                 (
