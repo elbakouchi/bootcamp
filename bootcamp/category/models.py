@@ -60,7 +60,8 @@ class Category(models.Model):
     tags = TaggableManager()
     icon = models.CharField(max_length=255, null=True, blank=True)
     objects = CategoryQuerySet.as_manager()
-
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
     class Meta:
         verbose_name = _("Category")
         verbose_name_plural = _("Categoies")
