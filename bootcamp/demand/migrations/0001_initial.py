@@ -65,7 +65,7 @@ class Migration(migrations.Migration):
                         null=True,
                  #       on_delete=django.db.models.deletion.SET_NULL,
                         related_name="service",
-                        to="service.to",
+                        to="category.service.to",
                     ),
                 ),
                 (
@@ -74,7 +74,7 @@ class Migration(migrations.Migration):
                         null=True,
                       #  on_delete=django.db.models.deletion.SET_NULL,
                         related_name="category",
-                        to="category.to",
+                        to="category.category.to",
                     ),
                 ),
                 (
