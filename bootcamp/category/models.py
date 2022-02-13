@@ -14,7 +14,7 @@ from taggit.managers import TaggableManager
 from bootcamp.notifications.models import Notification, notification_handler
 
 
-class CategoyQuerySet(models.query.QuerySet):
+class CategoryQuerySet(models.query.QuerySet):
     """Personalized queryset created to improve model usability"""
 
     def get_activated(self):
@@ -41,7 +41,7 @@ class CategoyQuerySet(models.query.QuerySet):
         return tag_dict.items()
 
 
-class Categoy(models.Model):
+class Category(models.Model):
    
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -59,10 +59,10 @@ class Categoy(models.Model):
     activated = models.BooleanField(default=False)
     tags = TaggableManager()
     icon = models.CharField(max_length=255, null=True, blank=True)
-    objects = CategoyQuerySet.as_manager()
+    objects = CategoryQuerySet.as_manager()
 
     class Meta:
-        verbose_name = _("Categoy")
+        verbose_name = _("Category")
         verbose_name_plural = _("Categoies")
         ordering = ("-timestamp",)
 
@@ -83,7 +83,7 @@ class Categoy(models.Model):
 
 # def notify_comment(**kwargs):  # pragma: no cover
 #     """Handler to be fired up upon comments signal to notify the author of a
-#     given Categoy."""
+#     given Category."""
 #     actor = kwargs["request"].user
 #     receiver = kwargs["comment"].description_object.user
 #     obj = kwargs["comment"].description_object
