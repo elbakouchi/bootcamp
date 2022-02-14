@@ -11,6 +11,7 @@ from graphene_django.views import GraphQLView
 admin.site.site_header = 'Redico back-office'
 
 urlpatterns = [
+    url(r"^categories/", include("bootcamp.category.urls", namespace="categories")),
     url(r"^$", TemplateView.as_view(template_name="redico/home.html"), name="home"),
     url(r"^_categories", TemplateView.as_view(template_name="redico/categories.html"), name="_categories"),
     url(r"^apropos-de-redico", TemplateView.as_view(template_name="redico/about-redico.html"), name="about"),
@@ -47,7 +48,7 @@ urlpatterns = [
     url(r"^qa/", include("bootcamp.qa.urls", namespace="qa")),
     url(r"^search/", include("bootcamp.search.urls", namespace="search")),
     url(r'^(?P<url>.*/)$', flatpages.flatpage),
-    url(r"^categories/", include("bootcamp.category.urls", namespace="categories")),
+
     #  url('summernote/', include('django_summernote.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
