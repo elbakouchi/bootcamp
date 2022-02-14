@@ -6,5 +6,5 @@ from bootcamp.category.views import CategoriesListView, \
 app_name = 'categories'
 
 urlpatterns = [url(regex=r"^$", view=CategoriesListView.as_view(),
-               name='list'), url(regex=r"^(?P<slug>[\w.@+-]+)/$",
-               view=CategoryDetailView.as_view(), name='detail')]
+                   name='list'), url(regex=r"^(?P<slug>[\w.@+-]+)/$",
+                                     view=CategoryDetailView.as_view(), name='detail')]
