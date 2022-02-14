@@ -1,7 +1,5 @@
 from django.conf.urls import url
-
-from .views import CategoriesListView, CategoryDetailView
-
+from bootcamp.category.views import CategoriesListView, CategoryDetailView
 app_name = "categories"
 urlpatterns = [
     url(regex=r"^$", view=CategoriesListView.as_view(), name="list"),
