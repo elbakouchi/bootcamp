@@ -12,7 +12,7 @@ admin.site.site_header = 'Redico back-office'
 
 urlpatterns = [
     url(r"^$", TemplateView.as_view(template_name="redico/home.html"), name="home"),
-    url(r"^categories", TemplateView.as_view(template_name="redico/categories.html"), name="categories"),
+    # url(r"^categories", TemplateView.as_view(template_name="redico/categories.html"), name="categories"),
     url(r"^apropos-de-redico", TemplateView.as_view(template_name="redico/about-redico.html"), name="about"),
     url(r"^article", TemplateView.as_view(template_name="redico/article-single.html"), name="article"),
     url(r"^articles", TemplateView.as_view(template_name="redico/liste-article.html"), name="articles"),
