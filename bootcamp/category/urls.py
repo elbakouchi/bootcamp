@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import url
-from bootcamp.category.views import CategoriesListView, \
-    CategoryDetailView
+from bootcamp.category.views import CategoriesListView, CategoryDetailView
 
 app_name = 'categories'
 
