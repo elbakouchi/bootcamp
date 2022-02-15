@@ -7,9 +7,6 @@ class HomePageView(TemplateView, CategoriesListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(CategoriesListView, self).get_context_data(*args, **kwargs)
-        context['categories'] = self.get_queryset(*args, **kwargs)
-        queryset = kwargs.pop('object_list', None)
-        if queryset is None:
-            self.object_list = self.model.objects.all()
+        context['categories'] = self.get_queryset(**kwargs)
         return context
 

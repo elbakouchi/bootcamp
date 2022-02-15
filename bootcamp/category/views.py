@@ -10,12 +10,12 @@ class CategoriesListView(ListView):
     # These next two lines tell the view to index lookups by username
     slug_field = "slug"
     slug_url_kwarg = "slug"
-    object_list = []
+    categories = []
 
     def get_queryset(self, **kwargs):
-        queryset = kwargs.pop('object_list', None)
+        queryset = kwargs.pop('categories', None)
         if queryset is None:
-            self.object_list = Category.objects.get_activated()
+            self.categories = Category.objects.get_activated()
         return queryset
 
 
