@@ -46,14 +46,19 @@
                             {% endif %}
                             <div class="col-lg-12 form-group">
                                 <div class="small_text">Email</div>
-                                <input type="email" class="form-control" id="email" placeholder="info@Redico.com">
+                                {{form.login}}
+                                <!--input type="email" class="form-control" id="email" placeholder="info@Redico.com"-->
                             </div>
                             <div class="col-lg-12 form-group">
                                 <div class="small_text">Mot de passe</div>
                                 <div class="confirm_password">
-                                    <input id="confirm-password" name="password" type="password" class="form-control" placeholder="5+ characters required" autocomplete="off">
+                                    <!--input id="confirm-password" name="password" type="password" class="form-control" placeholder="5+ characters required" autocomplete="off"-->
+                                    {{form.password}}
                                     <a href="{% url 'account_reset_password' %}" class="forget_btn">Mot de passe oublié?</a>
                                 </div>
+                            </div>
+                            <div class="">
+                                {{ form.remember }}
                             </div>
 
                             <div class="col-lg-12 text-center">
