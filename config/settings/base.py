@@ -83,6 +83,7 @@ THIRD_PARTY_APPS = [
     "django_summernote"
 ]
 LOCAL_APPS = [
+    "bootcamp.home.apps.HomeConfig",
     "bootcamp.users.apps.UsersConfig",
     # Your stuff: custom apps go here
     "bootcamp.articles.apps.ArticlesConfig",
