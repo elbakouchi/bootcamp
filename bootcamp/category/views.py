@@ -17,6 +17,7 @@ class CategoriesListView(ListView):
 
 
 class CategoryDetailView(DetailView):
+    template_name = 'redico/liste-article.html'
     model = Category
     # These next two lines tell the view to index lookups by username
     slug_field = "slug"
