@@ -4,6 +4,6 @@
 {% block title%}  Redico -  Liste des Articles {% endblock title%}  
 
 {% block content %}
-{% include 'redico/snippets/banner.html' with heading="Extraits d’articles" %}
+{% include 'redico/snippets/banner.html' with heading=category.name %}
 {% include 'redico/snippets/categories-breadcumb.html' with categoryName=category.name %}
 {% endblock content %}
