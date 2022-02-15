@@ -39,62 +39,9 @@
             <img class="doc_features_shap" src="{% static 'img/new/shap_white.png' %}" alt="">
             <div class="container">
                 <div class="doc_features_inner">
-                    <div class="media doc_features_item wow fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.5s">
-                        <img src="{% static 'img/new/icon1.png' %}" alt="">
-                        <div class="media-body">
-                            <a href="{% url 'categories:list' %}">
-                                <h4>Extraits d’articles</h4>
-                            </a>
-                            <p>12 Posts</p>
-                        </div>
-                    </div>
-                    <div class="media doc_features_item wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="0.6s">
-                        <img src="{% static 'img/new/icon2.png' %}" alt="">
-                        <div class="media-body">
-                            <a href="{% url 'categories:list' %}">
-                                <h4>Ecrits professionnels</h4>
-                            </a>
-                            <p>245 Posts</p>
-                        </div>
-                    </div>
-                    <div class="media doc_features_item wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="0.7s">
-                        <img src="{% static 'img/new/icon3.png' %}" alt="">
-                        <div class="media-body">
-                            <a href="{% url 'categories:list' %}">
-                                <h4>Petits mots</h4>
-                            </a>
-                            <p>32 Posts</p>
-                        </div>
-                    </div>
-                    <div class="media doc_features_item wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="0.8s">
-                        <img src="{% static 'img/new/icon4.png' %}" alt="">
-                        <div class="media-body">
-                            <a href="{% url 'categories:list' %}">
-                                <h4>Annonces</h4>
-                            </a>
-                            <p>90 Posts</p>
-                        </div>
-                    </div>
-                    <div class="media doc_features_item wow fadeInUp" data-wow-delay="0.5s" data-wow-duration="0.9s">
-                        <img src="{% static 'img/new/icon5.png' %}" alt="">
-                        <div class="media-body">
-                            <a href="{% url 'categories:list' %}">
-                                <h4>Courriers personnels</h4>
-                            </a>
-                            <p>245 Posts</p>
-                        </div>
-                    </div>
-                    <div class="media doc_features_item wow fadeInUp" data-wow-delay="0.5s" data-wow-duration="1s">
-                        <img src="{% static 'img/new/icon6.png' %}" alt="">
-                        <div class="media-body">
-                            <a href="{% url 'categories:list' %}">
-                                <h4>Posts réseaux sociaux</h4>
-                            </a>
-                            <p>145 Posts</p>
-                        </div>
-                    </div>
-                  
-                     
+                    {% for category in categories %}
+                    {% include 'redico/snippets/category-home-list-item.html' with category=category %}
+                    {% endfor %}
                     
                 </div>
 

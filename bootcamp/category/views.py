@@ -5,6 +5,8 @@ from .models import Category
 class CategoriesListView(ListView):
     template_name = 'redico/categories.html'
     model = Category
+    paginate_by = 15
+    context_object_name = "categories"
     # These next two lines tell the view to index lookups by username
     slug_field = "slug"
     slug_url_kwarg = "slug"
