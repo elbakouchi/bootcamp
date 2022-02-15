@@ -6,16 +6,16 @@ class CategoriesListView(ListView):
     template_name = 'redico/categories.html'
     model = Category
     paginate_by = 15
-    context_object_name = "categories"
+    # context_object_name = "categories"
     # These next two lines tell the view to index lookups by username
     slug_field = "slug"
     slug_url_kwarg = "slug"
-    categories = []
+    # categories = []
 
     def get_queryset(self, **kwargs):
         queryset = kwargs.pop('categories', None)
         if queryset is None:
-            self.categories = Category.objects.get_activated()
+            self.object_list = Category.objects.get_activated()
         return queryset
 
 
