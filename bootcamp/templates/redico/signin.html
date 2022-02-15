@@ -82,7 +82,12 @@
     <script src="{% static 'assets/wow/wow.min.js' %}"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="{% static 'js/main.js' %}"></script>
-
+    <script>
+     $(function() {
+        $('#id_login').addClass('form-control');
+        $('#id_password').addClass('form-control');
+     });
+    </script>
 </body>
 
 </html>
