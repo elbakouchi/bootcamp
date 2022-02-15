@@ -1,7 +1,7 @@
 {% extends 'redico/redico_base.html' %}
 {% load static %}
 
-{% block title%}  Redico -  Liste des Articles {% endblock title%}  
+{% block title%}  Redico -  {{category.name}} {% endblock title%}
 
 {% block content %}
 {% include 'redico/snippets/banner.html' with heading=category.name %}
