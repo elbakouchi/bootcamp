@@ -58,7 +58,11 @@
                                 </div>
                             </div>
                             <div class="">
-                                {{ form.remember }}
+                                <div class="col-lg-12 form-group">
+                                <div class="small_text">Se rappeller de moi.</div>
+                                    <div class="confirm_password">
+                                        {{ form.remember }}
+                                    </div>
                             </div>
 
                             <div class="col-lg-12 text-center">
@@ -86,6 +90,7 @@
      $(function() {
         $('#id_login').addClass('form-control');
         $('#id_password').addClass('form-control');
+        $('#id_remember').addClass('form-control');
      });
     </script>
 </body>
