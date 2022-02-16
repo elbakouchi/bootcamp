@@ -46,7 +46,7 @@
                             {% endif %}
                             <div class="col-sm-12 form-group">
                                 <div class="small_text">Login</div>
-                                {{form.login}}
+                                {{form.as_p}}
                                 <!--input type="text" class="form-control" name="name" id="name" placeholder="Muhammad"-->
                             </div>
                             <!--div class="col-sm-6 form-group">
@@ -60,7 +60,7 @@
                             </div>
                             <div class="col-lg-12 form-group">
                                 <div class="small_text">Mot de passe</div>
-                                {{form.password}}
+                                {{form.password1}}
                                 <!--input id="signup-password" name="signup-password" type="password" class="form-control" placeholder="5+ characters required" autocomplete="off"-->
                             </div>
                             <div class="col-lg-12 form-group">
@@ -95,7 +95,7 @@
     <script src="{% static 'assets/wow/wow.min.js"></script>
     <script src="{% static 'https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="{% static 'js/main.js"></script>
-<script>
+    <script>
      $(function() {
         $('#id_login').addClass('form-control');
         $('#id_email').addClass('form-control');
