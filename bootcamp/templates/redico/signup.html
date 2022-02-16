@@ -96,7 +96,8 @@
     <script src="{% static 'https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="{% static 'js/main.js"></script>
     <script>
-     $(function() {
+    $(document).ready(
+     function(){
         $('#id_username').addClass('form-control');
         $('#id_email').addClass('form-control');
         $('#id_password1').addClass('form-control');
