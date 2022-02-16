@@ -43,7 +43,7 @@
     <div class="body_wrapper">
         <nav class="navbar navbar-expand-lg menu_one dark_menu sticky-nav">
             <div class="container">
-                    <a class="navbar-brand header_logo" href="{% url 'home' %}">
+                    <a class="navbar-brand header_logo" href="{% url 'homepage:home' %}">
                         <img class="first_logo sticky_logo main_logo" src="{% static 'img/logo.png' %}" srcset="{% static 'img/logo.png' %} 2x" alt="logo">
                         <img class="white_logo" src="{% static 'img/logo-w.png' %}" srcset="{% static 'img/logo-w2x.png' %} 2x" alt="logo">
                     </a>
@@ -64,7 +64,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav menu ml-auto">
                             <li class="nav-item dropdown submenu active">
-                                <a href="{% url 'home' %}" class="nav-link dropdown-toggle">Home</a>
+                                <a href="{% url 'homepage:home' %}" class="nav-link dropdown-toggle">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{% url 'articles' %}" class="nav-link">Textes en attente de correction</a>
