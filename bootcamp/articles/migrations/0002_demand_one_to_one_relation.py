@@ -14,6 +14,7 @@ class Migration(migrations.Migration):
                 related_query_name="demand",
                 verbose_name="Demand",
                 related_name="demand",
+                on_delete=models.SET_NULL,
                 to="demand.Demand",
             ),
         )
