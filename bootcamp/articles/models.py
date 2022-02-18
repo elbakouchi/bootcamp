@@ -10,7 +10,7 @@ from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
 from taggit.managers import TaggableManager
 
-
+import bootcamp.demand.models
 from bootcamp.notifications.models import Notification, notification_handler
 
 
@@ -50,6 +50,13 @@ class Article(models.Model):
         settings.AUTH_USER_MODEL,
         null=True,
         related_name="author",
+        on_delete=models.SET_NULL,
+    )
+
+    demand = models.OneToOneField(
+        bootcamp.demand.models.Demand,
+        null=True,
+        related_name="demand",
         on_delete=models.SET_NULL,
     )
     image = models.ImageField(
