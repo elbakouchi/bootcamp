@@ -13,7 +13,9 @@ class CategoriesListView(ListView):
     # categories = []
 
     def get_queryset(self, **kwargs):
-        return Category.objects.get_activated()
+        queryset = super(CategoriesListView, self).get_queryset()
+        return queryset.filter(category__activated=True)
+        # return Category.objects.get_activated()
 
 
 class CategoryDetailView(DetailView):
@@ -22,3 +24,8 @@ class CategoryDetailView(DetailView):
     # These next two lines tell the view to index lookups by username
     slug_field = "slug"
     slug_url_kwarg = "slug"
+
+    # def
+
+    def get_queryset(self, **kwargs):
+        return Category.objects.get_activated()
