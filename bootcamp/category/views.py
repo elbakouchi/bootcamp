@@ -14,7 +14,7 @@ class CategoriesListView(ListView):
 
     def get_queryset(self, **kwargs):
         queryset = super(CategoriesListView, self).get_queryset()
-        return queryset.filter(category__activated=True)
+        return queryset.filter(activated=True)
         # return Category.objects.get_activated()
 
 
