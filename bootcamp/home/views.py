@@ -6,7 +6,7 @@ class HomePageView(CategoriesListView):
     template_name = 'redico/homepage.html'
 
     def get_context_data(self, *args, **kwargs):
-        context = super(CategoriesListView, self).get_context_data(*args, **kwargs)
-        context['categories'] = super(CategoriesListView, self).get_queryset(**kwargs)
+        context = super(HomePageView, self).get_context_data(*args, **kwargs)
+        context['categories'] = super(HomePageView, self).get_queryset(**kwargs)
         return context
 
