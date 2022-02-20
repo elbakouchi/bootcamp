@@ -9,7 +9,6 @@ from slugify import slugify
 from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
 from taggit.managers import TaggableManager
-from bootcamp.articles.models import Article
 
 from bootcamp.notifications.models import Notification, notification_handler
 
