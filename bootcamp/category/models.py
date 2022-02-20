@@ -9,7 +9,7 @@ from slugify import slugify
 from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
 from taggit.managers import TaggableManager
-
+from bootcamp.articles.models import Article
 
 from bootcamp.notifications.models import Notification, notification_handler
 
@@ -40,9 +40,17 @@ class CategoryQuerySet(models.query.QuerySet):
 
         return tag_dict.items()
 
+    @staticmethod
+    def get_categories_with_demands_count(self):
+        return Category.objects.filter(activated=True).annotate(posts_count=Count('taxonomy_category'))
+
+    # @staticmethod
+    def get_categories_with_articles(self):
+        # articles = Article.objects.get_by_demand()
+        return self.filter(activated=True)
+
 
 class Category(models.Model):
-   
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
@@ -122,7 +130,6 @@ class ServiceQuerySet(models.query.QuerySet):
 
 
 class Service(models.Model):
-   
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
@@ -161,4 +168,3 @@ class Service(models.Model):
 
     def get_markdown(self):
         return markdownify(self.description)
-
