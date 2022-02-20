@@ -18,7 +18,7 @@ class CategoryQuerySet(models.query.QuerySet):
     """Personalized queryset created to improve model usability"""
 
     def get_activated(self):
-        """Returns only the published items in the current queryset."""
+        """Returns only the activated items in the current queryset."""
         return self.filter(activated=True)
 
     def get_drafts(self):
