@@ -1,3 +1,4 @@
+from django.db.models import Count
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
@@ -15,6 +16,6 @@ class HomePageView(CategoriesListView):
 
 
 def homepage(request):
-    categories = Category.objects.get_categories_with_demands_count()
+    categories = Category.objects.filter(activated=True).annotate(posts_count=Count('taxonomy_category'))
     return render(request, 'redico/homepage.html', {'categories': categories})
 
