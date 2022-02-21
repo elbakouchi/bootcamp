@@ -46,7 +46,10 @@
                             <a href="{% url 'categories:detail' category.slug %}">
                                 <h4>{{category.name}}</h4>
                             </a>
-                            <p>{{category.posts_count}} Posts</p>
+                            {% with total=category.posts_count %}
+                                <p>{{ total }} post{{ total|pluralize }}</p>
+                            {% endwith %}
+
                         </div>
                     </div>
                     {% endfor %}
