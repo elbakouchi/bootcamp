@@ -2,6 +2,7 @@ from django.db.models import Count
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
+from bootcamp.articles.models import Article
 from bootcamp.category.models import Category
 from bootcamp.category.views import CategoriesListView
 
@@ -16,6 +17,7 @@ class HomePageView(CategoriesListView):
 
 
 def homepage(request):
+    articles = Article.objects.filter(published=True)
     categories = Category.objects.filter(activated=True).annotate(posts_count=Count('taxonomy_category'))
-    return render(request, 'redico/homepage.html', {'categories': categories})
+    return render(request, 'redico/homepage.html', {'categories': categories, 'articles':articles})
 
