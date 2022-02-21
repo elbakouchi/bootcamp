@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from bootcamp.home import views
+from . import views
 
 
 app_name = "home"
