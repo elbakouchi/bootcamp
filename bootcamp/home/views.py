@@ -18,7 +18,7 @@ class HomePageView(CategoriesListView):
 
 
 def homepage(request):
-    articles = Article.objects.filter(status="P").annotate(categoryName=StringAgg('demand__taxonomy_category__category', delimiter=','))
+    articles = Article.objects.filter(status="P").annotate(categoryName=StringAgg('demand__category__name', delimiter= ','))
     categories = Category.objects.filter(activated=True).annotate(posts_count=Count('taxonomy_category'))
     return render(request, 'redico/homepage.html', {'categories': categories, 'articles': articles})
 
