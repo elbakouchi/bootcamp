@@ -1,8 +1,8 @@
 from django.conf.urls import url
-from bootcamp.home.views import HomePageView, homepage
+from bootcamp.home import views
 
 
 app_name = "home"
 urlpatterns = [
-    url(r"^$", 'bootcamp.home.views.homepage', name="home"),
+    url(r"^$",  views.homepage, name="home"),
 ]
