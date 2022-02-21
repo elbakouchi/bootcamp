@@ -85,31 +85,34 @@
   
                     <div class="forum_body">
                         <ul class="navbar-nav topic_list">
+                            {% for article in articles %}
                             <li>
                                 <div class="media">
                                     
                                     <div class="media-body">
                                         <div class="t_title">
                                             <a href="{% url 'article' %}">
-                                                <h4>Petit mot pour maman</h4>
+                                                <h4>{{article.title}}</h4>
                                             </a>
                                         </div>
                                         <a href="#">
                                             <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>   Petits mots
                                             </h6>
                                         </a>
-                                        <h6><i class="icon_clock_alt"></i> 26 minutes ago
+                                        <h6><i class="icon_clock_alt"></i> {{ article.createdAt|timesince:now }}
                                         </h6>
                                     </div>
                                     <div class="media-right">
                                       
                                          
-                                         <a class="count" href="#"><ion-icon name="create-outline"></ion-icon> 13</a>
+                                         <!--a class="count" href="#"><ion-icon name="create-outline"></ion-icon> 13</a-->
 
-                                        <a class="count" href="#"><ion-icon name="eye-outline"></ion-icon> 420</a>
+                                        <!--a class="count" href="#"><ion-icon name="eye-outline"></ion-icon> 420</a-->
                                     </div>
                                 </div>
                             </li>
+                            {%endfor%}
+                            <!--
                             <li>
                                 <div class="media">
                                     
@@ -210,7 +213,6 @@
                                     </div>
                                 </div>
                             </li>
-                            
                             <li>
                                 <div class="media">
                                     <div class="media-body">
@@ -235,6 +237,7 @@
                                     </div>
                                 </div>
                             </li>
+                            -->
                         </ul>
                     </div>
                 </div>
