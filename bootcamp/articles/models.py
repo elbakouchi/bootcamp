@@ -25,6 +25,9 @@ class ArticleQuerySet(models.query.QuerySet):
         """Returns only the items marked as DRAFT in the current queryset."""
         return self.filter(status="D")
 
+    def get_by_demand(self, category):
+        return self.filter()
+
     def get_counted_tags(self):
         tag_dict = {}
         query = (
@@ -82,7 +85,7 @@ class Article(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(
-                f"{self.user.username}-{self.title}", lowercase=True, max_length=80
+                f"{self.title}-{self.id}", lowercase=True, max_length=80
             )
 
         super().save(*args, **kwargs)
