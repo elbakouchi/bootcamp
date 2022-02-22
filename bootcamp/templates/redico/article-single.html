@@ -13,7 +13,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{% url 'homepage:home' %}">Home</a></li>
-                                <li class="breadcrumb-item"><a href="{% url 'categories:detail' article.category.slug %}">{{article.category.name}}</a></li>
+                                <li class="breadcrumb-item"><a href="{#% url 'categories:detail' article.category.slug %#}">{#{article.category.name}#}</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">{{article.title}}</li>
                             </ol>
                         </nav>
