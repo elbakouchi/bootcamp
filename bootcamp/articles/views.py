@@ -70,4 +70,5 @@ class EditArticleView(LoginRequiredMixin, AuthorRequiredMixin, UpdateView):
 class DetailArticleView(LoginRequiredMixin, DetailView):
     """Basic DetailView implementation to call an individual article."""
     template_name = "redico/article-single.html"
+    context_object_name = 'article'
     model = Article
