@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, ListView, UpdateView, DetailView
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.postgres.aggregates import StringAgg
 
 from bootcamp.helpers import AuthorRequiredMixin
 from bootcamp.articles.models import Article
@@ -72,3 +73,9 @@ class DetailArticleView(LoginRequiredMixin, DetailView):
     template_name = "redico/article-single.html"
     context_object_name = 'article'
     model = Article
+
+    def get_object(self, queryset=None):
+        article = super(DetailArticleView, self).get_object()
+        category_name = Article.objects.filter(pk=article.pk).aggregate(
+                  categoryName=StringAgg('demand__category__name', delimiter=','))
+        article.categoryName = category_name
