@@ -8,7 +8,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('category', '0003_auto_20220219_1042'),
+       # ('category', '0003_auto_20220219_1042'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('demand', '0003_add_createdat_updatedat'),
     ]
