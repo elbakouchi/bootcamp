@@ -74,11 +74,3 @@ class DetailArticleView(DetailView):
     context_object_name = 'article'
     model = Article
 
-    def get_object(self, queryset=None):
-        article = super(DetailArticleView, self).get_object()
-        print(article)
-        article = Article.objects.filter(pk=article.pk).annotate(
-                  categoryName=StringAgg('demand__category__name', delimiter=','))
-        print(vars(article))
-        return article
-

@@ -5,7 +5,7 @@
 
 {% block content %}
 {% include 'redico/snippets/banner.html' with heading=article.title %}
-{% include 'redico/snippets/categories-breadcumb.html' with categoryName=article.title %}
+{% include 'redico/snippets/categories-breadcumb.html' with categoryName=article.category_name %}
         <section class="page_breadcrumb">
             <div class="container custom_container">
                 <div class="row">
@@ -13,7 +13,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{% url 'homepage:home' %}">Home</a></li>
-                                <li class="breadcrumb-item"><a href="{#% url 'categories:detail' article.category.slug %#}">{{article.categoryName}}</a></li>
+                                <li class="breadcrumb-item"><a href="{#% url 'categories:detail' article.category_slug %#}">{{article.category_name}}</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">{{article.title}}</li>
                             </ol>
                         </nav>

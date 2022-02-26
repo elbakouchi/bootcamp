@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.postgres.aggregates import StringAgg
 
 from slugify import slugify
 
@@ -74,13 +75,19 @@ class Article(models.Model):
     tags = TaggableManager()
     objects = ArticleQuerySet.as_manager()
 
+    def get_category(self):
+        return self.objects.annotate(
+            category_name=StringAgg('demand__category__name', delimiter=','),
+            category_slug=StringAgg('demand__category__slug', delimiter=','))
+
     class Meta:
         verbose_name = _("Article")
         verbose_name_plural = _("Articles")
         ordering = ("-timestamp",)
 
     def __str__(self):
-        return self.title
+        self.get_category()
+        return f"{self.title}-{self.category_slug}"
 
     def save(self, *args, **kwargs):
         if not self.slug:
