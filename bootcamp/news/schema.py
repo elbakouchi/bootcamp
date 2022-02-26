@@ -64,7 +64,7 @@ class NewsQuery(object):
 
 
 class NewsMutation(graphene.Mutation):
-    """Mutation to create news objects on a efective way."""
+    """Mutation to create news objects on an effective way."""
 
     class Arguments:
         content = graphene.String()
