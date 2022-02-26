@@ -73,4 +73,5 @@ class DetailArticleView(DetailView):
     template_name = "redico/article-single.html"
     context_object_name = 'article'
     model = Article
+    pk_url_kwarg = 'slug'
 
