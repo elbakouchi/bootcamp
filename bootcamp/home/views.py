@@ -1,7 +1,7 @@
 from django.db.models import Count
 from django.shortcuts import render
-from django.contrib.postgres.aggregates import ArrayAgg, StringAgg
-from django.views.generic import TemplateView
+from django.contrib.postgres.aggregates import StringAgg
+# from django.views.generic import TemplateView
 
 from bootcamp.articles.models import Article
 from bootcamp.category.models import Category
@@ -18,7 +18,8 @@ class HomePageView(CategoriesListView):
 
 
 def homepage(request):
-    articles = Article.objects.filter(status="P").annotate(categoryName=StringAgg('demand__category__name', delimiter= ','))
+    articles = \
+        Article.objects.filter(status="P").annotate(categoryName=StringAgg('demand__category__name', delimiter=','))
     categories = Category.objects.filter(activated=True).annotate(posts_count=Count('taxonomy_category'))
     return render(request, 'redico/homepage.html', {'categories': categories, 'articles': articles})
 
