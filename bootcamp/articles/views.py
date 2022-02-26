@@ -68,7 +68,7 @@ class EditArticleView(LoginRequiredMixin, AuthorRequiredMixin, UpdateView):
         return reverse("articles:list")
 
 
-class DetailArticleView(LoginRequiredMixin, DetailView):
+class DetailArticleView(DetailView):
     """Basic DetailView implementation to call an individual article."""
     template_name = "redico/article-single.html"
     context_object_name = 'article'
@@ -76,6 +76,6 @@ class DetailArticleView(LoginRequiredMixin, DetailView):
 
     def get_object(self, queryset=None):
         article = super(DetailArticleView, self).get_object()
-        category_name = Article.objects.filter(pk=article.pk).aggregate(
+        category_name = Article.objects.filter(pk=article.pk).annotate(
                   categoryName=StringAgg('demand__category__name', delimiter=','))
         article.categoryName = category_name
