@@ -76,6 +76,5 @@ class DetailArticleView(DetailView):
 
     def get_object(self, queryset=None):
         article = super(DetailArticleView, self).get_object()
-        category_name = Article.objects.filter(pk=article.pk).annotate(
+        article = Article.objects.filter(pk=article.pk).annotate(
                   categoryName=StringAgg('demand__category__name', delimiter=','))
-        article.categoryName = category_name
