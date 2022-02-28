@@ -15,6 +15,11 @@ from bootcamp.notifications.models import Notification, notification_handler
 
 class CategoryQuerySet(models.query.QuerySet):
     """Personalized queryset created to improve model usability"""
+    def get_demands(self):
+        return self.annotate(articles='taxonomy_category__article')
+
+    def get_articles(self):
+        self.filter(activated=True).annotate(taxonomy_category__article=())
 
     def get_activated(self):
         """Returns only the activated items in the current queryset."""
@@ -40,8 +45,8 @@ class CategoryQuerySet(models.query.QuerySet):
         return tag_dict.items()
 
     @staticmethod
-    def get_categories_with_demands_count(self):
-        return Category.objects.filter(activated=True).annotate(posts_count=Count('taxonomy_category'))
+    def get_categories_with_demands_count():
+        return Category.objects.filter(activated=True).annotate(posts_count=Count('taxonomy_category'), articles='taxonomy_category__article')
 
     # @staticmethod
     def get_categories_with_articles(self):
@@ -81,7 +86,7 @@ class Category(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(
-                f"{self.user.username}-{self.name}", lowercase=True, max_length=80
+                f"{self.name}-{self.pk}", lowercase=True, max_length=80
             )
 
         super().save(*args, **kwargs)
