@@ -18,6 +18,11 @@ from bootcamp.notifications.models import Notification, notification_handler
 class ArticleQuerySet(models.query.QuerySet):
     """Personalized queryset created to improve model usability"""
 
+    def get_category(self):
+        return self.annotate(
+            category_name=StringAgg('demand__category__name', delimiter=','),
+            category_slug=StringAgg('demand__category__slug', delimiter=','))
+
     def get_published(self):
         """Returns only the published items in the current queryset."""
         return self.filter(status="P")
@@ -75,10 +80,11 @@ class Article(models.Model):
     tags = TaggableManager()
     objects = ArticleQuerySet.as_manager()
 
-    def get_category(self):
-        return self.objects.annotate(
-            category_name=StringAgg('demand__category__name', delimiter=','),
-            category_slug=StringAgg('demand__category__slug', delimiter=','))
+    # @staticmethod
+
+    # def __init__(self, *args, **kwargs):
+    #    super(Article, self).__init__()
+    #    self.objects.get_category
 
     class Meta:
         verbose_name = _("Article")
@@ -86,8 +92,8 @@ class Article(models.Model):
         ordering = ("-timestamp",)
 
     def __str__(self):
-        self.get_category()
-        return f"{self.title}-{self.category_slug}"
+        # self.get_category()
+        return f"{self.title}" # -{self.}"
 
     def save(self, *args, **kwargs):
         if not self.slug:
