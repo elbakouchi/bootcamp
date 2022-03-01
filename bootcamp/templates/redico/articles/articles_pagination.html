@@ -1,0 +1,9 @@
+{% if current.has_previous %}
+<li class="page-item"><a class="page-link" href="#"><i class="arrow_carrot-left"></i>&nbsp;Précedent&nbsp;</a></li>
+{% endif%}
+{% for page in page_range %}
+<li class="page-item active"><a class="page-link" href="#">{{page}}</a></li>
+{% endfor %}
+{% if current.has_next %}
+<li class="page-item"><a class="page-link" href="#">Suivant&nbsp;<i class="arrow_carrot-right"></i></a></li>
+{% endif%}
