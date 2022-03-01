@@ -1,11 +1,11 @@
 {% extends 'redico/redico_base.html' %}
 {% load static %}
 
-{% block title%}  Redico -  {{category.name}} {% endblock title%}
+{% block title%}  Redico -  {{object.name}} {% endblock title%}
 
 {% block content %}
-{% include 'redico/snippets/banner.html' with heading=category.name %}
-{% include 'redico/snippets/categories-breadcumb.html' with categoryName=category.name %}
+{% include 'redico/snippets/banner.html' with heading=object.name %}
+{% include 'redico/snippets/categories-breadcumb.html' with categoryName=object.name %}
  <section class="doc_blog_grid_area sec_pad forum-page-content">
             <div class="container">
                 <div class="row">
@@ -31,156 +31,27 @@
 
                     <div class="forum_body">
                         <ul class="navbar-nav topic_list">
-                            <li>
+                            {% for article in object_list%}<li>
                                 <div class="media">
-
                                     <div class="media-body">
                                         <div class="t_title">
-                                            <a href="article-single.html">
-                                                <h4>Petit mot pour maman</h4>
+                                            <a href="{% url 'articles:article' article.slug %}">
+                                                <h4>{{article.title}}</h4>
                                             </a>
                                         </div>
                                         <a href="#">
-                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>   Petits mots
-                                            </h6>
+                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>&nbsp;{{article.category_name}}</h6>
                                         </a>
-                                        <h6><i class="icon_clock_alt"></i> 26 minutes ago
+                                        <h6><i class="icon_clock_alt"></i>&nbsp;{{article.timestamp|timesince}}
                                         </h6>
                                     </div>
                                     <div class="media-right">
-
-
-                                         <a class="count" href="#"><ion-icon name="create-outline"></ion-icon> 13</a>
-
+                                         <a class="count" href="#"><ion-icon name="create-outline"></ion-icon> 0</a>
                                         <a class="count" href="#"><ion-icon name="eye-outline"></ion-icon> 420</a>
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="media">
-
-                                    <div class="media-body">
-                                        <div class="t_title">
-                                            <a href="article-single.html">
-                                                <h4> Post Instagram </h4>
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>  Posts réseaux sociaux
-                                            </h6>
-                                        </a>
-                                        <h6><i class="icon_clock_alt"></i> 2h ago
-                                        </h6>
-                                    </div>
-                                    <div class="media-right">
-
-
-                                        <a class="count" href="#"><ion-icon name="create-outline"></ion-icon> 23</a>
-
-                                        <a class="count" href="#"><ion-icon name="eye-outline"></ion-icon> 420</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media">
-
-                                    <div class="media-body">
-                                        <div class="t_title">
-                                            <a href="article-single.html">
-                                                <h4> Entretien d'embauche </h4>
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>  Courriers personnels
-                                            </h6>
-                                        </a>
-                                        <h6><i class="icon_calendar"></i> September 15, 2020 at 8:16 pm
-                                                    </h6>
-                                    </div>
-                                    <div class="media-right">
-
-
-                                        <a class="count" href="#"><ion-icon name="create-outline"></ion-icon> 23</a>
-
-                                        <a class="count" href="#"><ion-icon name="eye-outline"></ion-icon> 420</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media">
-
-                                    <div class="media-body">
-                                        <div class="t_title">
-                                            <a href="article-single.html">
-                                                <h4> Petit mot d'anniversaire <ion-icon name="checkmark-circle" role="img" class="md hydrated" aria-label="checkmark circle"></ion-icon></h4>
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>   Petits mots
-                                            </h6>
-                                        </a>
-                                        <h6><i class="icon_clock_alt"></i> 3h ago
-                                        </h6>
-                                    </div>
-                                    <div class="media-right">
-
-
-                                        <a class="count" href="#"><ion-icon name="create-outline"></ion-icon> 23</a>
-
-                                        <a class="count" href="#"><ion-icon name="eye-outline"></ion-icon> 420</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media">
-
-                                    <div class="media-body">
-                                        <div class="t_title">
-                                            <a href="article-single.html">
-                                                <h4> Entretien d'embauche </h4>
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>  Courriers personnels
-                                            </h6>
-                                        </a>
-                                      <h6><i class="icon_calendar"></i> September 15, 2020 at 8:16 pm
-                                                    </h6>
-                                    </div>
-                                    <div class="media-right">
-
-
-                                        <a class="count" href="#"><ion-icon name="create-outline"></ion-icon> 23</a>
-
-                                        <a class="count" href="#"><ion-icon name="eye-outline"></ion-icon> 420</a>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="media">
-                                    <div class="media-body">
-                                        <div class="t_title">
-                                            <a href="article-single.html">
-                                                <h4>Offre emploi
-                                                    <ion-icon name="checkmark-circle" role="img" class="md hydrated" aria-label="checkmark circle"></ion-icon>
-                                                </h4>
-                                            </a>
-                                        </div>
-                                        <a href="#">
-                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i> Annonces
-                                            </h6>
-                                        </a>
-                                       <h6><i class="icon_calendar"></i> September 15, 2020 at 8:16 pm
-                                                    </h6>
-                                    </div>
-                                    <div class="media-right">
-
-                                         <a class="count" href="#"><ion-icon name="create-outline"></ion-icon> 18</a>
-                                        <a class="count" href="#"><ion-icon name="eye-outline"></ion-icon> 420</a>
-                                    </div>
-                                </div>
-                            </li>
+                        {% endfor %}
                         </ul>
                     </div>
 
@@ -188,32 +59,30 @@
 
                  <div class="row pagination_inner">
                                 <div class="col-lg-2">
-                                    <h6>Total: <span> 225 </span></h6>
+                                    <h6>Total: <span> {{ page_obj.paginator.count }} </span></h6>
                                 </div>
                                 <div class="col-lg-8">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination justify-content-center">
-                                            <li class="page-item"><a class="page-link" href="#"><i
-                                                        class="arrow_carrot-left"></i> Previous</a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">...</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">21</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next <i class="arrow_carrot-right"></i></a></li>
+                                            {% if page_obj.has_previous %}
+                                            <li class="page-item"><a class="page-link" href="{% url 'categories:articles' object.slug%}?page={{page_obj.previous_page_number}}">Précédent</a></li>
+                                            {% endif %}
+
+                                            <li class="page-item active"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
+                                            <!--li class="page-item"><a class="page-link" href="#">2</a></li-->
+                                            <!--li class="page-item"><a class="page-link" href="#">3</a></li-->
+                                            <!--li class="page-item"><a class="page-link" href="#">...</a></li-->
+                                            <!--li class="page-item"><a class="page-link" href="#">21</a></li-->
+                                             {% if page_obj.has_next %}
+                                            <li class="page-item"><a class="page-link" href="{% url 'categories:articles' object.slug %}?page={{page_obj.next_page_number}}">Suivant<i class="arrow_carrot-right"></i></a></li>
+                                            {% endif %}
                                         </ul>
                                     </nav>
                                 </div>
-
                             </div>
-
-
                         <!-- /.community-posts-wrapper -->
-
-
                     </div>
                     <!-- /.col-lg-9 -->
-
                     <div class="col-lg-3">
                         <div class="forum_sidebar">
 
@@ -280,10 +149,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                             <div class="widget ads">
                                 <img src="img/ads.png" class="rounded mx-auto d-block img-fluid" alt="...">
                             </div>
@@ -294,5 +159,6 @@
                 </div>
             </div>
         </section>
+
 {% include 'redico/snippets/joinus.html' %}
 {% endblock content %}
