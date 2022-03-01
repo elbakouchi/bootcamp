@@ -1,0 +1,21 @@
+                {% for article in articles%}<li>
+                    <div class="media">
+                        <div class="media-body">
+                            <div class="t_title">
+                                <a href="{% url 'articles:article' article.slug %}">
+                                    <h4>{{article.title}}</h4>
+                                </a>
+                            </div>
+                            <a href="#">
+                                <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>&nbsp;{{article.category_name}}</h6>
+                            </a>
+                            <h6><i class="icon_clock_alt"></i>&nbsp;{{article.timestamp|timesince}}
+                            </h6>
+                        </div>
+                        <div class="media-right">
+                             <a class="count" href="#"><ion-icon name="create-outline"></ion-icon> 13</a>
+                            <a class="count" href="#"><ion-icon name="eye-outline"></ion-icon> 420</a>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
