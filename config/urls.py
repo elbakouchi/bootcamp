@@ -49,7 +49,7 @@ urlpatterns = [
     url(r"^qa/", include("bootcamp.qa.urls", namespace="qa")),
     url(r"^search/", include("bootcamp.search.urls", namespace="search")),
     url(r'^(?P<url>.*/)$', flatpages.flatpage),
-    url(r'^tracking/', include('tracking.urls')),
+    url(r'^tracking/', include('bootcamp.tracking.urls')),
     #  url('summernote/', include('django_summernote.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
