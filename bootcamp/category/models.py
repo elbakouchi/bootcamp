@@ -46,7 +46,7 @@ class CategoryQuerySet(models.query.QuerySet):
 
     @staticmethod
     def get_categories_with_demands_count():
-        return Category.objects.filter(activated=True).annotate(posts_count=Count('taxonomy_category'), articles='taxonomy_category__article')
+        return Category.objects.filter(activated=True).annotate(posts_count=Count('taxonomy_category'))
 
     # @staticmethod
     def get_categories_with_articles(self):
