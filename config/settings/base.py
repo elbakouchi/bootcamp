@@ -5,9 +5,10 @@ Base settings to build other settings files upon.
 import environ
 
 ROOT_DIR = (
-    environ.Path(__file__) - 3
+        environ.Path(__file__) - 3
 )  # (bootcamp/config/settings/base.py - 3 = bootcamp/)
 APPS_DIR = ROOT_DIR.path("bootcamp")
+APP_DIRS = True
 
 env = environ.Env()
 env.read_env(str(ROOT_DIR.path(".env")))
@@ -80,7 +81,7 @@ THIRD_PARTY_APPS = [
     "graphene_django",
     "markdownx",
     "taggit",
-    "django_summernote"
+    # "django_summernote"
 ]
 LOCAL_APPS = [
     "bootcamp.home.apps.HomeConfig",
@@ -94,6 +95,7 @@ LOCAL_APPS = [
     "bootcamp.notifications.apps.NotificationsConfig",
     "bootcamp.qa.apps.QaConfig",
     "bootcamp.search.apps.SearchConfig",
+    "bootcamp.tracking.apps.TrackingConfig"
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -155,10 +157,12 @@ MIDDLEWARE = [
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
 STATIC_ROOT = str(ROOT_DIR("staticfiles"))
+print(STATIC_ROOT)
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = [str(APPS_DIR.path("static"))]
+print(STATICFILES_DIRS)
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -181,6 +185,7 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         # https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
         "DIRS": [str(APPS_DIR.path("templates"))],
+        # "APP_DIRS": True,
         "OPTIONS": {
             # https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
             "debug": DEBUG,
@@ -200,6 +205,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
+                # "bootcamp.articles.context_processors.article_context",
             ],
         },
     }
@@ -245,7 +251,6 @@ ACCOUNT_ADAPTER = "bootcamp.users.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 SOCIALACCOUNT_ADAPTER = "bootcamp.users.adapters.SocialAccountAdapter"
 
-
 # Your stuff...
 # ------------------------------------------------------------------------------
 
@@ -264,3 +269,8 @@ CHANNEL_LAYERS = {
 
 # GraphQL settings
 GRAPHENE = {"SCHEMA": "config.schema.schema"}
+
+# tracking settings
+TRACK_ANONYMOUS_USERS = True
+TRACK_SUPERUSERS = True
+TRACK_IGNORE_STATUS_CODES = [400, 404, 403, 405, 410, 500]
