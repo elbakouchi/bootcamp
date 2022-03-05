@@ -1,17 +1,17 @@
 from django import forms
 
-from markdownx.fields import MarkdownxFormField
+from ckeditor.widgets import CKEditorWidget
 
 from bootcamp.demand.models import Demand
 
 
 class DemandForm(forms.ModelForm):
     status = forms.CharField(widget=forms.HiddenInput())
-    edited = forms.BooleanField(
+    verified = forms.BooleanField(
         widget=forms.HiddenInput(), required=False, initial=False
     )
-    content = MarkdownxFormField()
+    content = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
         model = Demand
-        fields = ["title", "content", "category", "service", "status", "edited"]
+        fields = ["title", "content", "category", "service", "status", "verified"]

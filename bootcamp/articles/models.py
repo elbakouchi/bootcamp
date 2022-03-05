@@ -1,8 +1,9 @@
 from django.conf import settings
 from django.db import models
-from django.db.models import Count
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.postgres.aggregates import StringAgg
+from django_ckeditor_5.fields import CKEditor5Field
 
 from slugify import slugify
 
@@ -13,11 +14,16 @@ from taggit.managers import TaggableManager
 
 import bootcamp.demand.models
 from bootcamp.notifications.models import Notification, notification_handler
+from bootcamp.tracking.models import Pageview
 
 
 class ArticleQuerySet(models.query.QuerySet):
     """Personalized queryset created to improve model usability"""
 
+    # def get_page_views(self):
+    #    path = reverse('articles:article', args=[self.slug])
+    #    count = Pageview.objects.filter()
+    #    return self.annotate(page_views=)
     def get_category(self):
         return self.annotate(
             category_name=StringAgg('demand__category__name', delimiter=','),
@@ -37,7 +43,7 @@ class ArticleQuerySet(models.query.QuerySet):
     def get_counted_tags(self):
         tag_dict = {}
         query = (
-            self.filter(status="P").annotate(tagged=Count("tags")).filter(tags__gt=0)
+            self.filter(status="P").annotate(tagged=models.Count("tags")).filter(tags__gt=0)
         )
         for obj in query:
             for tag in obj.tags.names():
@@ -68,15 +74,17 @@ class Article(models.Model):
         related_name="demand",
         on_delete=models.SET_NULL,
     )
+    '''
     image = models.ImageField(
         _("Featured image"), upload_to="articles/%Y/%m/%d/", blank=True
     )
+    '''
     timestamp = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=255, null=False, unique=True)
     slug = models.SlugField(max_length=80, null=True, blank=True)
     status = models.CharField(max_length=1, choices=STATUS, default=DRAFT)
-    content = MarkdownxField()
-    edited = models.BooleanField(default=False)
+    content = CKEditor5Field('Text', config_name='extends') # MarkdownxField()
+    verified = models.BooleanField(default=False)
     tags = TaggableManager()
     objects = ArticleQuerySet.as_manager()
 

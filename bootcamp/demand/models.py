@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 
 from slugify import slugify
 
@@ -51,33 +52,34 @@ class Demand(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
-        related_name="creator",
+        related_name="client",
         on_delete=models.SET_NULL,
     )
 
     service = models.ManyToManyField(
         Service,
         # null=True,
-        related_name="taxonomy_service"
+        related_name="service"
         # on_delete=models.SET_NULL,
     )
 
     category = models.ManyToManyField(
         Category,
         # null=True,
-        related_name="taxonomy_category"
+        related_name="category"
         # on_delete=models.SET_NULL,
     )
-
+    '''
     image = models.ImageField(
         _("Featured image"), upload_to="demandes/%Y/%m/%d/", blank=True
     )
+    '''
     timestamp = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=255, null=False, unique=True)
     slug = models.SlugField(max_length=80, null=True, blank=True)
     status = models.CharField(max_length=1, choices=STATUS, default=DRAFT)
-    content = MarkdownxField()
-    edited = models.BooleanField(default=False)
+    content = CKEditor5Field('Text', config_name='extends')
+    verified = models.BooleanField(default=False)
     tags = TaggableManager()
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
@@ -85,8 +87,8 @@ class Demand(models.Model):
 
 
     class Meta:
-        verbose_name = _("Demand")
-        verbose_name_plural = _("Demands")
+        verbose_name = _("Texte")
+        verbose_name_plural = _("Textes")
         ordering = ("-timestamp",)
 
     def __str__(self):
