@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.postgres.aggregates import StringAgg
 from django.db import models
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
@@ -18,6 +19,14 @@ from bootcamp.category.models import Category, Service
 
 class DemandQuerySet(models.query.QuerySet):
     """Personalized queryset created to improve model usability"""
+    def get_category(self):
+        return self.annotate(
+            client_firstname=StringAgg('user__first_name', delimiter=','),
+            client_lastname=StringAgg('user__last_name', delimiter=','),
+            category_name=StringAgg('category__name', delimiter=','),
+            category_slug=StringAgg('category__slug', delimiter=','),
+            service_name=StringAgg('service__name', delimiter=',')
+        )
 
     def get_published(self):
         """Returns only the published items in the current queryset."""
@@ -59,14 +68,14 @@ class Demand(models.Model):
     service = models.ManyToManyField(
         Service,
         # null=True,
-        related_name="service"
+        related_name="demand_service"
         # on_delete=models.SET_NULL,
     )
 
     category = models.ManyToManyField(
         Category,
         # null=True,
-        related_name="category"
+        related_name="demand_category"
         # on_delete=models.SET_NULL,
     )
     '''
