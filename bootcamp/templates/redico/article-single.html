@@ -1,78 +1,117 @@
 {% extends 'redico/redico_base.html' %}
 {% load static %}
 
-{% block title%}  Redico -  Article {% endblock title%}  
-
+{% block title%}  Redico -  demand {% endblock title%}
+{% block css %}
+{{block.super}}
+<link rel="stylesheet" href="https://ckeditor.com/docs/ckeditor5/latest/snippets/features/read-only-build/snippet.css"/>
+{% endblock css %}
 {% block content %}
-{% include 'redico/snippets/banner.html' with heading=article.title %}
-{#% include 'redico/snippets/categories-breadcumb.html' with categoryName=article.category_name %#}
-        <section class="page_breadcrumb">
-            <div class="container custom_container">
-                <div class="row">
-                    <div class="col-sm-7">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{% url 'homepage:home' %}">Home</a></li>
-                                <li class="breadcrumb-item"><a href="{% url 'categories:articles' article.category_slug %}">{{article.category_name}}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">{{article.title}}</li>
-                            </ol>
-                        </nav>
-                    </div>
-                    <div class="col-sm-5">
-                        <a href="#" class="date"><i class="icon_clock_alt"></i>{{article.timestamp|timesince}}</a>
-                    </div>
-                </div>
+{% include 'redico/snippets/banner.html' with heading=demand.title %}
+{#% include 'redico/snippets/categories-breadcumb.html' with categoryName=demand.category_name %#}
+<section class="page_breadcrumb">
+    <div class="container custom_container">
+        <div class="row">
+            <div class="col-sm-7">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'homepage:home' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'categories:demands' demand.category_slug %}">{{demand.category_name}}</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">{{demand.title}}</li>
+                    </ol>
+                </nav>
             </div>
-        </section>
-        <!--================End Forum Breadcrumb Area =================-->
+            <div class="col-sm-5">
+                <a href="#" class="date"><i class="icon_clock_alt"></i>{{demand.timestamp|timesince}}</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Forum Breadcrumb Area =================-->
 
-        <section class="doc_blog_grid_area sec_pad forum-single-content">
-            <div class="container">
+<section class="doc_blog_grid_area sec_pad forum-single-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <!-- Forum post top area -->
                 <div class="row">
                     <div class="col-lg-9">
-                        <!-- Forum post top area -->
-                        <div class="row">
-                            <div class="col-lg-9">
-                                <div class="forum-post-top">
-                                    <div class="forum-post-author">
-                                        <a class="author-name" href="#"> {{article.title}} </a>
-                                        <div class="forum-author-meta">
-                                            <!--div class="author-badge">
-                                                <span>Conversation Starter</span>
-                                            </div-->
-                                            <div class="author-badge">
-                                                <i class="icon_calendar"></i>
-                                                <a href="">{{article.timestamp}}</a>
-                                            </div>
-                                        </div>
+                        <div class="forum-post-top">
+                            <div class="forum-post-author">
+                                <a class="author-name" href="#"> {{demand.user.username}} </a>
+                                <div class="forum-author-meta">
+                                    <!--div class="author-badge">
+                                        <span>Conversation Starter</span>
+                                    </div-->
+                                    <div class="author-badge">
+                                        <i class="icon_calendar"></i>
+                                        <a href="">{{demand.timestamp}}</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
-                                <div class="action-button-container">
-                                    <a href="{% url 'articles:edit_article' article.pk %}" class="action_btn btn-ans ask-btn">Modifier</a>
-                                </div>
-                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="action-button-container">
+                            <button id="snippet-read-only-toggle-toolbar" class="action_btn btn-ans ask-btn suggest">Composer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Forum post content -->
+                <div class="q-title">
+                    <h1>{{demand.title}}</h1>
+                </div>
+
+                <div class="forum-post-content">
+                     <form id="suggest-form">
+                         {% csrf_token %}
+                         <input type="hidden" name="pk" value="{{demand.pk}}">
+                         <input type="hidden" name="title" value="{{demand.title}}">
+                         <input type="hidden" name="content" value="{{demand.content}}">
+                     </form>
+                    <div id="snippet-read-only-toolbar" class="content">
+                        {{demand.content}}
+                    </div>
+
+                    <div class="forum-post-btm">
+                        <div class="taxonomy forum-post-tags">
+                            <i class="icon_tags_alt"></i><a>{{demand.service_name}}</a>
                         </div>
 
-                        <!-- Forum post content -->
-                        <div class="q-title">
-                            <h1>{{article.title}}</h1>
-                        </div>
-                        <div class="forum-post-content">
-                            <div class="content">
-                                {{article.content}}
-                            </div>
-                            <div class="forum-post-btm">
-                                <div class="taxonomy forum-post-tags">
-                                    <i class="icon_tags_alt"></i><a href="#">Reformuler mon texte</a>
-                                </div>
+                    </div>
+                    <div class="action-button-container action-btns">
+                        <a href="#" class="action_btn btn-ans ask-btn reply-btn suggest-btn">Enregistrer</a>
+                        <!--a href="#" class="action_btn btn-ans ask-btn too-btn">Revision (2)</a-->
+                    </div>
 
-                            </div>
-                            <div class="action-button-container action-btns">
-                                <a href="#" class="action_btn btn-ans ask-btn reply-btn">Modifier</a>
-                                <a href="#" class="action_btn btn-ans ask-btn too-btn">Revision (2)</a>
-                            </div>
-                        </div>
-{% endblock content %}
+                </div>
+                {% endblock content %}
+                {% block javascript %}
+                {{block.super}}
+                <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+                <script src="https://ckeditor.com/docs/ckeditor5/latest/assets/snippet.js"></script>
+                <script src="{% static 'js/ckeditor-read-only-hide-toolbar.js' %}"></script>
+                <script>
+                    $(document).ready(function(){
+                        $('.suggest-btn').click(function(e){
+                            e.preventDefault();
+                            $('input[name="content"]').val($('.ck-editor__editable').text());
+                            let form_data = $('#suggest-form').serialize();
+                            console.log(form_data);
+                             $.ajax({
+                                url: '{% url "articles:suggest" demand.pk %}',
+                                type: 'POST',
+                                data: form_data,
+                                cache: false,
+                                success: function(){
+                                   window.location.href = "/categories";
+                                }
+                            });
+                        });
+                    });
+                </script>
+                {% endblock javascript%}
 
