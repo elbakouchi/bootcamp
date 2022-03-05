@@ -21,5 +21,5 @@ def homepage(request):
     demands = \
         Demand.objects.filter(status="P").annotate(categoryName=StringAgg('category__name', delimiter=','))
     categories = Category.objects.filter(activated=True).annotate(posts_count=Count('demand_category'))
-    return render(request, 'redico/homepage.html', {'categories': categories, 'articles': demands})
+    return render(request, 'redico/homepage.html', {'categories': categories, 'demands': demands})
 
