@@ -19,11 +19,11 @@
         window.editor = e;
         const t = document.querySelector("#snippet-read-only-toggle-toolbar");
         t.addEventListener("click", (() => {
-            e.isReadOnly = !e.isReadOnly, t.innerText = e.isReadOnly ? "Annuler" : "Composer"
+            e.isReadOnly = !e.isReadOnly, t.innerText = e.isReadOnly ? "Composer" : "Annuler"
         }));
         const o = e.ui.view.toolbar.element;
         e.on("change:isReadOnly", ((e, t, i) => {
-            o.style.display = i ? "flex" : "none"
+            o.style.display = i ? "none" : "flex"
         }))
     })).catch((e => {
         console.error(e.stack)
