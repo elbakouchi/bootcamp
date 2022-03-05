@@ -43,7 +43,7 @@
                    <div class="media doc_features_item wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="0.6s">
                         <img src="{% static category.icon %}" alt="">
                         <div class="media-body">
-                            <a href="{% url 'categories:articles' category.slug %}">
+                            <a href="{% url 'categories:demands' category.slug %}">
                                 <h4>{{category.name}}</h4>
                             </a>
                             {% with total=category.posts_count %}
@@ -76,7 +76,7 @@
             <img class="shap_two" src="{% static 'img/new/community_bg_shap_two.png' %}" alt="">
             <div class="container">
                 <div class="doc_title text-center">
-                    <h2 class="wow fadeInUp" data-wow-delay="0.2s">Les derniers articles</h2>
+                    <h2 class="wow fadeInUp" data-wow-delay="0.2s">Les derniers demands</h2>
                     <p class="wow fadeInUp" data-wow-delay="0.4s">Learn languages online with the world's best tutors
                     </p>
                 </div>
@@ -85,28 +85,24 @@
   
                     <div class="forum_body">
                         <ul class="navbar-nav topic_list">
-                            {% for article in articles %}
+                            {% for demand in demands %}
                             <li>
                                 <div class="media">
-                                    
                                     <div class="media-body">
                                         <div class="t_title">
-                                            <a href="{% url 'articles:article' article.slug %}">
-                                                <h4>{{article.title}}</h4>
+                                            <a href="{% url 'demands:demand' demand.slug %}">
+                                                <h4>{{demand.title}}</h4>
                                             </a>
                                         </div>
                                         <a href="#">
-                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>   {{article.categoryName}}
+                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>   {{demand.categoryName}}
                                             </h6>
                                         </a>
-                                        <h6><i class="icon_clock_alt"></i> {{ article.timestamp|timesince }}
+                                        <h6><i class="icon_clock_alt"></i> {{ demand.timestamp|timesince }}
                                         </h6>
                                     </div>
                                     <div class="media-right">
-                                      
-                                         
                                          <!--a class="count" href="#"><ion-icon name="create-outline"></ion-icon> 13</a-->
-
                                         <!--a class="count" href="#"><ion-icon name="eye-outline"></ion-icon> 420</a-->
                                     </div>
                                 </div>
@@ -118,7 +114,7 @@
                                     
                                     <div class="media-body">
                                         <div class="t_title">
-                                            <a href="{#% url 'article' %#}">
+                                            <a href="{#% url 'demand' %#}">
                                                 <h4> Post Instagram </h4>
                                             </a>
                                         </div>
@@ -143,7 +139,7 @@
                                     
                                     <div class="media-body">
                                         <div class="t_title">
-                                            <a href="{#% url 'article' %#}">
+                                            <a href="{#% url 'demand' %#}">
                                                 <h4> Entretien d'embauche </h4>
                                             </a>
                                         </div>
@@ -168,7 +164,7 @@
                                     
                                     <div class="media-body">
                                         <div class="t_title">
-                                            <a href="{#% url 'article' %#}">
+                                            <a href="{#% url 'demand' %#}">
                                                 <h4> Petit mot d'anniversaire <ion-icon name="checkmark-circle" role="img" class="md hydrated" aria-label="checkmark circle"></ion-icon></h4>
                                             </a>
                                         </div>
@@ -193,7 +189,7 @@
                                     
                                     <div class="media-body">
                                         <div class="t_title">
-                                            <a href="{#% url 'article' %#}">
+                                            <a href="{#% url 'demand' %#}">
                                                 <h4> Entretien d'embauche </h4>
                                             </a>
                                         </div>
@@ -217,7 +213,7 @@
                                 <div class="media">
                                     <div class="media-body">
                                         <div class="t_title">
-                                            <a href="{#% url 'article' %#}">
+                                            <a href="{#% url 'demand' %#}">
                                                 <h4>Offre emploi
                                                     <ion-icon name="checkmark-circle" role="img" class="md hydrated" aria-label="checkmark circle"></ion-icon>
                                                 </h4>
