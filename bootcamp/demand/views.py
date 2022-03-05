@@ -33,4 +33,4 @@ class CreateDemandView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         messages.success(self.request, self.message)
-        return reverse("categories:list")
+        return reverse("home:home")
