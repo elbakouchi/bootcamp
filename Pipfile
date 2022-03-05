@@ -32,6 +32,8 @@ django-storages = "*"
 Pillow = "*"
 Django = "*"
 django-summernote = "*"
+django-ckeditor = "*"
+django-ckeditor-5 = "*"
 
 [requires]
 python_version = "3.6"
