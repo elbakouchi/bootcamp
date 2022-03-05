@@ -16,7 +16,7 @@ from bootcamp.notifications.models import Notification, notification_handler
 class CategoryQuerySet(models.query.QuerySet):
     """Personalized queryset created to improve model usability"""
     def get_demands(self):
-        return self.annotate(articles='taxonomy_category__article')
+        return self.annotate(articles='demand_category__demand')
 
     def get_articles(self):
         self.filter(activated=True).annotate(taxonomy_category__article=())
@@ -46,7 +46,7 @@ class CategoryQuerySet(models.query.QuerySet):
 
     @staticmethod
     def get_categories_with_demands_count():
-        return Category.objects.filter(activated=True).annotate(posts_count=Count('taxonomy_category'))
+        return Category.objects.filter(activated=True).annotate(posts_count=Count('demand_category'))
 
     # @staticmethod
     def get_categories_with_articles(self):
