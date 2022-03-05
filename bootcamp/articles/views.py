@@ -5,8 +5,7 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator
-from django.http import JsonResponse, HttpResponse
-# ,  HttpResponse, HttpResponseBadRequest
+from django.http import JsonResponse
 
 from django.contrib.auth.decorators import login_required
 from bootcamp.helpers import ajax_required, AuthorRequiredMixin
