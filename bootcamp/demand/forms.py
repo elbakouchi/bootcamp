@@ -10,8 +10,8 @@ class DemandForm(forms.ModelForm):
     verified = forms.BooleanField(
         widget=forms.HiddenInput(), required=False, initial=False
     )
-    content = forms.CharField(widget=CKEditorWidget())
+    content = forms.Textarea()
 
     class Meta:
         model = Demand
-        fields = ["title", "content", "category", "service", "status", "verified"]
+        fields = ["title", "content", "category", "service", "status"]
