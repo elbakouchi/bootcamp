@@ -22832,3 +22832,7 @@ body.body_dark .documentation_area .blog_info .body_item .info_subtitle {
 /*---------------------------------------------------- */
 
 /*# sourceMappingURL=style-main.css.map */
+ul.error{
+    color: light_red;
+    list-style-type: none;
+}
