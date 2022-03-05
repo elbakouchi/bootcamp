@@ -4,6 +4,7 @@ from django.views.generic.detail import SingleObjectMixin
 
 from .models import Category
 from ..articles.models import Article
+from ..demand.models import Demand
 
 
 class CategoriesListView(ListView):
@@ -21,6 +22,18 @@ class CategoriesListView(ListView):
         # queryset = super(CategoriesListView, self).get_queryset()
         # return queryset.filter(activated=True)
         return Category.objects.get_categories_with_demands_count()
+
+
+class CategoryDemandsView(SingleObjectMixin, ListView):
+    template_name = 'redico/liste-article.html'
+    paginate_by = 6
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object(queryset=Category.objects.get_activated())
+        return super().get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return Demand.objects.get_category().filter(category__pk=self.object.pk)
 
 
 class CategoryArticlesView(SingleObjectMixin, ListView):
