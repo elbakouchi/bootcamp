@@ -68,7 +68,7 @@ class Article(models.Model):
         on_delete=models.SET_NULL,
     )
 
-    demand = models.OneToOneField(
+    demand = models.ForeignKey(
         bootcamp.demand.models.Demand,
         null=True,
         related_name="demand",
