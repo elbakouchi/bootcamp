@@ -22,7 +22,7 @@
                             </div>
                             <!-- /.action-content -->
                             <div class="action-button-container">
-                                <a href="new-article.html" class="action_btn btn-ans">Corriger mon texte</a>
+                                <a href="new-demand.html" class="action_btn btn-ans">Corriger mon texte</a>
                             </div>
                             <!-- /.action-button-container -->
                         </div>
@@ -31,18 +31,18 @@
 
                     <div class="forum_body">
                         <ul class="navbar-nav topic_list">
-                            {% for article in object_list%}<li>
+                            {% for demand in object_list%}<li>
                                 <div class="media">
                                     <div class="media-body">
                                         <div class="t_title">
-                                            <a href="{% url 'articles:article' article.slug %}">
-                                                <h4>{{article.title}}</h4>
+                                            <a href="{% url 'demands:demand' demand.slug %}">
+                                                <h4>{{demand.title}}</h4>
                                             </a>
                                         </div>
                                         <a href="#">
-                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>&nbsp;{{article.category_name}}</h6>
+                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>&nbsp;{{demand.service_name}}</h6>
                                         </a>
-                                        <h6><i class="icon_clock_alt"></i>&nbsp;{{article.timestamp|timesince}}
+                                        <h6><i class="icon_clock_alt"></i>&nbsp;{{demand.timestamp|timesince}}
                                         </h6>
                                     </div>
                                     <div class="media-right">
@@ -65,7 +65,7 @@
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination justify-content-center">
                                             {% if page_obj.has_previous %}
-                                            <li class="page-item"><a class="page-link" href="{% url 'categories:articles' object.slug%}?page={{page_obj.previous_page_number}}">Précédent</a></li>
+                                            <li class="page-item"><a class="page-link" href="{% url 'categories:demands' object.slug%}?page={{page_obj.previous_page_number}}">Précédent</a></li>
                                             {% endif %}
 
                                             <li class="page-item active"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
@@ -74,7 +74,7 @@
                                             <!--li class="page-item"><a class="page-link" href="#">...</a></li-->
                                             <!--li class="page-item"><a class="page-link" href="#">21</a></li-->
                                              {% if page_obj.has_next %}
-                                            <li class="page-item"><a class="page-link" href="{% url 'categories:articles' object.slug %}?page={{page_obj.next_page_number}}">Suivant<i class="arrow_carrot-right"></i></a></li>
+                                            <li class="page-item"><a class="page-link" href="{% url 'categories:demands' object.slug %}?page={{page_obj.next_page_number}}">Suivant<i class="arrow_carrot-right"></i></a></li>
                                             {% endif %}
                                         </ul>
                                     </nav>
@@ -91,7 +91,7 @@
 
                                 <ul class="list-unstyled ticket_categories">
                                     <li><img src="img/home_support/cmm5.png" alt="category">
-                                        <a href="Categories.html">Extraits d’articles</a> <span class="count">10</span>
+                                        <a href="Categories.html">Extraits d’demands</a> <span class="count">10</span>
                                     </li>
                                     <li><img src="img/home_support/cmm4.png" alt="category">
                                         <a href="Categories.html">Ecrits professionnels</a>
@@ -115,10 +115,10 @@
                                 </ul>
                             </div>
                             <div class="widget recent_news_widget" style="display: none;">
-                                <h4 class="c_head">Nouveaux articles</h4>
+                                <h4 class="c_head">Nouveaux demands</h4>
                                 <div class="media recent_post_item">
                                     <div class="media-body">
-                                        <a href="article-single.html">
+                                        <a href="demand-single.html">
                                             <h5>Petit mot pour maman.</h5>
                                         </a>
                                         <div class="entry_post_date">January 14, 2021</div>
@@ -126,7 +126,7 @@
                                 </div>
                                 <div class="media recent_post_item">
                                     <div class="media-body">
-                                        <a href="article-single.html">
+                                        <a href="demand-single.html">
                                             <h5>Petit mot pour Papa</h5>
                                         </a>
                                         <div class="entry_post_date">April 16, 2020</div>
@@ -134,7 +134,7 @@
                                 </div>
                                 <div class="media recent_post_item">
                                     <div class="media-body">
-                                        <a href="article-single.html">
+                                        <a href="demand-single.html">
                                             <h5> Post Instagram </h5>
                                         </a>
                                         <div class="entry_post_date">March 10, 2020</div>
@@ -142,7 +142,7 @@
                                 </div>
                                 <div class="media recent_post_item">
                                     <div class="media-body">
-                                        <a href="article-single.html">
+                                        <a href="demand-single.html">
                                             <h5>How to Create GDPR Consent Form In WordPress</h5>
                                         </a>
                                         <div class="entry_post_date">January 19, 2020</div>
