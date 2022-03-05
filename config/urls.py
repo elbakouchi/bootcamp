@@ -38,12 +38,14 @@ urlpatterns = [
     url(r"^comments/", include("django_comments.urls")),
     url(r"^graphql", GraphQLView.as_view(graphiql=True)),
     url(r"^markdownx/", include("markdownx.urls")),
+    url("ckeditor5/", include('django_ckeditor_5.urls')),
     # Local apps here
     url(
         r"^notifications/",
         include("bootcamp.notifications.urls", namespace="notifications"),
     ),
     url(r"^articles/", include("bootcamp.articles.urls", namespace="articles")),
+    url(r"^demandes/", include("bootcamp.demand.urls", namespace="demands")),
     url(r"^news/", include("bootcamp.news.urls", namespace="news")),
     url(r"^messages/", include("bootcamp.messager.urls", namespace="messager")),
     url(r"^qa/", include("bootcamp.qa.urls", namespace="qa")),

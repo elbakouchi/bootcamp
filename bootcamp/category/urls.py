@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from bootcamp.category.views import CategoriesListView, CategoryDetailView, CategoryArticlesView
+from bootcamp.category.views import CategoriesListView, CategoryArticlesView
 
 app_name = 'categories'
 

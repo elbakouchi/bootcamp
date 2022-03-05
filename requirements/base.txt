@@ -2,29 +2,30 @@
 # ------------------------------------------------------------------------------
 argon2-cffi  # https://github.com/hynek/argon2_cffi
 python-slugify  # https://github.com/un33k/python-slugify
-Pillow  # https://github.com/python-pillow/Pillow
+Pillow~=8.4.0
 pytz  # https://github.com/stub42/pytz
 redis  # https://github.com/antirez/redis
 whitenoise  # https://github.com/evansd/whitenoise
 
 # Django
 # ------------------------------------------------------------------------------
-django  # pyup: < 2.1  # https://www.djangoproject.com/
-django-allauth  # https://github.com/pennersr/django-allauth
-django-contrib-comments  # https://github.com/django/django-contrib-comments
+django~=3.2.12
+django-allauth~=0.48.0
+django-contrib-comments~=2.2.0
 django-crispy-forms  # https://github.com/django-crispy-forms/django-crispy-forms
 django-environ  # https://github.com/joke2k/django-environ
 django-markdownx  # https://github.com/neutronX/django-markdownx
 django-redis  # https://github.com/niwinz/django-redis
 django-taggit  # https://github.com/alex/django-taggit
 sorl-thumbnail  # https://github.com/jazzband/sorl-thumbnail
-django-debug-toolbar  # https://github.com/jazzband/django-debug-toolbar
+django-debug-toolbar~=3.2.4
 django-summernote  # https://github.com/summernote/django-summernote
-
+django-ckeditor-5==0.0.14
+django-ckeditor~=6.2.0
 
 # Channels
 # ------------------------------------------------------------------------------
-channels  # https://github.com/django/channels
+channels~=3.0.4
 channels-redis  # https://github.com/django/channels_redis
 
 # GraphQL API
@@ -33,4 +34,9 @@ graphene-django  # https://github.com/graphql-python/graphene-django
 
 # Open Graph Protocol
 # ------------------------------------------------------------------------------
-beautifulsoup4  # https://www.crummy.com/software/BeautifulSoup/
+beautifulsoup4~=4.10.0
+
+raven~=6.10.0
+graphene~=2.1.9
+asgiref~=3.4.1
+requests~=2.27.1
