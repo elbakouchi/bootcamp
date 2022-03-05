@@ -20,8 +20,8 @@ django-taggit  # https://github.com/alex/django-taggit
 sorl-thumbnail  # https://github.com/jazzband/sorl-thumbnail
 django-debug-toolbar~=3.2.4
 django-summernote  # https://github.com/summernote/django-summernote
-django-ckeditor-5==0.0.14
-django-ckeditor~=6.2.0
+django-ckeditor-5
+django-ckeditor
 
 # Channels
 # ------------------------------------------------------------------------------
