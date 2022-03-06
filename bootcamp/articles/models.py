@@ -95,8 +95,8 @@ class Article(models.Model):
     #    self.objects.get_category
 
     class Meta:
-        verbose_name = _("Article")
-        verbose_name_plural = _("Articles")
+        verbose_name = _("Révision")
+        verbose_name_plural = _("Révisions")
         ordering = ("-timestamp",)
 
     def __str__(self):
