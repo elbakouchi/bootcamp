@@ -3,16 +3,16 @@ from django.conf.urls import url
 from bootcamp.articles.views import (
     ArticlesListView,
     DraftsListView,
-    CreateArticleView,
+    # CreateArticleView,
     EditArticleView,
     DetailArticleView,
-    get_category_articles
+    get_category_articles, CreateArticleAjaxView
 )
 
 app_name = "articles"
 urlpatterns = [
     url(r"^$", ArticlesListView.as_view(), name="list"),
-    url(r"^proposer/(?P<pk>\d+)/$", CreateArticleView.as_view(), name="suggest"),
+    url(r"^proposer/(?P<pk>\d+)/$", CreateArticleAjaxView.as_view(), name="suggest"),
     url(r"^drafts/$", DraftsListView.as_view(), name="drafts"),
     url(r"^edit/(?P<pk>\d+)/$", EditArticleView.as_view(), name="edit_article"),
     url(r"^(?P<pk>\d+)/$", DetailArticleView.as_view(), name="article_pk"),
