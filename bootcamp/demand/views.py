@@ -37,6 +37,16 @@ class CreateDemandView(LoginRequiredMixin, CreateView):
         return reverse("home:home")
 
 
+class DemandsList(ListView):
+    model = Demand
+    paginate_by = 6
+
+    template_name = "redico/unfulfilled-demands.html"
+    # context_object_name = "demands"
+
+
 class PaginatedDemandsFeed(AjaxListView):
     model = Demand
     paginate_by = 5
+    page_template = "redico/snippets/demand-list-item.html"
+    context_object_name = "demands"
