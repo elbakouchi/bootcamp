@@ -1,0 +1,23 @@
+{% for demand in demands %}
+                    <li class="infinite-item">
+                        <div class="media">
+                            <div class="media-body">
+                                <div class="t_title">
+                                    <a href="{% url 'demands:demand' demand.slug %}">
+                                        <h4>{{demand.title}}</h4>
+                                    </a>
+                                </div>
+                                <a href="#">
+                                    <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i> {{demand.categoryName}}
+                                    </h6>
+                                </a>
+                                <h6><i class="icon_clock_alt"></i> {{ demand.timestamp|timesince }}
+                                </h6>
+                            </div>
+                            <div class="media-right">
+                                <!--a class="count" href="#"><ion-icon name="create-outline"></ion-icon> 13</a-->
+                                <!--a class="count" href="#"><ion-icon name="eye-outline"></ion-icon> 420</a-->
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
