@@ -54,7 +54,12 @@
                             <div class="media-body">
                                 <div class="t_title">
                                     <a href="{% url 'demands:demand' demand.slug %}">
-                                        <h4>{{demand.title}}</h4>
+                                        <h4>
+                                            {{demand.title}}
+                                            {% if demand.verified %}
+                                                <ion-icon name="checkmark-circle" role="img" class="md hydrated" aria-label="checkmark circle"></ion-icon>
+                                            {% endif %}
+                                        </h4>
                                     </a>
                                 </div>
                                 <a href="#">
@@ -76,10 +81,10 @@
         </div>
         <div class="doc_title text-center mt-40">
              {% if demands.has_next %}
-            <a id="feed" class="action_btn box_shadow_none wow fadeInUp infinite-more-link" data-wow-delay="0.2s" >Voir&nbsp;plus</a>
+            <a id="feed"  href="{% url 'demands:demands_feed' %}?page={{ demands.next_page_number }}" class="action_btn box_shadow_none wow fadeInUp infinite-more-link" data-wow-delay="0.2s" >Voir&nbsp;plus</a>
               {% endif %}
               <div class="loading" style="display: none;">
-                Loading...
+                Encore...
               </div>
 
         </div>
@@ -93,7 +98,7 @@
         <div class="doc_features_inner">
             {% for category in categories %}
             <div class="media doc_features_item wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="0.6s">
-                <img src="{#% static category.icon %#}" alt="">
+                <img src="{% static category.icon %}" alt="">
                 <div class="media-body">
                     <a href="{% url 'categories:demands' category.slug %}">
                         <h4>{{category.name}}</h4>
@@ -134,35 +139,39 @@
     <script src="{% static 'js/infinite.min.js' %}" type="text/javascript"></script>
     <script>
     $(document).ready(function(){
+        window.total_count = eval({{demands.count}});
+        window.current_page = eval({{ demands.next_page_number }});
         $("#feed").click(function(){
-            window.feed();
+          // window.feed();
         });
        window.feed = function(){
             $.ajax({
                 url: "{% url 'demands:demands_feed' %}" ,
                 type: 'GET',
-                data: { "page": "{{ demands.next_page_number }}"},
+                data: { "page": window.current_page },
+                //dataType: 'json',
                 cache: false,
                 success: function(e,a,b){
-                    console.log(e);
-                    $('.topic_list').append(e.responseText);
+                    //console.log(e);
+                    $('.topic_list').append(e);
+                    window.current_page++;
                 },
                 error: function(a,b,c,d){
                     console.log(b);
                 }
             });
        };
-        var infinite = new Waypoint({
+        var infinite = new Waypoint.Infinite({
            element: $('.infinite-container')[0],
            handler: function(direction) {
-                window.feed();
-          },
-          onBeforePageLoad: function () {
-            $('.loading').show();
-          },
-          onAfterPageLoad: function ($items) {
-            $('.loading').hide();
-          }
+               //window.feed();
+           },
+           onBeforePageLoad: function () {
+                $('.loading').show();
+           },
+           onAfterPageLoad: function ($items) {
+                $('.loading').hide();
+           }
         });
      });
     </script>
