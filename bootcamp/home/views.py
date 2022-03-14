@@ -1,8 +1,11 @@
 from django.db.models import Count
+from django.http import HttpResponse, JsonResponse
+from django.template.loader import render_to_string
 from django.shortcuts import render
 from django.contrib.postgres.aggregates import StringAgg
-# from django.views.generic import TemplateView
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.decorators.csrf import csrf_exempt
+from django.db.models import ObjectDoesNotExist
 from bootcamp.category.models import Category
 from bootcamp.category.views import CategoriesListView
 from bootcamp.demand.models import Demand
@@ -17,9 +20,42 @@ class HomePageView(CategoriesListView):
         return context
 
 
-def homepage(request):
+def paginate(page):
     demands = \
         Demand.objects.filter(status="P").annotate(categoryName=StringAgg('category__name', delimiter=','))
+
+    paginator = Paginator(demands, 5)
+
+    try:
+        paginated_demands = paginator.page(page)
+    except PageNotAnInteger:
+        paginated_demands = paginator.page(1)
+    except EmptyPage:
+        paginated_demands = paginator.page(paginator.num_pages)
+
+    return paginated_demands
+
+
+# @csrf_exempt
+def feed_pagination(request, rr):
+    if request.is_ajax and request.method == 'POST':
+        page = request.POST.get('page', 2)
+        paginated_demands = paginate(page)
+        context = {"demands": paginated_demands.object_list}
+        return HttpResponse(render_to_string("redico/snippets/demand-list-item.html", context))
+    else:
+        return JsonResponse({}, status=400)
+
+
+def homepage(request):
+    page = request.GET.get('page', 1)
+
+    paginated_demands = paginate(page)
+
     categories = Category.objects.filter(activated=True).annotate(posts_count=Count('demand_category'))
-    return render(request, 'redico/homepage.html', {'categories': categories, 'demands': demands})
+
+    try:
+        return render(request, 'redico/homepage.html', {'categories': categories, 'demands': paginated_demands})
+    except EmptyPage:
+        return render(request, 'redico/homepage.html', {'categories': [], 'demands':[]})
 
