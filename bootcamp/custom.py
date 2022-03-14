@@ -119,8 +119,7 @@ class BaseListView(MultipleObjectMixin, View):
         return self.render_to_response(context)
 
 
-class AjaxMultipleObjectTemplateResponseMixin(
-    MultipleObjectTemplateResponseMixin):
+class AjaxMultipleObjectTemplateResponseMixin(MultipleObjectTemplateResponseMixin):
     key = PAGE_LABEL
     page_template = None
     page_template_suffix = '_page'
@@ -142,7 +141,7 @@ class AjaxMultipleObjectTemplateResponseMixin(
     def get_template_names(self):
         """Switch the templates for Ajax requests."""
         request = self.request
-        querystring_key = request.REQUEST.get('querystring_key', PAGE_LABEL)
+        querystring_key = request.GET.get('querystring_key', PAGE_LABEL)
         if request.is_ajax() and querystring_key == self.key:
             return [self.page_template]
         return super(
