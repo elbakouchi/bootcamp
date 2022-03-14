@@ -40,21 +40,6 @@ class ArticleQuerySet(models.query.QuerySet):
     def get_by_demand(self, category):
         return self.filter()
 
-    def get_counted_tags(self):
-        tag_dict = {}
-        query = (
-            self.filter(status="P").annotate(tagged=models.Count("tags")).filter(tags__gt=0)
-        )
-        for obj in query:
-            for tag in obj.tags.names():
-                if tag not in tag_dict:
-                    tag_dict[tag] = 1
-
-                else:  # pragma: no cover
-                    tag_dict[tag] += 1
-
-        return tag_dict.items()
-
 
 class Article(models.Model):
     DRAFT = "D"
@@ -68,11 +53,10 @@ class Article(models.Model):
         on_delete=models.SET_NULL,
     )
 
-    demand = models.ForeignKey(
+    demand = models.ManyToManyField(
         bootcamp.demand.models.Demand,
         null=True,
         related_name="demand",
-        on_delete=models.SET_NULL,
     )
     '''
     image = models.ImageField(
@@ -85,7 +69,7 @@ class Article(models.Model):
     status = models.CharField(max_length=1, choices=STATUS, default=DRAFT)
     content = CKEditor5Field('Text', config_name='extends') # MarkdownxField()
     verified = models.BooleanField(default=False)
-    tags = TaggableManager()
+    # tags = TaggableManager()
     objects = ArticleQuerySet.as_manager()
 
     # @staticmethod
