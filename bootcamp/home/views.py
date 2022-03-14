@@ -39,7 +39,7 @@ def paginate(page):
 # @csrf_exempt
 def feed_pagination(request, rr):
     if request.is_ajax and request.method == 'POST':
-        page = request.POST.get('page', 2)
+        page = request.POST.get('page', 5)
         paginated_demands = paginate(page)
         context = {"demands": paginated_demands.object_list}
         return HttpResponse(render_to_string("redico/snippets/demand-list-item.html", context))
