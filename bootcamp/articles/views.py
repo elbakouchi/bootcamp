@@ -8,11 +8,14 @@ from django.core.paginator import Paginator
 from django.http import JsonResponse
 
 from django.contrib.auth.decorators import login_required
+
+from bootcamp.custom import AjaxableResponseMixin
+from bootcamp.demand.models import Demand
 from bootcamp.helpers import ajax_required, AuthorRequiredMixin
 from django.views.decorators.http import require_http_methods
 
 from bootcamp.articles.models import Article
-from bootcamp.articles.forms import ArticleForm
+from bootcamp.articles.forms import ArticleForm, SuggestedRevisionForm
 
 
 class ArticlesListView(LoginRequiredMixin, ListView):
@@ -53,7 +56,11 @@ class CreateArticleView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         messages.success(self.request, self.message)
-        return reverse("articles:list")
+        return None  # reverse("articles:article_pk", self.object.pk)
+
+
+class CreateArticleAjaxView(AjaxableResponseMixin, CreateArticleView):
+    form_class = SuggestedRevisionForm
 
 
 class EditArticleView(LoginRequiredMixin, AuthorRequiredMixin, UpdateView):
