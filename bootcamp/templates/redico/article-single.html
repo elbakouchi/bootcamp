@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://ckeditor.com/docs/ckeditor5/latest/snippets/features/read-only-build/snippet.css"/>
 {% endblock css %}
 {% block content %}
-{% include 'redico/snippets/banner.html' with heading=demand.title %}
+{#% include 'redico/snippets/banner.html' with heading=demand.title %#}
 {#% include 'redico/snippets/categories-breadcumb.html' with categoryName=demand.category_name %#}
 <section class="page_breadcrumb">
     <div class="container custom_container">
@@ -15,7 +15,7 @@
             <div class="col-sm-7">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{% url 'homepage:home' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'home:home' %}">Home</a></li>
                         <li class="breadcrumb-item"><a href="{% url 'categories:demands' demand.category_slug %}">{{demand.category_name}}</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">{{demand.title}}</li>
@@ -54,7 +54,8 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="action-button-container">
-                            <button id="snippet-read-only-toggle-toolbar" class="action_btn btn-ans ask-btn suggest">Composer
+                            <button id="snippet-read-only-toggle-toolbar" class="action_btn btn-ans ask-btn suggest">
+                                Composer
                             </button>
                         </div>
                     </div>
@@ -64,14 +65,15 @@
                 <div class="q-title">
                     <h1>{{demand.title}}</h1>
                 </div>
-
                 <div class="forum-post-content">
-                     <form id="suggest-form">
-                         {% csrf_token %}
-                         <input type="hidden" name="pk" value="{{demand.pk}}">
-                         <input type="hidden" name="title" value="{{demand.title}}">
-                         <input type="hidden" name="content" value="{{demand.content}}">
-                     </form>
+                    <form id="suggest-form" method="post" action="">
+                        {% csrf_token %}
+                        <input type="hidden" name="demand" value="{{demand.pk}}">
+                        <input type="hidden" name="title" value="{{demand.title}}-{{user.username}}-{% now 'P' %}">
+                        <input type="hidden" name="content" value="{{demand.content}}">
+                        <input type="hidden" name="status" value="P">
+                        <input type="hidden" name="edited" value="1">
+                    </form>
                     <div id="snippet-read-only-toolbar" class="content">
                         {{demand.content}}
                     </div>
@@ -84,7 +86,7 @@
                     </div>
                     <div class="action-button-container action-btns">
                         <a href="#" class="action_btn btn-ans ask-btn reply-btn suggest-btn">Enregistrer</a>
-                        <!--a href="#" class="action_btn btn-ans ask-btn too-btn">Revision (2)</a-->
+                        <a href="#" class="action_btn btn-ans ask-btn too-btn">Révisions ()</a>
                     </div>
 
                 </div>
@@ -98,7 +100,7 @@
                     $(document).ready(function(){
                         $('.suggest-btn').click(function(e){
                             e.preventDefault();
-                            $('input[name="content"]').val($('.ck-editor__editable').text());
+                            $('input[name="content"]').val($('.ck-editor__editable').html());
                             let form_data = $('#suggest-form').serialize();
                             console.log(form_data);
                              $.ajax({
@@ -106,12 +108,17 @@
                                 type: 'POST',
                                 data: form_data,
                                 cache: false,
-                                success: function(){
-                                   window.location.href = "/";
+                                success: function(e,a,b){
+                                   console.log(e);
+                                   window.location.href = "{% url 'demands:demand' demand.slug %}";
+                                },
+                                error: function(a,b,c,d){
+                                    console.log(a);
                                 }
                             });
                         });
                     });
+
                 </script>
                 {% endblock javascript%}
 
