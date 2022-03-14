@@ -1,9 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, ListView
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
 
+from bootcamp.custom import AjaxListView
 from bootcamp.demand.forms import DemandForm
 from bootcamp.demand.models import Demand
 
@@ -34,3 +35,8 @@ class CreateDemandView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         messages.success(self.request, self.message)
         return reverse("home:home")
+
+
+class PaginatedDemandsFeed(AjaxListView):
+    model = Demand
+    paginate_by = 5
