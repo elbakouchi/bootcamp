@@ -6,32 +6,15 @@
 {% block content %}
 {% include 'redico/snippets/banner.html' with heading=object.name %}
 {% include 'redico/snippets/categories-breadcumb.html' with categoryName=object.name %}
- <section class="doc_blog_grid_area sec_pad forum-page-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9">
-                        <div class="answer-action shadow">
-                            <div class="action-content">
-                                <div class="image-wrap">
-                                    <img src="{% static 'img/home_support/answer.png' %}" alt="answer action">
-                                </div>
-                                <div class="content">
-                                    <h2 class="ans-title">Vous ne trouvez pas de réponse&nbsp;?</h2>
-                                    <p> Obtenir une aide à la rédaction</p>
-                                </div>
-                            </div>
-                            <!-- /.action-content -->
-                            <div class="action-button-container">
-                                <a href="new-demand.html" class="action_btn btn-ans">Corriger mon texte</a>
-                            </div>
-                            <!-- /.action-button-container -->
-                        </div>
-                        <!-- /.answer-action -->
-                       <div class="forum_l_inner">
-
+<section class="doc_blog_grid_area sec_pad forum-page-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="forum_l_inner">
                     <div class="forum_body">
                         <ul class="navbar-nav topic_list">
-                            {% for demand in object_list%}<li>
+                            {% for demand in object_list%}
+                            <li>
                                 <div class="media">
                                     <div class="media-body">
                                         <div class="t_title">
@@ -40,125 +23,135 @@
                                             </a>
                                         </div>
                                         <a href="#">
-                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>&nbsp;{{demand.service_name}}</h6>
+                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>&nbsp;{{demand.service_name}}
+                                            </h6>
                                         </a>
                                         <h6><i class="icon_clock_alt"></i>&nbsp;{{demand.timestamp|timesince}}
                                         </h6>
                                     </div>
                                     <div class="media-right">
-                                         <a class="count" href="#"><ion-icon name="create-outline"></ion-icon> 0</a>
-                                        <a class="count" href="#"><ion-icon name="eye-outline"></ion-icon> 420</a>
+                                        <a class="count" href="#">
+                                            <ion-icon name="create-outline"></ion-icon>
+                                            0</a>
+                                        <a class="count" href="#">
+                                            <ion-icon name="eye-outline"></ion-icon>
+                                            420</a>
                                     </div>
                                 </div>
                             </li>
-                        {% endfor %}
+                            {% endfor %}
                         </ul>
                     </div>
 
                 </div>
 
-                 <div class="row pagination_inner">
-                                <div class="col-lg-2">
-                                    <h6>Total: <span> {{ page_obj.paginator.count }} </span></h6>
-                                </div>
-                                <div class="col-lg-8">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination justify-content-center">
-                                            {% if page_obj.has_previous %}
-                                            <li class="page-item"><a class="page-link" href="{% url 'categories:demands' object.slug%}?page={{page_obj.previous_page_number}}">Précédent</a></li>
-                                            {% endif %}
-
-                                            <li class="page-item active"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
-                                            <!--li class="page-item"><a class="page-link" href="#">2</a></li-->
-                                            <!--li class="page-item"><a class="page-link" href="#">3</a></li-->
-                                            <!--li class="page-item"><a class="page-link" href="#">...</a></li-->
-                                            <!--li class="page-item"><a class="page-link" href="#">21</a></li-->
-                                             {% if page_obj.has_next %}
-                                            <li class="page-item"><a class="page-link" href="{% url 'categories:demands' object.slug %}?page={{page_obj.next_page_number}}">Suivant<i class="arrow_carrot-right"></i></a></li>
-                                            {% endif %}
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                        <!-- /.community-posts-wrapper -->
+                <div class="row pagination_inner">
+                    <div class="col-lg-2">
+                        <h6>Total: <span> {{ page_obj.paginator.count }} </span></h6>
                     </div>
-                    <!-- /.col-lg-9 -->
-                    <div class="col-lg-3">
-                        <div class="forum_sidebar">
+                    <div class="col-lg-8">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                {% if page_obj.has_previous %}
+                                <li class="page-item"><a class="page-link"
+                                                         href="{% url 'categories:demands' object.slug%}?page={{page_obj.previous_page_number}}">Précédent</a>
+                                </li>
+                                {% endif %}
 
-                              <div class="widget ticket_widget">
-                                <h4 class="c_head">Categories</h4>
+                                <li class="page-item active"><a class="page-link" href="#">{{ page_obj.number }}</a>
+                                </li>
+                                <!--li class="page-item"><a class="page-link" href="#">2</a></li-->
+                                <!--li class="page-item"><a class="page-link" href="#">3</a></li-->
+                                <!--li class="page-item"><a class="page-link" href="#">...</a></li-->
+                                <!--li class="page-item"><a class="page-link" href="#">21</a></li-->
+                                {% if page_obj.has_next %}
+                                <li class="page-item"><a class="page-link"
+                                                         href="{% url 'categories:demands' object.slug %}?page={{page_obj.next_page_number}}">Suivant<i
+                                        class="arrow_carrot-right"></i></a></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- /.community-posts-wrapper -->
+            </div>
+            <!-- /.col-lg-9 -->
+            <div class="col-lg-3">
+                <div class="forum_sidebar">
 
-                                <ul class="list-unstyled ticket_categories">
-                                    <li><img src="img/home_support/cmm5.png" alt="category">
-                                        <a href="Categories.html">Extraits d’demands</a> <span class="count">10</span>
-                                    </li>
-                                    <li><img src="img/home_support/cmm4.png" alt="category">
-                                        <a href="Categories.html">Ecrits professionnels</a>
-                                        <span class="count">54</span>
-                                    </li>
-                                    <li><img src="img/home_support/cmm2.png" alt="category">
-                                        <a href="Categories.html">Petits mots</a><span class="count">142</span>
-                                    </li>
-                                    <li><img src="img/home_support/cmm8.png" alt="category">
-                                        <a href="Categories.html">Annonces</a> <span class="count">13</span>
-                                    </li>
-                                    <li><img src="img/home_support/cmm9.png" alt="category">
-                                        <a href="Categories.html">Courriers personnels</a> <span class="count">123</span>
-                                    </li>
-                                    <li><img src="img/home_support/cmm10.png" alt="category">
-                                        <a href="Categories.html">Posts réseaux sociaux</a> <span class="count">18</span>
-                                    </li>
-                                    <li><img src="img/home_support/cmm10.png" alt="category">
-                                        <a href="Categories.html">Autre</a> <span class="count">18</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="widget recent_news_widget" style="display: none;">
-                                <h4 class="c_head">Nouveaux demands</h4>
-                                <div class="media recent_post_item">
-                                    <div class="media-body">
-                                        <a href="demand-single.html">
-                                            <h5>Petit mot pour maman.</h5>
-                                        </a>
-                                        <div class="entry_post_date">January 14, 2021</div>
-                                    </div>
-                                </div>
-                                <div class="media recent_post_item">
-                                    <div class="media-body">
-                                        <a href="demand-single.html">
-                                            <h5>Petit mot pour Papa</h5>
-                                        </a>
-                                        <div class="entry_post_date">April 16, 2020</div>
-                                    </div>
-                                </div>
-                                <div class="media recent_post_item">
-                                    <div class="media-body">
-                                        <a href="demand-single.html">
-                                            <h5> Post Instagram </h5>
-                                        </a>
-                                        <div class="entry_post_date">March 10, 2020</div>
-                                    </div>
-                                </div>
-                                <div class="media recent_post_item">
-                                    <div class="media-body">
-                                        <a href="demand-single.html">
-                                            <h5>How to Create GDPR Consent Form In WordPress</h5>
-                                        </a>
-                                        <div class="entry_post_date">January 19, 2020</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="widget ads">
-                                <img src="img/ads.png" class="rounded mx-auto d-block img-fluid" alt="...">
-                            </div>
+                    <div class="widget ticket_widget">
+                        <h4 class="c_head">Categories</h4>
 
+                        <ul class="list-unstyled ticket_categories">
+                            <li><img src="img/home_support/cmm5.png" alt="category">
+                                <a href="Categories.html">Extraits d’demands</a> <span class="count">10</span>
+                            </li>
+                            <li><img src="img/home_support/cmm4.png" alt="category">
+                                <a href="Categories.html">Ecrits professionnels</a>
+                                <span class="count">54</span>
+                            </li>
+                            <li><img src="img/home_support/cmm2.png" alt="category">
+                                <a href="Categories.html">Petits mots</a><span class="count">142</span>
+                            </li>
+                            <li><img src="img/home_support/cmm8.png" alt="category">
+                                <a href="Categories.html">Annonces</a> <span class="count">13</span>
+                            </li>
+                            <li><img src="img/home_support/cmm9.png" alt="category">
+                                <a href="Categories.html">Courriers personnels</a> <span class="count">123</span>
+                            </li>
+                            <li><img src="img/home_support/cmm10.png" alt="category">
+                                <a href="Categories.html">Posts réseaux sociaux</a> <span class="count">18</span>
+                            </li>
+                            <li><img src="img/home_support/cmm10.png" alt="category">
+                                <a href="Categories.html">Autre</a> <span class="count">18</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="widget recent_news_widget" style="display: none;">
+                        <h4 class="c_head">Nouveaux demands</h4>
+                        <div class="media recent_post_item">
+                            <div class="media-body">
+                                <a href="demand-single.html">
+                                    <h5>Petit mot pour maman.</h5>
+                                </a>
+                                <div class="entry_post_date">January 14, 2021</div>
+                            </div>
+                        </div>
+                        <div class="media recent_post_item">
+                            <div class="media-body">
+                                <a href="demand-single.html">
+                                    <h5>Petit mot pour Papa</h5>
+                                </a>
+                                <div class="entry_post_date">April 16, 2020</div>
+                            </div>
+                        </div>
+                        <div class="media recent_post_item">
+                            <div class="media-body">
+                                <a href="demand-single.html">
+                                    <h5> Post Instagram </h5>
+                                </a>
+                                <div class="entry_post_date">March 10, 2020</div>
+                            </div>
+                        </div>
+                        <div class="media recent_post_item">
+                            <div class="media-body">
+                                <a href="demand-single.html">
+                                    <h5>How to Create GDPR Consent Form In WordPress</h5>
+                                </a>
+                                <div class="entry_post_date">January 19, 2020</div>
+                            </div>
                         </div>
                     </div>
-                    <!-- /.col-lg-3 -->
+                    <div class="widget ads">
+                        <img src="img/ads.png" class="rounded mx-auto d-block img-fluid" alt="...">
+                    </div>
+
                 </div>
             </div>
-        </section>
+            <!-- /.col-lg-3 -->
+        </div>
+    </div>
+</section>
 
 {% include 'redico/snippets/joinus.html' %}
 {% endblock content %}
