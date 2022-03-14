@@ -14,7 +14,7 @@
       <li class="breadcrumb-item active" aria-current="page">{% trans 'Write a new document' %}</li>
     </ol>
   </nav>
-  <form action="{% url 'articles:write_new' %}" enctype="multipart/form-data"  id="article-form" method="post" role="form">
+  <form action="{#% url 'articles:write_new' %#}" enctype="multipart/form-data"  id="article-form" method="post" role="form">
     {% csrf_token %}
     {{ form|crispy }}
     <div class="form-group">
