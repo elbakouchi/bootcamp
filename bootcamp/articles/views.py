@@ -51,12 +51,17 @@ class CreateArticleView(LoginRequiredMixin, CreateView):
     template_name = "articles/article_create.html"
 
     def form_valid(self, form):
+        try:
+            form.instance.demand = self.request.POST.demand
+        except Exception as e:
+            print(e)
+            pass
         form.instance.user = self.request.user
         return super().form_valid(form)
 
     def get_success_url(self):
         messages.success(self.request, self.message)
-        return None  # reverse("articles:article_pk", self.object.pk)
+        return reverse("articles:article_pk", self.object.pk)
 
 
 class CreateArticleAjaxView(AjaxableResponseMixin, CreateArticleView):
