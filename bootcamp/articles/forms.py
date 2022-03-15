@@ -7,18 +7,19 @@ from bootcamp.demand.models import Demand
 
 
 class SuggestedRevisionForm(forms.ModelForm):
+    title = forms.CharField(widget=forms.HiddenInput())
     status = forms.CharField(widget=forms.HiddenInput(), required=False, initial="P")
     edited = forms.BooleanField(
         widget=forms.HiddenInput(), required=False, initial=False
     )
     content = forms.CharField(widget=forms.HiddenInput())
-    demand = forms.CharField(widget=forms.HiddenInput())
+    demand = forms.ModelChoiceField(widget=forms.HiddenInput(), queryset=Demand.objects.get_published())
 
-    def clean(self):
-        cleaned_data = self.cleaned_data
-        demand = cleaned_data['demand']
-        cleaned_data['demand'] = Demand.objects.get(pk=demand)
-        return cleaned_data
+    # def clean(self):
+    #    cleaned_data = self.cleaned_data
+    #    demand = cleaned_data['demand']
+    #    cleaned_data['demand'] = Demand.objects.get(pk=demand)
+    #    return cleaned_data
 
     class Meta:
         model = Article
