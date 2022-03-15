@@ -4,7 +4,7 @@ TRACK_AJAX_REQUESTS = getattr(settings, 'TRACK_AJAX_REQUESTS', False)
 TRACK_ANONYMOUS_USERS = getattr(settings, 'TRACK_ANONYMOUS_USERS', True)
 TRACK_SUPERUSERS = getattr(settings, 'TRACK_SUPERUSERS', True)
 
-TRACK_PAGEVIEWS = getattr(settings, 'TRACK_PAGEVIEWS', False)
+TRACK_PAGEVIEWS = getattr(settings, 'TRACK_PAGEVIEWS', True)
 
 TRACK_IGNORE_URLS = getattr(settings, 'TRACK_IGNORE_URLS', (
     r'^(favicon\.ico|robots\.txt)$',
