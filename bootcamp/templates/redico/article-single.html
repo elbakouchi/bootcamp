@@ -8,19 +8,19 @@
 {% endblock css %}
 {% block content %}
 {#% include 'redico/snippets/banner.html' with heading=demand.title %#}
-{#% include 'redico/snippets/categories-breadcumb.html' with categoryName=demand.category_name %#}
+{% include 'redico/snippets/categories-breadcumb.html' with categoryName=demand.category_name %}
 <section class="page_breadcrumb">
     <div class="container custom_container">
         <div class="row">
             <div class="col-sm-7">
-                <nav aria-label="breadcrumb">
+                <!--nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{% url 'home:home' %}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{% url 'categories:demands' demand.category_slug %}">{{demand.category_name}}</a>
+                        <li class="breadcrumb-item"><a href="{#% url 'home:home' %#}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{#% url 'categories:demands' demand.category_slug %#}">{#{demand.category_name}#}</a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">{{demand.title}}</li>
+                        <li class="breadcrumb-item active" aria-current="page">{#{demand.title}#}</li>
                     </ol>
-                </nav>
+                </nav-->
             </div>
             <div class="col-sm-5">
                 <a href="#" class="date"><i class="icon_clock_alt"></i>{{demand.timestamp|timesince}}</a>
@@ -66,16 +66,14 @@
                     <h1>{{demand.title}}</h1>
                 </div>
                 <div class="forum-post-content">
+
                     <form id="suggest-form" method="post" action="">
                         {% csrf_token %}
-                        <input type="hidden" name="demand" value="{{demand.pk}}">
-                        <input type="hidden" name="title" value="{{demand.title}}-{{user.username}}-{% now 'P' %}">
-                        <input type="hidden" name="content" value="{{demand.content}}">
-                        <input type="hidden" name="status" value="P">
-                        <input type="hidden" name="edited" value="1">
+                        {{suggest_form.as_p}}
+
                     </form>
                     <div id="snippet-read-only-toolbar" class="content">
-                        {{demand.content}}
+                        {{demand.content |safe}}
                     </div>
 
                     <div class="forum-post-btm">
@@ -86,7 +84,7 @@
                     </div>
                     <div class="action-button-container action-btns">
                         <a href="#" class="action_btn btn-ans ask-btn reply-btn suggest-btn">Enregistrer</a>
-                        <a href="#" class="action_btn btn-ans ask-btn too-btn">Révisions ()</a>
+                        <a href="#" class="action_btn btn-ans ask-btn too-btn">Révisions ({{demand.revision_count}})</a>
                     </div>
 
                 </div>
@@ -100,6 +98,8 @@
                     $(document).ready(function(){
                         $('.suggest-btn').click(function(e){
                             e.preventDefault();
+                            $('input[name="demand"]').val('{{demand.pk}}');
+                            $('input[name="title"]').val("{{demand.title}}-{{user.username}}-{% now 'U' %}");
                             $('input[name="content"]').val($('.ck-editor__editable').html());
                             let form_data = $('#suggest-form').serialize();
                             console.log(form_data);
@@ -110,7 +110,7 @@
                                 cache: false,
                                 success: function(e,a,b){
                                    console.log(e);
-                                   window.location.href = "{% url 'demands:demand' demand.slug %}";
+                                   window.location.href = "{#% url 'demands:demand' demand.slug %#}";
                                 },
                                 error: function(a,b,c,d){
                                     console.log(a);
