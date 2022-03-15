@@ -15,12 +15,6 @@ class SuggestedRevisionForm(forms.ModelForm):
     content = forms.CharField(widget=forms.HiddenInput())
     demand = forms.ModelChoiceField(widget=forms.HiddenInput(), queryset=Demand.objects.get_published())
 
-    # def clean(self):
-    #    cleaned_data = self.cleaned_data
-    #    demand = cleaned_data['demand']
-    #    cleaned_data['demand'] = Demand.objects.get(pk=demand)
-    #    return cleaned_data
-
     class Meta:
         model = Article
         fields = ["title", "content", "demand", "status", "edited"]
