@@ -25,7 +25,8 @@ class DemandQuerySet(models.query.QuerySet):
             client_lastname=StringAgg('user__last_name', delimiter=','),
             category_name=StringAgg('category__name', delimiter=','),
             category_slug=StringAgg('category__slug', delimiter=','),
-            service_name=StringAgg('service__name', delimiter=',')
+            service_name=StringAgg('service__name', delimiter=','),
+            revision_count=Count('demand__id', None)
         )
 
     def get_published(self):
