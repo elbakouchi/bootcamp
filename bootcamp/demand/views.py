@@ -58,3 +58,6 @@ class PaginatedDemandsFeed(AjaxListView):
     paginate_by = 5
     page_template = "redico/snippets/demand-list-item.html"
     context_object_name = "demands"
+
+    def get_queryset(self):
+        return Demand.objects.get_category()
