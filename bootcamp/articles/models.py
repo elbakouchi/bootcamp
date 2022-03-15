@@ -53,10 +53,11 @@ class Article(models.Model):
         on_delete=models.SET_NULL,
     )
 
-    demand = models.ManyToManyField(
+    demand = models.ForeignKey(
         bootcamp.demand.models.Demand,
         null=True,
         related_name="demand",
+        on_delete=models.SET_NULL
     )
     '''
     image = models.ImageField(
