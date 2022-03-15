@@ -5,6 +5,7 @@ from django.utils.encoding import smart_str
 from django.utils.translation import ugettext as _
 from django.views.generic.base import View
 from django.views.generic.list import MultipleObjectTemplateResponseMixin
+from bootcamp.demand.models import Demand
 
 
 class AjaxableResponseMixin(object):
@@ -21,14 +22,19 @@ class AjaxableResponseMixin(object):
             return response
 
     def form_valid(self, form):
-        response = super(AjaxableResponseMixin, self).form_valid(form)
-        if self.request.is_ajax():
-            data = {
-                'pk': self.object.pk,
-            }
-            return JsonResponse(data)
-        else:
-            return response
+        try:
+            response = super(AjaxableResponseMixin, self).form_valid(form)
+            if self.request.is_ajax():
+                data = {
+                    'pk': self.object.pk,
+                }
+                return JsonResponse(data)
+            else:
+                return response
+
+        except Exception as e:
+            print(e)
+            return JsonResponse(e.__dict__, safe=False)
 
 
 PAGE_LABEL = "page"
