@@ -4,6 +4,7 @@ from django.views.generic import CreateView, DetailView, ListView
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
 
+from bootcamp.articles.forms import SuggestedRevisionForm
 from bootcamp.custom import AjaxListView
 from bootcamp.demand.forms import DemandForm
 from bootcamp.demand.models import Demand
@@ -14,6 +15,13 @@ class DetailDemandView(DetailView):
     template_name = "redico/article-single.html"
     context_object_name = 'demand'
     model = Demand
+
+    def get_context_data(self, **kwargs):
+        context = super(DetailDemandView, self).get_context_data()
+        suggest_form = SuggestedRevisionForm()
+        # suggest_form.demand.hidden_widget. =
+        context["suggest_form"] = suggest_form
+        return context
 
     def get_queryset(self, *args, **kwargs):
         queryset = super(DetailDemandView, self).get_queryset()
