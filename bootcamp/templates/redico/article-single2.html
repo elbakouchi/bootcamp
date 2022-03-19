@@ -2,10 +2,10 @@
 {% load static %}
 
 {% block title%}  Redico -  demand {% endblock title%}
-{% block css %}
-{{block.super}}
-<link rel="stylesheet" href="https://ckeditor.com/docs/ckeditor5/latest/snippets/features/read-only-build/snippet.css"/>
-{% endblock css %}
+{#% block css %#}
+{#{block.super}#}
+<!--link rel="stylesheet" href="https://ckeditor.com/docs/ckeditor5/latest/snippets/features/read-only-build/snippet.css"/-->
+{#% endblock css %#}
 {% block content %}
 {#% include 'redico/snippets/banner.html' with heading=demand.title %#}
 {% include 'redico/snippets/categories-breadcumb.html' with categoryName=demand.category_name %}
@@ -32,7 +32,10 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="action-button-container">
-                            <a href="#" class="action_btn btn-ans ask-btn">Modifier</a>
+                            <!--a href="#" class="action_btn btn-ans ask-btn">Modifier</a-->
+                            <button id="toggle" class="action_btn btn-ans ask-btn" style="border: none;">Start editing</button>
+                            <button id="reset" class="action_btn btn-ans ask-btn" style="display:none; border: none;">Reset content</button>
+
                         </div>
                     </div>
                 </div>
@@ -46,7 +49,7 @@
                         {% csrf_token %}
                         {{suggest_form.as_p}}
                     </form>
-                    <div id="snippet-read-only-toolbar" class="content">
+                    <div id="introduction" class="content">
                         {{demand.content |safe}}
                     </div>
                     <div class="forum-post-btm">
@@ -90,10 +93,92 @@
 {% endblock content %}
 {% block javascript %}
 {{block.super}}
-<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
-<script src="https://ckeditor.com/docs/ckeditor5/latest/assets/snippet.js"></script>
-<script src="{% static 'js/ckeditor-read-only-hide-toolbar.js' %}"></script>
+<script src="https://cdn.ckeditor.com/4.18.0/standard-all/ckeditor.js"></script>
+<!--script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script-->
+<!--script src="https://ckeditor.com/docs/ckeditor5/latest/assets/snippet.js"></script-->
+<!--script src="{#% static 'js/ckeditor-read-only-hide-toolbar.js' %#}"></script-->
 <script>
+    // The inline editor should be enabled on an element with "contenteditable" attribute set to "true".
+    // Otherwise CKEditor 4 will start in read-only mode.
+    var introduction = document.getElementById('introduction');
+    introduction.setAttribute('contenteditable', fals);
+
+    CKEDITOR.inline('introduction', {
+      // Allow some non-standard markup that we used in the introduction.
+      extraAllowedContent: 'a(documentation);abbr[title];code',
+      removePlugins: 'stylescombo',
+      extraPlugins: 'sourcedialog',
+      removeButtons: 'PasteFromWord',
+      // Show toolbar on startup (optional).
+      startupFocus: true
+    });
+  </script>
+
+  <script>
+      // Sample: Inline Editing Enabled by Code
+      ( function() {
+        var isEditingEnabled,
+          toggle = document.getElementById( 'toggle' ),
+          reset = document.getElementById( 'reset' ),
+          introduction = document.getElementById( 'snippet-read-only-toolbar' ),
+          introductionHTML = introduction.innerHTML;
+
+        function enableEditing() {
+          if ( !CKEDITOR.instances.introduction ) {
+            CKEDITOR.inline( 'introduction', {
+              extraAllowedContent: 'a(documentation);abbr[title];code',
+              removePlugins: 'stylescombo',
+              extraPlugins: 'sourcedialog',
+              removeButtons: 'PasteFromWord',
+              startupFocus: true
+            } );
+          }
+        }
+
+        function disableEditing() {
+          if ( CKEDITOR.instances.introduction )
+            CKEDITOR.instances.introduction.destroy();
+        }
+
+        function toggleEditor() {
+          if ( isEditingEnabled ) {
+            if ( CKEDITOR.instances.introduction && CKEDITOR.instances.introduction.checkDirty() ) {
+              reset.style.display = 'inline';
+            }
+            disableEditing();
+            introduction.setAttribute( 'contenteditable', false );
+            this.innerHTML = 'Start editing';
+            isEditingEnabled = false;
+          }
+          else {
+            introduction.setAttribute( 'contenteditable', true );
+            enableEditing();
+            this.innerHTML = 'Finish editing';
+            isEditingEnabled = true;
+          }
+        }
+
+        function resetContent() {
+          reset.style.display = 'none';
+          introduction.innerHTML = introductionHTML;
+        }
+
+        function onClick( element, callback ) {
+          if ( window.addEventListener ) {
+            element.addEventListener( 'click', callback, false );
+          }
+          else if ( window.attachEvent ) {
+            element.attachEvent( 'onclick', callback );
+          }
+        }
+
+        onClick( toggle, toggleEditor );
+        onClick( reset, resetContent );
+      } )();
+    </script>
+{% endblock javascript%}
+
+<noscript>
                     $(document).ready(function(){
                         $('.suggest-btn').click(function(e){
                             e.preventDefault();
@@ -117,9 +202,4 @@
                             });
                         });
                     });
-
-
-
-
-</script>
-{% endblock javascript%}</html>
+</noscript>
