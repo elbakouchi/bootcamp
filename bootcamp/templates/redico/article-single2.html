@@ -101,7 +101,7 @@
     // The inline editor should be enabled on an element with "contenteditable" attribute set to "true".
     // Otherwise CKEditor 4 will start in read-only mode.
     var introduction = document.getElementById('introduction');
-    introduction.setAttribute('contenteditable', fals);
+    introduction.setAttribute('contenteditable', false);
 
     CKEDITOR.inline('introduction', {
       // Allow some non-standard markup that we used in the introduction.
@@ -112,15 +112,14 @@
       // Show toolbar on startup (optional).
       startupFocus: true
     });
-  </script>
-
-  <script>
+</script>
+<script>
       // Sample: Inline Editing Enabled by Code
       ( function() {
         var isEditingEnabled,
           toggle = document.getElementById( 'toggle' ),
           reset = document.getElementById( 'reset' ),
-          introduction = document.getElementById( 'snippet-read-only-toolbar' ),
+          introduction = document.getElementById( 'introduction' ),
           introductionHTML = introduction.innerHTML;
 
         function enableEditing() {
@@ -175,16 +174,15 @@
         onClick( toggle, toggleEditor );
         onClick( reset, resetContent );
       } )();
-    </script>
-{% endblock javascript%}
 
-<noscript>
+</script>
+<script>
                     $(document).ready(function(){
                         $('.suggest-btn').click(function(e){
                             e.preventDefault();
                             $('input[name="demand"]').val('{{demand.pk}}');
                             $('input[name="title"]').val("{{demand.title}}-{{user.username}}-{% now 'U' %}");
-                            $('input[name="content"]').val($('.ck-editor__editable').html());
+                            $('input[name="content"]').val($('#introduction').html());
                             let form_data = $('#suggest-form').serialize();
                             console.log(form_data);
                              $.ajax({
@@ -202,4 +200,8 @@
                             });
                         });
                     });
-</noscript>
+
+</script>
+{% endblock javascript%}
+
+
