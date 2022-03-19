@@ -1,0 +1,57 @@
+{% load static %}
+<section class="doc_community_area">
+    <img class="shap_one" src="{% static 'img/new/community_bg_shap_one.png' %}" alt="">
+    <img class="shap_two" src="{% static 'img/new/community_bg_shap_two.png' %}" alt="">
+    <div class="container">
+        <div class="doc_title text-center">
+            <h2 class="wow fadeInUp" data-wow-delay="0.2s">Les derniers textes</h2>
+            <p class="wow fadeInUp" data-wow-delay="0.4s">Learn languages online with the world's best tutors
+            </p>
+        </div>
+        <div class="forum_l_inner">
+            <div class="forum_body">
+                <ul class="navbar-nav topic_list infinite-container">
+                    {% if demands.count %}
+                    {% for demand in demands %}
+                    <li class="infinite-item">
+                        <div class="media">
+                            <div class="media-body">
+                                <div class="t_title">
+                                    <a href="{% url 'demands:demand' demand.slug %}">
+                                        <h4>
+                                            {{demand.title}}
+                                            {% if demand.verified %}
+                                                <ion-icon name="checkmark-circle" role="img" class="md hydrated" aria-label="checkmark circle"></ion-icon>
+                                            {% endif %}
+                                        </h4>
+                                    </a>
+                                </div>
+                                <a href="#">
+                                    <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i> {{demand.categoryName}}
+                                    </h6>
+                                </a>
+                                <h6><i class="icon_clock_alt"></i> {{ demand.timestamp|timesince }}
+                                </h6>
+                            </div>
+                            <div class="media-right">
+                                <a class="count" href="#"><ion-icon name="create-outline"></ion-icon> {{ demand.revision_count }}</a>
+                                <!--a class="count" href="#"><ion-icon name="eye-outline"></ion-icon> 420</a-->
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <div class="doc_title text-center mt-40">
+              {% if demands.has_next %}
+                <a id="feed"  href="{% url 'demands:demands_feed' %}?page={{ demands.next_page_number }}" class="action_btn box_shadow_none wow fadeInUp infinite-more-link" data-wow-delay="0.2s" >Voir&nbsp;plus</a>
+              {% endif %}
+              <div class="loading" style="display: none;">
+                Encore...
+              </div>
+        </div>
+
+    </div>
+</section>

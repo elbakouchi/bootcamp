@@ -22,7 +22,8 @@ class HomePageView(CategoriesListView):
 
 def paginate(page):
     demands = \
-        Demand.objects.filter(status="P").annotate(categoryName=StringAgg('category__name', delimiter=','))
+        Demand.objects.filter(status="P").annotate(
+            categoryName=StringAgg('category__name', delimiter=','))
 
     paginator = Paginator(demands, 5)
 
@@ -57,5 +58,6 @@ def homepage(request):
     try:
         return render(request, 'redico/homepage.html', {'categories': categories, 'demands': paginated_demands})
     except EmptyPage:
-        return render(request, 'redico/homepage.html', {'categories': [], 'demands':[]})
-
+        return render(request, 'redico/homepage.html', {'categories': [], 'demands': Paginator([], 1)})
+    except ZeroDivisionError:
+        return render(request, 'redico/homepage.html', {'categories': [], 'demands': Paginator([], 1)})

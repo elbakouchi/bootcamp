@@ -207,7 +207,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                # "bootcamp.articles.context_processors.article_context",
+                "bootcamp.articles.context_processors.general_context",
             ],
         },
     }

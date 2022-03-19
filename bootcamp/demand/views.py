@@ -12,7 +12,7 @@ from bootcamp.demand.models import Demand
 
 class DetailDemandView(DetailView):
     """Basic DetailView implementation to call an individual article."""
-    template_name = "redico/article-single.html"
+    template_name = "redico/article-single2.html"
     context_object_name = 'demand'
     model = Demand
 
@@ -56,7 +56,7 @@ class DemandsList(ListView):
 class PaginatedDemandsFeed(AjaxListView):
     model = Demand
     paginate_by = 5
-    page_template = "redico/snippets/demand-list-item.html"
+    page_template = "redico/snippets/demand-list-item-2.html"
     context_object_name = "demands"
 
     def get_queryset(self):
