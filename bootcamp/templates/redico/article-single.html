@@ -70,7 +70,6 @@
                     <form id="suggest-form" method="post" action="">
                         {% csrf_token %}
                         {{suggest_form.as_p}}
-
                     </form>
                     <div id="snippet-read-only-toolbar" class="content">
                         {{demand.content |safe}}
@@ -88,36 +87,42 @@
                     </div>
 
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
                 {% endblock content %}
+
                 {% block javascript %}
                 {{block.super}}
                 <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
                 <script src="https://ckeditor.com/docs/ckeditor5/latest/assets/snippet.js"></script>
                 <script src="{% static 'js/ckeditor-read-only-hide-toolbar.js' %}"></script>
                 <script>
-                    $(document).ready(function(){
-                        $('.suggest-btn').click(function(e){
-                            e.preventDefault();
-                            $('input[name="demand"]').val('{{demand.pk}}');
-                            $('input[name="title"]').val("{{demand.title}}-{{user.username}}-{% now 'U' %}");
-                            $('input[name="content"]').val($('.ck-editor__editable').html());
-                            let form_data = $('#suggest-form').serialize();
-                            console.log(form_data);
-                             $.ajax({
-                                url: '{% url "articles:suggest" demand.pk %}',
-                                type: 'POST',
-                                data: form_data,
-                                cache: false,
-                                success: function(e,a,b){
-                                   console.log(e);
-                                   window.location.href = "{#% url 'demands:demand' demand.slug %#}";
-                                },
-                                error: function(a,b,c,d){
-                                    console.log(a);
-                                }
-                            });
-                        });
-                    });
+    $(document).ready(function(){
+        $('.suggest-btn').click(function(e){
+            e.preventDefault();
+            $('input[name="demand"]').val('{{demand.pk}}');
+            $('input[name="title"]').val("{{demand.title}}-{{user.username}}-{% now 'U' %}");
+            $('input[name="content"]').val($('.ck-editor__editable').html());
+            let form_data = $('#suggest-form').serialize();
+            console.log(form_data);
+             $.ajax({
+                url: '{% url "articles:suggest" demand.pk %}',
+                type: 'POST',
+                data: form_data,
+                cache: false,
+                success: function(e,a,b){
+                   console.log(e);
+                   window.location.href = "{#% url 'demands:demand' demand.slug %#}";
+                },
+                error: function(a,b,c,d){
+                    console.log(a);
+                }
+            });
+        });
+    });
+
 
                 </script>
                 {% endblock javascript%}
