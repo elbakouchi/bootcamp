@@ -62,152 +62,25 @@
                 </div>
                 <!-- All answer -->
                 <div class="all-answers">
-                    <div class="toggle_shortcode" style="display: none;">
-                        <a class="toggle_btn" data-toggle="collapse" href="#multiCollapseExample1" role="button"
-                           aria-expanded="false" aria-controls="multiCollapseExample1">Numéros de révision 3 </a>
-                        <div class="collapse multi-collapse show" id="multiCollapseExample1">
-                            <div class="card card-body toggle_body"><p>Daft blimey cor blimey guvnor jolly good don't
-                                get shirty with me what a load of rubbish no biggie ruddy cuppa cheesed off bleeding,
-                                arse spiffing it's your round codswallop gormless off his nut bodge I smashing, mufty
-                                chancer Oxford my good sir bobby it's all gone to pot bite your arm off wind up
-                                Harry.</p>
-                                <p>Blatant A bit of how's your father it's your round are you taking the piss gutted
-                                    mate codswallop golly gosh, James Bond I old chimney pot is bum bag do one, fanny
-                                    around crikey pukka tomfoolery nancy boy.</p>
-
-                            </div>
-                        </div>
-                        <a class="toggle_btn mt-3 collapsed" data-toggle="collapse" href="#multiCollapseExample2"
-                           role="button" aria-expanded="false" aria-controls="multiCollapseExample2">Numéros de révision
-                            2</a>
-                        <div class="collapse multi-collapse" id="multiCollapseExample2">
-                            <div class="card card-body toggle_body">
-                                <p>Daft blimey cor blimey guvnor jolly good don't get shirty with me what a load of
-                                    rubbish no biggie ru smashing, mufty chancer Oxford my good sir bobby it's all gone
-                                    to pot bite your arm off wind up Harry.</p>
-                                <p>Daft blimey cor blimey guvnor jolly good don't get shirty with me what a load of
-                                    rubbish no biggie ruddy cuppa cheesed off bleeding, arse spiffing it's your round
-                                    codswallop gormless off his nut bodge I smashing, mufty chancer Oxford my good sir
-                                    bobby it's all gone to pot bite your arm off wind up Harry. </p>
-
-                                <p>Blatant A bit of how's your f ond I old chimney pot is bum bag do one, fanny around
-                                    crikey pukka tomfoolery nancy boy.</p>
-
-                            </div>
-                        </div>
-                        <a class="toggle_btn mt-3 collapsed" data-toggle="collapse" href="#multiCollapseExample3"
-                           role="button" aria-expanded="false" aria-controls="multiCollapseExample3">Numéros de révision
-                            1</a>
-                        <div class="collapse multi-collapse" id="multiCollapseExample3">
-                            <div class="card card-body toggle_body">
-                                He lost his bottle arse fanny around do one cheesed off crikey bevy mufty the full monty
-                                nancy boy cup of tea spend a penny, golly gosh what a plonker.
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <h3 class="title">All Revision</h3>
-
-
+                    <h3 class="title">Révisions proposées: {{revisions.count}}</h3>
                     <div class="changelog_content">
+                        {% if revisions.count %}
+                        {% for revision in revisions %}
                         <div class="reviewlist">
-
-                            <p>Daft blimey cor blimey guvnor jolly good don't get shirty with me what a load of rubbish
-                                no biggie ruddy cuppa cheesed off bleeding, arse spiffing it's your round codswallop
-                                gormless off his nut bodge I smashing, mufty chancer Oxford my good sir bobby it's all
-                                gone to pot bite your arm off wind up Harry.</p>
-
-                            <p>Blatant A bit of how's your father it's your round are you taking the piss gutted mate
-                                codswallop golly gosh, James Bond I old chimney pot is bum bag do one, fanny around
-                                crikey pukka tomfoolery nancy boy.</p>
-
-                            <div class="download-links pb_30"><span class="improve">Numéros de révision  2 </span>
-                                <a href="#" class="changelog_btn"><i class="icon_document_alt"></i>26 minutes ago </a>
-                                <a href="#" class="changelog_btn"><i class="icon_profile"></i>UserName</a>
+                            {{revision.content|safe|truncatechars:120}}
+                            <div class="download-links pb_30">
+                                <!--span class="improve">Numéros de révision  2 </span-->
+                                <a href="#" class="changelog_btn"><i class="icon_document_alt"></i>{{revision.timestamp|timesince}} </a>
+                                <a href="#" class="changelog_btn"><i class="icon_profile"></i>{{revision.user.username}}</a>
                             </div>
                         </div>
-                        <div class="reviewlist">
-
-                            <p>Daft blimey cor blimey guvnor jolly good don't get shirty with me what a load of rubbish
-                                no biggie ru smashing, mufty chancer Oxford my good sir bobby it's all gone to pot bite
-                                your arm off wind up Harry.</p>
-                            <p>Daft blimey cor blimey guvnor jolly good don't get shirty with me what a load of rubbish
-                                no biggie ruddy cuppa cheesed off bleeding, arse spiffing it's your round codswallop
-                                gormless off his nut bodge I smashing, mufty chancer Oxford my good sir bobby it's all
-                                gone to pot bite your arm off wind up Harry. </p>
-
-                            <p>Blatant A bit of how's your f ond I old chimney pot is bum bag do one, fanny around
-                                crikey pukka tomfoolery nancy boy.</p>
-
-                            <div class="download-links pb_30"><span class="improve">Numéros de révision  2 </span>
-                                <a href="#" class="changelog_btn"><i class="icon_document_alt"></i>26 minutes ago </a>
-                                <a href="#" class="changelog_btn"><i class="icon_profile"></i>UserName</a>
-                            </div>
-                        </div>
-
-                        <div class="reviewlist">
-
-                            <p>Daft blimey cor blimey guvnor jolly good don't get shirty with me what a load of rubbish
-                                no biggie ruddy cuppa cheesed off bleeding, arse spiffing it's your round codswallop
-                                gormless off his nut bodge I smashing, mufty chancer Oxford my good sir bobby it's all
-                                gone to pot bite your arm off wind up Harry.</p>
-
-                            <p>Blatant A bit of how's your father it's your round are you taking the piss gutted mate
-                                codswallop golly gosh, James Bond I old chimney pot is bum bag do one, fanny around
-                                crikey pukka tomfoolery nancy boy.</p>
-
-                            <div class="download-links pb_30"><span class="improve">Numéros de révision  2 </span>
-                                <a href="#" class="changelog_btn"><i class="icon_document_alt"></i>26 minutes ago </a>
-                                <a href="#" class="changelog_btn"><i class="icon_profile"></i>UserName</a>
-                            </div>
-                        </div>
+                        {% endfor %}
+                        {% endif %}
                     </div>
-
-
                 </div>
             </div>
             <!-- /.col-lg-8 -->
 
-            <div class="col-lg-3 ">
-                <div class="forum_sidebar">
-
-                    <div class="widget ticket_widget">
-                        <h4 class="c_head">Categories</h4>
-
-                        <ul class="list-unstyled ticket_categories">
-                            <li><img src="img/home_support/cmm5.png" alt="category">
-                                <a href="Categories.html">Extraits d’articles</a> <span class="count">10</span>
-                            </li>
-                            <li><img src="img/home_support/cmm4.png" alt="category">
-                                <a href="Categories.html">Ecrits professionnels</a>
-                                <span class="count">54</span>
-                            </li>
-                            <li><img src="img/home_support/cmm2.png" alt="category">
-                                <a href="Categories.html">Petits mots</a><span class="count">142</span>
-                            </li>
-                            <li><img src="img/home_support/cmm8.png" alt="category">
-                                <a href="Categories.html">Annonces</a> <span class="count">13</span>
-                            </li>
-                            <li><img src="img/home_support/cmm9.png" alt="category">
-                                <a href="Categories.html">Courriers personnels</a> <span class="count">123</span>
-                            </li>
-                            <li><img src="img/home_support/cmm10.png" alt="category">
-                                <a href="Categories.html">Posts réseaux sociaux</a> <span class="count">18</span>
-                            </li>
-                            <li><img src="img/home_support/cmm10.png" alt="category">
-                                <a href="Categories.html">Autre</a> <span class="count">18</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="widget ads">
-                        <img src="img/ads.png" class="rounded mx-auto d-block img-fluid" alt="...">
-                    </div>
-
-
-                </div>
-            </div>
             <!-- /.col-lg-4 -->
         </div>
     </div>

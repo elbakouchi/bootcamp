@@ -4,6 +4,7 @@ from django.db import models
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
+from django.db.models import F
 
 from slugify import slugify
 
@@ -12,13 +13,13 @@ from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
 from taggit.managers import TaggableManager
 
-
 from bootcamp.notifications.models import Notification, notification_handler
 from bootcamp.category.models import Category, Service
 
 
 class DemandQuerySet(models.query.QuerySet):
     """Personalized queryset created to improve model usability"""
+
     def get_category(self):
         return self.annotate(
             client_firstname=StringAgg('user__first_name', delimiter=','),
@@ -26,8 +27,11 @@ class DemandQuerySet(models.query.QuerySet):
             category_name=StringAgg('category__name', delimiter=','),
             category_slug=StringAgg('category__slug', delimiter=','),
             service_name=StringAgg('service__name', delimiter=','),
-            revision_count=Count('demand__id', None)
+            revision_count=Count('revision__id', None)
         )
+
+    def get_revisions(self):
+        return self.annotate(revisions=F('revision'))
 
     def get_published(self):
         """Returns only the published items in the current queryset."""
@@ -94,7 +98,6 @@ class Demand(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     objects = DemandQuerySet.as_manager()
-
 
     class Meta:
         verbose_name = _("Texte")

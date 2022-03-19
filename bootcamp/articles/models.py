@@ -56,7 +56,7 @@ class Article(models.Model):
     demand = models.ForeignKey(
         bootcamp.demand.models.Demand,
         null=True,
-        related_name="demand",
+        related_name="revision",
         on_delete=models.SET_NULL
     )
     '''

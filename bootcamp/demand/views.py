@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
 
 from bootcamp.articles.forms import SuggestedRevisionForm
+from bootcamp.articles.models import Article
 from bootcamp.custom import AjaxListView
 from bootcamp.demand.forms import DemandForm
 from bootcamp.demand.models import Demand
@@ -19,7 +20,7 @@ class DetailDemandView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(DetailDemandView, self).get_context_data()
         suggest_form = SuggestedRevisionForm()
-        # suggest_form.demand.hidden_widget. =
+        context["revisions"] = Article.objects.filter(demand=self.object.pk)
         context["suggest_form"] = suggest_form
         return context
 
