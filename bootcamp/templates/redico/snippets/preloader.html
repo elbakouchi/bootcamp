@@ -1,0 +1,14 @@
+{% if debug_flag is not True %}
+{% load static %}
+    <div id="preloader">
+        <div id="ctn-preloader" class="ctn-preloader">
+            <div class="round_spinner">
+                <div class="spinner"></div>
+                <div class="text">
+                     <img class="white_logo" src="{% static 'img/logo-2x.png' %}" alt="logo">
+                </div>
+            </div>
+            <h2 class="head">Plateforme d'aide à la rédaction</h2>
+        </div>
+    </div>
+{% endif %}
