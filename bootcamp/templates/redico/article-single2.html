@@ -60,7 +60,7 @@
                     </div>
                     <div class="action-button-container action-btns">
                         <a href="#" class="action_btn btn-ans ask-btn reply-btn suggest-btn">Enregistrer</a>
-                        <a href="#" class="action_btn btn-ans ask-btn too-btn">Révisions ({{demand.revision_count}})</a>
+                        <a href="#" class="action_btn btn-ans ask-btn too-btn">Révisions ({{revisions.count}})</a>
                     </div>
                 </div>
                 <!-- All answer -->
@@ -192,7 +192,8 @@
                                 cache: false,
                                 success: function(e,a,b){
                                    console.log(e);
-                                   window.location.href = "{#% url 'demands:demand' demand.slug %#}";
+                                   alert("Merci, votre proposition est enregistrée, \n l'auteur en sera notifié et sera publiée après confirmation.");
+                                   //window.location.href = "{#% url 'demands:demand' demand.slug %#}";
                                 },
                                 error: function(a,b,c,d){
                                     console.log(a);
