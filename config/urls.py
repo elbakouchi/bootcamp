@@ -12,6 +12,7 @@ admin.site.site_header = 'Redico back-office'
 
 urlpatterns = [
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/img/favicon.ico')),
+    url('favicon.ico', RedirectView.as_view(url='/static/img/favicon.ico')),
     url(r"^$", include("bootcamp.home.urls", namespace="home")),
     # url(r"^feed/$", feed_pagination, name="feed_pagination"),
     url(r"^categories/", include("bootcamp.category.urls", namespace="categories")),
