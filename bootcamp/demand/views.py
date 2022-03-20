@@ -48,10 +48,11 @@ class CreateDemandView(LoginRequiredMixin, CreateView):
 
 class DemandsList(ListView):
     model = Demand
-    paginate_by = 6
-
+    paginate_by = 1
     template_name = "redico/unfulfilled-demands.html"
-    # context_object_name = "demands"
+
+    def get_queryset(self):
+        return Demand.objects.get_without_revisions()
 
 
 class PaginatedDemandsFeed(AjaxListView):
