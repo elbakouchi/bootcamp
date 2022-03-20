@@ -94,7 +94,7 @@ class Demand(models.Model):
     status = models.CharField(max_length=1, choices=STATUS, default=DRAFT)
     content = CKEditor5Field('Text', config_name='extends')
     verified = models.BooleanField(default=False)
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     objects = DemandQuerySet.as_manager()
