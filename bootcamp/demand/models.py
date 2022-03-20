@@ -31,6 +31,9 @@ class DemandQuerySet(models.query.QuerySet):
             revision_count=Count('revision__id', None)
         )
 
+    def get_without_revisions(self):
+        return self.get_category().filter(has_revision=False)
+
     def get_revisions(self):
         return self.annotate(revisions=F('revision'))
 
@@ -96,6 +99,7 @@ class Demand(models.Model):
     content = CKEditor5Field('Text', config_name='extends', validators=[MaxLengthValidator(100)])
     verified = models.BooleanField(default=False)
     tags = TaggableManager(blank=True)
+    has_revision = models.BooleanField("Vérifié", default=False)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     objects = DemandQuerySet.as_manager()
