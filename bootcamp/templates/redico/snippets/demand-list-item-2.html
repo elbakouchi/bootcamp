@@ -3,7 +3,7 @@
     <div class="media">
         <div class="media-body">
             <div class="t_title">
-                <a href="article-single.html">
+                <a href="{% url 'demands:demand' demand.slug %}">
                     <h4>
                         {{demand.title}}
                         {% if demand.verified %}
