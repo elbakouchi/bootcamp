@@ -21,7 +21,7 @@ class DemandQuerySet(models.query.QuerySet):
     """Personalized queryset created to improve model usability"""
 
     def get_category(self):
-        return self.annotate(
+        return self.filter(verified=True).annotate(
             client_firstname=StringAgg('user__first_name', delimiter=','),
             client_lastname=StringAgg('user__last_name', delimiter=','),
             category_name=StringAgg('category__name', delimiter=','),

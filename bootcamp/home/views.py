@@ -22,7 +22,7 @@ class HomePageView(CategoriesListView):
 
 def paginate(page):
     demands = \
-        Demand.objects.filter(status="P").annotate(
+        Demand.objects.filter(verified=True).annotate(
             categoryName=StringAgg('category__name', delimiter=','))
 
     paginator = Paginator(demands, 5)
