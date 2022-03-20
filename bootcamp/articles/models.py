@@ -1,6 +1,7 @@
 from django.conf import settings
+from django.core.validators import MaxLengthValidator
 from django.db import models
-from django.urls import reverse
+from django.dispatch import Signal
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.postgres.aggregates import StringAgg
 from django_ckeditor_5.fields import CKEditor5Field
@@ -65,11 +66,11 @@ class Article(models.Model):
     )
     '''
     timestamp = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=255, null=False, unique=True)
+    title = models.CharField("Titre", max_length=255, null=False, unique=True)
     slug = models.SlugField(max_length=80, null=True, blank=True)
-    status = models.CharField(max_length=1, choices=STATUS, default=DRAFT)
-    content = CKEditor5Field('Text', config_name='extends') # MarkdownxField()
-    verified = models.BooleanField(default=False)
+    status = models.CharField("État", max_length=1, choices=STATUS, default=DRAFT)
+    content = CKEditor5Field('Contenu', config_name='extends', validators=[MaxLengthValidator(100)])
+    verified = models.BooleanField("Vérifié", default=False)
     # tags = TaggableManager()
     objects = ArticleQuerySet.as_manager()
 
@@ -86,7 +87,7 @@ class Article(models.Model):
 
     def __str__(self):
         # self.get_category()
-        return f"{self.title}" # -{self.}"
+        return f"{self.title}"  # -{self.}"
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -95,6 +96,10 @@ class Article(models.Model):
             )
 
         super().save(*args, **kwargs)
+        if self.verified:
+            demand_has_revision.send(sender=self.__class__,
+                                     demand=self.demand
+                                     )
 
     def get_markdown(self):
         return markdownify(self.content)
@@ -109,4 +114,14 @@ def notify_comment(**kwargs):  # pragma: no cover
     notification_handler(actor, receiver, Notification.COMMENTED, action_object=obj)
 
 
+def set_demand_has_revision(**kwargs):
+    demand = kwargs["demand"]
+    if not demand.has_revision:
+        demand.has_revision = True
+        demand.save()
+        print(kwargs["demand"], "has revision")
+
+
+demand_has_revision = Signal()
+demand_has_revision.connect(receiver=set_demand_has_revision)
 comment_was_posted.connect(receiver=notify_comment)
