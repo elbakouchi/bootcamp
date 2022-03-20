@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.postgres.aggregates import StringAgg
+from django.core.validators import MaxLengthValidator
 from django.db import models
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
@@ -92,7 +93,7 @@ class Demand(models.Model):
     title = models.CharField(max_length=255, null=False, unique=True)
     slug = models.SlugField(max_length=80, null=True, blank=True)
     status = models.CharField(max_length=1, choices=STATUS, default=DRAFT)
-    content = CKEditor5Field('Text', config_name='extends')
+    content = CKEditor5Field('Text', config_name='extends', validators=[MaxLengthValidator(100)])
     verified = models.BooleanField(default=False)
     tags = TaggableManager(blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
