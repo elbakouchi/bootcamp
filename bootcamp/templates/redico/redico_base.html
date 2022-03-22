@@ -60,6 +60,7 @@
                                     <li><a href="{% url 'contact_us' %}">Contact</a></li>
                                     <li><a href="{% url 'privacy' %}">Privacy and Policy</a></li>
                                     <li><a href="{% url 'cookies' %}">Cookies</a></li>
+
                                 </ul>
                             </div>
                         </div>
@@ -70,7 +71,9 @@
                                     <li><a href="{% url 'about' %}">À propos</a></li>
                                     <!--li><a href="{% url 'temoignages">Témoignages</a></li-->
                                     <li><a href="{% url 'partners' %}">Partenaires</a></li>
-
+                                    {% if user.is_authenticated %}
+                                    <li><a href="{% url 'users:detail' user.username  %}">Mon Profil</a></li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </div>
