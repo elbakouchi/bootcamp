@@ -1,4 +1,4 @@
-{% extends 'redico/redico_base.html' %}
+{% extends 'redico/redico_base2.html' %}
 {% load static %}
 
 {% block title%}  Redico -  demand {% endblock title%}
@@ -17,11 +17,9 @@
                 <div class="row">
                     <div class="col-lg-9">
                         <div class="forum-post-top">
-
                             <div class="forum-post-author">
                                 <a class="author-name" href="#"> {{demand.user.username}} </a>
                                 <div class="forum-author-meta">
-
                                     <div class="author-badge">
                                         <i class="icon_calendar"></i>
                                         <a href="">{{demand.timestamp}}</a>
@@ -33,8 +31,8 @@
                     <div class="col-lg-3">
                         <div class="action-button-container">
                             <!--a href="#" class="action_btn btn-ans ask-btn">Modifier</a-->
-                            <button id="toggle" class="action_btn btn-ans ask-btn" style="border: none;">Start editing</button>
-                            <button id="reset" class="action_btn btn-ans ask-btn" style="display:none; border: none;">Reset content</button>
+                            <button id="toggle" class="action_btn btn-ans ask-btn" style="border: none;">Composer</button>
+                            <button id="reset" class="action_btn btn-ans ask-btn" style="display:none; border: none;">Annuler</button>
 
                         </div>
                     </div>
@@ -179,6 +177,9 @@
 <script>
                     $(document).ready(function(){
                         $('.suggest-btn').click(function(e){
+                            if($('#introduction').text().value < 100){
+                                return false;
+                            }
                             e.preventDefault();
                             $('input[name="demand"]').val('{{demand.pk}}');
                             $('input[name="title"]').val("{{demand.title}}-{{user.username}}-{% now 'U' %}");
@@ -202,6 +203,67 @@
                         });
                     });
 
+</script>
+<script>
+    function validateSummary(selector="#introduction"){
+    const summary = document.querySelector(selector).value;
+    const summaryLength = summary.length;
+
+    const element = document.querySelector("#char_count");
+    //element.innerHTML = summaryLength;
+
+    if(summaryLength > 100){
+        //element.classList.add("text-danger");
+        alert("Votre révision ne peut pas dépassée 100 caractères!")
+    }
+    else {
+        element.classList.remove("text-danger");
+    }
+}
+</script>
+<script>
+    const content = document.getElementById('introduction');
+    content.addEventListener('keyup', validateSummary);
+	function count_remaining_character(editable) {
+		var max_length = 100;
+		var character_entered = editable.innerText.length;
+		var character_remaining = max_length - character_entered;
+		$('#character-count').html(character_remaining);
+		if (max_length < character_entered) {
+			$('#character-count').css('color', '#FF0000');
+			var inputText = $('#text-content').text();
+			var allowedText = inputText.substring(0, max_length);
+			var extraText = inputText.substring(max_length);
+
+			if (editable.childElementCount > 0) {
+				var innerText = $("#text-content div").last().text();
+				if (innerText.length > 0) {
+					var lastIndex = innerText.lastIndexOf(extraText);
+					if (lastIndex >= 0) {
+						var allowedText = innerText.substring(0, lastIndex);
+						$("#text-content div").last().html(
+								allowedText + "<span>" + extraText + "</span>");
+					}
+				}
+			} else {
+				$(editable)
+						.html(allowedText + "<span>" + extraText + "</span>");
+			}
+			placeCaretAtEnd(editable);
+		} else {
+			$('#character-count').css('color', '#A0A0A0');
+		}
+	}
+
+	function placeCaretAtEnd(el) {
+		el.focus();
+		var range = document.createRange();
+		range.selectNodeContents(el);
+		range.collapse(false);
+		var sel = window.getSelection();
+		sel.removeAllRanges();
+		sel.addRange(range);
+	}
 </script>
 {% endblock javascript%}
 
