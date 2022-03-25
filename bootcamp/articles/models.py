@@ -15,7 +15,6 @@ from taggit.managers import TaggableManager
 
 import bootcamp.demand.models
 from bootcamp.notifications.models import Notification, notification_handler
-from bootcamp.tracking.models import Pageview
 
 
 class ArticleQuerySet(models.query.QuerySet):
@@ -69,7 +68,7 @@ class Article(models.Model):
     title = models.CharField("Titre", max_length=255, null=False, unique=True)
     slug = models.SlugField(max_length=80, null=True, blank=True)
     status = models.CharField("État", max_length=1, choices=STATUS, default=DRAFT)
-    content = CKEditor5Field('Contenu', config_name='extends', validators=[MaxLengthValidator(100)])
+    content = CKEditor5Field('Contenu', config_name='extends', validators=[MaxLengthValidator(200)])
     verified = models.BooleanField("Vérifié", default=False)
     # tags = TaggableManager()
     objects = ArticleQuerySet.as_manager()

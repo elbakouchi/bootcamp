@@ -6,11 +6,11 @@ from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 from django.db.models import F
+from django.urls import reverse
 
 from slugify import slugify
 
 from django_comments.signals import comment_was_posted
-from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
 from taggit.managers import TaggableManager
 
@@ -30,6 +30,9 @@ class DemandQuerySet(models.query.QuerySet):
             service_name=StringAgg('service__name', delimiter=','),
             revision_count=Count('revision__id', None)
         )
+
+    def get_demands_with_category_and_page_views(self):
+        return self.get_category()
 
     def get_without_revisions(self):
         return self.get_category().filter(has_revision=False)
@@ -96,7 +99,7 @@ class Demand(models.Model):
     title = models.CharField(max_length=255, null=False, unique=True)
     slug = models.SlugField(max_length=80, null=True, blank=True)
     status = models.CharField(max_length=1, choices=STATUS, default=DRAFT)
-    content = CKEditor5Field('Text', config_name='extends', validators=[MaxLengthValidator(100)])
+    content = CKEditor5Field('Text', config_name='extends', validators=[MaxLengthValidator(200)])
     verified = models.BooleanField(default=False)
     tags = TaggableManager(blank=True)
     has_revision = models.BooleanField("Vérifié", default=False)
