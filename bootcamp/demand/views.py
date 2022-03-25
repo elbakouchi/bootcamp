@@ -13,7 +13,7 @@ from bootcamp.demand.models import Demand
 
 class DetailDemandView(DetailView):
     """Basic DetailView implementation to call an individual article."""
-    template_name = "redico/article-single2.html"
+    template_name = "redico/article-single3.html"
     context_object_name = 'demand'
     model = Demand
 

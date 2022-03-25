@@ -1,0 +1,192 @@
+{% extends 'redico/redico_base3.html' %}
+{% load static %}
+
+{% block title%}  Redico -  demand {% endblock title%}
+{#% block css %#}
+{#{block.super}#}
+<!--link rel="stylesheet" href="https://ckeditor.com/docs/ckeditor5/latest/snippets/features/read-only-build/snippet.css"/-->
+{#% endblock css %#}
+{% block content %}
+{#% include 'redico/snippets/banner.html' with heading=demand.title %#}
+{% include 'redico/snippets/categories-breadcumb.html' with categoryName=demand.category_name updatedAt=demand.updatedAt%}
+<section class="doc_blog_grid_area sec_pad forum-single-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <!-- Forum post top area -->
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="forum-post-top">
+                            <div class="forum-post-author">
+                                <a class="author-name" href="#"> {{demand.user.username}} </a>
+                                <div class="forum-author-meta">
+                                    <div class="author-badge">
+                                        <i class="icon_calendar"></i>
+                                        <a href="">{{demand.timestamp}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Forum post content -->
+                    <div class="q-title">
+                        <h1>{{demand.title}}</h1>
+                    </div>
+
+                    <div class="tab_shortcode">
+
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                   aria-controls="home" aria-selected="true">Article</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                   aria-controls="profile" aria-selected="false"> Voir l’historique</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                                   aria-controls="contact" aria-selected="false">Modifier</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="forum-post-content">
+                                    <div class="content">
+
+
+                                        <div id="introduction" maxlength="10">
+                                             {{demand.content |safe}}
+                                        </div>
+
+
+                                    </div>
+                                    <div class="forum-post-btm">
+                                        <div class="taxonomy forum-post-tags">
+                                            <i class="icon_tags_alt"></i><a href="#">{{demand.service_name}}</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="changelog_content">
+                                    {% if revisions.count %}
+                                    {% for revision in revisions %}
+                                    <div class="reviewlist">
+                                       {{revision.content|safe}}
+                                        <div class="download-links pb_30">
+                                            <a href="#" class="changelog_btn"><i class="icon_document_alt"></i>{{revision.timestamp|timesince}}</a>
+                                            <a href="#" class="changelog_btn"><i class="icon_profile"></i>{{revision.user.username}}</a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                        <textarea class="form-control message" name="content" id="editor"
+                                                  placeholder="Composer votre proposition ...">{{demand.content}}</textarea>
+                                <hr/>
+                                <button type="submit" class="btn action_btn thm_btn suggest-btn">Publier les modifications</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-8 -->
+                <div class="col-lg-3 ">
+                    <div class="forum_sidebar">
+
+                        <div class="widget ticket_widget" style="display: none;">
+                            <h4 class="c_head">Categories</h4>
+
+                            <ul class="list-unstyled ticket_categories">
+                                <li><img src="img/home_support/cmm5.png" alt="category">
+                                    <a href="Categories.html">Extraits d’articles</a> <span class="count">10</span>
+                                </li>
+                                <li><img src="img/home_support/cmm4.png" alt="category">
+                                    <a href="Categories.html">Ecrits professionnels</a>
+                                    <span class="count">54</span>
+                                </li>
+                                <li><img src="img/home_support/cmm2.png" alt="category">
+                                    <a href="Categories.html">Petits mots</a><span class="count">142</span>
+                                </li>
+                                <li><img src="img/home_support/cmm8.png" alt="category">
+                                    <a href="Categories.html">Annonces</a> <span class="count">13</span>
+                                </li>
+                                <li><img src="img/home_support/cmm9.png" alt="category">
+                                    <a href="Categories.html">Courriers personnels</a> <span class="count">123</span>
+                                </li>
+                                <li><img src="img/home_support/cmm10.png" alt="category">
+                                    <a href="Categories.html">Posts réseaux sociaux</a> <span class="count">18</span>
+                                </li>
+                                <li><img src="img/home_support/cmm10.png" alt="category">
+                                    <a href="Categories.html">Autre</a> <span class="count">18</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="widget ads">
+                            <img src="img/ads.png" class="rounded mx-auto d-block img-fluid" alt="...">
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-4 -->
+            </div>
+        </div>
+    </div>
+</section>
+ <form id="suggest-form" method="post" action="">
+    {% csrf_token %}
+    {{suggest_form.as_p}}
+</form>
+{% endblock content %}
+{% block javascript %}
+{{block.super}}
+<script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
+<script src="{% static 'js/parallaxie.js' %}"></script>
+<script src="{% static 'js/TweenMax.min.js' %}"></script>
+<script src="{% static 'js/jquery.wavify.js' %}"></script>
+<script src="https://cdn.ckeditor.com/4.18.0/standard-all/ckeditor.js"></script>
+<script>
+$(document).ready(function(){
+    $('.suggest-btn').click(function(e){
+        if($('#editor').text().value > 100){
+            return false;
+        }
+        e.preventDefault();
+        $('input[name="demand"]').val('{{demand.pk}}');
+        $('input[name="title"]').val("{{demand.title}}-{{user.username}}-{% now 'U' %}");
+        $('input[name="content"]').val($('#editor').html());
+        let form_data = $('#suggest-form').serialize();
+        console.log(form_data);
+         $.ajax({
+            url: '{% url "articles:suggest" demand.pk %}',
+            type: 'POST',
+            data: form_data,
+            cache: false,
+            success: function(e,a,b){
+               console.log(e);
+               alert("Merci, votre proposition est enregistrée, \n l'auteur en sera notifié et sera publiée après confirmation.");
+               window.location.href = "/";
+            },
+            error: function(a,b,c,d){
+                console.log(a);
+            }
+        });
+    });
+});
+
+
+</script>
+<script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+
+</script>
+{% endblock javascript%}
+
+
