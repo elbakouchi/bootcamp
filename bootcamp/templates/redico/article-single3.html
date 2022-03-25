@@ -54,20 +54,15 @@
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <div class="forum-post-content">
                                     <div class="content">
-
-
                                         <div id="introduction" maxlength="10">
                                              {{demand.content |safe}}
                                         </div>
-
-
                                     </div>
                                     <div class="forum-post-btm">
                                         <div class="taxonomy forum-post-tags">
                                             <i class="icon_tags_alt"></i><a href="#">{{demand.service_name}}</a>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -88,6 +83,12 @@
                             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                         <textarea class="form-control message" name="content" id="editor"
                                                   placeholder="Composer votre proposition…">{{demand.content}}</textarea>
+                                        <div class="alert alert-warning alert-dismissible fade hide" role="alert">
+                                          <span id="content-error"></span>
+                                          <!--button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button-->
+                                        </div>
                                 <hr/>
                                 <button type="submit" class="btn action_btn thm_btn suggest-btn">Publier les modifications</button>
                             </div>
@@ -119,7 +120,7 @@ $(document).ready(function(){
         e.preventDefault();
         $('input[name="demand"]').val('{{demand.pk}}');
         $('input[name="title"]').val("{{demand.title}}-{{user.username}}-{% now 'U' %}");
-        $('input[name="content"]').val($('#editor').html());
+        $('input[name="content"]').val($('.ck-editor__editable_inline').html());
         let form_data = $('#suggest-form').serialize();
         console.log(form_data);
          $.ajax({
@@ -133,7 +134,18 @@ $(document).ready(function(){
                window.location.href = "/";
             },
             error: function(a,b,c,d){
-                console.log(a);
+                console.log(a,JSON.parse(a.responseText),c);
+                let errors = JSON.parse(a.responseText);
+                if(errors.hasOwnProperty("content")){
+                   window.error = "";
+                    $(errors["content"]).each(function(index){
+                        window.error += errors["content"][index] + " ";
+
+                    });
+                    console.log(window.error);
+                    $('#content-error').text(window.error);
+                    $('.alert').alert().removeClass("hide").addClass("show");
+                }
             }
         });
     });
