@@ -62,4 +62,4 @@ class PaginatedDemandsFeed(AjaxListView):
     context_object_name = "demands"
 
     def get_queryset(self):
-        return Demand.objects.get_category()
+        return Demand.objects.get_without_revisions()
