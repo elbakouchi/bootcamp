@@ -15,7 +15,6 @@ treshold = getattr(settings, 'MAX_LENGTH_WORDS_COUNT', 200)
 
 def word_counter_validator(text: str):
     tokens = tokenizer.tokenize(striptags(text))
-    print(len(tokens))
     if len(tokens) > treshold:
         error: str = F'Assurez-vous que ce texte ne depasse pas {treshold} mots, le texte actuel contient {len(tokens)}.'
         raise ValidationError(error)
