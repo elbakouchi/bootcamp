@@ -22,11 +22,19 @@
                             </div>
                             <div class="col-lg-12 form-group">
                                  {{form.content}}
-                                  <ul class="error">
-                                    {% for error in form.content.errors %}
-                                    <li>{{error}}</li>
-                                    {% endfor %}
-                                </ul>
+                                  <!--ul class="error">
+                                    {#% for error in form.content.errors %#}
+                                    <li>{#{error}#}</li>
+                                    {#% endfor %#}
+                                </ul-->
+                                {% for error in form.content.errors %}
+                                 <div class="alert alert-warning alert-dismissible fade hide" role="alert">
+                                      <span id="content-error">{{error}}</span>
+                                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                 </div>
+                                 {% endfor %}
                             </div>
                              <div class="col-lg-4 form-group">
                                  {{form.service}}
