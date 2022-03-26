@@ -20,6 +20,22 @@ class HomePageView(CategoriesListView):
         return context
 
 
+def paginate2(page):
+    demands = \
+        Demand.objects.get_demands_with_category_and_page_views()
+
+    paginator = Paginator(demands, 5)
+
+    try:
+        paginated_demands = paginator.page(page)
+    except PageNotAnInteger:
+        paginated_demands = paginator.page(1)
+    except EmptyPage:
+        paginated_demands = paginator.page(paginator.num_pages)
+
+    return paginated_demands
+
+
 def paginate(page):
     demands = \
         Demand.objects.filter(verified=True).annotate(

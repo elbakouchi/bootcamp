@@ -23,7 +23,7 @@ class DemandQuerySet(models.query.QuerySet):
     """Personalized queryset created to improve model usability"""
 
     def get_category(self):
-        return self.filter(verified=True).annotate(
+        return self.filter(verified=True).order_by('-updatedAt', '-createdAt').annotate(
             client_firstname=StringAgg('user__first_name', delimiter=','),
             client_lastname=StringAgg('user__last_name', delimiter=','),
             category_name=StringAgg('category__name', delimiter=','),
@@ -33,7 +33,15 @@ class DemandQuerySet(models.query.QuerySet):
         )
 
     def get_without_revisions(self):
-        return self.get_category().filter(has_revision=False)
+        # return self.get_category().filter(has_revision=False)
+        return self.filter(has_revision=False).order_by('-updatedAt', '-createdAt').annotate(
+            client_firstname=StringAgg('user__first_name', delimiter=','),
+            client_lastname=StringAgg('user__last_name', delimiter=','),
+            category_name=StringAgg('category__name', delimiter=','),
+            category_slug=StringAgg('category__slug', delimiter=','),
+            service_name=StringAgg('service__name', delimiter=','),
+            revision_count=Count('revision__id', None)
+        )
 
     def get_revisions(self):
         return self.annotate(revisions=F('revision'))
