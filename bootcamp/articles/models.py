@@ -14,6 +14,7 @@ from markdownx.utils import markdownify
 from taggit.managers import TaggableManager
 
 import bootcamp.demand.models
+from bootcamp.custom import word_counter_validator
 from bootcamp.notifications.models import Notification, notification_handler
 
 
@@ -68,7 +69,7 @@ class Article(models.Model):
     title = models.CharField("Titre", max_length=255, null=False, unique=True)
     slug = models.SlugField(max_length=80, null=True, blank=True)
     status = models.CharField("État", max_length=1, choices=STATUS, default=DRAFT)
-    content = CKEditor5Field('Contenu', config_name='extends', validators=[MaxLengthValidator(200)])
+    content = CKEditor5Field('Contenu', config_name='extends', validators=[word_counter_validator])
     verified = models.BooleanField("Vérifié", default=False)
     # tags = TaggableManager()
     objects = ArticleQuerySet.as_manager()
