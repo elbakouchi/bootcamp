@@ -37,10 +37,10 @@
                                     <div class="media-right">
                                         <a class="count" href="#">
                                             <ion-icon name="create-outline"></ion-icon>
-                                            0</a>
+                                            {{ demand.revision_count }}</a>
                                         <a class="count" href="#">
                                             <ion-icon name="eye-outline"></ion-icon>
-                                            420</a>
+                                            {{ demand.pageviews.count }}</a>
                                     </div>
                                 </div>
                             </li>
@@ -87,79 +87,6 @@
                 <!-- /.community-posts-wrapper -->
             </div>
             <!-- /.col-lg-9 -->
-            <div class="col-lg-3">
-                <div class="forum_sidebar">
-
-                    <div class="widget ticket_widget">
-                        <h4 class="c_head">Categories</h4>
-
-                        <ul class="list-unstyled ticket_categories">
-                            <li><img alt="category" src="{% static 'img/home_support/cmm5.png' %}">
-                                <a href="Categories.html">Extraits d’demands</a> <span class="count">10</span>
-                            </li>
-                            <li><img alt="category" src="{% static 'img/home_support/cmm4.png' %}">
-                                <a href="Categories.html">Ecrits professionnels</a>
-                                <span class="count">54</span>
-                            </li>
-                            <li><img alt="category" src="{% static 'img/home_support/cmm2.png' %}">
-                                <a href="Categories.html">Petits mots</a><span class="count">142</span>
-                            </li>
-                            <li><img alt="category" src="{% static 'img/home_support/cmm8.png' %}">
-                                <a href="Categories.html">Annonces</a> <span class="count">13</span>
-                            </li>
-                            <li><img alt="category" src="{% static 'img/home_support/cmm9.png' %}">
-                                <a href="Categories.html">Courriers personnels</a> <span class="count">123</span>
-                            </li>
-                            <li><img alt="category" src="{% static 'img/home_support/cmm10.png' %}">
-                                <a href="Categories.html">Posts réseaux sociaux</a> <span class="count">18</span>
-                            </li>
-                            <li><img alt="category" src="{% static 'img/home_support/cmm10.png' %}">
-                                <a href="Categories.html">Autre</a> <span class="count">18</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="widget recent_news_widget" style="display: none;">
-                        <h4 class="c_head">Nouveaux demands</h4>
-                        <div class="media recent_post_item">
-                            <div class="media-body">
-                                <a href="demand-single.html">
-                                    <h5>Petit mot pour maman.</h5>
-                                </a>
-                                <div class="entry_post_date">January 14, 2021</div>
-                            </div>
-                        </div>
-                        <div class="media recent_post_item">
-                            <div class="media-body">
-                                <a href="demand-single.html">
-                                    <h5>Petit mot pour Papa</h5>
-                                </a>
-                                <div class="entry_post_date">April 16, 2020</div>
-                            </div>
-                        </div>
-                        <div class="media recent_post_item">
-                            <div class="media-body">
-                                <a href="demand-single.html">
-                                    <h5> Post Instagram </h5>
-                                </a>
-                                <div class="entry_post_date">March 10, 2020</div>
-                            </div>
-                        </div>
-                        <div class="media recent_post_item">
-                            <div class="media-body">
-                                <a href="demand-single.html">
-                                    <h5>How to Create GDPR Consent Form In WordPress</h5>
-                                </a>
-                                <div class="entry_post_date">January 19, 2020</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="widget ads">
-                        <img alt="..." class="rounded mx-auto d-block img-fluid" src="{% static 'img/ads.png' %}">
-                    </div>
-
-                </div>
-            </div>
-            <!-- /.col-lg-3 -->
         </div>
     </div>
 </section>
