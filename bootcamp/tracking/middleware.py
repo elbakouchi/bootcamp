@@ -1,11 +1,15 @@
 import re
 import logging
+import urllib
 import warnings
 
 import django
 from django.db import IntegrityError, transaction
 from django.utils import timezone
 from django.utils.encoding import smart_text
+
+from bootcamp.demand.models import Demand
+
 try:
     from django.utils.deprecation import MiddlewareMixin
 except ImportError:
@@ -143,6 +147,26 @@ class VisitorTrackingMiddleware(MiddlewareMixin):
             query_string=query_string)
         pageview.save()
 
+    def _add_pageview_with_demand(self, visitor, request, view_time, demand):
+        referer = None
+        query_string = None
+
+        if TRACK_REFERER:
+            referer = request.META.get('HTTP_REFERER', None)
+
+        if TRACK_QUERY_STRING:
+            query_string = request.META.get('QUERY_STRING')
+
+        pageview = Pageview(
+            visitor=visitor, url=request.path, view_time=view_time,
+            method=request.method, referer=referer,
+            query_string=query_string)
+        pageview.save()
+        pageview.demand.add(demand)
+
+    def get_demand(self, slug):
+        return Demand.objects.get(slug=slug)
+
     def process_response(self, request, response):
         # If dealing with a non-authenticated user, we still should track the
         # session since if authentication happens, the `session_key` carries
@@ -169,6 +193,12 @@ class VisitorTrackingMiddleware(MiddlewareMixin):
         visitor = self._refresh_visitor(user, request, now)
 
         if TRACK_PAGEVIEWS:
-            self._add_pageview(visitor, request, now)
-
+            if 'demands' == request.resolver_match.namespace \
+                    and request.resolver_match.url_name == 'demand':
+                slug = request.resolver_match.kwargs.get('slug', None)
+                if slug is not None:
+                    demand = self.get_demand(slug)
+                    self._add_pageview_with_demand(visitor, request, now, demand)
+                    # return response
+            # self._add_pageview(visitor, request, now)
         return response
