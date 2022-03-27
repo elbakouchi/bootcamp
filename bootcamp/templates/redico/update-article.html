@@ -1,0 +1,122 @@
+{% extends 'redico/redico_base2.html' %}
+{% load static %}
+
+{% block title%}  Redico -  Nouveau Article {% endblock title%}  
+
+{% block content %}
+{% include 'redico/snippets/banner.html' with heading="Nouveau article" %}
+{#% include 'redico/snippets/messages.html' %#}
+<section class="doc_blog_grid_area sec_pad forum-page-content">
+            <div class="container">
+                {% include 'redico/snippets/messages.html' %}
+                <div class="row">
+                    <div class="col-lg-9">
+                          <form method="post" action="{% url 'demands:edit_demand' form.instance.pk %}" id="demand_form" class="contact_form">
+                                {% csrf_token %}
+                        <div class="row contact_fill">
+                            <div class="col-lg-12 form-group">
+                                {{form.title}}
+                                <ul class="error">
+                                    {% for error in form.title.errors %}
+                                    <li>{{error}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                 {{form.content}}
+                                  <!--ul class="error">
+                                    {#% for error in form.content.errors %#}
+                                    <li>{#{error}#}</li>
+                                    {#% endfor %#}
+                                </ul-->
+                                {% for error in form.content.errors %}
+                                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                      <span id="content-error">{{error}}</span>
+                                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                 </div>
+                                 {% endfor %}
+                            </div>
+                             <div class="col-lg-4 form-group">
+                                 {{form.service}}
+                                  <ul class="error">
+                                    {% for error in form.service.errors %}
+                                    <li>{{error}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-lg-4 form-group">
+                                {{form.category}}
+                                  <ul class="error">
+                                    {% for error in form.category.errors %}
+                                    <li>{{error}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-lg-4 form-group">
+                                 {{form.status}}
+                                <ul class="error">
+                                    {% for error in form.status.errors %}
+                                    <li>{{error}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                             <div class="col-lg-4 form-group">
+                                {{form.verified}}
+                                <ul class="error">
+                                    {% for error in form.verified.errors %}
+                                    <li>{{error}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <!--button type="submit" class="btn action_btn thm_btn">Publier</button-->
+                                 <input type="submit" class="btn action_btn thm_btn"  value="Publier"/>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="forum_sidebar">
+                            <div class="widget ads">
+                                <img src="{% static 'img/ads.png' %}" class="rounded mx-auto d-block img-fluid" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock content %}
+
+{% block javascript %}
+{{block.super}}
+   <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
+   <script>
+     $(function() {
+        $('#id_title').addClass('form-control').attr("placeholder", "Titre");
+        //$('#id_content').placeholder("Texte");
+        $('#id_category').prepend($('<option>', {
+            'selected':true,
+            'data-display': 'Catégorie'
+        }));
+        $('#id_service').prepend($('<option>', {
+            'selected':true,
+            'data-display': 'Service'
+        }));
+        $('#id_category').niceSelect();
+        $('#id_service').niceSelect();
+     });
+      ClassicEditor
+            .create( document.querySelector( '#id_content' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+
+        $(".action_btn").click(function () {
+            $("input[name='status']").val("P");
+            $("input[name='verified']").val(0);
+            $("#demand_form").submit();
+          });
+    </script>
+{% endblock  %}

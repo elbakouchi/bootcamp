@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
 
@@ -9,6 +9,7 @@ from bootcamp.articles.models import Article
 from bootcamp.custom import AjaxListView
 from bootcamp.demand.forms import DemandForm
 from bootcamp.demand.models import Demand
+from bootcamp.helpers import AuthorRequiredMixin
 
 
 class DetailDemandView(DetailView):
@@ -33,7 +34,8 @@ class CreateDemandView(LoginRequiredMixin, CreateView):
     """Basic CreateView implementation to create new articles."""
 
     model = Demand
-    message = _("Your demand has been created.")
+    message = """Votre texte a bien été envoyé, vous recevrez une notification dès qu’une nouvelle correction sera suggérée.\
+        En attendant, vous pouvez consulter ici des exemples de textes corrigés"""
     form_class = DemandForm
     template_name = "redico/new-article.html"
 
@@ -43,7 +45,7 @@ class CreateDemandView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         messages.success(self.request, self.message)
-        return reverse("home:home")
+        return reverse("demands:edit_demand", kwargs={'pk': self.object.pk})
 
 
 class DemandsList(ListView):
@@ -73,3 +75,20 @@ class PaginatedDemandsHomeFeed(AjaxListView):
 
     def get_queryset(self):
         return Demand.objects.get_category()
+
+
+class EditDemandView(LoginRequiredMixin, AuthorRequiredMixin, UpdateView):
+    """Basic EditView implementation to edit existing demands."""
+
+    model = Demand
+    message = """Votre texte a été mis a jour avec succès."""
+    form_class = DemandForm
+    template_name = "redico/update-article.html"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        messages.success(self.request, self.message)
+        return reverse("home:home")

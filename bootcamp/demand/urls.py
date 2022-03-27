@@ -1,8 +1,9 @@
 from django.conf.urls import url
-from bootcamp.demand.views import CreateDemandView, DetailDemandView,\
-    PaginatedDemandsFeed, DemandsList, PaginatedDemandsHomeFeed
+from bootcamp.demand.views import CreateDemandView, DetailDemandView, \
+    PaginatedDemandsFeed, DemandsList, PaginatedDemandsHomeFeed, EditDemandView
 
 app_name = 'demands'
+
 
 urlpatterns = [
     url(r"^home-feed/$", PaginatedDemandsHomeFeed.as_view(), name="home_demands_feed"),
@@ -14,5 +15,7 @@ urlpatterns = [
     # url(regex=r"^(?P<slug>[\w.@+-]+)/$", view=CategoryArticlesView.as_view(), name='articles')
     url(r"^(?P<slug>[-\w]+)/$", DetailDemandView.as_view(), name="demand"),
 
-
+    url(r"^editer/(?P<pk>\d+)/$", EditDemandView.as_view(), name="edit_demand")
 ]
+
+
