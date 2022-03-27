@@ -33,6 +33,8 @@
                                         </a>
                                         <h6><i class="icon_clock_alt"></i>&nbsp;{{demand.timestamp|timesince}}
                                         </h6>
+                                        <a href="{% url 'demands:demand' demand.slug %}" class="doc_border_btn btn_small">Modifier le texte</a>
+                                        <a href="{% url 'demands:demand' demand.slug %}" class="doc_border_btn btn_small">Accéder aux révisions</a>
                                     </div>
                                     <div class="media-right">
                                         <a class="count" href="#">
