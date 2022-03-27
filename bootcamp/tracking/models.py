@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
+from bootcamp.demand.models import Demand
 from bootcamp.tracking.managers import VisitorManager, PageviewManager
 from bootcamp.tracking.settings import TRACK_USING_GEOIP
 
@@ -94,6 +95,10 @@ class Pageview(models.Model):
     query_string = models.TextField(null=True, editable=False)
     method = models.CharField(max_length=20, null=True)
     view_time = models.DateTimeField()
+    demand = models.ManyToManyField(
+        Demand,
+        related_name="pageviews"
+    )
 
     objects = PageviewManager()
 
