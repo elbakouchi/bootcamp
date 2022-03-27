@@ -7,6 +7,7 @@
 {% include 'redico/snippets/banner.html' with heading="Nouveau article" %}
 <section class="doc_blog_grid_area sec_pad forum-page-content">
             <div class="container">
+                {% include 'redico/snippets/messages.html' %}
                 <div class="row">
                     <div class="col-lg-9">
                           <form method="post" action="{% url 'demands:write_new' %}" id="demand_form" class="contact_form">
