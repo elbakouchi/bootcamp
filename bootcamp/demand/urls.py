@@ -1,10 +1,11 @@
 from django.conf.urls import url
 from bootcamp.demand.views import CreateDemandView, DetailDemandView,\
-    PaginatedDemandsFeed, DemandsList
+    PaginatedDemandsFeed, DemandsList, PaginatedDemandsHomeFeed
 
 app_name = 'demands'
 
 urlpatterns = [
+    url(r"^home-feed/$", PaginatedDemandsHomeFeed.as_view(), name="home_demands_feed"),
     url(r"^feed/$", PaginatedDemandsFeed.as_view(), name="demands_feed"),
     url("^en-attente-de-reponse/$", DemandsList.as_view(), name="unfulfilled"),
     url(r"^nouveau-text/$", CreateDemandView.as_view(), name="write_new"),

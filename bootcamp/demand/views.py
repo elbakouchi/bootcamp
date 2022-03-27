@@ -26,7 +26,7 @@ class DetailDemandView(DetailView):
 
     def get_queryset(self, *args, **kwargs):
         queryset = super(DetailDemandView, self).get_queryset()
-        return queryset.get_category()
+        return queryset.get_annotated_demand()
 
 
 class CreateDemandView(LoginRequiredMixin, CreateView):
@@ -52,7 +52,7 @@ class DemandsList(ListView):
     template_name = "redico/unfulfilled-demands.html"
 
     def get_queryset(self):
-        return Demand.objects.get_without_revisions()
+        return Demand.objects.get_without_revisions().filter(revision_count__lt=1)
 
 
 class PaginatedDemandsFeed(AjaxListView):
@@ -62,4 +62,14 @@ class PaginatedDemandsFeed(AjaxListView):
     context_object_name = "demands"
 
     def get_queryset(self):
-        return Demand.objects.get_without_revisions()
+        return Demand.objects.get_without_revisions().filter(revision_count__lt=1)
+
+
+class PaginatedDemandsHomeFeed(AjaxListView):
+    model = Demand
+    paginate_by = 5
+    page_template = "redico/snippets/demand-list-item-2.html"
+    context_object_name = "demands"
+
+    def get_queryset(self):
+        return Demand.objects.get_category()
