@@ -34,7 +34,9 @@ Django = "*"
 django-summernote = "*"
 django-ckeditor = "*"
 django-ckeditor-5 = "*"
-nltk= "*"
+nltk = "*"
+Whoosh = "*"
+
 
 [requires]
 python_version = "3.6"

@@ -40,3 +40,6 @@ raven~=6.10.0
 graphene~=2.1.9
 asgiref~=3.4.1
 requests~=2.27.1
+
+
+Whoosh==2.7.4
