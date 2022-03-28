@@ -55,7 +55,11 @@
                                 <div class="forum-post-content">
                                     <div class="content">
                                         <div id="introduction" maxlength="10">
-                                             {{demand.content |safe}}
+                                            {% if last_revision %}
+                                             {{last_revision | safe}}
+                                            {% else %}
+                                             {{ demand.content | safe}}
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="forum-post-btm">
@@ -130,8 +134,8 @@ $(document).ready(function(){
             cache: false,
             success: function(e,a,b){
                console.log(e);
-               alert("Merci, votre proposition est enregistrée, \n l'auteur en sera notifié et sera publiée après confirmation.");
-               window.location.href = "/";
+               //alert("Merci, votre proposition est enregistrée, \n l'auteur en sera notifié et sera publiée après confirmation.");
+               window.location.href = "{% url "demands:demand" demand.slug %}";
             },
             error: function(a,b,c,d){
                 console.log(a,JSON.parse(a.responseText),c);
