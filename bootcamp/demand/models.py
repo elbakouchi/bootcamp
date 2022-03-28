@@ -1,6 +1,4 @@
 from django.conf import settings
-from django.contrib.postgres.aggregates import StringAgg
-from django.core.validators import MaxLengthValidator
 from django.db import models
 from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
@@ -10,7 +8,6 @@ from django.db.models import F
 from slugify import slugify
 
 from django_comments.signals import comment_was_posted
-from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
 from taggit.managers import TaggableManager
 
@@ -24,11 +21,10 @@ class DemandQuerySet(models.query.QuerySet):
 
     def get_category(self):
         return self.filter(verified=True).order_by('-updatedAt', '-createdAt').annotate(
-            client_firstname=StringAgg('user__first_name', delimiter=','),
-            client_lastname=StringAgg('user__last_name', delimiter=','),
-            category_name=StringAgg('category__name', delimiter=','),
-            category_slug=StringAgg('category__slug', delimiter=','),
-            # service_name=StringAgg('service__name', delimiter=','),
+            client_firstname=F('user__first_name'),
+            client_lastname=F('user__last_name'),
+            category_name=F('category__name'),
+            category_slug=F('category__slug'),
             service_name=F('service__name'),
             revision_count=Count('revision__id', None)
         )
