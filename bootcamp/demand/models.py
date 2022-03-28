@@ -28,28 +28,29 @@ class DemandQuerySet(models.query.QuerySet):
             client_lastname=StringAgg('user__last_name', delimiter=','),
             category_name=StringAgg('category__name', delimiter=','),
             category_slug=StringAgg('category__slug', delimiter=','),
-            service_name=StringAgg('service__name', delimiter=','),
+            # service_name=StringAgg('service__name', delimiter=','),
+            service_name=F('service__name'),
             revision_count=Count('revision__id', None)
         )
 
     def get_annotated_demand(self):
         return self.annotate(
-            client_firstname=StringAgg('user__first_name', delimiter=','),
-            client_lastname=StringAgg('user__last_name', delimiter=','),
-            category_name=StringAgg('category__name', delimiter=','),
-            category_slug=StringAgg('category__slug', delimiter=','),
-            service_name=StringAgg('service__name', delimiter=','),
+            client_firstname=F('user__first_name'),
+            client_lastname=F('user__last_name'),
+            category_name=F('category__name'),
+            category_slug=F('category__slug'),
+            service_name=F('service__name'),
             revision_count=Count('revision__id', None)
         )
 
     def get_without_revisions(self):
         # return self.get_category().filter(has_revision=False)
         return self.filter(has_revision=False).order_by('-updatedAt', '-createdAt').annotate(
-            client_firstname=StringAgg('user__first_name', delimiter=','),
-            client_lastname=StringAgg('user__last_name', delimiter=','),
-            category_name=StringAgg('category__name', delimiter=','),
-            category_slug=StringAgg('category__slug', delimiter=','),
-            service_name=StringAgg('service__name', delimiter=','),
+            client_firstname=F('user__first_name'),
+            client_lastname=F('user__last_name'),
+            category_name=F('category__name'),
+            category_slug=F('category__slug'),
+            service_name=F('service__name'),
             revision_count=Count('revision__id', None)
         )
 
