@@ -53,7 +53,7 @@ class CreateDemandView(LoginRequiredMixin, CreateView):
 
 class DemandsList(ListView):
     model = Demand
-    paginate_by = 2
+    paginate_by = 0
     template_name = "redico/unfulfilled-demands.html"
 
     def get_queryset(self):
@@ -62,7 +62,7 @@ class DemandsList(ListView):
 
 class PaginatedDemandsFeed(AjaxListView):
     model = Demand
-    paginate_by = 2
+    paginate_by = 5
     page_template = "redico/snippets/demand-list-item-2.html"
     context_object_name = "demands"
 
