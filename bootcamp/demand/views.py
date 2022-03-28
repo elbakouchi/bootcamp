@@ -21,7 +21,7 @@ class DetailDemandView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(DetailDemandView, self).get_context_data()
         suggest_form = SuggestedRevisionForm()
-        context["revisions"] = Article.objects.filter(demand=self.object.pk).order_by('-pk', '-timestamp')
+        context["revisions"] = Article.objects.filter(demand=self.object.pk).order_by('pk', 'timestamp')
         context["suggest_form"] = suggest_form
         return context
 
