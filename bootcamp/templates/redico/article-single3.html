@@ -86,7 +86,11 @@
                             </div>
                             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                         <textarea class="form-control message" name="content" id="editor"
-                                                  placeholder="Composer votre proposition…">{{demand.content}}</textarea>
+                                                  placeholder="Composer votre proposition…">{% if last_revision %}
+                                             {{last_revision | safe}}
+                                            {% else %}
+                                             {{ demand.content | safe}}
+                                            {% endif %}</textarea>
                                         <div class="alert alert-warning alert-dismissible fade hide" role="alert">
                                           <span id="content-error"></span>
                                           <!--button type="button" class="close" data-dismiss="alert" aria-label="Close">
