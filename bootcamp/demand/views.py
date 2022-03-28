@@ -23,7 +23,7 @@ class DetailDemandView(DetailView):
         suggest_form = SuggestedRevisionForm()
         revisions = Article.objects.filter(demand=self.object.pk).order_by('pk', 'timestamp')
         if revisions.count():
-            context["last_revision"] = revisions.first().content
+            context["last_revision"] = revisions.last().content
         context["revisions"] = revisions
         context["suggest_form"] = suggest_form
         return context
