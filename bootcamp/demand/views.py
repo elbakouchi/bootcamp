@@ -53,7 +53,7 @@ class CreateDemandView(LoginRequiredMixin, CreateView):
 
 class DemandsList(ListView):
     model = Demand
-    paginate_by = 0
+    paginate_by = 1
     template_name = "redico/unfulfilled-demands.html"
 
     def get_queryset(self):
