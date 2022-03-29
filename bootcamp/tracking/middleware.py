@@ -193,12 +193,15 @@ class VisitorTrackingMiddleware(MiddlewareMixin):
         visitor = self._refresh_visitor(user, request, now)
 
         if TRACK_PAGEVIEWS:
-            if 'demands' == request.resolver_match.namespace \
-                    and request.resolver_match.url_name == 'demand':
-                slug = request.resolver_match.kwargs.get('slug', None)
-                if slug is not None:
-                    demand = self.get_demand(slug)
-                    self._add_pageview_with_demand(visitor, request, now, demand)
-                    # return response
-            # self._add_pageview(visitor, request, now)
+            try:
+                if 'demands' == request.resolver_match.namespace \
+                        and request.resolver_match.url_name == 'demand':
+                    slug = request.resolver_match.kwargs.get('slug', None)
+                    if slug is not None:
+                        demand = self.get_demand(slug)
+                        self._add_pageview_with_demand(visitor, request, now, demand)
+                        # return response
+                # self._add_pageview(visitor, request, now)
+            except:
+                pass
         return response
