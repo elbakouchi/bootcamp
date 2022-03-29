@@ -115,7 +115,7 @@ class Demand(models.Model):
     content = CKEditor5Field('Text', config_name='extends', validators=[word_counter_validator])
     verified = models.BooleanField("Vérifié", default=False)
     tags = TaggableManager(blank=True)
-    has_revision = models.BooleanField("Ayant des révisions", default=False)
+    has_revision = models.BooleanField("N'est pas en attente", default=False)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     objects = DemandQuerySet.as_manager()
