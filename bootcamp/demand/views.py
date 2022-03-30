@@ -53,7 +53,7 @@ class CreateDemandView(LoginRequiredMixin, CreateView):
 
 class DemandsList(ListView):
     model = Demand
-    paginate_by = 1
+    paginate_by = 10
     template_name = "redico/unfulfilled-demands.html"
 
     def get_queryset(self):
@@ -63,12 +63,13 @@ class DemandsList(ListView):
 
 class PaginatedDemandsFeed(AjaxListView):
     model = Demand
-    paginate_by = 5
+    paginate_by = 10
     page_template = "redico/snippets/demand-list-item-2.html"
     context_object_name = "demands"
 
     def get_queryset(self):
-        return Demand.objects.get_without_revisions().filter(revision_count__lt=1)
+        # return Demand.objects.get_without_revisions().filter(revision_count__lt=1)
+        return Demand.objects.get_published_unverified_demands()
 
 
 class PaginatedDemandsHomeFeed(AjaxListView):
