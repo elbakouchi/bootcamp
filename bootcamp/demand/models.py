@@ -40,7 +40,7 @@ class DemandQuerySet(models.query.QuerySet):
         )
 
     def get_published_unverified_demands(self):
-        return self.filter(status="P", verified=False).order_by('-updatedAt', '-createdAt').annotate(
+        return self.filter(status="P", verified=False).distinct().order_by('-updatedAt', '-createdAt').annotate(
             client_firstname=F('user__first_name'),
             client_lastname=F('user__last_name'),
             category_name=F('category__name'),
