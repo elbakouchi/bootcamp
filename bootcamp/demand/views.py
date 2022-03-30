@@ -57,7 +57,8 @@ class DemandsList(ListView):
     template_name = "redico/unfulfilled-demands.html"
 
     def get_queryset(self):
-        return Demand.objects.get_without_revisions().filter(revision_count__lt=1)
+        # return Demand.objects.get_without_revisions().filter(revision_count__lt=1)
+        return Demand.get_published_unverified_demands()
 
 
 class PaginatedDemandsFeed(AjaxListView):
