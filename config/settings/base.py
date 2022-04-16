@@ -96,7 +96,8 @@ LOCAL_APPS = [
     "bootcamp.notifications.apps.NotificationsConfig",
     "bootcamp.qa.apps.QaConfig",
     "bootcamp.search.apps.SearchConfig",
-    "bootcamp.tracking.apps.TrackingConfig"
+    "bootcamp.tracking.apps.TrackingConfig",
+    "bootcamp.accounts.apps.AccountConfig"
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -111,7 +112,7 @@ MIGRATION_MODULES = {"sites": "bootcamp.contrib.sites.migrations"}
 # https://docs.djangoproject.com/en/dev/ref/settings/#authentication-backends
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
-    "allauth.account.auth_backends.AuthenticationBackend",
+    "allauth.accounts.auth_backends.AuthenticationBackend",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = "users.User"
@@ -276,7 +277,7 @@ GRAPHENE = {"SCHEMA": "config.schema.schema"}
 TRACK_ANONYMOUS_USERS = True
 TRACK_SUPERUSERS = True
 TRACK_IGNORE_STATUS_CODES = [400, 404, 403, 405, 410, 500]
-
+TRACK_AJAX_REQUESTS = False
 # CKEditor
 customColorPalette = [
         {
@@ -370,5 +371,7 @@ CKEDITOR_CONFIGS = {
         ]
     }
 }
+
+#APPEND_SLASH = False
 
 
