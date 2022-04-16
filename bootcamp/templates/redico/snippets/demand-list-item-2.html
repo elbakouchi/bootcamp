@@ -20,8 +20,10 @@
             </a>
             <h6><i class="icon_clock_alt"></i> {{ demand.timestamp|timesince }}
             </h6>
+            {% if not demand.verified %}
             <a href="{% url 'demands:demand' demand.slug %}" class="doc_border_btn btn_small">Modifier
                 le texte</a>
+            {% endif %}
             <a href="{% url 'demands:demand' demand.slug %}" class="doc_border_btn btn_small">Accéder
                 aux révisions</a>
         </div>
