@@ -32,7 +32,7 @@
 	 {% block body %}
     {% include 'redico/snippets/preloader.html'%}
     <div class="body_wrapper">
-        {% include 'redico/snippets/navbar.html' %}
+        {% include 'redico/snippets/navbar3.html' %}
          {% block content %}
           <p>Use this document as a way to quick start any new project.</p>
          {% endblock content %}
@@ -57,6 +57,8 @@
     <script src="{% static 'js/plugins.js' %}" type="text/javascript"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js" type="text/javascript"></script>
     <script src="{% static 'js/main.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/bootcamp.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/websocketbridge.js' %}" type="text/javascript"></script>
     {% endblock javascript %}
 
     {% block modal %}{% endblock modal %}
