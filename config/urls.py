@@ -5,12 +5,15 @@ from django.contrib import admin
 from django.views.generic import TemplateView, RedirectView
 from django.views import defaults as default_views
 from django.contrib.flatpages import views as flatpages
+from allauth.account.views import LogoutView
 
 from graphene_django.views import GraphQLView
 from bootcamp.home.views import feed_pagination
 admin.site.site_header = 'Redico back-office'
 
 urlpatterns = [
+    url(r'^accounts/', include('bootcamp.accounts.urls')),
+    url(r'^logout/', LogoutView.as_view(), name="logging_out"),
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/img/favicon.ico')),
     url('favicon.ico', RedirectView.as_view(url='/static/img/favicon.ico')),
     url(r"^$", include("bootcamp.home.urls", namespace="home")),
@@ -55,7 +58,8 @@ urlpatterns = [
     url(r"^search/", include("bootcamp.search.urls", namespace="search")),
     url(r'^(?P<url>.*/)$', flatpages.flatpage),
     url(r'^tracking/', include('bootcamp.tracking.urls')),
-    #  url('summernote/', include('django_summernote.urls')),
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
