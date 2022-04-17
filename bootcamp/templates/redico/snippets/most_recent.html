@@ -1,0 +1,10 @@
+
+<div class="dropdown-menu dropdown-menu-right notify" aria-labelledby="bd-versions">
+  {% if notifications %}
+    {% for notification in notifications %}
+  <a class="dropdown-item" href="#"> {{ notification|safe }} </a>
+  {% endfor %}
+  {% else %}
+     <a class="dropdown-item" href="#">aucune notification récente</a>
+  {% endif %}
+</div>
