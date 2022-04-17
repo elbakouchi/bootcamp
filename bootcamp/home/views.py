@@ -54,7 +54,7 @@ def paginate(page):
 
 
 # @csrf_exempt
-def feed_pagination(request, rr):
+def feed_pagination(request):
     if request.is_ajax and request.method == 'POST':
         page = request.POST.get('page', 5)
         paginated_demands = paginate(page)

@@ -186,6 +186,8 @@ class VisitorManager(CacheManager):
 
 
 class PageviewManager(models.Manager):
+
+
     def stats(self, start_date=None, end_date=None, registered_only=False):
         """Returns a dictionary of pageviews including:
 
