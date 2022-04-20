@@ -60,14 +60,15 @@ def mark_as_read(request, slug=None):
 
 
 @login_required
-def get_latest_notifications2(request):
+def get_latest_notifications(request):
     notifications = request.user.notifications.get_most_recent()
     return render(
         request, "notifications/most_recent.html", {"notifications": notifications}
     )
 
+
 @login_required
-def get_latest_notifications(request):
+def get_latest_notifications2(request):
     notifications = request.user.notifications.get_most_recent()
     return render(
         request, "redico/snippets/most_recent.html", {"notifications": notifications}
