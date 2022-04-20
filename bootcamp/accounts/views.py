@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from allauth.account.views import SignupView, _ajax_response, LogoutView
-
+from django.shortcuts import redirect
 from bootcamp.articles.models import Article
 from bootcamp.demand.models import Demand
 from bootcamp.users.views import UserUpdateView, UserDetailView
@@ -22,12 +22,8 @@ class ProfileView(UserDetailView):
 
 
 class AjaxLogoutView(LogoutView):
-    def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        if form.is_valid():
-            response = self.form_valid(form)
-            return _ajax_response(
-                self.request, response, form=form, data=self._get_ajax_data_if())
-        else:
-            return JsonResponse({'errors': form.errors})
+    def get(self, *args, **kwargs):
+        url = self.get_redirect_url()
+        if self.request.user.is_authenticated:
+            self.logout()
+        return JsonResponse({'url': url})
