@@ -11,6 +11,7 @@
 {% include 'redico/snippets/categories-breadcumb.html' with categoryName=demand.category_name updatedAt=demand.updatedAt%}
 <section class="doc_blog_grid_area sec_pad forum-single-content">
     <div class="container">
+         {% include 'redico/snippets/messages.html' %}
         <div class="row">
             <div class="col-lg-9">
                 <!-- Forum post top area -->
@@ -44,12 +45,16 @@
                                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
                                        aria-controls="profile" aria-selected="false"> Voir l’historique</a>
                                 </li>
-                                {% if user.is_authenticated and not demand.verified %}
+
                                 <li class="nav-item">
+                                    {% if user.is_authenticated or demand.verified %}
                                     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
                                        aria-controls="contact" aria-selected="false">Modifier</a>
+                                    {% else %}
+                                     <a class="nav-link" href="{% url 'account_login' %}?next={% url 'demands:demand' demand.slug %}" >Modifier</a>
+                                    {% endif %}
                                 </li>
-                                {% endif %}
+
                             </ul>
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="home" role="tabpanel"

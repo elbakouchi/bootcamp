@@ -4,10 +4,11 @@
 {% block title%}  Redico -  {{object.name}} {% endblock title%}
 
 {% block content %}
-{% include 'redico/snippets/banner.html' with heading="Textes en attente" %}
+{% include 'redico/snippets/banner.html' with heading="Textes en attente de correction" %}
 {#% include 'redico/snippets/categories-breadcumb.html' with categoryName=object.name %#}
 <section class="doc_blog_grid_area sec_pad forum-page-content">
     <div class="container">
+        {% include 'redico/snippets/messages.html' %}
         <div class="row">
             <div class="col-lg-9">
                 <div class="forum_l_inner">

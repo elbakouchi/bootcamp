@@ -38,7 +38,7 @@ class CreateDemandView(LoginRequiredMixin, CreateView):
 
     model = Demand
     message = """Votre texte a bien été envoyé, vous recevrez une notification dès qu’une nouvelle correction sera suggérée.\
-        En attendant, vous pouvez consulter ici des exemples de textes corrigés"""
+        <a href="/">En attendant, vous pouvez consulter ici des exemples de textes corrigés</a>"""
     form_class = DemandForm
     template_name = "redico/new-article.html"
 
