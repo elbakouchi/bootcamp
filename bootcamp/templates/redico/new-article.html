@@ -23,6 +23,7 @@
                         </div>
                         <div class="col-lg-12 form-group">
                             {{form.content}}
+                            <p id="result">0/350</p>
                             <!--ul class="error">
                               {#% for error in form.content.errors %#}
                               <li>{#{error}#}</li>
@@ -110,30 +111,58 @@
 
      });
       ClassicEditor
-            .create( document.querySelector( '#id_content' ), {
-                //plugins: [ WordCount ],
-                //wordCount: {
-                //    onUpdate: stats => {
-                        // Prints the current content statistics.
-                 //       console.log( `Characters: ${ stats.characters }\nWords: ${ stats.words }` );
-                   // }
-                //}
-             })
-           /* .then( editor => {
-                    const wordCountPlugin = editor.plugins.get( 'WordCount' );
-                    const wordCountWrapper = document.getElementById( 'word-count' );
+            .create( document.querySelector( '#id_content' )).then( editor => {
+            editor.model.document.on( 'change:data', () => {
+            editorData = editor.getData();
 
-                    wordCountWrapper.appendChild( wordCountPlugin.wordCountContainer );
-             } )*/
-            .catch( error => {
+            var result = document.getElementById("result");
+            var limit = 350;
+
+
+			let	text = editorData.trim();
+				let word = text.split(" ");
+				result.textContent = word.length + "/" +limit;
+				if(word.length > limit){
+					myText.style.borderColor = "#ff2851"
+					result.style.color = "#ff2851"
+				}
+				else if(word.length < limit){
+					myText.style.borderColor = "white";
+					result.style.color = "#202020";
+				}
+                });
+            }).catch( error => {
                 console.error( error );
             } );
+
+            var myText = document.getElementById("id_content");
+			var result = document.getElementById("result");
+			var limit = 350;
+
+			result.textContent = editorData + "/" + limit;
+
+            myText.addEventListener("input", function(){
+            let text = myText.value;
+            text = text.trim();
+            let word = text.split(" ");
+            result.textContent = get + "/" +limit;
+
+            if(word.length > limit){
+                myText.style.borderColor = "#ff2851"
+                result.style.color = "#ff2851"
+            }
+            else if(word.length < limit){
+                myText.style.borderColor = "white";
+                result.style.color = "#202020";
+            }
+        });
 
         $(".action_btn").click(function () {
             $("input[name='status']").val("D");
             $("input[name='verified']").val(0);
             $("#demand_form").submit();
           });
+
 
 </script>
 
