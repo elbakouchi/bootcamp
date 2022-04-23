@@ -1,10 +1,17 @@
+from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
-
+from phonenumber_field.modelfields import PhoneNumberField
+from django.db.models import F
 from bootcamp.notifications.models import Notification, notification_handler
+
+
+class CustomUserManager(BaseUserManager):
+    def get_demands(self):
+        return self.annotate(demands=F("client"))
 
 
 class User(AbstractUser):
@@ -14,6 +21,7 @@ class User(AbstractUser):
         _("Profile picture"), upload_to="profile_pics/", null=True, blank=True
     )
     location = models.CharField(_("Location"), max_length=50, null=True, blank=True)
+    phone = PhoneNumberField(blank=True)
     job_title = models.CharField(_("Job title"), max_length=50, null=True, blank=True)
     personal_url = models.URLField(
         _("Personal URL"), max_length=555, blank=True, null=True
@@ -34,6 +42,8 @@ class User(AbstractUser):
         _("Describe yourself"), max_length=60, blank=True, null=True
     )
     bio = models.CharField(_("Short bio"), max_length=280, blank=True, null=True)
+
+    relations = CustomUserManager()
 
     def __str__(self):
         return self.username
