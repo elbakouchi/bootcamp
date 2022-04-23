@@ -4,8 +4,8 @@ from django.template.loader import render_to_string
 from django.shortcuts import render
 from django.contrib.postgres.aggregates import StringAgg
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.decorators.csrf import csrf_exempt
-from django.db.models import ObjectDoesNotExist
+# from django.views.decorators.csrf import csrf_exempt
+# from django.db.models import ObjectDoesNotExist
 from bootcamp.category.models import Category
 from bootcamp.category.views import CategoriesListView
 from bootcamp.demand.models import Demand
