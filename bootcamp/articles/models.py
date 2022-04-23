@@ -3,20 +3,17 @@ from django.core.validators import MaxLengthValidator
 from django.db import models
 from django.dispatch import Signal
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.postgres.aggregates import StringAgg
-from django_ckeditor_5.fields import CKEditor5Field
 
+from django_ckeditor_5.fields import CKEditor5Field
+from django.db.models import F
 from slugify import slugify
 
 from django_comments.signals import comment_was_posted
-from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
-from taggit.managers import TaggableManager
 
 import bootcamp.demand.models
 from bootcamp.custom import word_counter_validator
 from bootcamp.notifications.models import Notification, notification_handler
-from bootcamp.tracking.models import Pageview
 
 
 class ArticleQuerySet(models.query.QuerySet):
@@ -28,8 +25,8 @@ class ArticleQuerySet(models.query.QuerySet):
     #    return self.annotate(page_views=)
     def get_category(self):
         return self.annotate(
-            category_name=StringAgg('demand__category__name', delimiter=','),
-            category_slug=StringAgg('demand__category__slug', delimiter=','))
+            category_name=F('demand__category__name'),
+            category_slug=F('demand__category__slug'))
 
     def get_published(self):
         """Returns only the published items in the current queryset."""
