@@ -14,6 +14,7 @@ whitenoise = "*"
 django-allauth = "*"
 django-contrib-comments = "*"
 django-crispy-forms = "*"
+django-autocomplete-light = "*"
 django-environ = "*"
 django-markdownx = "*"
 django-redis = "*"
@@ -36,7 +37,7 @@ django-ckeditor = "*"
 django-ckeditor-5 = "*"
 nltk = "*"
 Whoosh = "*"
-
+django-phonenumber-field = {extras = ["phonenumberslite"],version = "*"}
 
 [requires]
 python_version = "3.6"
