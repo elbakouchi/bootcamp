@@ -2,740 +2,574 @@
 {% load static %}
 
 {% block content %}
-        <section class="doc_banner_area single_breadcrumb">
-            <ul class="list-unstyled banner_shap_img">
-                <li><img src="{% static 'img/new/banner_shap1.png' %}" alt=""></li>
-                <li><img src="{% static 'img/new/banner_shap4.png' %}" alt=""></li>
-                <li><img src="{% static 'img/new/banner_shap3.png' %}" alt=""></li>
-                <li><img src="{% static 'img/new/banner_shap2.png' %}" alt=""></li>
-                <li><img data-parallax='{"x": -180, "y": 80, "rotateY":2000}' src="{% static 'img/new/plus1.png' %}" alt=""></li>
-                <li><img data-parallax='{"x": -50, "y": -160, "rotateZ":200}' src="{% static 'img/new/plus2.png' %}" alt=""></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-            <div class="container">
-                <div class="doc_banner_content">
-                    <h2 class="text-white">Sami Nouri</h2>
-                     
+<section class="doc_banner_area search-banner-light">
+
+</section>
+
+<!--================Forum Content Area =================-->
+<section class="forum-user-wrapper">
+    <div class="container">
+        <div class="row forum_main_inner">
+            <div class="col-lg-3">
+                <div class="author_option">
+                    <div class="author_img">
+                        <img class="img-fluid" src="{% static 'img/forum/author-1.jpg' %}" alt="">
+                    </div>
+                    <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                               aria-controls="home" aria-selected="true">
+                                <i class="icon_profile"></i> Profil
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                               aria-controls="profile" aria-selected="false">
+                                <i class="icon_documents"></i> Textes créés
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation" style="display: none;">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+                               aria-controls="contact" aria-selected="false">
+                                <i class="icon_chat"></i> Correction
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </section>
-
-        <!--================Forum Content Area =================-->
-        <section class="forum-user-wrapper">
-            <div class="container">
-                <div class="row forum_main_inner">
-                    <div class="col-lg-3">
-                        <div class="author_option">
-                            <div class="author_img">
-                                <img class="img-fluid" src="{% static 'img/forum/author-1.jpg' %}" alt="">
+            <div class="col-lg-9">
+                <div class="forum_body_area">
+                    <div class="forum_topic_list">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel"
+                                 aria-labelledby="home-tab">
+                                <div class="profile_info">
+                                    <div class="row p_info_item_inner">
+                                        <div class="col-sm-4">
+                                            <div class="p_info_item">
+                                                <img src="{% static 'img/icon/p-icon-1.png' %}" alt="">
+                                                <a href="#">
+                                                    <h4>Role</h4>
+                                                </a>
+                                                <a class="info_btn" href="#">Master</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="p_info_item">
+                                                <img src="{% static 'img/icon/p-icon-2.png' %}" alt="">
+                                                <a href="#">
+                                                    <h4>Nouveaux Textes</h4>
+                                                </a>
+                                                <a class="info_number" href="#">{{demands_count}}</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="p_info_item">
+                                                <img src="{% static 'img/icon/p-icon-3.png' %}" alt="">
+                                                <a href="#">
+                                                    <h4>Révisions</h4>
+                                                </a>
+                                                <a class="info_number" href="#">{{revisions_count}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <form action="{% url 'users:update' %}" method ="post" class="contact_form mt-3">
+                                         {% csrf_token %}
+                                        <div class="row contact_fill">
+                                            <div class="col-lg-6 form-group">
+                                                {{form.first_name}}
+                                                 <ul class="error">
+                                                    {% for error in form.first_name.errors %}
+                                                    <li>{{error}}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-6 form-group">
+                                                  {{form.last_name}}
+                                                 <ul class="error">
+                                                    {% for error in form.last_name.errors %}
+                                                    <li>{{error}}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-6 form-group">
+                                                 {{form.email}}
+                                                 <ul class="error">
+                                                    {% for error in form.email.errors %}
+                                                    <li>{{error}}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-6 form-group">
+                                                {{form.phone}}
+                                                 <ul class="error">
+                                                    {% for error in form.phone.errors %}
+                                                    <li>{{error}}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-12 form-group">
+                                                <h6>Biographie:</h6>
+                                                {{form.bio}}
+                                                 <ul class="error">
+                                                    {% for error in form.bio.errors %}
+                                                    <li>{{error}}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-12 form-group">
+                                                <button type="submit" class="btn action_btn thm_btn">Sauvegarder
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                            <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                        aria-controls="home" aria-selected="true">
-                                        <i class="icon_profile"></i> Profil
-                                    </a>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                        aria-controls="profile" aria-selected="false">
-                                        <i class="icon_documents"></i> Textes créés
-                                    </a>
-                                </li>
-                                <li class="nav-item" role="presentation" style="display: none;">
-                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                                        aria-controls="contact" aria-selected="false">
-                                        <i class="icon_chat"></i> Correction
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="forum_body_area">
-                            <div class="forum_topic_list">
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="home" role="tabpanel"
-                                        aria-labelledby="home-tab">
-                                        <div class="profile_info">
-                                            <div class="row p_info_item_inner">
-                                                <div class="col-sm-4">
-                                                    <div class="p_info_item">
-                                                        <img src="{% static 'img/icon/p-icon-1.png' %}" alt="">
-                                                        <a href="#">
-                                                            <h4>Role</h4>
-                                                        </a>
-                                                        <a class="info_btn" href="#">Master</a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="p_info_item">
-                                                        <img src="{% static 'img/icon/p-icon-2.png' %}" alt="">
-                                                        <a href="#">
-                                                            <h4>Nouveaux sujets</h4>
-                                                        </a>
-                                                        <a class="info_number" href="#">32</a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="p_info_item">
-                                                        <img src="{% static 'img/icon/p-icon-3.png' %}" alt="">
-                                                        <a href="#">
-                                                            <h4>Correction</h4>
-                                                        </a>
-                                                        <a class="info_number" href="#">76</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <ul class="navbar-nav info_list">
-                                                <li><span>Name:</span><a href="#">Sami Nouri</a></li>
-                                                <li><span>Email:</span><a href="#">sami@redico.com</a></li>
-                                                <li><span>Age:</span><a href="#">32</a></li>
-                                                <li><span>Biographical Info:</span><a href="#">Trusted by thousands of
-                                                        customers, our unique themes, templates</a></li>
-                                                <li><span>Registered:</span><a href="#">3 years, 6 months ago</a></li>
-                                            </ul>
+                            <div class="tab-pane fade" id="profile" role="tabpanel"
+                                 aria-labelledby="profile-tab">
 
-                                            <ul class="nav">
-                                                <li><a href="#" class="btn action_btn">Update Profile</a></li>
-                                            </ul>
-                                          
-                                        </div>
+                                <div class="forum_l_inner">
+                                    <div class="forum_head d-flex justify-content-between">
+                                        <ul class="nav right">
+                                            <li>
+                                                <div class="dropdown list_sirt">
+                                                    <button class="btn dropdown-toggle" type="button"
+                                                            id="dropdownMenuButton5" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false">
+                                                        Filtrer par <i class="arrow_carrot-down"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu short-by"
+                                                         aria-labelledby="dropdownMenuButton5">
+                                                        <a class="dropdown-item active-short"
+                                                           href="#0">Oldest</a>
+                                                        <a class="dropdown-item" href="#0">Newest</a>
+                                                        <a class="dropdown-item" href="#0">First Comments</a>
+                                                        <a class="dropdown-item" href="#0">New Comments</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="page">Page {{ demands.number }} de {{ demands.paginator.num_pages|add:revisions.paginator.num_pages }}</div>
                                     </div>
-                                    <div class="tab-pane fade" id="profile" role="tabpanel"
-                                        aria-labelledby="profile-tab">
-                                        
-                                        <div class="forum_l_inner">
-                                             <div class="forum_head d-flex justify-content-between">
-                                                <ul class="nav right">
-                                                    <li>
-                                                        <div class="dropdown list_sirt">
+                                    <div class="forum_body">
+                                        <ul class="navbar-nav topic_list">
+                                            {% for text in demands %}
+                                            <li {% if text.verified %}class="check"{% endif %}>
+                                                <div class="media">
+
+                                                    <div class="media-body">
+                                                        <div class="t_title">
+                                                            <a href="article-single.html">
+                                                                <h4>{{text.title}}</h4>
+                                                            </a>
+                                                        </div>
+                                                        <a href="Categories.html">
+                                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>
+                                                                {{text.service_name}} </h6>
+                                                        </a>
+                                                        <h6><i class="icon_calendar"></i> {{text.timestamp|timesince}}
+                                                        </h6>
+                                                    </div>
+                                                    <div class="media-right">
+                                                        <a class="count " href="#"><i
+                                                                class="icon_chat_alt"></i>{{text.revision_count}}</a>
+                                                        <!--a class="count rate" href="#"><i
+                                                                class="icon_star"></i>33</a-->
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                             {% for text in revisions %}
+                                            <li {% if text.verified %}class="check"{% endif %}>
+                                                <div class="media">
+
+                                                    <div class="media-body">
+                                                        <div class="t_title">
+                                                            <a href="article-single.html">
+                                                                <h4>{{text.title}}</h4>
+                                                            </a>
+                                                        </div>
+                                                        <a href="Categories.html">
+                                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>
+                                                                {{text.service}} </h6>
+                                                        </a>
+                                                        <h6><i class="icon_calendar"></i> {{text.timestamp|timesince}}
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="list_pagination d-flex justify-content-between">
+                                    <div class="left">
+                                        <p>{{ demands.paginator.num_pages|add:revisions.paginator.num_pages }} total</p>
+                                    </div>
+                                    <div class="right">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                               {% if demands.has_previous or revisions.has_previous %}
+                                                    {% if demands.previous_page_number %}
+                                                    <li class="page-item"><a class="page-link" href="{{request.path}}?page={{ demands.previous_page_number }}#profile">{{ demands.previous_page_number }}</a></li>
+                                                    {% endif %}
+                                                    {% if revisions.previous_page_number %}
+                                                     <li class="page-item"><a class="page-link" href="{{request.path}}?page={{ revisions.previous_page_number }}#profile">{{ revisions.previous_page_number }}</a></li>
+                                                    {% endif %}
+                                                {% endif %}
+                                                <li class="page-item active"><a class="page-link" href="#">{{ demands.number }}</a></li>
+                                                {% if demands.has_next or  revisions.has_next %}
+                                                    {% if demands.next_page_number %}
+                                                     <li class="page-item"><a class="page-link" href="{{request.path}}?page={{ demands.next_page_number }}#profile">{{ demands.next_page_number }}</a></li>
+                                                    {% endif %}
+                                                    {% if revisions.next_page_number %}
+                                                     <li class="page-item"><a class="page-link" href="{{request.path}}?page={{ revisions.next_page_number }}#profile">{{ revisions.next_page_number }}</a></li>
+                                                    {% endif %}
+                                                {% endif %}
+
+                                                <!--li class="page-item"><a class="page-link" href="#"><i
+                                                        class="arrow_carrot-right"></i></a></li-->
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade " id="contact" role="tabpanel"
+                                 aria-labelledby="contact-tab">
+
+                                <h2>Forum Topics Started</h2>
+                                <div class="forum_l_inner comment_l">
+                                    <div class="forum_head d-flex justify-content-between">
+                                        <ul class="nav right">
+                                            <li>
+                                                <div class="dropdown list_sirt">
+                                                    <button class="btn dropdown-toggle" type="button"
+                                                            id="dropdownMenuButton5" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false">
+                                                        Sirt by <i class="arrow_carrot-down"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu short-by"
+                                                         aria-labelledby="dropdownMenuButton5">
+                                                        <a class="dropdown-item active-short"
+                                                           href="#0">Oldest</a>
+                                                        <a class="dropdown-item" href="#0">Newest</a>
+                                                        <a class="dropdown-item" href="#0">First Comments</a>
+                                                        <a class="dropdown-item" href="#0">New Comments</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="page">Page 1 of 4</div>
+                                    </div>
+                                    <div class="forum_body">
+                                        <ul class="navbar-nav topic_comment_list">
+                                            <li>
+                                                <div class="media">
+                                                    <div class="d-flex">
+                                                        <img class="rounded-circle"
+                                                             src="{% static 'img/forum/user-2.png' %}"
+                                                             alt="">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="t_title">
+                                                            <a href="#">
+                                                                <h4>Eh Jewel</h4>
+                                                            </a>
+                                                        </div>
+                                                        <div class="dropdown">
                                                             <button class="btn dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton5" data-toggle="dropdown"
-                                                                aria-haspopup="true" aria-expanded="false">
-                                                                Sirt by <i class="arrow_carrot-down"></i>
+                                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false">
+                                                                ...
                                                             </button>
-                                                            <div class="dropdown-menu short-by"
-                                                                aria-labelledby="dropdownMenuButton5">
-                                                                <a class="dropdown-item active-short"
-                                                                    href="#0">Oldest</a>
-                                                                <a class="dropdown-item" href="#0">Newest</a>
-                                                                <a class="dropdown-item" href="#0">First Comments</a>
-                                                                <a class="dropdown-item" href="#0">New Comments</a>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="#">Flag as
+                                                                    inappropriate</a>
+                                                                <a class="dropdown-item" href="#">Get direct
+                                                                    link</a>
                                                             </div>
                                                         </div>
-                                                    </li>
-                                                </ul>
-                                                <div class="page">Page 1 of 4</div>
-                                            </div>
-                                            <div class="forum_body">
-                                                <ul class="navbar-nav topic_list">
-                                                    <li>
-                                                        <div class="media">
-                                                            
-                                                            <div class="media-body">
-                                                                <div class="t_title">
-                                                                    <a href="article-single.html">
-                                                                        <h4>Petit mot pour maman</h4>
-                                                                    </a>
-                                                                </div>
-                                                                <a href="Categories.html">
-                                                                    <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i> Posts réseaux sociaux </h6>
-                                                                </a>
-                                                                <h6><i class="icon_calendar"></i> updated 3 days ago
-                                                                </h6>
-                                                            </div>
-                                                            <div class="media-right">
-                                                                <a class="count " href="#"><i
-                                                                        class="icon_chat_alt"></i>45</a>
-                                                                <a class="count rate" href="#"><i
-                                                                        class="icon_star"></i>32</a>
-                                                            </div>
+                                                        <a href="#">
+                                                            <h6><i class="icon_check_alt"></i> Moderator</h6>
+                                                        </a>
+                                                        <h6><i class="icon_calendar"></i> January 16 at 10:32 PM
+                                                        </h6>
+                                                        <p>Cheeky chap jolly good mufty a load of old tosh I
+                                                            don't want no agro a chinwag amongst tickety-boo,
+                                                            tosser victoria sponge horse play happy days give us
+                                                            a bell nice one cup of tea young delinquent wellies,
+                                                            cockup absolutely bladdered barmy bleeding.!</p>
+                                                        <div class="button_list">
+                                                            <a class="reply_btn" href="#">Reply</a>
+                                                            <a class="help_btn" href="#">Helpful</a>
                                                         </div>
-                                                    </li>
-                                                    <li class="check">
-                                                        <div class="media">
-                                                            
-                                                            <div class="media-body">
-                                                                <div class="t_title">
-                                                                    <a href="article-single.html">
-                                                                        <h4>Post Instagram </h4>
-                                                                    </a>
-                                                                </div>
-                                                                <a href="Categories.html">
-                                                                    <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i> Courriers personnels </h6>
-                                                                </a>
-                                                                <h6><i class="icon_calendar"></i> updated 8 days ago
-                                                                </h6>
-                                                            </div>
-                                                            <div class="media-right">
-                                                                <a class="count " href="#"><i
-                                                                        class="icon_chat_alt"></i>20</a>
-                                                                <a class="count rate" href="#"><i
-                                                                        class="icon_star"></i>12</a>
-                                                            </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="media">
+                                                    <div class="d-flex">
+                                                        <img class="rounded-circle"
+                                                             src="{% static 'img/forum/user-7.png' %}"
+                                                             alt="">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="t_title">
+                                                            <a href="#">
+                                                                <h4>Penny Tool</h4>
+                                                            </a>
                                                         </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="media">
-                                                            <div class="media-body">
-                                                                <div class="t_title">
-                                                                    <a href="article-single.html">
-                                                                        <h4>Post Instagram </h4>
-                                                                    </a>
-                                                                </div>
-                                                                <a href="Categories.html">
-                                                                    <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>  Courriers personnels</h6>
-                                                                </a>
-                                                                <h6><i class="icon_calendar"></i> updated 9 days ago
-                                                                </h6>
-                                                            </div>
-                                                            <div class="media-right">
-                                                                <a class="count " href="#"><i
-                                                                        class="icon_chat_alt"></i>14</a>
-                                                                <a class="count rate" href="#"><i
-                                                                        class="icon_star"></i>10</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="media">
-                                                             
-                                                            <div class="media-body">
-                                                                <div class="t_title">
-                                                                    <a href="article-single.html">
-                                                                        <h4>Sticky navbar is shown, but state is
-                                                                            inactive
-                                                                        </h4>
-                                                                    </a>
-                                                                </div>
-                                                                <a href="Categories.html">
-                                                                    <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i> Petits mots</h6>
-                                                                </a>
-                                                                <h6><i class="icon_calendar"></i> 1 day, 4 hours ago
-                                                                </h6>
-                                                            </div>
-                                                            <div class="media-right">
-                                                                <a class="count " href="#"><i
-                                                                        class="icon_chat_alt"></i>33</a>
-                                                                <a class="count rate" href="#"><i
-                                                                        class="icon_star"></i>42</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="media">
-                                                             
-                                                            <div class="media-body">
-                                                                <div class="t_title">
-                                                                    <a href="article-single.html">
-                                                                        <h4>Performance issue uikit v3 and C3js</h4>
-                                                                    </a>
-                                                                </div>
-                                                                <a href="Categories.html">
-                                                                    <h6><i class="icon_lightbulb_alt" aria-hidden="true"> </i>Petits mots</h6>
-                                                                </a>
-                                                                <h6><i class="icon_calendar"></i> updated 3 days ago
-                                                                </h6>
-                                                            </div>
-                                                            <div class="media-right">
-                                                                <a class="count " href="#"><i
-                                                                        class="icon_chat_alt"></i>15</a>
-                                                                <a class="count rate" href="#"><i
-                                                                        class="icon_star"></i>20</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="media">
-                                                           
-                                                            <div class="media-body">
-                                                                <div class="t_title">
-                                                                    <a href="article-single.html">
-                                                                        <h4>Course do not display properly</h4>
-                                                                    </a>
-                                                                </div>
-                                                                <a href="Categories.html">
-                                                                    <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i> Posts réseaux sociaux </h6>
-                                                                </a>
-                                                                <h6><i class="icon_calendar"></i> updated 2 days ago
-                                                                </h6>
-                                                            </div>
-                                                            <div class="media-right">
-                                                                <a class="count " href="#"><i
-                                                                        class="icon_chat_alt"></i>16</a>
-                                                                <a class="count rate" href="#"><i
-                                                                        class="icon_star"></i>13</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="check">
-                                                        <div class="media">
-                                                          
-                                                            <div class="media-body">
-                                                                <div class="t_title">
-                                                                    <a href="article-single.html">
-                                                                        <h4>Apps/Integrations/APIs</h4>
-                                                                    </a>
-                                                                </div>
-                                                                <a href="Categories.html">
-                                                                    <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i> Posts réseaux sociaux </h6>
-                                                                </a>
-                                                                <h6><i class="icon_calendar"></i> updated 9 days ago
-                                                                </h6>
-                                                            </div>
-                                                            <div class="media-right">
-                                                                <a class="count " href="#"><i
-                                                                        class="icon_chat_alt"></i>20</a>
-                                                                <a class="count rate" href="#"><i
-                                                                        class="icon_star"></i>33</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="media">
-                                                          
-                                                            <div class="media-body">
-                                                                <div class="t_title">
-                                                                    <a href="article-single.html">
-                                                                        <h4>Course do not display properly</h4>
-                                                                    </a>
-                                                                </div>
-
-                                                                <a href="Categories.html">
-                                                                    <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i> Posts réseaux sociaux </h6>
-                                                                </a>
-                                                                <h6><i class="icon_calendar"></i> updated 10 days ago
-                                                                </h6>
-                                                            </div>
-                                                            <div class="media-right">
-                                                                <a class="count " href="#"><i
-                                                                        class="icon_chat_alt"></i>24</a>
-                                                                <a class="count rate" href="#"><i
-                                                                        class="icon_star"></i>14</a>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                  
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="list_pagination d-flex justify-content-between">
-                                            <div class="left">
-                                                <p>Viewing 30 topics - 1 through 3 (of 45 total)</p>
-                                            </div>
-                                            <div class="right">
-                                                <nav aria-label="Page navigation example">
-                                                    <ul class="pagination">
-                                                        <li class="page-item active"><a class="page-link" href="#">1</a>
-                                                        </li>
-                                                        <li class="page-item"><a class="page-link" href="#">2</a>
-                                                        </li>
-                                                        <li class="page-item"><a class="page-link" href="#">3</a>
-                                                        </li>
-                                                        <li class="page-item"><a class="page-link" href="#"><i
-                                                                    class="arrow_carrot-right"></i></a></li>
-                                                    </ul>
-                                                </nav>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade " id="contact" role="tabpanel"
-                                        aria-labelledby="contact-tab">
-                                        
-                                        <h2>Forum Topics Started</h2>
-                                        <div class="forum_l_inner comment_l">
-                                            <div class="forum_head d-flex justify-content-between">
-                                                <ul class="nav right">
-                                                    <li>
-                                                        <div class="dropdown list_sirt">
+                                                        <div class="dropdown">
                                                             <button class="btn dropdown-toggle" type="button"
-                                                                id="dropdownMenuButton5" data-toggle="dropdown"
-                                                                aria-haspopup="true" aria-expanded="false">
-                                                                Sirt by <i class="arrow_carrot-down"></i>
+                                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false">
+                                                                ...
                                                             </button>
-                                                            <div class="dropdown-menu short-by"
-                                                                aria-labelledby="dropdownMenuButton5">
-                                                                <a class="dropdown-item active-short"
-                                                                    href="#0">Oldest</a>
-                                                                <a class="dropdown-item" href="#0">Newest</a>
-                                                                <a class="dropdown-item" href="#0">First Comments</a>
-                                                                <a class="dropdown-item" href="#0">New Comments</a>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="#">Flag as
+                                                                    inappropriate</a>
+                                                                <a class="dropdown-item" href="#">Get direct
+                                                                    link</a>
                                                             </div>
                                                         </div>
-                                                    </li>
-                                                </ul>
-                                                <div class="page">Page 1 of 4</div>
-                                            </div>
-                                            <div class="forum_body">
-                                                <ul class="navbar-nav topic_comment_list">
-                                                    <li>
-                                                        <div class="media">
-                                                            <div class="d-flex">
-                                                                <img class="rounded-circle" src="{% static 'img/forum/user-2.png' %}"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <div class="t_title">
-                                                                    <a href="#">
-                                                                        <h4>Eh Jewel</h4>
-                                                                    </a>
-                                                                </div>
-                                                                <div class="dropdown">
-                                                                    <button class="btn dropdown-toggle" type="button"
-                                                                        data-toggle="dropdown" aria-haspopup="true"
-                                                                        aria-expanded="false">
-                                                                        ...
-                                                                    </button>
-                                                                    <div class="dropdown-menu">
-                                                                        <a class="dropdown-item" href="#">Flag as
-                                                                            inappropriate</a>
-                                                                        <a class="dropdown-item" href="#">Get direct
-                                                                            link</a>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="#">
-                                                                    <h6><i class="icon_check_alt"></i> Moderator</h6>
-                                                                </a>
-                                                                <h6><i class="icon_calendar"></i> January 16 at 10:32 PM
-                                                                </h6>
-                                                                <p>Cheeky chap jolly good mufty a load of old tosh I
-                                                                    don't want no agro a chinwag amongst tickety-boo,
-                                                                    tosser victoria sponge horse play happy days give us
-                                                                    a bell nice one cup of tea young delinquent wellies,
-                                                                    cockup absolutely bladdered barmy bleeding.!</p>
-                                                                <div class="button_list">
-                                                                    <a class="reply_btn" href="#">Reply</a>
-                                                                    <a class="help_btn" href="#">Helpful</a>
-                                                                </div>
-                                                            </div>
+                                                        <a href="#">
+                                                            <h6><i class="icon_check_alt"> </i>Moderator</h6>
+                                                        </a>
+                                                        <h6><i class="icon_calendar"></i> January 22 at 09:44 AM
+                                                        </h6>
+                                                        <p>That cockup bleeding skive off such a fibber cup of
+                                                            char squiffy car boot, lemon squeezy lavatory
+                                                            Richard jolly good tosser excuse my French, mush
+                                                            barney.</p>
+                                                        <div class="button_list">
+                                                            <a class="reply_btn" href="#">Reply</a>
+                                                            <a class="help_btn" href="#">Helpful</a>
                                                         </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="media">
-                                                            <div class="d-flex">
-                                                                <img class="rounded-circle" src="{% static 'img/forum/user-7.png' %}"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <div class="t_title">
-                                                                    <a href="#">
-                                                                        <h4>Penny Tool</h4>
-                                                                    </a>
-                                                                </div>
-                                                                <div class="dropdown">
-                                                                    <button class="btn dropdown-toggle" type="button"
-                                                                        data-toggle="dropdown" aria-haspopup="true"
-                                                                        aria-expanded="false">
-                                                                        ...
-                                                                    </button>
-                                                                    <div class="dropdown-menu">
-                                                                        <a class="dropdown-item" href="#">Flag as
-                                                                            inappropriate</a>
-                                                                        <a class="dropdown-item" href="#">Get direct
-                                                                            link</a>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="#">
-                                                                    <h6><i class="icon_check_alt"> </i>Moderator</h6>
-                                                                </a>
-                                                                <h6><i class="icon_calendar"></i> January 22 at 09:44 AM
-                                                                </h6>
-                                                                <p>That cockup bleeding skive off such a fibber cup of
-                                                                    char squiffy car boot, lemon squeezy lavatory
-                                                                    Richard jolly good tosser excuse my French, mush
-                                                                    barney.</p>
-                                                                <div class="button_list">
-                                                                    <a class="reply_btn" href="#">Reply</a>
-                                                                    <a class="help_btn" href="#">Helpful</a>
-                                                                </div>
-                                                            </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="media">
+                                                    <div class="d-flex">
+                                                        <img class="rounded-circle"
+                                                             src="{% static 'img/forum/user-12.png' %}"
+                                                             alt="">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="t_title">
+                                                            <a href="#">
+                                                                <h4>Dianne Ameter</h4>
+                                                            </a>
                                                         </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="media">
-                                                            <div class="d-flex">
-                                                                <img class="rounded-circle" src="{% static 'img/forum/user-12.png' %}"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <div class="t_title">
-                                                                    <a href="#">
-                                                                        <h4>Dianne Ameter</h4>
-                                                                    </a>
-                                                                </div>
-                                                                <a class="help_start" href="#"><i class="icon_star"></i>
-                                                                    Helpful</a>
-                                                                <a href="#">
-                                                                    <h6> <i class="icon_check_alt"></i>Moderator</h6>
-                                                                </a>
-                                                                <h6><i class="icon_calendar"></i> January 18 at 11:24 AM
-                                                                </h6>
-                                                                <p>Cheeky chap jolly good mufty a load of old tosh I
-                                                                    don't want no agro a chinwag amongst tickety-boo,
-                                                                    tosser victoria sponge horse play happy days give us
-                                                                    a bell nice one cup.!</p>
-                                                                <div class="button_list">
-                                                                    <a class="reply_btn" href="#">Reply</a>
-                                                                    <a class="help_btn" href="#">Helpful</a>
-                                                                </div>
+                                                        <a class="help_start" href="#"><i class="icon_star"></i>
+                                                            Helpful</a>
+                                                        <a href="#">
+                                                            <h6><i class="icon_check_alt"></i>Moderator</h6>
+                                                        </a>
+                                                        <h6><i class="icon_calendar"></i> January 18 at 11:24 AM
+                                                        </h6>
+                                                        <p>Cheeky chap jolly good mufty a load of old tosh I
+                                                            don't want no agro a chinwag amongst tickety-boo,
+                                                            tosser victoria sponge horse play happy days give us
+                                                            a bell nice one cup.!</p>
+                                                        <div class="button_list">
+                                                            <a class="reply_btn" href="#">Reply</a>
+                                                            <a class="help_btn" href="#">Helpful</a>
+                                                        </div>
 
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="media">
+                                                    <div class="d-flex">
+                                                        <img class="rounded-circle"
+                                                             src="{% static 'img/forum/user-13.png' %}"
+                                                             alt="">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="t_title">
+                                                            <a href="#">
+                                                                <h4>Pelican Steve</h4>
+                                                            </a>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <button class="btn dropdown-toggle" type="button"
+                                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false">
+                                                                ...
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="#">Flag as
+                                                                    inappropriate</a>
+                                                                <a class="dropdown-item" href="#">Get direct
+                                                                    link</a>
                                                             </div>
                                                         </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="media">
-                                                            <div class="d-flex">
-                                                                <img class="rounded-circle" src="{% static 'img/forum/user-13.png' %}"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="media-body">
-                                                                <div class="t_title">
-                                                                    <a href="#">
-                                                                        <h4>Pelican Steve</h4>
-                                                                    </a>
-                                                                </div>
-                                                                <div class="dropdown">
-                                                                    <button class="btn dropdown-toggle" type="button"
-                                                                        data-toggle="dropdown" aria-haspopup="true"
-                                                                        aria-expanded="false">
-                                                                        ...
-                                                                    </button>
-                                                                    <div class="dropdown-menu">
-                                                                        <a class="dropdown-item" href="#">Flag as
-                                                                            inappropriate</a>
-                                                                        <a class="dropdown-item" href="#">Get direct
-                                                                            link</a>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="#">
-                                                                    <h6>Explore</h6>
-                                                                </a>
-                                                                <h6><i class="icon_calendar"></i> March 12 at 10:25 PM
-                                                                </h6>
-                                                                <p>That cockup bleeding skive off such a fibber cup of
-                                                                    char squiffy car boot, lemon squeezy lavatory
-                                                                    Richard jolly good tosser excuse my French, mush
-                                                                    barney.</p>
-                                                                <div class="button_list">
-                                                                    <a class="reply_btn" href="#">Reply</a>
-                                                                    <a class="help_btn" href="#">Helpful</a>
-                                                                </div>
-                                                            </div>
+                                                        <a href="#">
+                                                            <h6>Explore</h6>
+                                                        </a>
+                                                        <h6><i class="icon_calendar"></i> March 12 at 10:25 PM
+                                                        </h6>
+                                                        <p>That cockup bleeding skive off such a fibber cup of
+                                                            char squiffy car boot, lemon squeezy lavatory
+                                                            Richard jolly good tosser excuse my French, mush
+                                                            barney.</p>
+                                                        <div class="button_list">
+                                                            <a class="reply_btn" href="#">Reply</a>
+                                                            <a class="help_btn" href="#">Helpful</a>
                                                         </div>
-                                                    </li>
-                                                </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="list_pagination d-flex justify-content-between">
+                                    <div class="left">
+                                        <p>Viewing 30 topics - 1 through 3 (of 45 total)</p>
+                                    </div>
+                                    <div class="right">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                                <li class="page-item active"><a class="page-link" href="#">1</a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link" href="#"><i
+                                                        class="arrow_carrot-right"></i></a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade " id="eng" role="tabpanel" aria-labelledby="eng-tab">
+                                <div class="profile_info">
+                                    <div class="row p_info_item_inner">
+                                        <div class="col-sm-4">
+                                            <div class="p_info_item">
+                                                <img src="{% static 'img/icon/p-icon-1.png' %}" alt="">
+                                                <a href="#">
+                                                    <h4>Forum Role</h4>
+                                                </a>
+                                                <a class="info_btn" href="#">Keymaster</a>
                                             </div>
                                         </div>
-                                        <div class="list_pagination d-flex justify-content-between">
-                                            <div class="left">
-                                                <p>Viewing 30 topics - 1 through 3 (of 45 total)</p>
+                                        <div class="col-sm-4">
+                                            <div class="p_info_item">
+                                                <img src="{% static 'img/icon/p-icon-2.png' %}" alt="">
+                                                <a href="#">
+                                                    <h4>Topics Started</h4>
+                                                </a>
+                                                <a class="info_number" href="#">32</a>
                                             </div>
-                                            <div class="right">
-                                                <nav aria-label="Page navigation example">
-                                                    <ul class="pagination">
-                                                        <li class="page-item active"><a class="page-link" href="#">1</a>
-                                                        </li>
-                                                        <li class="page-item"><a class="page-link" href="#">2</a>
-                                                        </li>
-                                                        <li class="page-item"><a class="page-link" href="#">3</a>
-                                                        </li>
-                                                        <li class="page-item"><a class="page-link" href="#"><i
-                                                                    class="arrow_carrot-right"></i></a></li>
-                                                    </ul>
-                                                </nav>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="p_info_item">
+                                                <img src="{% static 'img/icon/p-icon-3.png' %}" alt="">
+                                                <a href="#">
+                                                    <h4>Replies Created</h4>
+                                                </a>
+                                                <a class="info_number" href="#">76</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade " id="eng" role="tabpanel" aria-labelledby="eng-tab">
-                                        <div class="profile_info">
-                                            <div class="row p_info_item_inner">
-                                                <div class="col-sm-4">
-                                                    <div class="p_info_item">
-                                                        <img src="{% static 'img/icon/p-icon-1.png' %}" alt="">
-                                                        <a href="#">
-                                                            <h4>Forum Role</h4>
-                                                        </a>
-                                                        <a class="info_btn" href="#">Keymaster</a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="p_info_item">
-                                                        <img src="{% static 'img/icon/p-icon-2.png' %}" alt="">
-                                                        <a href="#">
-                                                            <h4>Topics Started</h4>
-                                                        </a>
-                                                        <a class="info_number" href="#">32</a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="p_info_item">
-                                                        <img src="{% static 'img/icon/p-icon-3.png' %}" alt="">
-                                                        <a href="#">
-                                                            <h4>Replies Created</h4>
-                                                        </a>
-                                                        <a class="info_number" href="#">76</a>
-                                                    </div>
-                                                </div>
+                                    <ul class="navbar-nav info_list">
+                                        <li><span>Name:</span><a href="#">Lance Bogrol</a></li>
+                                        <li><span>Age:</span><a href="#">32</a></li>
+                                        <li><span>Gender:</span><a href="#">Male</a></li>
+                                        <li><span>Location:</span><a href="#">Berlin</a></li>
+                                        <li><span>Biographical Info:</span><a href="#">Trusted by thousands of
+                                            customers,
+                                            our unique themes, templates</a></li>
+                                        <li><span>Website: </span><a
+                                                href="#">https://html.spider-themes.com/Docy/</a></li>
+                                        <li><span>Blog:</span><a
+                                                href="#">https://wp.spider-themes.com/Docy/</a></li>
+                                        <li><span>Registered:</span><a href="#">3 years, 6 months ago</a></li>
+                                    </ul>
+                                    <ul class="nav p_social">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade " id="fav" role="tabpanel" aria-labelledby="fav-tab">
+                                <div class="profile_info">
+                                    <div class="row p_info_item_inner">
+                                        <div class="col-sm-4">
+                                            <div class="p_info_item">
+                                                <img src="{% static 'img/icon/p-icon-1.png' %}" alt="">
+                                                <a href="#">
+                                                    <h4>Forum Role</h4>
+                                                </a>
+                                                <a class="info_btn" href="#">Keymaster</a>
                                             </div>
-                                            <ul class="navbar-nav info_list">
-                                                <li><span>Name:</span><a href="#">Lance Bogrol</a></li>
-                                                <li><span>Age:</span><a href="#">32</a></li>
-                                                <li><span>Gender:</span><a href="#">Male</a></li>
-                                                <li><span>Location:</span><a href="#">Berlin</a></li>
-                                                <li><span>Biographical Info:</span><a href="#">Trusted by thousands of
-                                                        customers,
-                                                        our unique themes, templates</a></li>
-                                                <li><span>Website: </span><a
-                                                        href="#">https://html.spider-themes.com/Docy/</a></li>
-                                                <li><span>Blog:</span><a
-                                                        href="#">https://wp.spider-themes.com/Docy/</a></li>
-                                                <li><span>Registered:</span><a href="#">3 years, 6 months ago</a></li>
-                                            </ul>
-                                            <ul class="nav p_social">
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
-                                            </ul>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="p_info_item">
+                                                <img src="{% static 'img/icon/p-icon-2.png' %}" alt="">
+                                                <a href="#">
+                                                    <h4>Topics Started</h4>
+                                                </a>
+                                                <a class="info_number" href="#">32</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="p_info_item">
+                                                <img src="{% static 'img/icon/p-icon-3.png' %}" alt="">
+                                                <a href="#">
+                                                    <h4>Replies Created</h4>
+                                                </a>
+                                                <a class="info_number" href="#">76</a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade " id="fav" role="tabpanel" aria-labelledby="fav-tab">
-                                        <div class="profile_info">
-                                            <div class="row p_info_item_inner">
-                                                <div class="col-sm-4">
-                                                    <div class="p_info_item">
-                                                        <img src="{% static 'img/icon/p-icon-1.png' %}" alt="">
-                                                        <a href="#">
-                                                            <h4>Forum Role</h4>
-                                                        </a>
-                                                        <a class="info_btn" href="#">Keymaster</a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="p_info_item">
-                                                        <img src="{% static 'img/icon/p-icon-2.png' %}" alt="">
-                                                        <a href="#">
-                                                            <h4>Topics Started</h4>
-                                                        </a>
-                                                        <a class="info_number" href="#">32</a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="p_info_item">
-                                                        <img src="{% static 'img/icon/p-icon-3.png' %}" alt="">
-                                                        <a href="#">
-                                                            <h4>Replies Created</h4>
-                                                        </a>
-                                                        <a class="info_number" href="#">76</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <ul class="navbar-nav info_list">
-                                                <li><span>Name:</span><a href="#">Lance Bogrol</a></li>
-                                                <li><span>Age:</span><a href="#">32</a></li>
-                                                <li><span>Gender:</span><a href="#">Male</a></li>
-                                                <li><span>Location:</span><a href="#">Berlin</a></li>
-                                                <li><span>Biographical Info:</span><a href="#">Trusted by thousands of
-                                                        customers,
-                                                        our unique themes, templates</a></li>
-                                                <li><span>Website: </span><a
-                                                        href="#">https://html.spider-themes.com/Docy/</a></li>
-                                                <li><span>Blog:</span><a
-                                                        href="#">https://wp.spider-themes.com/Docy/</a></li>
-                                                <li><span>Registered:</span><a href="#">3 years, 6 months ago</a></li>
-                                            </ul>
-                                            <ul class="nav p_social">
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    <ul class="navbar-nav info_list">
+                                        <li><span>Name:</span><a href="#">Lance Bogrol</a></li>
+                                        <li><span>Age:</span><a href="#">32</a></li>
+                                        <li><span>Gender:</span><a href="#">Male</a></li>
+                                        <li><span>Location:</span><a href="#">Berlin</a></li>
+                                        <li><span>Biographical Info:</span><a href="#">Trusted by thousands of
+                                            customers,
+                                            our unique themes, templates</a></li>
+                                        <li><span>Website: </span><a
+                                                href="#">https://html.spider-themes.com/Docy/</a></li>
+                                        <li><span>Blog:</span><a
+                                                href="#">https://wp.spider-themes.com/Docy/</a></li>
+                                        <li><span>Registered:</span><a href="#">3 years, 6 months ago</a></li>
+                                    </ul>
+                                    <ul class="nav p_social">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!--================End Forum Content Area =================-->
-
- {% endblock content %}
-
-        <footer class="doc_footer_area">
-            <div class="doc_footer_top bg-transparent">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 col-sm-6">
-                            <div class="f_widget doc_about_widget wow fadeInUp" data-wow-delay="0.2s">
-                                <a href="#">
-                                    <img src="{% static 'img/logo.png' %}" srcset="img/logo-2x.png 2x" alt="">
-                                </a>
-                                <p>Infrastructure de Rédaction & Reformulation de vos textes en Français!!</p>
-                                <ul class="list-unstyled">
-                                    <li><a href="#"><i class="social_facebook"></i></a></li>
-                                    <li><a href="#"><i class="social_twitter"></i></a></li>
-                                    <li><a href="#"><i class="social_vimeo"></i></a></li>
-                                    <li><a href="#"><i class="social_linkedin"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                         
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="f_widget doc_service_list_widget pl-100 wow fadeInUp" data-wow-delay="0.4s">
-                                <h3 class="f_title_two">Support</h3>
-                                <ul class="list-unstyled">
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="privacy-policy.html">Privacy and Policy</a></li>
-                                    <li><a href="cookies.html">Cookies</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="f_widget doc_service_list_widget pl-70 wow fadeInUp" data-wow-delay="0.5s">
-                                <h3 class="f_title_two">Redico</h3>
-                                <ul class="list-unstyled">
-                                    <li><a href="redico.html">À propos</a></li>
-                                    <li><a href="temoignages.html">Témoignages</a></li>
-                                    <li><a href="partners.html">Partenaires</a></li>
-
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="doc_footer_bottom">
-                <div class="container d-flex justify-content-between">
-                  
-                    <p class="wow fadeInUp" data-wow-delay="0.3s">Copyright © 2021-2022 <span>Redico</span>. All rights reserved.                        
-                    </p>
-                </div>
-            </div>
-        </footer>
+        </div>
     </div>
+</section>
+<!--================End Forum Content Area =================-->
 
-    <!-- Back to top button -->
-    <a id="back-to-top" title="Back to Top"></a>
+{% endblock content %}
+{% block javascript%}
+{{block.super}}
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
-    <script src="{% static 'assets/bootstrap/js/popper.min.js' %}"></script>
-    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/pre-loader.js' %}"></script>
-    <script src="{% static 'js/jquery.parallax-scroll.js' %}"></script>
-    <script src="{% static 'assets/niceselectpicker/jquery.nice-select.min.js' %}"></script>
-    <script src="{% static 'assets/wow/wow.min.js' %}"></script>
-    <script src="{% static 'assets/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
-    <script src="{% static 'assets/magnify-pop/jquery.magnific-popup.min.js' %}"></script>
-    <script src="{% static 'js/plugins.js' %}"></script>
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/theme.js' %}"></script>
-
-</body>
-
-</html>
+<script>
+$(function() {
+$('#id_first_name').addClass('form-control').attr("placeholder", "Prénom");
+$('#id_last_name').addClass('form-control').attr("placeholder", "Nom");
+$('#id_email').addClass('form-control').attr("placeholder", "Email");
+$('#id_phone').addClass('form-control').attr("placeholder", "N° téléphone");
+$('#id_bio').addClass('form-control').attr("placeholder", "…");
+});
+</script>
+{%endblock javascript%}
