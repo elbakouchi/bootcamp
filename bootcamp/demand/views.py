@@ -1,7 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
-from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
 
 from bootcamp.articles.forms import SuggestedRevisionForm
