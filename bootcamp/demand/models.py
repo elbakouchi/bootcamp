@@ -1,9 +1,7 @@
 from django.conf import settings
 from django.db import models
-from django.db.models import Count
 from django.utils.translation import ugettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
-from django.db.models import F
 
 from slugify import slugify
 
@@ -21,47 +19,47 @@ class DemandQuerySet(models.query.QuerySet):
 
     def get_category(self):
         return self.filter(verified=True).order_by('-updatedAt', '-createdAt').annotate(
-            client_firstname=F('user__first_name'),
-            client_lastname=F('user__last_name'),
-            category_name=F('category__name'),
-            category_slug=F('category__slug'),
-            service_name=F('service__name'),
-            revision_count=Count('revision__id', None)
+            client_firstname=models.F('user__first_name'),
+            client_lastname=models.F('user__last_name'),
+            category_name=models.F('category__name'),
+            category_slug=models.F('category__slug'),
+            service_name=models.F('service__name'),
+            revision_count=models.Count('revision__id', None)
         )
 
     def get_annotated_demand(self):
         return self.annotate(
-            client_firstname=F('user__first_name'),
-            client_lastname=F('user__last_name'),
-            category_name=F('category__name'),
-            category_slug=F('category__slug'),
-            service_name=F('service__name'),
-            revision_count=Count('revision__id', None)
+            client_firstname=models.F('user__first_name'),
+            client_lastname=models.F('user__last_name'),
+            category_name=models.F('category__name'),
+            category_slug=models.F('category__slug'),
+            service_name=models.F('service__name'),
+            revision_count=models.Count('revision__id', None)
         )
 
     def get_published_unverified_demands(self):
         return self.filter(status="P", verified=False).distinct().order_by('-updatedAt', '-createdAt').annotate(
-            client_firstname=F('user__first_name'),
-            client_lastname=F('user__last_name'),
-            category_name=F('category__name'),
-            category_slug=F('category__slug'),
-            service_name=F('service__name'),
-            revision_count=Count('revision__id', None)
+            client_firstname=models.F('user__first_name'),
+            client_lastname=models.F('user__last_name'),
+            category_name=models.F('category__name'),
+            category_slug=models.F('category__slug'),
+            service_name=models.F('service__name'),
+            revision_count=models.Count('revision__id', None)
         )
 
     def get_without_revisions(self):
         # return self.get_category().filter(has_revision=False)
         return self.filter(has_revision=False).order_by('-updatedAt', '-createdAt').annotate(
-            client_firstname=F('user__first_name'),
-            client_lastname=F('user__last_name'),
-            category_name=F('category__name'),
-            category_slug=F('category__slug'),
-            service_name=F('service__name'),
-            revision_count=Count('revision__id', None)
+            client_firstname=models.F('user__first_name'),
+            client_lastname=models.F('user__last_name'),
+            category_name=models.F('category__name'),
+            category_slug=models.F('category__slug'),
+            service_name=models.F('service__name'),
+            revision_count=models.Count('revision__id', None)
         )
 
     def get_revisions(self):
-        return self.annotate(revisions=F('revision'))
+        return self.annotate(revisions=models.F('revision'))
 
     def get_published(self):
         """Returns only the published items in the current queryset."""
@@ -74,7 +72,7 @@ class DemandQuerySet(models.query.QuerySet):
     def get_counted_tags(self):
         tag_dict = {}
         query = (
-            self.filter(status="P").annotate(tagged=Count("tags")).filter(tags__gt=0)
+            self.filter(status="P").annotate(tagged=models.Count("tags")).filter(tags__gt=0)
         )
         for obj in query:
             for tag in obj.tags.names():
