@@ -10,7 +10,7 @@ from nltk.tokenize import RegexpTokenizer
 from django.conf import settings
 
 tokenizer = RegexpTokenizer(r'\w+')
-treshold = getattr(settings, 'MAX_LENGTH_WORDS_COUNT', 350)
+threshold = getattr(settings, 'MAX_LENGTH_WORDS_COUNT', 350)
 
 
 def word_counter_validator(text: str):
