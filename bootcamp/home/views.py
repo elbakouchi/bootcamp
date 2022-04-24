@@ -1,4 +1,4 @@
-from django.db.models import Count
+from django.db.models import Count, F, Max
 from django.http import HttpResponse, JsonResponse
 from django.template.loader import render_to_string
 from django.shortcuts import render
@@ -39,7 +39,7 @@ def paginate2(page):
 def paginate(page):
     demands = \
         Demand.objects.filter(verified=True).annotate(
-            categoryName=StringAgg('category__name', delimiter=','))
+            categoryName=F('category__name'), last_revision=Max('revision__id')).order_by("-pk", "-timestamp")
 
     paginator = Paginator(demands, 5)
 
