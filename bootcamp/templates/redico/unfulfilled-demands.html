@@ -35,10 +35,10 @@
                                         </a>
                                         <h6><i class="icon_clock_alt"></i>&nbsp;{{demand.timestamp|timesince}}
                                         </h6>
-                                        {% if user.authenticated %}
+                                        {% if user.is_authenticated %}
                                         <a href="{% url 'demands:demand' demand.slug %}" class="doc_border_btn btn_small">Modifier le texte</a>
                                         {% else %}
-                                        <a href="{% url 'account_login' %}/?next={% url 'demands:demand' demand.slug %}" class="doc_border_btn btn_small">Modifier le texte</a>
+                                        <a href="{% url 'account_login' %}?next={% url 'demands:demand' demand.slug %}" class="doc_border_btn btn_small">Modifier le texte</a>
                                         {% endif %}
                                         <a href="{% url 'demands:demand' demand.slug %}" class="doc_border_btn btn_small">Accéder aux révisions</a>
                                     </div>
