@@ -1,0 +1,55 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+     <script>
+        fetch("{% url 'accounts:destroy' %}")
+          .then(response => response.json())
+          .then(data => window.location.href = data.url);
+
+    </script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <!-- icon css-->
+    <link rel="stylesheet" href="{% static 'assets/elagent-icon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/animation/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style-main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <title>{% block head_title %}Redico - Connectez vous à votre compte{% endblock %}</title>
+</head>
+
+<body data-scroll-animation="true">
+
+    <div class="body_wrapper">
+        <section class="signup_area">
+            <div class="row ml-0 mr-0">
+                <div class="sign_left signin_left">
+                    <h2>Rédaction & Reformulation de vos textes en Français.</h2>
+                    <img class="position-absolute top" src="{% static 'img/signup/top_ornamate.png' %}" alt="top">
+                    <img class="position-absolute bottom" src="{% static 'img/signup/bottom_ornamate.png' %}" alt="bottom">
+                    <img class="position-absolute middle d-none d-sm-block" src="{% static 'img/signup/door.png' %}" alt="bottom">
+                    <div class="round"></div>
+                </div>
+                <div class="sign_right signup_right">
+                     <div class="sign_inner signup_inner">
+                        <div class="text-center">
+                          {% block inner%}
+                            <h3>Vous êtes en train de vous déconnecter de Redico</h3>
+                          {% endblock %}
+                        </div>
+                     </div>
+                </div>
+                </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
+
