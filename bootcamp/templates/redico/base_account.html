@@ -3,12 +3,6 @@
 <html lang="en">
 
 <head>
-     <script>
-        fetch("{% url 'accounts:destroy' %}")
-          .then(response => response.json())
-          .then(data => window.location.href = data.url);
-
-    </script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
