@@ -79,6 +79,13 @@
                                 </div>
                                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="changelog_content">
+                                        <div class="reviewlist">
+                                            {{demand.content|safe}}
+                                            <div class="download-links pb_30">
+                                                <a href="#" class="changelog_btn"><i class="icon_document_alt"></i>{{demand.timestamp|timesince}}</a>
+                                                <a href="#" class="changelog_btn"><i class="icon_profile"></i>{{demand.user.username}}</a>
+                                            </div>
+                                        </div>
                                         {% if revisions.count %}
                                         {% for revision in revisions %}
                                         <div class="reviewlist">
