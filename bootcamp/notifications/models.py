@@ -82,6 +82,7 @@ class Notification(models.Model):
     SHARED = "S"
     SIGNUP = "U"
     REPLY = "R"
+    REVISION_ADDED = "Q"
     NOTIFICATION_TYPES = (
         (LIKED, _("liked")),
         (COMMENTED, _("commented")),
@@ -96,6 +97,7 @@ class Notification(models.Model):
         (SHARED, _("shared")),
         (SIGNUP, _("created an account")),
         (REPLY, _("replied to")),
+        (REVISION_ADDED, _("nouvelle révision"))
     )
     actor = models.ForeignKey(
         settings.AUTH_USER_MODEL, related_name="notify_actor", on_delete=models.CASCADE

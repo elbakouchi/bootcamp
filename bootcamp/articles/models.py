@@ -120,6 +120,12 @@ def set_demand_has_revision(**kwargs):
         print(kwargs["demand"], "has revision")
 
 
+def broadcast_revision_created(sender, user, request, **kwargs):
+    demand = kwargs["demand"]
+    notification_handler(user, demand.user, Notification.REVISION_ADDED)
+
+
 demand_has_revision = Signal()
 demand_has_revision.connect(receiver=set_demand_has_revision)
+demand_has_revision.connect(broadcast_revision_created)
 comment_was_posted.connect(receiver=notify_comment)
