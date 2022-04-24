@@ -1,3 +1,4 @@
+from allauth.account.forms import UserForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
@@ -5,18 +6,46 @@ from django.views.generic.edit import ModelFormMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import User
 from django.db.models import Count, F
-from itertools import chain
+from PIL import Image
+from django import forms
+from django.core.files import File
 from ..articles.models import Article
 from ..demand.models import Demand
 
 
+class CustomUserForm(forms.ModelForm):
+    x = forms.FloatField(widget=forms.HiddenInput())
+    y = forms.FloatField(widget=forms.HiddenInput())
+    width = forms.FloatField(widget=forms.HiddenInput())
+    height = forms.FloatField(widget=forms.HiddenInput())
+
+    class Meta:
+        model = User
+        fields = '__all__'
+
+    def save(self):
+        photo = super(CustomUserForm, self).save()
+
+        x = self.cleaned_data.get('x')
+        y = self.cleaned_data.get('y')
+        w = self.cleaned_data.get('width')
+        h = self.cleaned_data.get('height')
+
+        image = Image.open(photo.file)
+        cropped_image = image.crop((x, y, w + x, h + y))
+        resized_image = cropped_image.resize((200, 200), Image.ANTIALIAS)
+        resized_image.save(photo.file.path)
+
+        return photo
+
 class UserDetailView(LoginRequiredMixin, ModelFormMixin, DetailView):
     model = User
+    form_class = CustomUserForm
     # These next two lines tell the view to index lookups by username
     slug_field = "username"
     slug_url_kwarg = "username"
     template_name = 'redico/profile.html'
-    fields = ['first_name', 'last_name', 'phone', 'email', 'bio', 'picture']
+    # fields = ['first_name', 'last_name', 'phone', 'email', 'bio', 'picture']
     success_url = "/users/{username}/"
 
     def get_context_data(self, **kwargs):
