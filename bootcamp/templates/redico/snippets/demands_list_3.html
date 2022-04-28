@@ -28,7 +28,7 @@
                                 <div class="media">
                                     <div class="media-body">
                                         <div class="t_title">
-                                            <a href="article-single.html">
+                                             <a href="{% url 'demands:demand' demand.slug %}">
                                                 <h4>
                                                     {{demand.title}}
                                                     {% if demand.verified %}
@@ -37,7 +37,9 @@
                                                     {% endif %}
                                                 </h4>
                                             </a>
-                                            <p>{{demand.last_revision.content|safe|truncatechars:80}}</p>
+                                            {% spaceless %}
+                                            <p>{{demand.content|safe|truncatechars:80}}</p>
+                                            {% endspaceless %}
                                         </div>
                                         <a href="#">
                                             <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>
@@ -72,7 +74,8 @@
                     </button>
                 </div>
                 <div class="doc_title text-center mt-40">
-                    {% if page_obj.has_next %}
+
+                    {% if is_paginated and page_obj.has_next %}
                     <a id="feed" href="{% url 'home:home' %}?page={{ page_obj.next_page_number }}"
                        class="action_btn box_shadow_none wow fadeInUp infinite-more-link">Voir&nbsp;plus</a>
                     {% endif %}

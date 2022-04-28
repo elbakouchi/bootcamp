@@ -18,8 +18,10 @@ class DemandQuerySet(models.query.QuerySet):
     """Personalized queryset created to improve model usability"""
 
     def homepage(self):
-        return self.filter(verified=True).annotate(
-            categoryName=models.F('category__name'), last_revision=models.Max('revision__id'),
+        return self.filter(verified=True).distinct().annotate(
+            categoryName=models.F('category__name'),
+            # last_revision_content=models.F('revision__content'),
+            # last_revision_date=models.F('revision__timestamp'),
             service_name=models.F('service__name'),
             revision_count=models.Count('revision__id', None)).order_by("-pk", "-timestamp")
 
