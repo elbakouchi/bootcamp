@@ -50,7 +50,7 @@
           return;
         }
 
-        $.getJSON( "{% url 'search:demands-suggestions' %}", request, function( data, status, xhr ) {
+        $.getJSON( "{#% url 'search:demands-suggestions' %#}", request, function( data, status, xhr ) {
           cache[ term ] = data.results;
           console.log(data.results);
           response( data.results );
