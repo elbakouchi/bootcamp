@@ -6,6 +6,7 @@ from django.views.generic import TemplateView, RedirectView
 from django.views import defaults as default_views
 from django.contrib.flatpages import views as flatpages
 from allauth.account.views import LogoutView
+from bootcamp.home.views import HomePageView
 
 from graphene_django.views import GraphQLView
 from bootcamp.home.views import feed_pagination
@@ -16,6 +17,7 @@ urlpatterns = [
     url(r'^logout/', LogoutView.as_view(), name="logging_out"),
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/img/favicon.ico')),
     url('favicon.ico', RedirectView.as_view(url='/static/img/favicon.ico')),
+    # url(r"^$", HomePageView.as_view(), name="home"),
     url(r"^$", include("bootcamp.home.urls", namespace="home")),
     # url(r"^feed/$", feed_pagination, name="feed_pagination"),
     url(r"^categories/", include("bootcamp.category.urls", namespace="categories")),

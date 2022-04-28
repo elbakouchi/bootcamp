@@ -5,6 +5,7 @@ from django.template.defaultfilters import striptags
 from django.utils.encoding import smart_str
 from django.utils.translation import ugettext as _
 from django.views.generic.base import View
+from django.views.generic import ListView
 from django.views.generic.list import MultipleObjectTemplateResponseMixin
 from nltk.tokenize import RegexpTokenizer
 from django.conf import settings
@@ -166,7 +167,7 @@ class AjaxMultipleObjectTemplateResponseMixin(MultipleObjectTemplateResponseMixi
             AjaxMultipleObjectTemplateResponseMixin, self).get_template_names()
 
 
-class AjaxListView(AjaxMultipleObjectTemplateResponseMixin, BaseListView):
+class AjaxListView(AjaxMultipleObjectTemplateResponseMixin, ListView):
     """Allows Ajax pagination of a list of objects.
     You can use this class-based view in place of *ListView* in order to
     recreate the behaviour of the *page_template* decorator.

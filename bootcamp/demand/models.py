@@ -17,6 +17,12 @@ from bootcamp.category.models import Category, Service
 class DemandQuerySet(models.query.QuerySet):
     """Personalized queryset created to improve model usability"""
 
+    def homepage(self):
+        return self.filter(verified=True).annotate(
+            categoryName=models.F('category__name'), last_revision=models.Max('revision__id'),
+            service_name=models.F('service__name'),
+            revision_count=models.Count('revision__id', None)).order_by("-pk", "-timestamp")
+
     def get_category(self):
         return self.filter(verified=True).order_by('-updatedAt', '-createdAt').annotate(
             client_firstname=models.F('user__first_name'),

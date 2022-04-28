@@ -1,47 +1,34 @@
 {% extends "redico/redico_base.html" %}
 {% load static  %}
 {% block title %}Redico - Rédaction & Reformulation de vos textes en Français{% endblock title %}
+{% block css%}
+{{block.super}}
+<style>
+  .ui-draggable, .ui-droppable {
+	background-position: top;
+    }
+  .ui-autocomplete-loading {
+    background: white url("images/ui-anim_basic_16x16.gif") right center no-repeat;
+  }
+
+</style>
+{% endblock css%}
 {% block content %}
 {% include 'redico/snippets/jumbotron.html' %}
 {#% include 'redico/snippets/messages.html' %#}
 {% include 'redico/snippets/demands_list_3.html' with demands=demands %}
-
-
-
 {% endblock content %}
 {% block javascript%}
-    {{block.super}}
-    <script src="{% static 'js/jquery.waypoints.min.js' %}" type="text/javascript"></script>
-    <script src="{% static 'js/infinite.min.js' %}" type="text/javascript"></script>
-    <script>
-    $(document).ready(function(){
-        window.total_count = eval({{demands.count}});
-        window.current_page = eval({{ demands.next_page_number }});
-        $("#feed").click(function(){
-          // window.feed();
-        });
-       window.feed = function(){
-            $.ajax({
-                url: "{% url 'demands:demands_feed' %}" ,
-                type: 'GET',
-                data: { "page": window.current_page },
-                //dataType: 'json',
-                cache: false,
-                success: function(e,a,b){
-                    //console.log(e);
-                    $('.topic_list').append(e);
-                    window.current_page++;
-                },
-                error: function(a,b,c,d){
-                    console.log(b);
-                }
-            });
-       };
+{{block.super}}
+<script src="{% static 'js/jquery.waypoints.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/infinite.min.js' %}" type="text/javascript"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+        integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+        crossorigin="anonymous"></script>
+<script>
         var infinite = new Waypoint.Infinite({
            element: $('.infinite-container')[0],
-           handler: function(direction) {
-               //window.feed();
-           },
+           offset: 'bottom-in-view',
            onBeforePageLoad: function () {
                 $('.loading').show();
            },
@@ -49,6 +36,28 @@
                 $('.loading').hide();
            }
         });
-     });
-    </script>
+</script>
+<script>
+      $( function() {
+    var cache = {};
+    $( "#searchbox" ).autocomplete({
+      minLength: 2,
+      source: function( request, response ) {
+        var term = request.term;
+        console.log(cache);
+        if ( term in cache ) {
+          response( cache[ term ] );
+          return;
+        }
+
+        $.getJSON( "{% url 'search:demands-suggestions' %}", request, function( data, status, xhr ) {
+          cache[ term ] = data.results;
+          console.log(data.results);
+          response( data.results );
+        });
+      }
+    });
+  } );
+
+</script>
 {% endblock %}

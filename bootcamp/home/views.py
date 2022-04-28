@@ -4,19 +4,27 @@ from django.template.loader import render_to_string
 from django.shortcuts import render
 from django.contrib.postgres.aggregates import StringAgg
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-# from django.views.decorators.csrf import csrf_exempt
-# from django.db.models import ObjectDoesNotExist
+from django.views.generic import ListView
 from bootcamp.category.models import Category
 from bootcamp.category.views import CategoriesListView
+from bootcamp.custom import AjaxListView
 from bootcamp.demand.models import Demand
 
 
-class HomePageView(CategoriesListView):
+class HomePageView(ListView):
+    model = Demand
+    paginate_by = 5
+    context_object_name = "demands"
+    template_name = 'redico/homepage.html'
+    queryset = Demand.objects.homepage()
+
+
+class HomepageView(CategoriesListView):
     template_name = 'redico/homepage.html'
 
     def get_context_data(self, *args, **kwargs):
-        context = super(HomePageView, self).get_context_data(*args, **kwargs)
-        context['categories'] = super(HomePageView, self).get_queryset(**kwargs)
+        context = super(HomepageView, self).get_context_data(*args, **kwargs)
+        context['categories'] = super(HomepageView, self).get_queryset(**kwargs)
         return context
 
 
