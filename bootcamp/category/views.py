@@ -1,4 +1,3 @@
-from django.db.models import Count
 from django.views.generic import DetailView, ListView
 from django.views.generic.detail import SingleObjectMixin
 
