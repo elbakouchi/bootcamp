@@ -2,7 +2,6 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
-
 from slugify import slugify
 
 from django_comments.signals import comment_was_posted
@@ -14,14 +13,18 @@ from bootcamp.notifications.models import Notification, notification_handler
 from bootcamp.category.models import Category, Service
 
 
+
 class DemandQuerySet(models.query.QuerySet):
     """Personalized queryset created to improve model usability"""
 
     def homepage(self):
+        from bootcamp.articles.models import Article
+        latest_revision = models.Subquery(Article.objects.filter(
+            demand_id=models.OuterRef("id"),
+        ).order_by("-timestamp").values('content')[:1])
         return self.filter(verified=True).distinct().annotate(
             categoryName=models.F('category__name'),
-            # last_revision_content=models.F('revision__content'),
-            # last_revision_date=models.F('revision__timestamp'),
+            last_revision_content=latest_revision,
             service_name=models.F('service__name'),
             revision_count=models.Count('revision__id', None)).order_by("-pk", "-timestamp")
 

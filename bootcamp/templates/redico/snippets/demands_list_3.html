@@ -38,7 +38,7 @@
                                                 </h4>
                                             </a>
                                             {% spaceless %}
-                                            <p>{{demand.content|safe|truncatechars:80}}</p>
+                                            <p>{{demand.last_revision_content|safe|truncatechars:80}}</p>
                                             {% endspaceless %}
                                         </div>
                                         <a href="#">
@@ -67,7 +67,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="d-flex d-none position-fixed" style="top:35vh;left:46vw">
+                <div class="d-flex d-none position-fixed" style="top:55vh;left:46vw">
                     <button class="btn btn-primary loading">
                         <span class="spinner-border spinner-border-sm"></span>
                         Attendez SVP…
