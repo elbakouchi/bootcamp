@@ -38,6 +38,7 @@ class CustomUserForm(forms.ModelForm):
 
         return photo
 
+
 class UserDetailView(LoginRequiredMixin, ModelFormMixin, DetailView):
     model = User
     form_class = CustomUserForm
@@ -50,7 +51,8 @@ class UserDetailView(LoginRequiredMixin, ModelFormMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(UserDetailView, self).get_context_data()
-        demands = Demand.objects.filter(user=self.object.pk).order_by('pk', 'timestamp').annotate(service_name=F('service__name'),
+        demands = Demand.objects.filter(user=self.object.pk).order_by('pk', 'timestamp').annotate(
+            service_name=F('service__name'),
             revision_count=Count('revision__id', None))
         context["demands_count"] = demands.count()
 
@@ -130,6 +132,51 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self):
         # Only get the User record for the user making the request
         return User.objects.get(username=self.request.user.username)
+
+    def get_context_data(self, **kwargs):
+        context = super(UserUpdateView, self).get_context_data()
+        demands = Demand.objects.filter(user=self.object.pk).order_by('pk', 'timestamp').annotate(
+            service_name=F('service__name'),
+            revision_count=Count('revision__id', None))
+        context["demands_count"] = demands.count()
+
+        page = self.request.GET.get("page", 1)
+        paginator = Paginator(demands, 5)
+
+        try:
+            paginated_demands = paginator.page(page)
+        except PageNotAnInteger:
+            paginated_demands = paginator.page(1)
+        except EmptyPage:
+            paginated_demands = paginator.page(paginator.num_pages)
+
+        revisions = Article.objects.filter(user=self.object.pk).order_by('pk', 'timestamp')
+        context["revisions_count"] = revisions.count()
+        paginator2 = Paginator(revisions, 5)
+
+        try:
+            paginated_revisions = paginator2.page(page)
+        except PageNotAnInteger:
+            paginated_revisions = paginator2.page(1)
+        except EmptyPage:
+            paginated_revisions = paginator2.page(paginator2.num_pages)
+
+        context["revisions"] = paginated_revisions
+        context["demands"] = paginated_demands
+        '''
+        combined = chain(demands, revisions)
+        paginator3 = Paginator(combined, 5)
+
+        try:
+            paginated_combined = paginator3.page(page)
+        except PageNotAnInteger:
+            paginated_combined = paginator3.page(1)
+        except EmptyPage:
+            paginated_combined = paginator3.page(paginator.num_pages)
+
+        context["combined"] = paginated_combined
+        '''
+        return context
 
 
 class UserListView(LoginRequiredMixin, ListView):
