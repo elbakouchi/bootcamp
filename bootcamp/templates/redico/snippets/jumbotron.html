@@ -3,17 +3,15 @@
                 <div class="doc_banner_content">
                     <h2 class="wow fadeInUp">Bienvenue à Redico</h2>
                     <p style="color: #000;">Plateforme d'aide à la rédaction</p>
-                    <form action="#" class="header_search_form">
+                    <form action="{% url 'search:search' %}" class="header_search_form" enctype="application/x-www-form-urlencoded">
                     <div class="header_search_form_info">
                         <div class="form-group">
-                            <div class="input-wrapper">
+                            <div class="input-wrapper ui-widget">
                                 <i class="icon_search"></i>
-                                <input type="search" id="searchbox" autocomplete="off" name="search" placeholder="Recherche par mot-clés">
-
+                                <input type="search" id="searchbox" autocomplete="off" name="q" class="ui-autocomplete-input" placeholder="Recherche par mot-clés">
                             </div>
                         </div>
                     </div>
-
                 </form>
                 </div>
             </div>

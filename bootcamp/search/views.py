@@ -1,3 +1,4 @@
+from dal import autocomplete
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -8,6 +9,7 @@ from django.views.generic import ListView
 from taggit.models import Tag
 
 from bootcamp.articles.models import Article
+from bootcamp.demand.models import Demand
 from bootcamp.news.models import News
 from bootcamp.helpers import ajax_required
 from bootcamp.qa.models import Question
@@ -41,8 +43,8 @@ class SearchListView(LoginRequiredMixin, ListView):
         ).distinct()
         context["users_list"] = (
             get_user_model()
-            .objects.filter(Q(username__icontains=query) | Q(name__icontains=query))
-            .distinct()
+                .objects.filter(Q(username__icontains=query) | Q(name__icontains=query))
+                .distinct()
         )
         context["news_count"] = context["news_list"].count()
         context["articles_count"] = context["articles_list"].count()
@@ -50,11 +52,11 @@ class SearchListView(LoginRequiredMixin, ListView):
         context["users_count"] = context["users_list"].count()
         context["tags_count"] = context["tags_list"].count()
         context["total_results"] = (
-            context["news_count"]
-            + context["articles_count"]
-            + context["questions_count"]
-            + context["users_count"]
-            + context["tags_count"]
+                context["news_count"]
+                + context["articles_count"]
+                + context["questions_count"]
+                + context["users_count"]
+                + context["tags_count"]
         )
         return context
 
@@ -112,3 +114,47 @@ def get_suggestions(request):
         results.append(data_json)
 
     return JsonResponse(results, safe=False)
+
+
+class DemandAutocomplete(autocomplete.Select2ListView):
+
+    def get_list(self):
+        self.q = self.request.GET.get('term', '')
+        print(self.q)
+        _dump = []
+        tokens = Demand.objects.get_published().values_list('tokens')
+        for words in tokens:
+            try:
+                _dump.extend([w.lower() for w in words[0].split(',') if len(w) > 2])
+            except Exception as e:
+                print(e)
+                continue
+        return sorted(set(_dump))
+
+
+class DemandAutocomplete2(autocomplete.Select2QuerySetView):
+    template = 'demand/demand_list.html'
+
+    def get_queryset(self):
+        q = self.request.GET.get('q', None)
+        if q:
+            qs = Demand.objects.get_published().filter(title__icontains=q, content__icontains=q)
+            return qs
+        return Demand.objects.none()
+
+
+class SearchDemands(ListView):
+    model = Demand
+    paginate_by = 1
+    context_object_name = "demands"
+
+    template_name = 'demand/demand_list.html'
+
+    def get_queryset(self):
+        q = self.request.GET.get('q', None)
+        print(q)
+        if q:
+            qs = Demand.objects.get_published().filter(tokens__icontains=q)
+            print(qs.count())
+            return qs
+        return Demand.objects.none()

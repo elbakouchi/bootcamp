@@ -3,6 +3,8 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 from slugify import slugify
+import spacy
+from django.utils.html import strip_tags
 
 from django_comments.signals import comment_was_posted
 from markdownx.utils import markdownify
@@ -12,6 +14,11 @@ from bootcamp.custom import word_counter_validator
 from bootcamp.notifications.models import Notification, notification_handler
 from bootcamp.category.models import Category, Service
 
+try:
+    nlp = spacy.load("fr_core_news_sm")
+except:
+    spacy.cli.download("fr_core_news_sm")
+    nlp = spacy.load("fr_core_news_sm")
 
 
 class DemandQuerySet(models.query.QuerySet):
@@ -138,6 +145,9 @@ class Demand(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     objects = DemandQuerySet.as_manager()
+    keywords = models.TextField(blank=True, verbose_name="Mots clés SEO", help_text="nécessaire à la SEO")
+    tokens = models.TextField(blank=True, verbose_name="Mots clés Recherche",
+                              help_text="nécessaire pour la recherche texte")
 
     class Meta:
         verbose_name = _("Texte")
@@ -152,7 +162,18 @@ class Demand(models.Model):
             self.slug = slugify(
                 f"{self.user.username}-{self.title}", lowercase=True, max_length=80
             )
-
+        doc = nlp(strip_tags(self.content))
+        if not self.tokens:
+            tags = [token.lemma_ for token in doc if token.pos_ in ["VERB", "ADVERB", "NOUN"]]
+            chunks = [chunk.text for chunk in doc.noun_chunks]
+            self.tokens = ",".join(tags + chunks)
+        if not self.keywords:
+            # doc = nlp(strip_tags(self.content))
+            tags = [token.lemma_ for token in doc if token.pos_ in ["NOUN"]]
+            if self.tags:
+                self.keywords = f"{self.tags},{','.join(tags)}"
+            else:
+                self.keywords = ','.join(tags)
         super().save(*args, **kwargs)
 
     def get_markdown(self):

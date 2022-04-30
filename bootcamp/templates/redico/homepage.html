@@ -3,15 +3,7 @@
 {% block title %}Redico - Rédaction & Reformulation de vos textes en Français{% endblock title %}
 {% block css%}
 {{block.super}}
-<style>
-  .ui-draggable, .ui-droppable {
-	background-position: top;
-    }
-  .ui-autocomplete-loading {
-    background: white url("images/ui-anim_basic_16x16.gif") right center no-repeat;
-  }
-
-</style>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.min.css" type="text/css"/>
 {% endblock css%}
 {% block content %}
 {% include 'redico/snippets/jumbotron.html' %}
@@ -38,22 +30,24 @@
         });
 </script>
 <script>
-      $( function() {
-    var cache = {};
+   $( function() {
     $( "#searchbox" ).autocomplete({
-      minLength: 2,
+      select: function( event, ui ) {
+        $(this).keypress();
+      },
+      minLength: 3,
       source: function( request, response ) {
-        var term = request.term;
-        console.log(cache);
-        if ( term in cache ) {
-          response( cache[ term ] );
-          return;
-        }
-
-        $.getJSON( "{#% url 'search:demands-suggestions' %#}", request, function( data, status, xhr ) {
-          cache[ term ] = data.results;
-          console.log(data.results);
-          response( data.results );
+         var term = request.term;
+         //request.term = encodeURIComponent(request.term);
+         //console.log(term, request.term);
+         $.getJSON( "{% url 'search:demands-suggestions' %}", request, function( data, status, xhr ) {
+          window.terms = {};
+          $.each(data.results, function(index){
+            console.log(data.results[index].text);
+            window.terms[index] = data.results[index].text;
+          });
+          console.log(window.terms, data.results);
+          response(window.terms);
         });
       }
     });

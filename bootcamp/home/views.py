@@ -2,12 +2,10 @@ from django.db.models import Count, F, Max
 from django.http import HttpResponse, JsonResponse
 from django.template.loader import render_to_string
 from django.shortcuts import render
-from django.contrib.postgres.aggregates import StringAgg
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView
 from bootcamp.category.models import Category
 from bootcamp.category.views import CategoriesListView
-from bootcamp.custom import AjaxListView
 from bootcamp.demand.models import Demand
 
 

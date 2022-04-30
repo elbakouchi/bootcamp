@@ -6,7 +6,7 @@ from django.views.generic import TemplateView, RedirectView
 from django.views import defaults as default_views
 from django.contrib.flatpages import views as flatpages
 from allauth.account.views import LogoutView
-from bootcamp.home.views import HomePageView
+# from bootcamp.home.views import HomePageView
 
 from graphene_django.views import GraphQLView
 from bootcamp.home.views import feed_pagination

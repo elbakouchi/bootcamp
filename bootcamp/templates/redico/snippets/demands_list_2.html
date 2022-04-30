@@ -1,73 +1,74 @@
 {% load static %}
 <section class="doc_community_area">
-    <div class="container">
-        <div class="post-header forums-header">
-            <div class="col-md-6 col-sm-6 support-info">
-                <span>Textes</span>
-            </div>
-            <!-- /.support-info -->
-            <div class="col-md-6 col-sm-6 support-category-menus">
-                <ul class="forum-titles">
-                    <li class="forum-freshness">Dernières soumissions</li>
-                </ul>
-            </div>
-            <!-- /.support-category-menus -->
-        </div>
-        <div class="forum_l_inner">
-            <div class="forum_body">
-                <ul class="navbar-nav topic_list infinite-container">
-                    {% if demands.count %}
-                    {% for demand in demands %}
-                    <li class="infinite-item">
-                        <div class="media">
-                            <div class="media-body">
-                                <div class="t_title">
-                                    <a href="article-single.html">
-                                        <h4>
-                                            {{demand.title}}
-                                            {% if demand.verified %}
-                                            <ion-icon name="checkmark-circle" role="img" class="md hydrated"
-                                                      aria-label="checkmark circle"></ion-icon>
-                                            {% endif %}
-                                        </h4>
-                                    </a>
-                                    <p>{{demand.content|safe|truncatechars:80}}</p>
+    <div class="container-fluid">
+         {% include 'redico/snippets/messages.html' %}
+        <div class="row">
+            {% include 'redico/snippets/leftside-ad.html' %}
+            <div class="col-sm-8">
+                <div class="forum_l_inner">
+                    <div class="forum_body">
+                        <ul class="navbar-nav topic_list infinite-container">
+                            {#%comment%#}
+                            {#% if is_paginated %#}
+                            {% for demand in demands %}
+                            <li class="infinite-item">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <div class="t_title">
+                                             <a href="{% url 'demands:demand' demand.slug %}">
+                                                <h4>
+                                                    {{demand.title}}
+                                                    {% if demand.verified %}
+                                                    <ion-icon name="checkmark-circle" role="img" class="md hydrated"
+                                                              aria-label="checkmark circle"></ion-icon>
+                                                    {% endif %}
+                                                </h4>
+                                            </a>
+                                            {% spaceless %}
+                                            <p>{{demand.last_revision_content|safe|truncatechars:80}}</p>
+                                            {% endspaceless %}
+                                        </div>
+                                        <a href="#">
+                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>
+                                                {{demand.categoryName}}
+                                            </h6>
+                                        </a>
+                                        <h6><i class="icon_clock_alt"></i> {{ demand.timestamp|timesince }}
+                                        </h6>
+                                        {% if not demand.verified %}
+                                        <a href="{% url 'demands:demand' demand.slug %}" class="doc_border_btn btn_small">Modifier le texte</a>
+                                        {% endif %}
+                                        <a href="{% url 'demands:demand' demand.slug %}" class="doc_border_btn btn_small">Accéder aux révisions</a>
+                                    </div>
+                                    <div class="media-right">
+                                        <a class="count" href="#">
+                                            <ion-icon name="create-outline"></ion-icon>
+                                            {{ demand.revision_count }}</a>
+                                        <a class="count" href="#"><ion-icon name="eye-outline"></ion-icon>{{ demand.pageviews.count }}</a>
+                                    </div>
                                 </div>
-                                <a href="#">
-                                    <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i> {{demand.categoryName}}
-                                    </h6>
-                                </a>
-                                <h6><i class="icon_clock_alt"></i> {{ demand.timestamp|timesince }}
-                                </h6>
-                                <a href="{% url 'demands:demand' demand.slug %}" class="doc_border_btn btn_small">Modifier
-                                    le texte</a>
-                                <a href="{% url 'demands:demand' demand.slug %}" class="doc_border_btn btn_small">Accéder
-                                    aux révisions</a>
-                            </div>
-                            <div class="media-right">
-                                <a class="count" href="#">
-                                    <ion-icon name="create-outline"></ion-icon>
-                                    {{ demand.revision_count }}</a>
-                                <!--a class="count" href="#"><ion-icon name="eye-outline"></ion-icon> 420</a-->
-                            </div>
-                        </div>
-                    </li>
-                    {% endfor %}
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-        <div class="doc_title text-center mt-40">
-            <!a href="index.html" class="action_btn box_shadow_none wow fadeInUp" data-wow-delay="0.2s">Voir plus</a-->
-            {% if demands.has_next %}
-            <a id="feed" href="{% url 'demands:home_demands_feed' %}?page={{ demands.next_page_number }}"
-               class="action_btn box_shadow_none wow fadeInUp infinite-more-link"
-               data-wow-delay="0.2s">Voir&nbsp;plus</a>
-            {% endif %}
-            <div class="loading" style="display: none;">
-                Encore...
-            </div>
-        </div>
+                            </li>
+                            {% endfor %}
+                            {#% endif %#}
+                            {#%endcomment%#}
+                        </ul>
+                    </div>
+                </div>
+                <!--div class="d-flex d-none position-fixed" style="top:55vh;left:46vw">
+                    <button class="btn btn-primary loading">
+                        <span class="spinner-border spinner-border-sm"></span>
+                        Attendez SVP…
+                    </button>
+                </div-->
+                <div class="doc_title text-center mt-40">
 
+                    {% if is_paginated and page_obj.has_next %}
+                    <a id="feed" href="{% url 'home:home' %}?page={{ page_obj.next_page_number }}"
+                       class="action_btn box_shadow_none wow fadeInUp infinite-more-link">Voir&nbsp;plus</a>
+                    {% endif %}
+                </div>
+            </div>
+             {% include 'redico/snippets/rightside-ad.html' %}
+        </div>
     </div>
 </section>
