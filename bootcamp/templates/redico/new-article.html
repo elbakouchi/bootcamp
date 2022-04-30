@@ -108,8 +108,12 @@
         }));
         $('#id_category').niceSelect();
         $('#id_service').niceSelect();
-
      });
+       $(".action_btn").click(function () {
+            $("input[name='status']").val("D");
+            $("input[name='verified']").val(0);
+            $("#demand_form").submit();
+          });
       ClassicEditor
             .create( document.querySelector( '#id_content' )).then( editor => {
             editor.model.document.on( 'change:data', () => {
@@ -123,8 +127,8 @@
 				let word = text.split(" ");
 				result.textContent = word.length + "/" +limit;
 				if(word.length > limit){
-					myText.style.borderColor = "#ff2851"
-					result.style.color = "#ff2851"
+					myText.style.borderColor = "#ff2851";
+					result.style.color = "#ff2851";
 				}
 				else if(word.length < limit){
 					myText.style.borderColor = "white";
@@ -156,14 +160,6 @@
                 result.style.color = "#202020";
             }
         });
-
-        $(".action_btn").click(function () {
-            $("input[name='status']").val("D");
-            $("input[name='verified']").val(0);
-            $("#demand_form").submit();
-          });
-
-
 </script>
 
 {% endblock  %}

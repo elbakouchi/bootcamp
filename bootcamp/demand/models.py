@@ -170,9 +170,9 @@ class Demand(models.Model):
         if not self.keywords:
             # doc = nlp(strip_tags(self.content))
             tags = [token.lemma_ for token in doc if token.pos_ in ["NOUN"]]
-            if self.tags:
+            try:
                 self.keywords = f"{self.tags},{','.join(tags)}"
-            else:
+            except:
                 self.keywords = ','.join(tags)
         super().save(*args, **kwargs)
 
