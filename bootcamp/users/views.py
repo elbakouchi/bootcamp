@@ -104,6 +104,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = 'redico/profile.html'
     fields = [
         "first_name",
         "last_name",
