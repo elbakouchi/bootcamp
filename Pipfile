@@ -39,6 +39,6 @@ nltk = "*"
 phonenumberslite = "*"
 Whoosh = "*"
 django-phonenumber-field = {extras = ["phonenumberslite"],version = "*"}
-
+spacy = "*"
 [requires]
 python_version = "3.6"
