@@ -145,7 +145,7 @@ class DemandAutocomplete2(autocomplete.Select2QuerySetView):
 
 class SearchDemands(ListView):
     model = Demand
-    paginate_by = 1
+    paginate_by = 5
     context_object_name = "demands"
 
     template_name = 'demand/demand_list.html'
@@ -154,7 +154,7 @@ class SearchDemands(ListView):
         q = self.request.GET.get('q', None)
         print(q)
         if q:
-            qs = Demand.objects.get_published().filter(tokens__icontains=q)
+            qs = Demand.objects.search(q)
             print(qs.count())
             return qs
-        return Demand.objects.none()
+        return Demand.objects.homepage()

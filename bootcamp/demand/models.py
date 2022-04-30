@@ -35,6 +35,17 @@ class DemandQuerySet(models.query.QuerySet):
             service_name=models.F('service__name'),
             revision_count=models.Count('revision__id', None)).order_by("-pk", "-timestamp")
 
+    def search(self, q):
+        from bootcamp.articles.models import Article
+        latest_revision = models.Subquery(Article.objects.filter(
+            demand_id=models.OuterRef("id"),
+        ).order_by("-timestamp").values('content')[:1])
+        return self.filter(status="P", tokens__icontains=q).distinct().annotate(
+            categoryName=models.F('category__name'),
+            last_revision_content=latest_revision,
+            service_name=models.F('service__name'),
+            revision_count=models.Count('revision__id', None)).order_by("-pk", "-timestamp")
+
     def get_category(self):
         return self.filter(verified=True).order_by('-updatedAt', '-createdAt').annotate(
             client_firstname=models.F('user__first_name'),

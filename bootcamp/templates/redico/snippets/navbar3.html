@@ -6,14 +6,16 @@
                 <img class="first_logo sticky_logo main_logo" src="{% static 'img/logo-2x.png' %}"
                      srcset="{% static 'img/logo-2x.png' %} 2x" alt="logo">
             </a>
-            {% comment %}
+            {#% comment %#}
             {% if not is_homepage %}
             <div class="search-input visible">
+                <form action="{% url 'search:search' %}"  enctype="application/x-www-form-urlencoded">
                 <ion-icon class="search-icon md hydrated" name="search-outline" role="img" aria-label="search outline"></ion-icon>
-                <input type="text" placeholder="Recherche..." value="" class="">
+                <input type="text" placeholder="Recherche..." value="{{request.GET.q}}" name="q">
+                </form>
             </div>
             {% endif %}
-            {% endcomment %}
+            {#% endcomment %#}
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -31,9 +33,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav menu ml-auto">
+                    {% if is_homepage %}
                     <li class="nav-item dropdown submenu active">
                         <a href="{% url 'home:home' %}" class="nav-link dropdown-toggle">Home</a>
                     </li>
+                     {% endif %}
                     <li class="nav-item">
                         <a href="{% url 'demands:unfulfilled' %}" class="nav-link dropdown-toggle">Textes en attente de correction</a>
                     </li>

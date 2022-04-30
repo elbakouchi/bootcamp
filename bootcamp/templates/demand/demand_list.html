@@ -13,8 +13,9 @@
   </style>
 {% endblock css%}
 {% block content %}
-{#% include 'redico/snippets/jumbotron.html' %#}
+{% include 'redico/snippets/banner.html' with heading=request.GET.q %}
 {#% include 'redico/snippets/messages.html' %#}
+<br><br><br>
 {% include 'redico/snippets/demands_list_2.html' with demands=demands %}
 {% endblock content %}
 {% block javascript%}
