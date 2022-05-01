@@ -9,7 +9,7 @@
 {% block seo %}
 <meta name="keywords" content="{{demand.keywords}}"/>
 <meta name="title" content="Redico — {{demand.title}}— Plateforme d'aide à la rédaction">
-<meta name="description" content="{{demand.content|safe|truncatechars:40}}">
+<meta name="description" content="{{demand.content|striptags|safe|truncatechars:40}}">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
