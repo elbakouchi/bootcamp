@@ -1,8 +1,26 @@
 {% extends 'redico/redico_base.html' %}
 {% load static %}
 
-{% block title%}  Redico -  {{object.name}} {% endblock title%}
+{% block title%}  Redico — Textes en attente de correction {% endblock title%}
+{% block seo %}
+<meta name="title" content="Redico — Textes en attente de correction">
+<meta name="keywords" content="plateforme,aide,rédaction,francophone,français,langue française"/>
+<meta name="description" content="Redico est une plateforme d’aide à la rédaction qui s’adresse à la population francophone.">
 
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://redico.wiki/">
+<meta property="og:title" content="Redico — Plateforme d'aide à la rédaction">
+<meta property="og:description" content="RediCo est une plateforme d’aide à la rédaction qui s’adresse à la population francophone.">
+<meta property="og:image" content="https://redico.wiki/media/redico.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://redico.wiki/">
+<meta property="twitter:title" content="Redico — Plateforme d'aide à la rédaction">
+<meta property="twitter:description" content="RediCo est une plateforme d’aide à la rédaction qui s’adresse à la population francophone.">
+<meta property="twitter:image" content="https://redico.wiki/media/redico.png">
+{% endblock %}
 {% block content %}
 {% include 'redico/snippets/banner.html' with heading="Textes en attente de correction" %}
 {#% include 'redico/snippets/categories-breadcumb.html' with categoryName=object.name %#}

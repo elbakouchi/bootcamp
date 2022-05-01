@@ -6,6 +6,25 @@
 {#{block.super}#}
 <!--link rel="stylesheet" href="https://ckeditor.com/docs/ckeditor5/latest/snippets/features/read-only-build/snippet.css"/-->
 {#% endblock css %#}
+{% block seo %}
+<meta name="keywords" content="{{demand.keywords}}"/>
+<meta name="title" content="Redico — {{demand.title}}— Plateforme d'aide à la rédaction">
+<meta name="description" content="{{demand.content|safe|truncatechars:40}}">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://redico.wiki/">
+<meta property="og:title" content="Redico — Demande TITLE — Plateforme d'aide à la rédaction">
+<meta property="og:description" content="RediCo est une plateforme d’aide à la rédaction qui s’adresse à la population francophone.">
+<meta property="og:image" content="https://redico.wiki/media/redico.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://redico.wiki/">
+<meta property="twitter:title" content="Redico — {{demand.title}} — Plateforme d'aide à la rédaction">
+<meta property="twitter:description" content="RediCo est une plateforme d’aide à la rédaction qui s’adresse à la population francophone.">
+<meta property="twitter:image" content="https://redico.wiki/media/redico.png">
+{% endblock %}
 {% block content %}
 {#% include 'redico/snippets/banner.html' with heading=demand.title %#}
 {% include 'redico/snippets/categories-breadcumb.html' with categoryName=demand.category_name %}

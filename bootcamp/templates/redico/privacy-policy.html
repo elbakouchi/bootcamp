@@ -1,4 +1,23 @@
 {% extends 'redico/redico_base.html' %}
+{% block seo %}
+<meta name="keywords" content=""/>
+<meta name="title" content="Redico — {{flatpage.title}} — Plateforme d'aide à la rédaction">
+<meta name="description" content="RediCo est une plateforme d’aide à la rédaction qui s’adresse à la population francophone.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://redico.wiki/">
+<meta property="og:title" content="Redico — {{flatpage.title}} — Plateforme d'aide à la rédaction">
+<meta property="og:description" content="RediCo est une plateforme d’aide à la rédaction qui s’adresse à la population francophone.">
+<meta property="og:image" content="https://redico.wiki/media/redico.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://redico.wiki/">
+<meta property="twitter:title" content="Redico — {{demand.title}} — Plateforme d'aide à la rédaction">
+<meta property="twitter:description" content="RediCo est une plateforme d’aide à la rédaction qui s’adresse à la population francophone.">
+<meta property="twitter:image" content="https://redico.wiki/media/redico.png">
+{% endblock %}
 {% load static %}
 
 {% block title%}  Redico -  {{ flatpage.title }} {% endblock title%}
