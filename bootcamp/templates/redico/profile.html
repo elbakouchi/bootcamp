@@ -24,9 +24,9 @@
                 <div class="author_option">
                     <div class="author_img">
                         {% if user.picture %}
-                            {% thumbnail user.picture "x250" as im %}
-                                <img src="{{ im.url }}" alt="Picture Profile" id="pic" class="img-fluid"/>
-                            {% endthumbnail %}
+                            {#% thumbnail user.picture "x250" as im %#}
+                                <img src="{{MEDIA_URL}}{{ user.picture }}" width="250" alt="Picture Profile" id="pic" class="img-fluid"/>
+                            {#% endthumbnail %#}
                         {%else%}
                             <img class="img-fluid" src="{% static 'img/forum/author-1.jpg' %}" alt="">
                         {%endif%}
