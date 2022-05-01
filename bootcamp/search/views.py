@@ -152,9 +152,9 @@ class SearchDemands(ListView):
 
     def get_queryset(self):
         q = self.request.GET.get('q', None)
-        print(q)
+        # print(q)
         if q:
             qs = Demand.objects.search(q)
-            print(qs.count())
+            # print(qs.count())
             return qs
         return Demand.objects.homepage()
