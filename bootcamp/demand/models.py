@@ -35,6 +35,20 @@ class DemandQuerySet(models.query.QuerySet):
             service_name=models.F('service__name'),
             revision_count=models.Count('revision__id', None)).order_by("-pk", "-timestamp")
 
+    def profile(self, user_pk, order_by):
+        if order_by == 'oldest':
+            return self.filter(user=user_pk).order_by('pk', 'timestamp').annotate(
+                service_name=models.F('service__name'),
+                revision_count=models.Count('revision__id', None))
+        elif order_by == 'newest':
+            return self.filter(user=user_pk).order_by('-pk', '-timestamp').annotate(
+                service_name=models.F('service__name'),
+                revision_count=models.Count('revision__id', None))
+        else:
+            return self.filter(user=user_pk).order_by('pk', 'timestamp').annotate(
+                service_name=models.F('service__name'),
+                revision_count=models.Count('revision__id', None))
+
     def search(self, q):
         from bootcamp.articles.models import Article
         latest_revision = models.Subquery(Article.objects.filter(

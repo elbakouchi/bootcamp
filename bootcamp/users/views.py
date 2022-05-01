@@ -51,9 +51,10 @@ class UserDetailView(LoginRequiredMixin, ModelFormMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(UserDetailView, self).get_context_data()
-        demands = Demand.objects.filter(user=self.object.pk).order_by('pk', 'timestamp').annotate(
-            service_name=F('service__name'),
-            revision_count=Count('revision__id', None))
+        try:
+            demands = Demand.objects.profile(self.request.user.pk, self.request.GET.o)
+        except:
+            demands = Demand.objects.profile(self.request.user.pk, '')
         context["demands_count"] = demands.count()
 
         page = self.request.GET.get("page", 1)
@@ -65,7 +66,8 @@ class UserDetailView(LoginRequiredMixin, ModelFormMixin, DetailView):
             paginated_demands = paginator.page(1)
         except EmptyPage:
             paginated_demands = paginator.page(paginator.num_pages)
-
+        context["demands"] = paginated_demands
+        '''
         revisions = Article.objects.filter(user=self.object.pk).order_by('pk', 'timestamp')
         context["revisions_count"] = revisions.count()
         paginator2 = Paginator(revisions, 5)
@@ -78,8 +80,8 @@ class UserDetailView(LoginRequiredMixin, ModelFormMixin, DetailView):
             paginated_revisions = paginator2.page(paginator2.num_pages)
 
         context["revisions"] = paginated_revisions
-        context["demands"] = paginated_demands
-        '''
+        
+       
         combined = chain(demands, revisions)
         paginator3 = Paginator(combined, 5)
 
@@ -135,11 +137,11 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(UserUpdateView, self).get_context_data()
-        demands = Demand.objects.filter(user=self.object.pk).order_by('pk', 'timestamp').annotate(
-            service_name=F('service__name'),
-            revision_count=Count('revision__id', None))
+        try:
+            demands = Demand.objects.profile(self.request.user.pk, self.request.GET.o)
+        except:
+            demands = Demand.objects.profile(self.request.user.pk, '')
         context["demands_count"] = demands.count()
-
         page = self.request.GET.get("page", 1)
         paginator = Paginator(demands, 5)
 
@@ -149,7 +151,8 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
             paginated_demands = paginator.page(1)
         except EmptyPage:
             paginated_demands = paginator.page(paginator.num_pages)
-
+        context["demands"] = paginated_demands
+        '''
         revisions = Article.objects.filter(user=self.object.pk).order_by('pk', 'timestamp')
         context["revisions_count"] = revisions.count()
         paginator2 = Paginator(revisions, 5)
@@ -162,8 +165,8 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
             paginated_revisions = paginator2.page(paginator2.num_pages)
 
         context["revisions"] = paginated_revisions
-        context["demands"] = paginated_demands
-        '''
+        
+       
         combined = chain(demands, revisions)
         paginator3 = Paginator(combined, 5)
 

@@ -173,16 +173,21 @@
                                                     </button>
                                                     <div class="dropdown-menu short-by"
                                                          aria-labelledby="dropdownMenuButton5">
-                                                        <a class="dropdown-item active-short"
-                                                           href="#0">Oldest</a>
-                                                        <a class="dropdown-item" href="#0">Newest</a>
+                                                         <a class="dropdown-item active-short"
+                                                           href="{% url 'users:detail' user.username %}?o=oldest">Oldest</a>
+                                                        <a class="dropdown-item" href="{% url 'users:detail' user.username %}?o=newest">Newest</a>
+                                                        {% comment %}
                                                         <a class="dropdown-item" href="#0">First Comments</a>
                                                         <a class="dropdown-item" href="#0">New Comments</a>
+                                                        {% endcomment %}
                                                     </div>
                                                 </div>
                                             </li>
                                         </ul>
+                                        {% comment %}
                                         <div class="page">Page {{ demands.number }} de {{ demands.paginator.num_pages|add:revisions.paginator.num_pages }}</div>
+                                        {% endcomment %}
+                                        <div class="page">Page {{ demands.number }} de {{ demands.paginator.num_pages }}</div>
                                     </div>
                                     <div class="forum_body">
                                         <ul class="navbar-nav topic_list">
@@ -212,16 +217,17 @@
                                                 </div>
                                             </li>
                                             {% endfor %}
+                                            {% comment%}
                                              {% for text in revisions %}
                                             <li {% if text.verified %}class="check"{% endif %}>
                                                 <div class="media">
                                                     <div class="media-body">
                                                         <div class="t_title">
-                                                            <a href="article-single.html">
+                                                            <a href="{% url 'demands:demand' text.slug %}">
                                                                 <h4>{{text.title}}</h4>
                                                             </a>
                                                         </div>
-                                                        <a href="Categories.html">
+                                                        <a href="#">
                                                             <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>
                                                                 {{text.service}} </h6>
                                                         </a>
@@ -231,12 +237,16 @@
                                                 </div>
                                             </li>
                                             {% endfor %}
+                                            {%endcomment%}
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="list_pagination d-flex justify-content-between">
                                     <div class="left">
+                                        {% comment %}
                                         <p>{{ demands.paginator.num_pages|add:revisions.paginator.num_pages }} total</p>
+                                        {% endcomment %}
+                                        <p>{{ demands_count}} total</p>
                                     </div>
                                     <div class="right">
                                         <nav aria-label="Page navigation example">
@@ -283,10 +293,12 @@
                                                     <div class="dropdown-menu short-by"
                                                          aria-labelledby="dropdownMenuButton5">
                                                         <a class="dropdown-item active-short"
-                                                           href="#0">Oldest</a>
-                                                        <a class="dropdown-item" href="#0">Newest</a>
+                                                           href="{% url 'users:detail' user.username %}?o=oldest">Oldest</a>
+                                                        <a class="dropdown-item" href="{% url 'users:detail' user.username %}?o=newest">Newest</a>
+                                                        {% comment %}
                                                         <a class="dropdown-item" href="#0">First Comments</a>
                                                         <a class="dropdown-item" href="#0">New Comments</a>
+                                                        {% endcomment %}
                                                     </div>
                                                 </div>
                                             </li>
