@@ -192,11 +192,11 @@
 
                                                     <div class="media-body">
                                                         <div class="t_title">
-                                                            <a href="article-single.html">
+                                                            <a href="{% url 'demands:demand' text.slug %}">
                                                                 <h4>{{text.title}}</h4>
                                                             </a>
                                                         </div>
-                                                        <a href="Categories.html">
+                                                        <a href="#">
                                                             <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>
                                                                 {{text.service_name}} </h6>
                                                         </a>
