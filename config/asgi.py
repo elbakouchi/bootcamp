@@ -18,6 +18,7 @@ django.setup()
 # application = get_default_application()
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),
+    "https": get_asgi_application(),
     "websocket": AllowedHostsOriginValidator(
             AuthMiddlewareStack(
                 URLRouter(
