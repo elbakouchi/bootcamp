@@ -85,7 +85,7 @@ THIRD_PARTY_APPS = [
     "markdownx",
     "taggit",
     "django_ckeditor_5",
-    # "django_summernote"
+    "versatileimagefield"
 ]
 LOCAL_APPS = [
     "bootcamp.home.apps.HomeConfig",
@@ -261,7 +261,8 @@ SOCIALACCOUNT_ADAPTER = "bootcamp.users.adapters.SocialAccountAdapter"
 # ------------------------------------------------------------------------------
 
 # REDIS setup
-REDIS_URL = f'{env("REDIS_URL", default="redis://127.0.0.1:6379")}/{0}'
+# REDIS_URL = f'{env("REDIS_URL", default="redis://127.0.0.1:6379")}/{0}'
+REDIS_URL='redis://:p3aaea25f8a759f9c626d1b581165fa3d90bca993ff002bcbf04109ea6a359f7d@ec2-3-213-56-26.compute-1.amazonaws.com:19339'
 
 # django-channels setup
 ASGI_APPLICATION = "config.routing.application"
@@ -377,3 +378,23 @@ CKEDITOR_CONFIGS = {
 }
 
 PHONENUMBER_DEFAULT_FORMAT = 'INTERNATIONAL'
+
+
+VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
+    "products": [
+        ("user_gallery", "thumbnail__540x540"),
+        ("user_gallery_2x", "thumbnail__1080x1080"),
+        ("user_small", "thumbnail__60x60"),
+        ("user_small_2x", "thumbnail__120x120"),
+        ("user_list", "thumbnail__255x255"),
+        ("user_list_2x", "thumbnail__510x510"),
+    ],
+    "background_images": [("header_image", "thumbnail__1080x440")],
+    "user_avatars": [("default", "thumbnail__445x445")],
+}
+
+VERSATILEIMAGEFIELD_SETTINGS = {
+    # Images should be pre-generated on Production environment
+    "create_images_on_demand": DEBUG,
+    # 'placeholder_directory_name': 'pl'
+}
