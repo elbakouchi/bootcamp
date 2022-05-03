@@ -46,7 +46,7 @@ class CreateArticleView(LoginRequiredMixin, CreateView):
     """Basic CreateView implementation to create new articles."""
 
     model = Article
-    message = _("Your article has been created.")
+    message = _("Merci! Votre proposition a été sauvegardée.")
     form_class = ArticleForm
     template_name = "articles/article_create.html"
 
@@ -72,7 +72,7 @@ class EditArticleView(LoginRequiredMixin, AuthorRequiredMixin, UpdateView):
     """Basic EditView implementation to edit existing articles."""
 
     model = Article
-    message = _("Your article has been updated.")
+    message = _("Votre proposition a été mise à jour.")
     form_class = ArticleForm
     template_name = "articles/article_update.html"
 
