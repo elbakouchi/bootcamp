@@ -40,5 +40,7 @@ phonenumberslite = "*"
 Whoosh = "*"
 django-phonenumber-field = {extras = ["phonenumberslite"],version = "*"}
 spacy = "*"
+django-versatileimagefield = "*"
+
 [requires]
 python_version = "3.6"
