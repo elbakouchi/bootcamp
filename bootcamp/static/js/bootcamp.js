@@ -30,7 +30,9 @@ $(function () {
             cache: false,
             success: function (data) {
                 if (!data.includes(emptyMessage)) {
-                    $("#notifications").addClass("btn-danger");
+                    $("#notifications").addClass("btn-warning");
+                    var count = (data.match(/<li/g) || []).length;
+                    $(".badge-success").text(count);
                 }
             },
         });
@@ -128,3 +130,13 @@ $(function () {
         };
     });
 });
+
+/*
+
+ document.getElementById('id_content').addEventListener('input', function () {
+        var text = this.value,
+        count = text.trim().replace(/\s+/g, ' ').split(' ').length;
+        document.getElementById('wordCount').setAttribute("aria-valuenow", count);
+
+    });
+*/
