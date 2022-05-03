@@ -261,8 +261,8 @@ SOCIALACCOUNT_ADAPTER = "bootcamp.users.adapters.SocialAccountAdapter"
 # ------------------------------------------------------------------------------
 
 # REDIS setup
-# REDIS_URL = f'{env("REDIS_URL", default="redis://127.0.0.1:6379")}/{0}'
-REDIS_URL='redis://:p3aaea25f8a759f9c626d1b581165fa3d90bca993ff002bcbf04109ea6a359f7d@ec2-3-213-56-26.compute-1.amazonaws.com:19339'
+REDIS_URL = f'{env("REDIS_URL", default="redis://127.0.0.1:6379")}/{0}'
+# REDIS_URL='redis://:p3aaea25f8a759f9c626d1b581165fa3d90bca993ff002bcbf04109ea6a359f7d@ec2-3-213-56-26.compute-1.amazonaws.com:19339'
 
 # django-channels setup
 ASGI_APPLICATION = "config.routing.application"
