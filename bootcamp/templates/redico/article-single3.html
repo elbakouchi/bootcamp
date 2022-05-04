@@ -82,8 +82,8 @@
                                     <div class="forum-post-content">
                                         <div class="content">
                                             <div id="introduction" maxlength="10">
-                                                {% if last_revision %}
-                                                {{last_revision | safe}}
+                                                {% if demand.last_revision_content %}
+                                                {{demand.last_revision_content | safe}}
                                                 {% else %}
                                                 {{ demand.content | safe}}
                                                 {% endif %}
@@ -121,8 +121,8 @@
                                 {% if user.is_authenticated and not demand.verified %}
                                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                         <textarea class="form-control message" name="content" id="editor"
-                                                  placeholder="Composer votre proposition…">{% if last_revision %}
-                                             {{last_revision | safe}}
+                                                  placeholder="Composer votre proposition…">{% if demand.last_revision_content %}
+                                             {{demand.last_revision_content | safe}}
                                             {% else %}
                                              {{ demand.content | safe}}
                                             {% endif %}</textarea>

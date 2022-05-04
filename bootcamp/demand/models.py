@@ -75,7 +75,8 @@ class DemandQuerySet(models.query.QuerySet):
             category_name=models.F('category__name'),
             category_slug=models.F('category__slug'),
             service_name=models.F('service__name'),
-            revision_count=models.Count('revision__id', None)
+            revision_count=models.Count('revision__id', None),
+            last_revision_content=self.get_last_revision(),
         )
 
     def get_published_unverified_demands(self):

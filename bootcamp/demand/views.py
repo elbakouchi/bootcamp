@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 from django.contrib import messages
-
+from django.db.models import OuterRef
 from bootcamp.articles.forms import SuggestedRevisionForm
 from bootcamp.articles.models import Article
 from bootcamp.custom import AjaxListView
@@ -20,9 +20,10 @@ class DetailDemandView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(DetailDemandView, self).get_context_data()
         suggest_form = SuggestedRevisionForm()
-        revisions = Article.objects.filter(demand=self.object.pk).order_by('-timestamp')
-        if revisions.count():
-            context["last_revision"] = revisions.last().content
+        # revisions = Article.objects.filter(demand_id=OuterRef("id"),).order_by("-timestamp")
+        revisions = Article.objects.filter(demand=self.object.pk).order_by('-pk')
+        # if revisions.count():
+        #    context["last_revision"] = revisions.last().content
         context["revisions"] = revisions
         context["suggest_form"] = suggest_form
         return context
