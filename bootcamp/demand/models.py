@@ -23,17 +23,19 @@ except:
 
 class DemandQuerySet(models.query.QuerySet):
     """Personalized queryset created to improve model usability"""
-
-    def homepage(self):
+    @staticmethod
+    def get_last_revision():
         from bootcamp.articles.models import Article
-        latest_revision = models.Subquery(Article.objects.filter(
+        return models.Subquery(Article.objects.filter(
             demand_id=models.OuterRef("id"),
         ).order_by("-timestamp").values('content')[:1])
+
+    def homepage(self):
         return self.filter(verified=True).distinct().annotate(
             categoryName=models.F('category__name'),
-            last_revision_content=latest_revision,
+            last_revision_content=self.get_last_revision(),
             service_name=models.F('service__name'),
-            revision_count=models.Count('revision__id', None)).order_by("-pk", "-timestamp")
+            revision_count=models.Count('revision__id', None)).order_by("-timestamp")
 
     def profile(self, user_pk, order_by):
         if order_by == 'oldest':
@@ -50,13 +52,9 @@ class DemandQuerySet(models.query.QuerySet):
                 revision_count=models.Count('revision__id', None))
 
     def search(self, q):
-        from bootcamp.articles.models import Article
-        latest_revision = models.Subquery(Article.objects.filter(
-            demand_id=models.OuterRef("id"),
-        ).order_by("-timestamp").values('content')[:1])
         return self.filter(status="P", tokens__icontains=q).distinct().annotate(
             categoryName=models.F('category__name'),
-            last_revision_content=latest_revision,
+            last_revision_content=self.get_last_revision(),
             service_name=models.F('service__name'),
             revision_count=models.Count('revision__id', None)).order_by("-pk", "-timestamp")
 
@@ -81,14 +79,15 @@ class DemandQuerySet(models.query.QuerySet):
         )
 
     def get_published_unverified_demands(self):
-        return self.filter(status="P", verified=False).distinct().order_by('-updatedAt', '-createdAt').annotate(
+        return self.filter(status="P", verified=False).distinct().order_by('-timestamp').annotate(
             client_firstname=models.F('user__first_name'),
             client_lastname=models.F('user__last_name'),
             category_name=models.F('category__name'),
             category_slug=models.F('category__slug'),
+            last_revision_content=self.get_last_revision(),
             service_name=models.F('service__name'),
             revision_count=models.Count('revision__id', None)
-        )
+        )  # .filter(revision_count=0)
 
     def get_without_revisions(self):
         # return self.get_category().filter(has_revision=False)
