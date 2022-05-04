@@ -45,7 +45,11 @@
                                                     {% endif %}
                                                 </h4>
                                             </a>
+                                            {% if demand.last_revision_content %}
+                                             <p>{{demand.last_revision_content|safe|truncatechars:80}}</p>
+                                            {%else%}
                                              <p>{{demand.content|safe|truncatechars:80}}</p>
+                                            {%endif%}
                                         </div>
                                         <a href="#">
                                             <h6><i aria-hidden="true" class="icon_lightbulb_alt"></i>&nbsp;{{demand.service_name}}
