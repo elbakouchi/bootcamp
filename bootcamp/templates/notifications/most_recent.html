@@ -12,9 +12,9 @@
         <p><small>{{ notification.timestamp }}</small></p>
       </li>
     {% endfor %}
-    <a type="button" class="btn btn-light text-center float-left" href="{% url 'notifications:unread' %}">{% trans 'See all' %}</a>
-    <a type="button" class="btn btn-light text-center float-right" href="{% url 'notifications:mark_all_read' %}">{% trans 'Mark all as read' %}</a>
+    <a type="button" class="btn btn-light text-center float-left" href="{% url 'notifications:unread' %}">{% trans 'Tout voir' %}</a>
+    <a type="button" class="btn btn-light text-center float-right" href="{% url 'notifications:mark_all_read' %}">{% trans 'Marquer en tant que lues' %}</a>
   {% else %}
-    <li class="text-center" data-empty="true">{% trans 'You have no unread notification' %}</li>
+    <li class="text-center" data-empty="true">{% trans 'Aucune notification non lue trouvé' %}</li>
   {% endif %}
 </ul>
