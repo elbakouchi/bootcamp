@@ -38,7 +38,11 @@
                                                 </h4>
                                             </a>
                                             {% spaceless %}
+                                            {% if demand.last_revision_content %}
                                             <p>{{demand.last_revision_content|safe|truncatechars:80}}</p>
+                                            {%else%}
+                                             <p>{{demand.content|safe|truncatechars:80}}</p>
+                                            {%endif%}
                                             {% endspaceless %}
                                         </div>
                                         <a href="#">
