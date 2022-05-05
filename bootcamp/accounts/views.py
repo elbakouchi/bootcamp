@@ -4,7 +4,17 @@ from django.shortcuts import redirect
 from bootcamp.articles.models import Article
 from bootcamp.demand.models import Demand
 from bootcamp.users.views import UserUpdateView, UserDetailView
-from allauth.account.forms import UserForm
+from allauth.account.forms import UserForm, SignupForm
+from django.forms.fields import BooleanField
+from allauth.account.views import SignupView
+
+
+class CustomSignupForm(SignupForm):
+    terms = BooleanField()
+
+
+class CustomSignupView(SignupView):
+    form_class = CustomSignupForm
 
 
 class ProfileView(UserDetailView):
