@@ -11,7 +11,7 @@
             <div class="search-input visible">
                 <form action="{% url 'search:search' %}"  enctype="application/x-www-form-urlencoded">
                 <ion-icon class="search-icon md hydrated" name="search-outline" role="img" aria-label="search outline"></ion-icon>
-                <input type="text" placeholder="Recherche..." value="{{request.GET.q}}" name="q">
+                <input type="text" placeholder="Recherche..." value="{{request.GET.q}}" size="20" name="q">
                 </form>
             </div>
             {% endif %}
@@ -44,16 +44,16 @@
                 </ul>
                 <div class="right-nav">
                     {% if request.user.is_authenticated %}
-                    <a href="{% url 'demands:write_new' %}" target="_blank" class="nav_btn tp_btn">Ajouter un
+                    <a href="{% url 'demands:write_new' %}" target="_blank" class="action_btn btn_small">Ajouter un
                         article</a>
                     {% endif %}
                     {% if not user.is_authenticated %}
-                    <a href="{% url 'account_login' %}?next={% url 'demands:write_new' %}"  class="nav_btn tp_btn">Ajouter un article</a>
+                    <a href="{% url 'account_login' %}?next={% url 'demands:write_new' %}"  class="action_btn btn_small">Ajouter un article</a>
                     {% endif %}
                     {% if not request.user.is_authenticated %}
-                    <a href="{% url 'account_login' %}" class="px-2"><i class="icon_profile"></i> Se connecter</a>
+                    <a href="{% url 'account_login' %}" class="action_btn btn_small"><i class="icon_profile"></i>Se connecter</a>
                     {% else %}
-                    <a href="{% url 'account_logout' %}" class="px-2"><i class="icon_profile"></i> Se déconnecter</a>
+                    <a href="{% url 'account_logout' %}" class="px-2"><i class="icon_profile"></i>Se déconnecter</a>
                     {% endif %}
                 </div>
                 {% if request.user.is_authenticated %}

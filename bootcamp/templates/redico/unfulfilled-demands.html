@@ -28,7 +28,8 @@
     <div class="container">
         {% include 'redico/snippets/messages.html' %}
         <div class="row">
-            <div class="col-lg-9">
+            {% include 'redico/snippets/leftside-ad.html' %}
+            <div class="col-lg-8">
                 <div class="forum_l_inner">
                     <div class="forum_body">
                         <ul class="navbar-nav topic_list infinite-container">
@@ -118,7 +119,7 @@
                 </div>
                 <!-- /.community-posts-wrapper -->
             </div>
-            <!-- /.col-lg-9 -->
+            {% include 'redico/snippets/rightside-ad.html' %}
         </div>
     </div>
 </section>

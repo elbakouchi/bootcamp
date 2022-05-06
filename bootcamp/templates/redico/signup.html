@@ -45,7 +45,7 @@
                               <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                             {% endif %}
                             <div class="col-sm-12 form-group">
-                                <div class="small_text">Username</div>
+                                <!--div class="small_text">Username</div-->
                                 {{form.username}}
                                  <ul class="error">
                                     {% for error in form.username.errors %}
@@ -59,7 +59,7 @@
                                 <input type="text" class="form-control" name="lname" id="lname" placeholder="Jewel">
                             </div-->
                             <div class="col-lg-12 form-group">
-                                <div class="small_text">Email</div>
+                                <!--div class="small_text">Email</div-->
                                 <!--input type="email" class="form-control" id="email" placeholder="info@Redico.com"-->
                                 {{form.email}}
                                  <ul class="error">
@@ -69,7 +69,7 @@
                                 </ul>
                             </div>
                             <div class="col-lg-12 form-group">
-                                <div class="small_text">Mot de passe</div>
+                                <!--div class="small_text">Mot de passe</div-->
                                 {{form.password1}}
                                  <ul class="error">
                                     {% for error in form.password1.errors %}
@@ -79,7 +79,7 @@
                                 <!--input id="signup-password" name="signup-password" type="password" class="form-control" placeholder="5+ characters required" autocomplete="off"-->
                             </div>
                             <div class="col-lg-12 form-group">
-                                <div class="small_text">Confirmez le mot de passe</div>
+                                <!--div class="small_text">Confirmez le mot de passe</div-->
                                 <!--input id="confirm-password" name="confirm-password" type="password" class="form-control" placeholder="5+ characters required" autocomplete="off"-->
                                 {{form.password2}}
                                  <ul class="error">
@@ -91,7 +91,8 @@
                             <div class="col-lg-12 form-group">
                                 <div class="check_box">
                                     {{form.terms}}
-                                    <label class="l_text" for="squared2">J'accepte <a href="/conditionsgenerales/" target="_blank"> les conditions d’utilisation</a></label>
+                                    <!--label class="l_text" for="squared2">J'accepte <a href="/conditionsgenerales/" target="_blank"> les conditions d’utilisation</a></label-->
+                                    <label class="l_text" for="squared2">J'accepte <a href="#" data-toggle="modal" data-target="#conditions"> les conditions d’utilisation</a></label>
 
                                      <ul class="error">
                                         {% for error in form.terms.errors %}
@@ -108,7 +109,35 @@
                 </div>
             </div>
         </section>
+
     </div>
+  <div class="modal fade" id="conditions" tabindex="-1" role="dialog" aria-labelledby="conditionsTitle" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="conditionsTitle">Conditions d’utilisation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Avant l’utilisation de RediCo, vous êtes tenu de prendre connaissance des règles et conditions ci-après :</p>
+
+             <ul>
+                <li>
+                    En soumettant vos textes à RediCo afin de bénéficier de nos services de rédaction, correction ou reformulation, vous acceptez que vos textes soumis soient affichés sur le site de RediCo et que tout autre utilisateur ou visiteur de RediCo puisse y accéder pour les lire.
+             </li>
+             <li> Afin de protéger vos données confidentielles et privées, vous êtes tenus de procéder à la vérification du contenu de vos textes avant leur soumission à RediCo, afin de supprimer toutes informations à caractère personnel ou pouvant toucher à votre vie privée ou à celle d’un tiers, qui peuvent être affichées dans votre texte (par ex : votre signature dans un courrier professionnel, le nom de votre employeur dans une lettre de démission…Etc).</li>
+
+             <li>Dans le but d’assurer et de maintenir un environnement respectueux pour tous, il est interdit à tout utilisateur de soumettre un texte ou de proposer une correction contenant des propos indécents ou racistes ou d’afficher tout manque de respect de quelque manière que ce soit, vis-à-vis des propriétaires, utilisateurs et visiteurs de RediCo.</li>
+            </ul>
+
+      </div>
+   
+    </div>
+  </div>
+</div>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

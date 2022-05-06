@@ -32,7 +32,8 @@
     <div class="container">
          {% include 'redico/snippets/messages.html' %}
         <div class="row">
-            <div class="col-lg-9">
+            {% include 'redico/snippets/leftside-ad.html' %}
+            <div class="col-lg-8">
                 <!-- Forum post top area -->
                 <div class="row">
                     <div class="col-lg-12">
@@ -144,6 +145,7 @@
                     </div>
                 </div>
             </div>
+            {% include 'redico/snippets/rightside-ad.html' %}
         </div>
     </div>
 </section>

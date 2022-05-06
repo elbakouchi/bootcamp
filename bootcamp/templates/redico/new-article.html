@@ -9,7 +9,8 @@
     <div class="container">
         {% include 'redico/snippets/messages.html' %}
         <div class="row">
-            <div class="col-lg-9">
+             {% include 'redico/snippets/leftside-ad.html' %}
+            <div class="col-lg-8">
                 <form method="post" action="{% url 'demands:write_new' %}" id="demand_form" class="contact_form">
                     {% csrf_token %}
                     <div class="row contact_fill">
@@ -78,13 +79,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-lg-3">
-                <div class="forum_sidebar">
-                    <div class="widget ads">
-                        <img src="{% static 'img/ads.png' %}" class="rounded mx-auto d-block img-fluid" alt="...">
-                    </div>
-                </div>
-            </div>
+             {% include 'redico/snippets/rightside-ad.html' %}
         </div>
     </div>
 </section>
