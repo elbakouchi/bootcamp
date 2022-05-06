@@ -29,7 +29,7 @@
         {% include 'redico/snippets/messages.html' %}
         <div class="row">
             {% include 'redico/snippets/leftside-ad.html' %}
-            <div class="col-lg-8">
+            <div class="col-lg-7">
                 <div class="forum_l_inner">
                     <div class="forum_body">
                         <ul class="navbar-nav topic_list infinite-container">
@@ -48,9 +48,9 @@
                                             </a>
                                             {% spaceless %}
                                             {% if demand.last_revision_content %}
-                                             <p>{{demand.last_revision_content|safe|truncatechars:80}}</p>
+                                             <p>{{demand.last_revision_content|striptags|truncatechars:80}}</p>
                                             {%else%}
-                                             <p>{{demand.content|safe|truncatechars:80}}</p>
+                                             <p>{{demand.content|striptags|truncatechars:80}}</p>
                                             {%endif%}
                                              {% endspaceless %}
                                         </div>
@@ -80,51 +80,22 @@
                             {% endfor %}
                         </ul>
                     </div>
-
                 </div>
-
                 <div class="row pagination_inner">
-                    <div class="col-lg-2">
-                        <!--h6>Total: <span> {#{ page_obj.paginator.count }#} </span></h6-->
-                    </div>
-                    <!--div class="col-lg-8">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-center">
-                                {#% if page_obj.has_previous %#}
-                                <li class="page-item"><a class="page-link"
-                                                         href="{#% url 'categories:demands' %#}?page={#{page_obj.previous_page_number}#}">Précédent</a>
-                                </li>
-                                {#% endif %#}
-
-                                <li class="page-item active"><a class="page-link" href="#">{#{ page_obj.number }#}</a>
-                                </li>
-                                {#% if page_obj.has_next %#}
-                                <li class="page-item"><a class="page-link"
-                                                         href="{#% url 'demands:demands_feed' %#}?page={#{page_obj.next_page_number}#}">Suivant<i
-                                        class="arrow_carrot-right"></i></a></li>
-                                {#% endif %#}
-                            </ul>
-                        </nav>
-                    </div-->
                     <div class="doc_title text-center mt-40">
                         {% if page_obj.has_next %}
                         <a class="action_btn box_shadow_none wow fadeInUp infinite-more-link" data-wow-delay="0.2s"
                            href="{% url 'demands:demands_feed' %}?page={{ page_obj.next_page_number }}" id="feed">Voir&nbsp;plus</a>
                         {% endif %}
-                        <div class="loading" style="display: none;">
-                            Encore...
-                        </div>
-
                     </div>
                 </div>
-                <!-- /.community-posts-wrapper -->
             </div>
-            {% include 'redico/snippets/rightside-ad.html' %}
         </div>
     </div>
+    {% include 'redico/snippets/rightside-ad.html' %}
 </section>
 
-{% include 'redico/snippets/joinus.html' %}
+{#% include 'redico/snippets/joinus.html' %#}
 {% endblock content %}
 
 {% block javascript%}
