@@ -237,11 +237,13 @@ EMAIL_BACKEND = env(
 # Django Admin URL regex.
 ADMIN_URL = r"^admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
-# ADMINS = [
-#     ("""Vitor Freitas""", 'vitor-freitas@example.com'),
-# ]
+ADMINS = [
+     ("Youssef Kostali", 'y.kostali@gmail.com'),
+     ("Mohamed Hamza EL BAKOUCHI", 'hamza.baqoushi@gmail.com'),
+     ("Khadija Gartoute", "k.gartoute@gmail.com")
+ ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
-# MANAGERS = ADMINS
+MANAGERS = ADMINS
 
 
 # django-allauth
