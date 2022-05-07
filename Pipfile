@@ -37,10 +37,11 @@ django-ckeditor = "*"
 django-ckeditor-5 = "*"
 nltk = "*"
 phonenumberslite = "*"
-Whoosh = "*"
 django-phonenumber-field = {extras = ["phonenumberslite"],version = "*"}
 spacy = "*"
 django-versatileimagefield = "*"
+django-contact-form= "*"
+akismet="*"
 
 [requires]
 python_version = "3.6"
