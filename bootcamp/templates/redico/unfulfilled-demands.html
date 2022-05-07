@@ -29,7 +29,7 @@
         {% include 'redico/snippets/messages.html' %}
         <div class="row">
             {% include 'redico/snippets/leftside-ad.html' %}
-            <div class="col-lg-7">
+            <div class="col-lg-8">
                 <div class="forum_l_inner">
                     <div class="forum_body">
                         <ul class="navbar-nav topic_list infinite-container">
@@ -81,7 +81,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="row pagination_inner">
+                <div class="row center pagination_inner">
                     <div class="doc_title text-center mt-40">
                         {% if page_obj.has_next %}
                         <a class="action_btn box_shadow_none wow fadeInUp infinite-more-link" data-wow-delay="0.2s"
@@ -90,9 +90,9 @@
                     </div>
                 </div>
             </div>
+            {% include 'redico/snippets/rightside-ad.html' %}
         </div>
     </div>
-    {% include 'redico/snippets/rightside-ad.html' %}
 </section>
 
 {#% include 'redico/snippets/joinus.html' %#}
@@ -103,35 +103,9 @@
 <script src="{% static 'js/jquery.waypoints.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/infinite.min.js' %}" type="text/javascript"></script>
 <script>
-    $(document).ready(function(){
-        window.total_count = eval({{page_obj.count}});
-        window.current_page = eval({{ page_obj.next_page_number }});
-        $("#feed").click(function(e){
-        e.preventDefault();
-           window.feed();
-        });
-       window.feed = function(){
-            $.ajax({
-                url: "{% url 'demands:demands_feed' %}" ,
-                type: 'GET',
-                data: { "page": window.current_page },
-                dataType: 'json',
-                cache: false,
-                success: function(e,a,b){
-                    console.log(e);
-                    $('.topic_list').append(e);
-                    window.current_page++;
-                },
-                error: function(a,b,c,d){
-                    console.log(b);
-                }
-            });
-       };
         var infinite = new Waypoint.Infinite({
            element: $('.infinite-container')[0],
-           handler: function(direction) {
-               window.feed();
-           },
+           offset: 'bottom-in-view',
            onBeforePageLoad: function () {
                 $('.loading').show();
            },
@@ -139,7 +113,5 @@
                 $('.loading').hide();
            }
         });
-     });
-
 </script>
 {% endblock %}

@@ -29,11 +29,13 @@ $(function () {
             url: '/notifications/latest-notifications/',
             cache: false,
             success: function (data) {
+            try{
                 if (!data.includes(emptyMessage)) {
                     $("#notifications").addClass("btn-warning");
                     var count = (data.match(/<li/g) || []).length;
                     $(".badge-success").text(count);
                 }
+            }catch(e){}
             },
         });
     };
