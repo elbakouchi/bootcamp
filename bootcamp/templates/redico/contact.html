@@ -1,8 +1,27 @@
 {% extends 'redico/redico_base.html' %}
 {% load static %}
-
-{% block title%}  Redico -  Contact {% endblock title%}  
+{% load crispy_forms_tags %}
+{% block title%}  Redico -  Contact {% endblock title%}
 
 {% block content %}
+{% include 'redico/snippets/banner.html' with heading="Contactez-nous" %}
+<section class="doc_blog_grid_area sec_pad forum-page-content">
+    <div class="container">
+        {% include 'redico/snippets/messages.html' %}
+        <div class="row">
+            {% include 'redico/snippets/leftside-ad.html' %}
+            <div class="col-lg-8">
+                <form method="post" action="{% url 'contact_us' %}" id="demand_form" class="contact_form">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <div class="col-lg-12 form-group">
+                        <input type="submit" class="btn action_btn thm_btn" value="Publier"/>
+                    </div>
+                </form>
+            </div>
+            {% include 'redico/snippets/rightside-ad.html' %}
+        </div>
+    </div>
+</section>
 
 {% endblock content %}

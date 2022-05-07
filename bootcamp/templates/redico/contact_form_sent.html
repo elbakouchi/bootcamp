@@ -1,0 +1,16 @@
+{% extends "redico/base_account.html" %}
+
+{% load i18n %}
+{% block head_title %}Message envoyé{% endblock %}
+
+{% block inner %}
+    <h1>Votre message a été envoyé</h1>
+    <p>Nous vous remercions pour votre interaction avec RediCo.</p>
+    <script>
+        const myTimeout = setTimeout(goHome, 4000);
+        function goHome() {
+          window.location.href = "{% url 'home:home' %}";
+        }
+    </script>
+{% endblock %}
+

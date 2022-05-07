@@ -1,0 +1,7 @@
+RediCo {{site}} contact message
+
+De la par de {{name}} <{{email}}>:
+
+{{body}}
+
+Bonne réception.

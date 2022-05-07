@@ -7,7 +7,8 @@ from django.views import defaults as default_views
 from django.contrib.flatpages import views as flatpages
 from allauth.account.views import LogoutView
 # from bootcamp.home.views import HomePageView
-
+from contact_form.views import ContactFormView
+from contact_form.forms import ContactForm  # , AkismetContactForm
 from graphene_django.views import GraphQLView
 from bootcamp.home.views import feed_pagination
 admin.site.site_header = 'Redico back-office'
@@ -26,7 +27,9 @@ urlpatterns = [
     url(r"^apropos-de-redico", TemplateView.as_view(template_name="redico/about-redico.html"), name="about"),
     # url(r"^article", TemplateView.as_view(template_name="redico/article-single2.html"), name="article"),
     # url(r"^articles", TemplateView.as_view(template_name="redico/liste-article.html"), name="articles"),
-    url(r"^contactez-nous", TemplateView.as_view(template_name="redico/contact.html"), name="contact_us"),
+    # url(r"^contactez-nous", TemplateView.as_view(template_name="redico/contact.html"), name="contact_us"),
+    url(r"^contactez-nous", ContactFormView.as_view(form_class=ContactForm, template_name="redico/contact.html"), name="contact_us"),
+    url(r'^contact/sent/', TemplateView.as_view(template_name='redico/contact_form_sent.html'), name='contact_form_sent'),
     url(r"^gestion-des-cookies", TemplateView.as_view(template_name="redico/cookies.html"), name="cookies"),
     url(r"^index", TemplateView.as_view(template_name="redico/index2.html"), name="index"),
     url(r"^nouveau-article", TemplateView.as_view(template_name="redico/new-article.html"), name="new_article"),
