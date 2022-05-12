@@ -12,4 +12,11 @@ urlpatterns = [
         view=views.UserDetailView.as_view(),
         name="detail",
     ),
+    url(r"^picture/$", views.picture, name="picture"),
+    url(r"^upload_picture/$", views.upload_picture, name="upload_picture"),
+    url(
+        r"^save_uploaded_picture/$",
+        views.save_uploaded_picture,
+        name="save_uploaded_picture",
+    ),
 ]

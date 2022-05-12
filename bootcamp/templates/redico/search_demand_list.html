@@ -1,0 +1,64 @@
+{% extends "redico/redico_base.html" %}
+{% load static  %}
+{% block title %}Redico - Rédaction & Reformulation de vos textes en Français{% endblock title %}
+{% block css%}
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.min.css" type="text/css"/>
+{{block.super}}
+  <style>
+  .ui-draggable, .ui-droppable {
+	background-position: top;
+    }
+  .ui-autocomplete-loading {
+    background: white url("images/ui-anim_basic_16x16.gif") right center no-repeat;
+  }
+  </style>
+{% endblock css%}
+{% block content %}
+{% include 'redico/snippets/search.html' %}
+{% include 'redico/snippets/messages.html' %}
+<br><br><br>
+{% include 'redico/snippets/demands_list_2.html' with demands=demands %}
+{% endblock content %}
+{% block javascript%}
+    {{block.super}}
+    <script src="{% static 'js/jquery.waypoints.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/infinite.min.js' %}" type="text/javascript"></script>
+    <script>
+        $(document).ready(function(){
+            var infinite = new Waypoint.Infinite({
+               element: $('.infinite-container')[0],
+               onBeforePageLoad: function () {
+                    $('.loading').show();
+               },
+               onAfterPageLoad: function ($items) {
+                    $('.loading').hide();
+               }
+            });
+        });
+
+       $( function() {
+        var cache = {};
+        $( "#searchbox" ).autocomplete({
+          minLength: 3,
+          source: function( request, response ) {
+             var term = request.term;
+             //request.term = encodeURIComponent(request.term);
+             //console.log(term, request.term);
+             $.getJSON( "{% url 'search:demands-suggestions' %}", request, function( data, status, xhr ) {
+              window.terms = {};
+              $.each(data.results, function(index){
+                console.log(data.results[index].text);
+                window.terms[index] = data.results[index].text;
+              });
+              console.log(window.terms, data.results);
+              response(window.terms);
+            });
+          }
+        });
+      } );
+</script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
+			  integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY="
+			  crossorigin="anonymous"></script>
+</script>
+{% endblock %}

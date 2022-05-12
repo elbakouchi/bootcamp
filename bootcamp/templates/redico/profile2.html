@@ -1,14 +1,14 @@
 {% extends "redico/redico_base.html" %}
-{% load static %}
-{% load thumbnail %}
+{% load static i18n thumbnail %}
 {% block css%}
 {{block.super}}
- <link href="{% static 'css/cropper.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/cropper.min.css' %}" rel="stylesheet">
 <style>
     .modal-backdrop{
         z-index: -1 !important;
 
     }
+
 </style>
 {%endblock%}
 {% block content %}
@@ -22,17 +22,16 @@
         <div class="row forum_main_inner">
             <div class="col-lg-3">
                 <div class="author_option">
-                    {%comment%}
                     <div class="author_img">
                         {% if user.picture %}
-                            {#% thumbnail user.picture "x250" as im %#}
-                                <img src="{{MEDIA_URL}}{{ user.picture }}" width="250" alt="Picture Profile" id="pic" class="img-fluid"/>
-                            {#% endthumbnail %#}
+                        {#% thumbnail user.picture "x250" as im %#}
+                        <img src="{{MEDIA_URL}}{{ user.picture }}" width="250" alt="Picture Profile" id="pic"
+                             class="img-fluid"/>
+                        {#% endthumbnail %#}
                         {%else%}
-                            <img class="img-fluid" src="{% static 'img/forum/author-1.jpg' %}" alt="">
+                        <img class="img-fluid" src="{% static 'img/forum/author-1.jpg' %}" alt="">
                         {%endif%}
                     </div>
-                    {%endcomment%}
                     <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
@@ -92,28 +91,29 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <form action="{% url 'users:update' %}" method ="post"  enctype="multipart/form-data" id="userForm" class="contact_form mt-3">
-                                         {% csrf_token %}
+                                    <form action="{% url 'users:update' %}" method="post" enctype="multipart/form-data"
+                                          id="userForm" class="contact_form mt-3">
+                                        {% csrf_token %}
                                         <div class="row contact_fill">
                                             <div class="col-lg-6 form-group">
                                                 {{form.first_name}}
-                                                 <ul class="error">
+                                                <ul class="error">
                                                     {% for error in form.first_name.errors %}
                                                     <li>{{error}}</li>
                                                     {% endfor %}
                                                 </ul>
                                             </div>
                                             <div class="col-lg-6 form-group">
-                                                  {{form.last_name}}
-                                                 <ul class="error">
+                                                {{form.last_name}}
+                                                <ul class="error">
                                                     {% for error in form.last_name.errors %}
                                                     <li>{{error}}</li>
                                                     {% endfor %}
                                                 </ul>
                                             </div>
                                             <div class="col-lg-6 form-group">
-                                                 {{form.email}}
-                                                 <ul class="error">
+                                                {{form.email}}
+                                                <ul class="error">
                                                     {% for error in form.email.errors %}
                                                     <li>{{error}}</li>
                                                     {% endfor %}
@@ -121,7 +121,7 @@
                                             </div>
                                             <div class="col-lg-6 form-group">
                                                 {{form.phone}}
-                                                 <ul class="error">
+                                                <ul class="error">
                                                     {% for error in form.phone.errors %}
                                                     <li>{{error}}</li>
                                                     {% endfor %}
@@ -130,30 +130,28 @@
                                             <div class="col-lg-12 form-group">
                                                 <h6>Biographie:</h6>
                                                 {{form.bio}}
-                                                 <ul class="error">
+                                                <ul class="error">
                                                     {% for error in form.bio.errors %}
                                                     <li>{{error}}</li>
                                                     {% endfor %}
                                                 </ul>
                                             </div>
-                                            {%comment%}
                                             <div class="col-lg-12 form-group">
                                                 <h6>Image profile:</h6>
                                                 {{form.picture}}
                                                 <!-- CONTAINER TO DISPLAY THE CROPPED IMAGES -->
-                                                 {% if user.picture %}
+                                                {% if user.picture %}
                                                 <div class="row" style="margin-top: 20px">
                                                     <div class="col-sm-4 col-md-3">
-                                                      <img src="{{ user.picture.url }}" class="thumbnail">
+                                                        <img src="{{ user.picture.url }}" class="thumbnail">
                                                     </div>
                                                 </div>
                                                 {%endif%}
                                             </div>
                                             {{form.x}}
-                                            {{form.y}}
+                                            {{fom.y}}
                                             {{form.width}}
                                             {{form.height}}
-                                            {%endcomment%}
                                             <div class="col-lg-12 form-group">
                                                 <button type="submit" class="btn action_btn thm_btn">Sauvegarder
                                                 </button>
@@ -177,9 +175,12 @@
                                                     </button>
                                                     <div class="dropdown-menu short-by"
                                                          aria-labelledby="dropdownMenuButton5">
-                                                         <a class="dropdown-item active-short"
-                                                           href="{% url 'users:detail' user.username %}?o=oldest">plus ancien</a>
-                                                        <a class="dropdown-item" href="{% url 'users:detail' user.username %}?o=newest">plus récent</a>
+                                                        <a class="dropdown-item active-short"
+                                                           href="{% url 'users:detail' user.username %}?o=oldest">plus
+                                                            ancien</a>
+                                                        <a class="dropdown-item"
+                                                           href="{% url 'users:detail' user.username %}?o=newest">plus
+                                                            récent</a>
                                                         {% comment %}
                                                         <a class="dropdown-item" href="#0">First Comments</a>
                                                         <a class="dropdown-item" href="#0">New Comments</a>
@@ -189,14 +190,18 @@
                                             </li>
                                         </ul>
                                         {% comment %}
-                                        <div class="page">Page {{ demands.number }} de {{ demands.paginator.num_pages|add:revisions.paginator.num_pages }}</div>
+                                        <div class="page">Page {{ demands.number }} de {{
+                                            demands.paginator.num_pages|add:revisions.paginator.num_pages }}
+                                        </div>
                                         {% endcomment %}
-                                        <div class="page">Page {{ demands.number }} de {{ demands.paginator.num_pages }}</div>
+                                        <div class="page">Page {{ demands.number }} de {{ demands.paginator.num_pages
+                                            }}
+                                        </div>
                                     </div>
                                     <div class="forum_body">
                                         <ul class="navbar-nav topic_list">
                                             {% for text in demands %}
-                                            <li {% if text.verified %}class="check"{% endif %}>
+                                            <li {% if text.verified %}class="check" {% endif %}>
                                                 <div class="media">
 
                                                     <div class="media-body">
@@ -222,8 +227,8 @@
                                             </li>
                                             {% endfor %}
                                             {% comment%}
-                                             {% for text in revisions %}
-                                            <li {% if text.verified %}class="check"{% endif %}>
+                                            {% for text in revisions %}
+                                            <li {% if text.verified %}class="check" {% endif %}>
                                                 <div class="media">
                                                     <div class="media-body">
                                                         <div class="t_title">
@@ -255,22 +260,31 @@
                                     <div class="right">
                                         <nav aria-label="Page navigation example">
                                             <ul class="pagination">
-                                               {% if demands.has_previous or revisions.has_previous %}
-                                                    {% if demands.previous_page_number %}
-                                                    <li class="page-item"><a class="page-link" href="{{request.path}}?page={{ demands.previous_page_number }}#profile">{{ demands.previous_page_number }}</a></li>
-                                                    {% endif %}
-                                                    {% if revisions.previous_page_number %}
-                                                     <li class="page-item"><a class="page-link" href="{{request.path}}?page={{ revisions.previous_page_number }}#profile">{{ revisions.previous_page_number }}</a></li>
-                                                    {% endif %}
+                                                {% if demands.has_previous or revisions.has_previous %}
+                                                {% if demands.previous_page_number %}
+                                                <li class="page-item"><a class="page-link"
+                                                                         href="{{request.path}}?page={{ demands.previous_page_number }}#profile">{{
+                                                    demands.previous_page_number }}</a></li>
                                                 {% endif %}
-                                                <li class="page-item active"><a class="page-link" href="#">{{ demands.number }}</a></li>
-                                                {% if demands.has_next or  revisions.has_next %}
-                                                    {% if demands.next_page_number %}
-                                                     <li class="page-item"><a class="page-link" href="{{request.path}}?page={{ demands.next_page_number }}#profile">{{ demands.next_page_number }}</a></li>
-                                                    {% endif %}
-                                                    {% if revisions.next_page_number %}
-                                                     <li class="page-item"><a class="page-link" href="{{request.path}}?page={{ revisions.next_page_number }}#profile">{{ revisions.next_page_number }}</a></li>
-                                                    {% endif %}
+                                                {% if revisions.previous_page_number %}
+                                                <li class="page-item"><a class="page-link"
+                                                                         href="{{request.path}}?page={{ revisions.previous_page_number }}#profile">{{
+                                                    revisions.previous_page_number }}</a></li>
+                                                {% endif %}
+                                                {% endif %}
+                                                <li class="page-item active"><a class="page-link" href="#">{{
+                                                    demands.number }}</a></li>
+                                                {% if demands.has_next or revisions.has_next %}
+                                                {% if demands.next_page_number %}
+                                                <li class="page-item"><a class="page-link"
+                                                                         href="{{request.path}}?page={{ demands.next_page_number }}#profile">{{
+                                                    demands.next_page_number }}</a></li>
+                                                {% endif %}
+                                                {% if revisions.next_page_number %}
+                                                <li class="page-item"><a class="page-link"
+                                                                         href="{{request.path}}?page={{ revisions.next_page_number }}#profile">{{
+                                                    revisions.next_page_number }}</a></li>
+                                                {% endif %}
                                                 {% endif %}
 
                                                 <!--li class="page-item"><a class="page-link" href="#"><i
@@ -298,7 +312,8 @@
                                                          aria-labelledby="dropdownMenuButton5">
                                                         <a class="dropdown-item active-short"
                                                            href="{% url 'users:detail' user.username %}?o=oldest">Oldest</a>
-                                                        <a class="dropdown-item" href="{% url 'users:detail' user.username %}?o=newest">Newest</a>
+                                                        <a class="dropdown-item"
+                                                           href="{% url 'users:detail' user.username %}?o=newest">Newest</a>
                                                         {% comment %}
                                                         <a class="dropdown-item" href="#0">First Comments</a>
                                                         <a class="dropdown-item" href="#0">New Comments</a>
@@ -604,43 +619,41 @@
         </div>
     </div>
 </section>
-{%comment%}
 <!-- MODAL TO CROP THE IMAGE -->
 <div class="modal fade" id="modalCrop">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title">Crop the photo</h4>
-      </div>
-      <div class="modal-body">
-        <img src="" id="image" style="max-width: 100%;">
-      </div>
-      <div class="modal-footer">
-        <div class="btn-group pull-left" role="group">
-          <button type="button" class="btn btn-default js-zoom-in">
-            <span class="glyphicon glyphicon-zoom-in"></span>
-          </button>
-          <button type="button" class="btn btn-default js-zoom-out">
-            <span class="glyphicon glyphicon-zoom-out"></span>
-          </button>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Crop the photo</h4>
+            </div>
+            <div class="modal-body">
+                <img src="" id="image" style="max-width: 100%;">
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group pull-left" role="group">
+                    <button type="button" class="btn btn-default js-zoom-in">
+                        <span class="glyphicon glyphicon-zoom-in"></span>
+                    </button>
+                    <button type="button" class="btn btn-default js-zoom-out">
+                        <span class="glyphicon glyphicon-zoom-out"></span>
+                    </button>
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
+                <button type="button" class="btn btn-primary js-crop-and-upload">Crop and upload</button>
+            </div>
         </div>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
-        <button type="button" class="btn btn-primary js-crop-and-upload">Crop and upload</button>
-      </div>
     </div>
-  </div>
 </div>
-{%endcomment%}
 <!--================End Forum Content Area =================-->
 
 {% endblock content %}
 {% block javascript%}
 {{block.super}}
-<script src="{% static 'js/cropper.min.js' %}"></script>
-<script src="{% static 'js/jquery-cropper.js' %}"></script>
+<script src="{% static 'js/jquery.Jcrop.min.js' %}"></script>
+<script src="{% static 'js/picture.js' %}"></script>
 <script>
 $(function() {
 $('#id_first_name').addClass('form-control').attr("placeholder", "Prénom");
@@ -649,64 +662,14 @@ $('#id_email').addClass('form-control').attr("placeholder", "Email");
 $('#id_phone').addClass('form-control').attr("placeholder", "N° téléphone");
 $('#id_bio').addClass('form-control').attr("placeholder", "…");
 });
+
 </script>
-{%comment%}
-<script>
- $(function () {
-      /* SCRIPT TO OPEN THE MODAL WITH THE PREVIEW */
-      $("#id_picture").change(function () {
-        if (this.files && this.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            $("#image").attr("src", e.target.result);
-            $("#modalCrop").modal("show");
-          }
-          reader.readAsDataURL(this.files[0]);
-        }
-      });
-
-      /* SCRIPTS TO HANDLE THE CROPPER BOX */
-      var $image = $("#image");
-      var cropBoxData;
-      var canvasData;
-      $("#modalCrop").on("shown.bs.modal", function () {
-       var $image = $("#image");
-        $("#image").cropper({
-          viewMode: 1,
-          aspectRatio: 1/1,
-          minCropBoxWidth: 200,
-          minCropBoxHeight: 200,
-          ready: function () {
-            $("#image").cropper("setCanvasData", canvasData);
-            $("#image").cropper("setCropBoxData", cropBoxData);
-          }
-        });
-      }).on("hidden.bs.modal", function () {
-        cropBoxData = $("#image").cropper("getCropBoxData");
-        canvasData = $("#image").cropper("getCanvasData");
-       $("#image").cropper("destroy");
-      });
-
-      $(".js-zoom-in").click(function () {
-        $("#image").cropper("zoom", 0.1);
-      });
-
-      $(".js-zoom-out").click(function () {
-        $("#image").cropper("zoom", -0.1);
-      });
-
-      /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
-      $(".js-crop-and-upload").click(function () {
-        var cropData = $("#image").cropper("getData");
-        console.log(cropData);
-        $("#id_x").val(cropData["x"]);
-        $("#id_y").val(cropData["y"]);
-        $("#id_height").val(cropData["height"]);
-        $("#id_width").val(cropData["width"]);
-        $("#userForm").submit();
-      });
-
+<script type="text/javascript">
+    $(function () {
+       // $("#modal-upload-picture").modal();
+       // window.history.pushState("", "", "/users/picture/");
     });
-  </script>
-{%endcomment%}
+
+</script>
+
 {%endblock javascript%}

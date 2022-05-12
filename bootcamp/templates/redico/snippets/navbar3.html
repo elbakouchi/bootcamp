@@ -1,23 +1,24 @@
 {% load static %}
-    <nav class="navbar navbar-expand-lg menu_one dark_menu sticky-nav">
-        <div class="container custom_container">
-            <a class="navbar-brand header_logo" href="{% url 'home:home' %}">
-                <img class="first_logo sticky_logo main_logo" src="{% static 'img/logo-2x.png' %}"
-                     srcset="{% static 'img/logo-2x.png' %} 2x" alt="logo">
-            </a>
-            {#% comment %#}
-            {% if not is_homepage %}
-            <div class="search-input visible">
-                <form action="{% url 'search:search' %}"  enctype="application/x-www-form-urlencoded">
-                <ion-icon class="search-icon md hydrated" name="search-outline" role="img" aria-label="search outline"></ion-icon>
+<nav class="navbar navbar-expand-lg menu_one dark_menu sticky-nav">
+    <div class="container custom_container">
+        <a class="navbar-brand header_logo" href="{% url 'home:home' %}">
+            <img class="first_logo sticky_logo main_logo" src="{% static 'img/logo-2x.png' %}"
+                 srcset="{% static 'img/logo-2x.png' %} 2x" alt="logo">
+        </a>
+        {#% comment %#}
+        {% if not is_homepage %}
+        <div class="search-input visible">
+            <form action="{% url 'search:search' %}" enctype="application/x-www-form-urlencoded">
+                <ion-icon class="search-icon md hydrated" name="search-outline" role="img"
+                          aria-label="search outline"></ion-icon>
                 <input type="text" placeholder="Recherche..." value="{{request.GET.q}}" size="20" name="q">
-                </form>
-            </div>
-            {% endif %}
-            {#% endcomment %#}
-            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
+            </form>
+        </div>
+        {% endif %}
+        {#% endcomment %#}
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="menu_toggle">
                     <span class="hamburger">
                         <span></span>
@@ -29,41 +30,52 @@
                         <span></span>
                     </span>
                 </span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav menu ml-auto">
-                    {% if is_homepage %}
-                    <li class="nav-item dropdown submenu active">
-                        <a href="{% url 'home:home' %}" class="nav-link dropdown-toggle">Home</a>
-                    </li>
-                     {% endif %}
-                    <li class="nav-item">
-                        <a href="{% url 'demands:unfulfilled' %}" class="nav-link dropdown-toggle">Textes en attente de correction</a>
-                    </li>
-                </ul>
-                <div class="right-nav">
-                    {% if request.user.is_authenticated %}
-                    <a href="{% url 'demands:write_new' %}" target="_blank" class="action_btn btn_small">Ajouter un
-                        article</a>
-                    {% endif %}
-                    {% if not user.is_authenticated %}
-                    <a href="{% url 'account_login' %}?next={% url 'demands:write_new' %}"  class="action_btn btn_small">Ajouter un article</a>
-                    {% endif %}
-                    {% if not request.user.is_authenticated %}
-                    <a href="{% url 'account_login' %}" class="px-2"><i class="icon_profile"></i>Se connecter</a>
-                    {% else %}
-                    <a href="{% url 'account_logout' %}" class="px-2"><i class="icon_profile"></i>Se déconnecter</a>
-                    {% endif %}
-                </div>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav menu ml-auto">
+                {% if is_homepage %}
+                <li class="nav-item dropdown submenu active">
+                    <a href="{% url 'home:home' %}" class="nav-link dropdown-toggle">Home</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a href="{% url 'demands:unfulfilled' %}" class="nav-link dropdown-toggle">Textes en attente de
+                        correction</a>
+                </li>
+            </ul>
+            <div class="right-nav">
                 {% if request.user.is_authenticated %}
-                <ul class="navbar-nav ">
-                  <li class="nav-item dropdown">
-                    <a class="nav-item nav-link mr-md-2 btn btn-primary" href="#"  id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <ion-icon name="notifications-outline"></ion-icon><span class="badge badge-pill badge-success"></span>
-                    </a>
-                  </li>
-                </ul>
-                 {% endif %}
+                <a href="{% url 'demands:write_new' %}" target="_blank" class="action_btn btn_small">Ajouter un
+                    article</a>
+                {% endif %}
+                {% if not user.is_authenticated %}
+                <a href="{% url 'account_login' %}?next={% url 'demands:write_new' %}" class="action_btn btn_small">Ajouter
+                    un article</a>
+                {% endif %}
+                {% if not request.user.is_authenticated %}
+                <a href="{% url 'account_login' %}" class="px-2"><i class="icon_profile"></i>Se connecter</a>
+                {% else %}
+                <a href="{% url 'account_logout' %}" class="px-2"><i class="icon_profile"></i>Se déconnecter</a>
+                {% endif %}
             </div>
+            {% if request.user.is_authenticated %}
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <button class="nav-item nav-link mr-md-2 btn btn-primary" href="#" id="notifications"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <ion-icon name="notifications-outline"></ion-icon>
+                        <span class="badge badge-pill badge-success"></span>
+                    </button>
+                    {%comment%}
+                    <a href="#" id="notifications" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                       data-original-title="" title="" class="btn btn-primary">
+                        <ion-icon name="notifications-outline" role="img" class="md hydrated"
+                                  aria-label="notifications outline"></ion-icon>
+                    </a>
+                    {%endcomment%}
+                </li>
+            </ul>
+            {% endif %}
         </div>
-    </nav>
+    </div>
+</nav>

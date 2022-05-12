@@ -1,0 +1,22 @@
+<section class="doc_banner_area search-banner-light">
+    <div class="container">
+        <div class="doc_banner_content">
+            <br>
+            <div class="breadcrumb_text">
+                <h3> <span>{{heading|default:request.GET.q}}</span></h3>
+            </div>
+            <form action="{% url 'search:search' %}" class="header_search_form"
+                  enctype="application/x-www-form-urlencoded">
+                <div class="header_search_form_info">
+                    <div class="form-group">
+                        <div class="input-wrapper ui-widget">
+                            <i class="icon_search"></i>
+                            <input type="search" id="searchbox" autocomplete="off" name="q"
+                                   class="ui-autocomplete-input" placeholder="Recherche par mot-clés">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

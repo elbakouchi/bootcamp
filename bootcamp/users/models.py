@@ -7,6 +7,8 @@ from django.utils.translation import ugettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 from django.db.models import F
 from bootcamp.notifications.models import Notification, notification_handler
+from versatileimagefield.fields import VersatileImageField
+from versatileimagefield.placeholder import OnStoragePlaceholderImage
 
 
 class CustomUserManager(BaseUserManager):
@@ -17,9 +19,24 @@ class CustomUserManager(BaseUserManager):
 class User(AbstractUser):
     # First Name and Last Name do not cover name patterns around the globe.
     name = models.CharField(_("User's name"), blank=True, max_length=255)
-    picture = models.ImageField(
-        _("Profile picture"), upload_to="profile_pics/", null=True, blank=True
+    picture = VersatileImageField(
+        _("Profile picture"), upload_to="profile_pics/", null=True, blank=True,
+        #placeholder_image=OnStoragePlaceholderImage(
+            #path='img/user.png'
+        #),
+        # width_field='width',
+        # height_field='height'
     )
+    # height = models.FloatField(
+    #     'Image Height',
+    #     blank=True,
+    #     null=True
+    # )
+    # width = models.FloatField(
+    #     'Image Width',
+    #     blank=True,
+    #     null=True
+    # )
     location = models.CharField(_("Location"), max_length=50, null=True, blank=True)
     phone = PhoneNumberField(blank=True)
     job_title = models.CharField(_("Job title"), max_length=50, null=True, blank=True)

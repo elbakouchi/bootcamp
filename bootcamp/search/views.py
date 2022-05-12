@@ -147,7 +147,7 @@ class SearchDemands(ListView):
     model = Demand
     paginate_by = 5
     context_object_name = "demands"
-    template_name = 'demand/demand_list.html'
+    template_name = 'redico/search_demand_list.html'
 
     def get_queryset(self):
         q = self.request.GET.get('q', None)

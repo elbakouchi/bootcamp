@@ -29,7 +29,7 @@ def mark_all_as_read(request):
     messages.add_message(
         request,
         messages.SUCCESS,
-        _(f"All notifications to {request.user.username} have been marked as read."),
+        _(f"Toutes les notifications de {request.user.username} sont marquées lues."),
     )
 
     if _next:
@@ -49,7 +49,7 @@ def mark_as_read(request, slug=None):
     messages.add_message(
         request,
         messages.SUCCESS,
-        _(f"The notification {notification.slug} has been marked as read."),
+        _(f"La notification {notification.slug} a été marquée lue."),
     )
     _next = request.GET.get("next")
 

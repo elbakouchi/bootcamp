@@ -1,15 +1,17 @@
-from allauth.account.forms import UserForm
+import os
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, redirect
+from django.conf import settings as django_settings
 from django.urls import reverse
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 from django.views.generic.edit import ModelFormMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import User
-from django.db.models import Count, F
+
 from PIL import Image
 from django import forms
-from django.core.files import File
-from ..articles.models import Article
+
 from ..demand.models import Demand
 
 
@@ -22,21 +24,6 @@ class CustomUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = '__all__'
-
-    def save(self):
-        photo = super(CustomUserForm, self).save()
-
-        x = self.cleaned_data.get('x')
-        y = self.cleaned_data.get('y')
-        w = self.cleaned_data.get('width')
-        h = self.cleaned_data.get('height')
-
-        image = Image.open(photo.file)
-        cropped_image = image.crop((x, y, w + x, h + y))
-        resized_image = cropped_image.resize((200, 200), Image.ANTIALIAS)
-        resized_image.save(photo.file.path)
-
-        return photo
 
 
 class UserDetailView(LoginRequiredMixin, ModelFormMixin, DetailView):
@@ -67,33 +54,6 @@ class UserDetailView(LoginRequiredMixin, ModelFormMixin, DetailView):
         except EmptyPage:
             paginated_demands = paginator.page(paginator.num_pages)
         context["demands"] = paginated_demands
-        '''
-        revisions = Article.objects.filter(user=self.object.pk).order_by('pk', 'timestamp')
-        context["revisions_count"] = revisions.count()
-        paginator2 = Paginator(revisions, 5)
-
-        try:
-            paginated_revisions = paginator2.page(page)
-        except PageNotAnInteger:
-            paginated_revisions = paginator2.page(1)
-        except EmptyPage:
-            paginated_revisions = paginator2.page(paginator2.num_pages)
-
-        context["revisions"] = paginated_revisions
-        
-       
-        combined = chain(demands, revisions)
-        paginator3 = Paginator(combined, 5)
-
-        try:
-            paginated_combined = paginator3.page(page)
-        except PageNotAnInteger:
-            paginated_combined = paginator3.page(1)
-        except EmptyPage:
-            paginated_combined = paginator3.page(paginator.num_pages)
-
-        context["combined"] = paginated_combined
-        '''
         return context
 
     def get_success_url(self):
@@ -127,7 +87,17 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     ]
     model = User
 
-    # send the user back to their own page after a successful update
+    def form_valid(self, form):
+        uploaded = upload_picture(self.request)
+        if uploaded:
+            filename = save_uploaded_picture(self.request)
+            self.object.picture.name = filename
+            self.object.save()
+        return super(UserUpdateView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        print(form)
+
     def get_success_url(self):
         return reverse("users:detail", kwargs={"username": self.request.user.username})
 
@@ -139,7 +109,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         context = super(UserUpdateView, self).get_context_data()
         try:
             demands = Demand.objects.profile(self.request.user.pk, self.request.GET.o)
-        except:
+        except Exception as e:
             demands = Demand.objects.profile(self.request.user.pk, '')
         context["demands_count"] = demands.count()
         page = self.request.GET.get("page", 1)
@@ -152,33 +122,6 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         except EmptyPage:
             paginated_demands = paginator.page(paginator.num_pages)
         context["demands"] = paginated_demands
-        '''
-        revisions = Article.objects.filter(user=self.object.pk).order_by('pk', 'timestamp')
-        context["revisions_count"] = revisions.count()
-        paginator2 = Paginator(revisions, 5)
-
-        try:
-            paginated_revisions = paginator2.page(page)
-        except PageNotAnInteger:
-            paginated_revisions = paginator2.page(1)
-        except EmptyPage:
-            paginated_revisions = paginator2.page(paginator2.num_pages)
-
-        context["revisions"] = paginated_revisions
-        
-       
-        combined = chain(demands, revisions)
-        paginator3 = Paginator(combined, 5)
-
-        try:
-            paginated_combined = paginator3.page(page)
-        except PageNotAnInteger:
-            paginated_combined = paginator3.page(1)
-        except EmptyPage:
-            paginated_combined = paginator3.page(paginator.num_pages)
-
-        context["combined"] = paginated_combined
-        '''
         return context
 
 
@@ -187,3 +130,80 @@ class UserListView(LoginRequiredMixin, ListView):
     # These next two lines tell the view to index lookups by username
     slug_field = "username"
     slug_url_kwarg = "username"
+
+
+@login_required
+def picture(request):
+    uploaded_picture = False
+    try:
+        if request.GET.get("upload_picture") == "uploaded":
+            uploaded_picture = True
+
+    except Exception:  # pragma: no cover
+        pass
+
+    return render(
+        request, "users/user_picture.html", {"uploaded_picture": uploaded_picture}
+    )
+
+
+@login_required
+def upload_picture(request):
+    try:
+        profile_pictures = django_settings.MEDIA_ROOT + "/profile_pics/"
+        if not os.path.exists(profile_pictures):
+            os.makedirs(profile_pictures)
+
+        f = request.FILES["picture"]
+        filename = profile_pictures + request.user.username + "_tmp.jpg"
+        with open(filename, "wb+") as destination:
+            for chunk in f.chunks():
+                destination.write(chunk)
+
+        im = Image.open(filename)
+        width, height = im.size
+        if width > 350:
+            new_width = 350
+            new_height = (height * 350) / width
+            new_size = new_width, new_height
+            im.thumbnail(new_size, Image.ANTIALIAS)
+            im.save(filename)
+
+        # return redirect("/users/picture/?upload_picture=uploaded")
+        return True
+    except Exception as e:
+        print(e)
+        return False
+        # return redirect("/users/picture/")
+
+
+#@login_required
+def save_uploaded_picture(request):
+    try:
+        x = float(request.POST.get("x"))
+        y = float(request.POST.get("y"))
+        w = float(request.POST.get("width"))
+        h = float(request.POST.get("height"))
+        tmp_filename = (
+                django_settings.MEDIA_ROOT
+                + "/profile_pics/"
+                + request.user.username
+                + "_tmp.jpg"
+        )
+        filename = (
+                django_settings.MEDIA_ROOT
+                + "/profile_pics/"
+                + request.user.username
+                + ".jpg"
+        )
+        im = Image.open(tmp_filename)
+        cropped_im = im.crop((x, y, w + x, h + y))
+        cropped_im.thumbnail((200, 200), Image.ANTIALIAS)
+        cropped_im.save(filename)
+        os.remove(tmp_filename)
+        return f"/profile_pics/{request.user.username}.jpg"
+    except Exception as e:
+        print(e)
+        pass
+
+    #return redirect("/users/picture/")
