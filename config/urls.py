@@ -14,7 +14,7 @@ from bootcamp.home.views import feed_pagination
 admin.site.site_header = 'Redico back-office'
 
 urlpatterns = [
-    url("^account/login/facebook/callback", oauth2_callback, name="fb_callback"),
+    url("^account/facebook/login/callback", oauth2_callback, name="fb_callback"),
     url(r'^accounts/', include('bootcamp.accounts.urls')),
     url(r'^logout/', LogoutView.as_view(), name="logging_out"),
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/img/favicon.ico')),
