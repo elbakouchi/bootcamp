@@ -1,0 +1,2 @@
+{% load i18n %}
+{% blocktrans %}ce compte réseau social est attribué à un autre compte.{% endblocktrans %}

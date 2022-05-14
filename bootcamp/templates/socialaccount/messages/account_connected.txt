@@ -1,0 +1,2 @@
+{% load i18n %}
+{% blocktrans %}La connexion via le réseau social a été établie.{% endblocktrans %}

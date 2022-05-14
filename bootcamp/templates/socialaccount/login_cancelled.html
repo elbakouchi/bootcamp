@@ -1,0 +1,15 @@
+{% extends "socialaccount/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}Connexion annulée{% endblock %}
+
+{% block inner %}
+
+<h1>Connexion annulée</h1>
+
+{% url 'account_login' as login_url %}
+
+<p>Vous avez décidé d'annuler la connexion à notre site en utilisant l'un de vos comptes existants. S'il s'agit d'une erreur, veuillez passer à <a href="{{login_url}}">Connexion</a>.</p>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "socialaccount/base.html" %}
+{% load i18n %}
+
+{% block inner %}
+
+{% if process == "connect" %}
+<h3>Connexion {{ provider.name }}</h3>
+{% else %}
+<h3>Connexion via {{ provider.name }}</h3>
+{% endif %}
+<form method="post" id="connect">
+    {% csrf_token %}
+    <!--button class="form-control btn btn-primary" type="submit">{#% trans "Continue" %#}</button-->
+</form>
+
+{% endblock %}
+{% block javascript%}
+{{block.super}}
+<script>
+    $("#connect").submit();
+</script>
+{% endblock %}

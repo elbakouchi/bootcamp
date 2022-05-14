@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 <!doctype html>
 <html lang="en">
 
@@ -34,7 +35,7 @@
                         <div class="text-center">
                             <h3>Créez votre compte Redico</h3>
                             <p>Vous avez déjà un compte? <a href="{% url 'account_login' %}">S'identifier</a></p>
-                            <a href="#" class="btn-google"><img src="{% static  'img/signup/gmail.png' %}" alt=""><span class="btn-text">Sign up with Google</span></a><a href="#" class="btn-google"><img src="{% static  'img/signup/fb.jpg' %}" alt=""><span class="btn-text">Sign in with Facebook</span></a>
+                            <a href="#" class="btn-google"><img src="{% static  'img/signup/gmail.png' %}" alt=""><span class="btn-text">Sign up with Google</span></a><a href="{% provider_login_url 'facebook' process='connect' %}" class="btn-google"><img src="{% static  'img/signup/fb.jpg' %}" alt=""><span class="btn-text">Connexion Facebook</span></a>
                         </div>
                         <div class="divider">
                             <span class="or-text">Ou</span>
@@ -122,7 +123,6 @@
       </div>
       <div class="modal-body">
         <p>Avant l’utilisation de RediCo, vous êtes tenu de prendre connaissance des règles et conditions ci-après :</p>
-
              <ul>
                 <li>
                     En soumettant vos textes à RediCo afin de bénéficier de nos services de rédaction, correction ou reformulation, vous acceptez que vos textes soumis soient affichés sur le site de RediCo et que tout autre utilisateur ou visiteur de RediCo puisse y accéder pour les lire.
