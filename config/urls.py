@@ -6,7 +6,7 @@ from django.views.generic import TemplateView, RedirectView
 from django.views import defaults as default_views
 from django.contrib.flatpages import views as flatpages
 from allauth.account.views import LogoutView
-# from bootcamp.home.views import HomePageView
+from allauth.socialaccount.providers.facebook.views import oauth2_callback
 from contact_form.views import ContactFormView
 from contact_form.forms import ContactForm  # , AkismetContactForm
 from graphene_django.views import GraphQLView
@@ -14,6 +14,7 @@ from bootcamp.home.views import feed_pagination
 admin.site.site_header = 'Redico back-office'
 
 urlpatterns = [
+    url("^account/login/facebook/callback", oauth2_callback, name="fb_callback"),
     url(r'^accounts/', include('bootcamp.accounts.urls')),
     url(r'^logout/', LogoutView.as_view(), name="logging_out"),
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/img/favicon.ico')),
