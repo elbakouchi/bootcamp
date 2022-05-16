@@ -787,7 +787,7 @@
 @media (max-width: 991px) {
   .modal-content,
   .body_dark .navbar-collapse {
-
+    
   }
   .container-fluid.pr-60 {
     padding-right: 15px;
@@ -1574,6 +1574,28 @@
   .signup_area_height {
     min-height: 760px;
   }
+
+}
+
+@media (max-width: 768px) {
+
+ .navbar-nav #notifications {
+    float: right;
+    margin-top: -80px;
+    margin-right: 20px;
+  }
+  .right-nav {
+  margin-left: 20px;
+}
+.forum_body .topic_list li .media .media-right {
+  display: none!important;
+}
+.forum_l_inner .forum_body .topic_list li .media .media-body h6 {
+  
+display: block;
+margin-bottom: 12px;
+
+}
 }
 
 @media (max-width: 768px) {
