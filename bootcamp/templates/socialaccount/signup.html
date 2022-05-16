@@ -5,7 +5,7 @@
 {% block head_title %}Création compte{% endblock %}
 {% load crispy_forms_tags %}
 {% block inner %}
-    <h3>Création compte</h3>
+    <h4>Création compte</h4>
 
 <p>{% blocktrans with provider_name=account.get_provider.name site_name=site.name %}Vous êtes en train de créer votre compte Redico via {{provider_name}}. Merci donc de rensigner ces données:{% endblocktrans %}</p>
 
