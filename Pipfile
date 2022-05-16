@@ -42,6 +42,7 @@ spacy = "*"
 django-versatileimagefield = "*"
 django-contact-form= "*"
 akismet="*"
+django-ads="*"
 
 [requires]
 python_version = "3.6"

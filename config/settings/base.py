@@ -83,7 +83,8 @@ THIRD_PARTY_APPS = [
     "taggit",
     "django_ckeditor_5",
     "versatileimagefield",
-    "contact_form"
+    "contact_form",
+    "ads"
 ]
 LOCAL_APPS = [
     "bootcamp.home.apps.HomeConfig",
