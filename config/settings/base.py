@@ -402,7 +402,7 @@ VERSATILEIMAGEFIELD_SETTINGS = {
 
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
-        'METHOD': 'oauth2',
+        'METHOD': 'js_sdk',
         'SDK_URL': '//connect.facebook.net/fr_FR/sdk.js',
         'SCOPE': ['email', 'public_profile'],
         'AUTH_PARAMS': {'auth_type': 'reauthenticate'},

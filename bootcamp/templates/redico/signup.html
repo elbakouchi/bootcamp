@@ -35,7 +35,7 @@
                         <div class="text-center">
                             <h3>Créez votre compte Redico</h3>
                             <p>Vous avez déjà un compte? <a href="{% url 'account_login' %}">S'identifier</a></p>
-                            <a href="#" class="btn-google"><img src="{% static  'img/signup/gmail.png' %}" alt=""><span class="btn-text">Sign up with Google</span></a><a href="{% provider_login_url 'facebook' process='connect' %}" class="btn-google"><img src="{% static  'img/signup/fb.jpg' %}" alt=""><span class="btn-text">Connexion Facebook</span></a>
+                            <a href="#" class="btn-google"><img src="{% static  'img/signup/gmail.png' %}" alt=""><span class="btn-text">Sign up with Google</span></a><a href="{% provider_login_url 'facebook' method='js_sdk' %}" class="btn-google"><img src="{% static  'img/signup/fb.jpg' %}" alt=""><span class="btn-text">Connexion Facebook</span></a>
                         </div>
                         <div class="divider">
                             <span class="or-text">Ou</span>
