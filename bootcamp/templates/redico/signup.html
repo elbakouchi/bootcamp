@@ -16,141 +16,173 @@
     <link rel="stylesheet" href="{% static 'css/style-main.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
     <title>Redico - Créez votre compte</title>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : '2133019940193864',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v13.0'
+        });
+      };
+    </script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_Fr/sdk.js"></script>
 </head>
 
 <body data-scroll-animation="true">
 
-    <div class="body_wrapper">
-        <section class="signup_area signup_area_height">
-            <div class="row ml-0 mr-0">
-                <div class="sign_left signup_left">
-                    <h2>Rédaction & Reformulation de vos textes en Français.</h2>
-                    <img class="position-absolute top" src="{% static 'img/signup/top_ornamate.png' %}" alt="top">
-                    <img class="position-absolute bottom" src="{% static 'img/signup/bottom_ornamate.png' %}" alt="bottom">
-                    <img class="position-absolute middle wow fadeInRigt  d-none d-sm-block" src="{% static 'img/signup/man_image.png' %}" alt="bottom">
-                    <div class="round wow zoomIn" data-wow-delay="0.2s"></div>
-                </div>
-                <div class="sign_right signup_right">
-                    <div class="sign_inner signup_inner">
-                        <div class="text-center">
-                            <h3>Créez votre compte Redico</h3>
-                            <p>Vous avez déjà un compte? <a href="{% url 'account_login' %}">S'identifier</a></p>
-                            <a href="#" class="btn-google"><img src="{% static  'img/signup/gmail.png' %}" alt=""><span class="btn-text">Sign up with Google</span></a><a href="{% provider_login_url 'facebook' method='js_sdk' %}" class="btn-google"><img src="{% static  'img/signup/fb.jpg' %}" alt=""><span class="btn-text">Connexion Facebook</span></a>
-                        </div>
-                        <div class="divider">
-                            <span class="or-text">Ou</span>
-                        </div>
-                        <form id="signup_form" method="post" action="{% url 'accounts:custom_signup' %}" class="signup row login_form">
-                        	 {% csrf_token %}
-                              {% if redirect_field_value %}
-                              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                            {% endif %}
-                            <div class="col-sm-12 form-group">
-                                <!--div class="small_text">Username</div-->
-                                {{form.username}}
-                                 <ul class="error">
-                                    {% for error in form.username.errors %}
-                                    <li>{{error}}</li>
-                                    {% endfor %}
-                                </ul>
-                                <!--input type="text" class="form-control" name="name" id="name" placeholder="Muhammad"-->
-                            </div>
-                            <!--div class="col-sm-6 form-group">
-                                <div class="small_text">Nom de famille</div>
-                                <input type="text" class="form-control" name="lname" id="lname" placeholder="Jewel">
-                            </div-->
-                            <div class="col-lg-12 form-group">
-                                <!--div class="small_text">Email</div-->
-                                <!--input type="email" class="form-control" id="email" placeholder="info@Redico.com"-->
-                                {{form.email}}
-                                 <ul class="error">
-                                    {% for error in form.email.errors %}
-                                    <li>{{error}}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            <div class="col-lg-12 form-group">
-                                <!--div class="small_text">Mot de passe</div-->
-                                {{form.password1}}
-                                 <ul class="error">
-                                    {% for error in form.password1.errors %}
-                                    <li>{{error}}</li>
-                                    {% endfor %}
-                                </ul>
-                                <!--input id="signup-password" name="signup-password" type="password" class="form-control" placeholder="5+ characters required" autocomplete="off"-->
-                            </div>
-                            <div class="col-lg-12 form-group">
-                                <!--div class="small_text">Confirmez le mot de passe</div-->
-                                <!--input id="confirm-password" name="confirm-password" type="password" class="form-control" placeholder="5+ characters required" autocomplete="off"-->
-                                {{form.password2}}
-                                 <ul class="error">
-                                    {% for error in form.password2.errors %}
-                                    <li>{{error}}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            <div class="col-lg-12 form-group">
-                                <div class="check_box">
-                                    {{form.terms}}
-                                    <!--label class="l_text" for="squared2">J'accepte <a href="/conditionsgenerales/" target="_blank"> les conditions d’utilisation</a></label-->
-                                    <label class="l_text" for="squared2">J'accepte <a href="#" data-toggle="modal" data-target="#conditions"> les conditions d’utilisation</a></label>
-
-                                     <ul class="error">
-                                        {% for error in form.terms.errors %}
-                                        <li>{{error}}</li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 text-center">
-                                <button type="submit" class="btn action_btn thm_btn">Créer un compte</button>
-                            </div>
-                        </form>
+<div class="body_wrapper">
+    <section class="signup_area signup_area_height">
+        <div class="row ml-0 mr-0">
+            <div class="sign_left signup_left">
+                <h2>Rédaction & Reformulation de vos textes en Français.</h2>
+                <img class="position-absolute top" src="{% static 'img/signup/top_ornamate.png' %}" alt="top">
+                <img class="position-absolute bottom" src="{% static 'img/signup/bottom_ornamate.png' %}" alt="bottom">
+                <img class="position-absolute middle wow fadeInRigt  d-none d-sm-block"
+                     src="{% static 'img/signup/man_image.png' %}" alt="bottom">
+                <div class="round wow zoomIn" data-wow-delay="0.2s"></div>
+            </div>
+            <div class="sign_right signup_right">
+                <div class="sign_inner signup_inner">
+                    <div class="text-center">
+                        <h3>Créez votre compte Redico</h3>
+                        <p>Vous avez déjà un compte? <a href="{% url 'account_login' %}">S'identifier</a></p>
+                        <a href="#" class="btn-google"><img src="{% static  'img/signup/gmail.png' %}" alt=""><span
+                                class="btn-text">Sign up with Google</span></a><a
+                            href="{% provider_login_url 'facebook' method='js_sdk' %}" class="btn-google"><img
+                            src="{% static  'img/signup/fb.jpg' %}" alt=""><span
+                            class="btn-text">Connexion Facebook</span></a>
                     </div>
+                    <div class="divider">
+                        <span class="or-text">Ou</span>
+                    </div>
+                    <form id="signup_form" method="post" action="{% url 'accounts:custom_signup' %}"
+                          class="signup row login_form">
+                        {% csrf_token %}
+                        {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                        {% endif %}
+                        <div class="col-sm-12 form-group">
+                            <!--div class="small_text">Username</div-->
+                            {{form.username}}
+                            <ul class="error">
+                                {% for error in form.username.errors %}
+                                <li>{{error}}</li>
+                                {% endfor %}
+                            </ul>
+                            <!--input type="text" class="form-control" name="name" id="name" placeholder="Muhammad"-->
+                        </div>
+                        <!--div class="col-sm-6 form-group">
+                            <div class="small_text">Nom de famille</div>
+                            <input type="text" class="form-control" name="lname" id="lname" placeholder="Jewel">
+                        </div-->
+                        <div class="col-lg-12 form-group">
+                            <!--div class="small_text">Email</div-->
+                            <!--input type="email" class="form-control" id="email" placeholder="info@Redico.com"-->
+                            {{form.email}}
+                            <ul class="error">
+                                {% for error in form.email.errors %}
+                                <li>{{error}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            <!--div class="small_text">Mot de passe</div-->
+                            {{form.password1}}
+                            <ul class="error">
+                                {% for error in form.password1.errors %}
+                                <li>{{error}}</li>
+                                {% endfor %}
+                            </ul>
+                            <!--input id="signup-password" name="signup-password" type="password" class="form-control" placeholder="5+ characters required" autocomplete="off"-->
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            <!--div class="small_text">Confirmez le mot de passe</div-->
+                            <!--input id="confirm-password" name="confirm-password" type="password" class="form-control" placeholder="5+ characters required" autocomplete="off"-->
+                            {{form.password2}}
+                            <ul class="error">
+                                {% for error in form.password2.errors %}
+                                <li>{{error}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="col-lg-12 form-group">
+                            <div class="check_box">
+                                {{form.terms}}
+                                <!--label class="l_text" for="squared2">J'accepte <a href="/conditionsgenerales/" target="_blank"> les conditions d’utilisation</a></label-->
+                                <label class="l_text" for="squared2">J'accepte <a href="#" data-toggle="modal"
+                                                                                  data-target="#conditions"> les
+                                    conditions d’utilisation</a></label>
+
+                                <ul class="error">
+                                    {% for error in form.terms.errors %}
+                                    <li>{{error}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                            <button type="submit" class="btn action_btn thm_btn">Créer un compte</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
+</div>
+<div class="modal fade" id="conditions" tabindex="-1" role="dialog" aria-labelledby="conditionsTitle"
+     style="display: none;" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="conditionsTitle">Conditions d’utilisation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Avant l’utilisation de RediCo, vous êtes tenu de prendre connaissance des règles et conditions
+                    ci-après :</p>
+                <ul>
+                    <li>
+                        En soumettant vos textes à RediCo afin de bénéficier de nos services de rédaction, correction ou
+                        reformulation, vous acceptez que vos textes soumis soient affichés sur le site de RediCo et que
+                        tout autre utilisateur ou visiteur de RediCo puisse y accéder pour les lire.
+                    </li>
+                    <li> Afin de protéger vos données confidentielles et privées, vous êtes tenus de procéder à la
+                        vérification du contenu de vos textes avant leur soumission à RediCo, afin de supprimer toutes
+                        informations à caractère personnel ou pouvant toucher à votre vie privée ou à celle d’un tiers,
+                        qui peuvent être affichées dans votre texte (par ex : votre signature dans un courrier
+                        professionnel, le nom de votre employeur dans une lettre de démission…Etc).
+                    </li>
+
+                    <li>Dans le but d’assurer et de maintenir un environnement respectueux pour tous, il est interdit à
+                        tout utilisateur de soumettre un texte ou de proposer une correction contenant des propos
+                        indécents ou racistes ou d’afficher tout manque de respect de quelque manière que ce soit,
+                        vis-à-vis des propriétaires, utilisateurs et visiteurs de RediCo.
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
     </div>
-  <div class="modal fade" id="conditions" tabindex="-1" role="dialog" aria-labelledby="conditionsTitle" style="display: none;" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="conditionsTitle">Conditions d’utilisation</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Avant l’utilisation de RediCo, vous êtes tenu de prendre connaissance des règles et conditions ci-après :</p>
-             <ul>
-                <li>
-                    En soumettant vos textes à RediCo afin de bénéficier de nos services de rédaction, correction ou reformulation, vous acceptez que vos textes soumis soient affichés sur le site de RediCo et que tout autre utilisateur ou visiteur de RediCo puisse y accéder pour les lire.
-             </li>
-             <li> Afin de protéger vos données confidentielles et privées, vous êtes tenus de procéder à la vérification du contenu de vos textes avant leur soumission à RediCo, afin de supprimer toutes informations à caractère personnel ou pouvant toucher à votre vie privée ou à celle d’un tiers, qui peuvent être affichées dans votre texte (par ex : votre signature dans un courrier professionnel, le nom de votre employeur dans une lettre de démission…Etc).</li>
-
-             <li>Dans le but d’assurer et de maintenir un environnement respectueux pour tous, il est interdit à tout utilisateur de soumettre un texte ou de proposer une correction contenant des propos indécents ou racistes ou d’afficher tout manque de respect de quelque manière que ce soit, vis-à-vis des propriétaires, utilisateurs et visiteurs de RediCo.</li>
-            </ul>
-
-      </div>
-   
-    </div>
-  </div>
 </div>
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
-    <script src="{% static 'js/pre-loader.js'%}"></script>
-    <script src="{% static 'assets/bootstrap/js/popper.min.js' %}"></script>
-    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/parallaxie.js' %}"></script>
-    <script src="{% static 'js/TweenMax.min.js' %}"></script>
-    <script src="{% static 'assets/wow/wow.min.js' %}"></script>
-    <script src="{% static 'https://unpkg.com/ionicons@5.4.0/dist/ionicons.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-    <script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'js/pre-loader.js'%}"></script>
+<script src="{% static 'assets/bootstrap/js/popper.min.js' %}"></script>
+<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/parallaxie.js' %}"></script>
+<script src="{% static 'js/TweenMax.min.js' %}"></script>
+<script src="{% static 'assets/wow/wow.min.js' %}"></script>
+<script src="{% static 'https://unpkg.com/ionicons@5.4.0/dist/ionicons.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script>
     $(document).ready(
      function(){
         $('#id_username').addClass('form-control');
@@ -158,7 +190,8 @@
         $('#id_password1').addClass('form-control');
         $('#id_password2').addClass('form-control');
      });
-    </script>
+
+</script>
 </body>
 
 </html>

@@ -16,6 +16,18 @@
     <link rel="stylesheet" href="{% static 'css/style-main.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
     <title>Redico - Connectez vous à votre compte</title>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : '2133019940193864',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v13.0'
+        });
+      };
+    </script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_Fr/sdk.js"></script>
+
 </head>
 
 <body data-scroll-animation="true">
