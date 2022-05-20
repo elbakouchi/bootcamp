@@ -26,8 +26,8 @@ class SocialAccountAdapter(DefaultSocialAccountAdapter):
         super(SocialAccountAdapter, self).pre_social_login(request, sociallogin)
         print(sociallogin)
         user = sociallogin.user
-        if user.id:
-            return
+        #if user.id:
+        #    return
         try:
             user = User.objects.get(
                 email=user.email)  # if user exists, connect the account to the existing account and login
