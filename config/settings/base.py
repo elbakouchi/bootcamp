@@ -400,6 +400,10 @@ VERSATILEIMAGEFIELD_SETTINGS = {
     # 'placeholder_directory_name': 'pl'
 }
 
+
+SOCIALACCOUNT_ADAPTER = 'bootcamp.accounts.adapters.SocialAccountAdapter'
+
+
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
         'METHOD': 'js_sdk',
@@ -419,7 +423,7 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
         'EXCHANGE_TOKEN': True,
         # 'LOCALE_FUNC': 'path.to.callable',
-        'VERIFIED_EMAIL': True,
+        'VERIFIED_EMAIL': False,
         'VERSION': 'v13.0',
     }
 }
