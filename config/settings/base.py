@@ -401,7 +401,7 @@ VERSATILEIMAGEFIELD_SETTINGS = {
 }
 
 
-SOCIALACCOUNT_ADAPTER = 'bootcamp.accounts.adapters.SocialAccountAdapterd'
+SOCIALACCOUNT_ADAPTER = 'bootcamp.accounts.adapters.SocialAccountAdapter'
 SOCIALACCOUNT_EMAIL_VERIFICATION = False
 
 SOCIALACCOUNT_PROVIDERS = {
