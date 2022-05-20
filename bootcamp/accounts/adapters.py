@@ -12,6 +12,7 @@ class SocialAccountAdapter(DefaultSocialAccountAdapter):
         Returns the default URL to redirect to after successfully
         connecting a social account.
         """
+        super(SocialAccountAdapter, self).get_connect_redirect_url(request, socialaccount)
         print(socialaccount)
         assert request.user.is_authenticated
         url = reverse("home:home")
@@ -22,6 +23,7 @@ class SocialAccountAdapter(DefaultSocialAccountAdapter):
         return super(SocialAccountAdapter, self).populate_user(request, sociallogin, data)
 
     def pre_social_login(self, request, sociallogin):
+        super(SocialAccountAdapter, self).pre_social_login(request, sociallogin)
         print(sociallogin)
         user = sociallogin.user
         if user.id:
