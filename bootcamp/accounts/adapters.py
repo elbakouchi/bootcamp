@@ -22,6 +22,7 @@ class SocialAccountAdapter(DefaultSocialAccountAdapter):
         return super(SocialAccountAdapter, self).populate_user(request, sociallogin, data)
 
     def pre_social_login(self, request, sociallogin):
+        print(sociallogin)
         user = sociallogin.user
         if user.id:
             return
