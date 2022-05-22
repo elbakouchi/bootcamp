@@ -1,6 +1,7 @@
 """
 Base settings to build other settings files upon.
 """
+import os
 
 import environ
 
@@ -84,7 +85,8 @@ THIRD_PARTY_APPS = [
     "django_ckeditor_5",
     "versatileimagefield",
     "contact_form",
-    "ads"
+    "ads",
+    "sekizai"
 ]
 LOCAL_APPS = [
     "bootcamp.home.apps.HomeConfig",
@@ -99,7 +101,8 @@ LOCAL_APPS = [
     "bootcamp.qa.apps.QaConfig",
     "bootcamp.search.apps.SearchConfig",
     "bootcamp.tracking.apps.TrackingConfig",
-    "bootcamp.accounts.apps.AccountConfig"
+    "bootcamp.accounts.apps.AccountConfig",
+    "bootcamp.customads.apps.CustomAdsConfig"
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + LOCAL_APPS
@@ -211,6 +214,7 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 "bootcamp.articles.context_processors.general_context",
+                'sekizai.context_processors.sekizai',
             ],
         },
     }
@@ -236,13 +240,12 @@ EMAIL_BACKEND = env(
 ADMIN_URL = r"^admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = [
-     ("Youssef Kostali", 'y.kostali@gmail.com'),
-     ("Mohamed Hamza EL BAKOUCHI", 'hamza.baqoushi@gmail.com'),
-     ("Khadija Gartoute", "k.gartoute@gmail.com")
- ]
+    ("Youssef Kostali", 'y.kostali@gmail.com'),
+    ("Mohamed Hamza EL BAKOUCHI", 'hamza.baqoushi@gmail.com'),
+    ("Khadija Gartoute", "k.gartoute@gmail.com")
+]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
-
 
 # django-allauth
 # ------------------------------------------------------------------------------
@@ -380,7 +383,6 @@ CKEDITOR_CONFIGS = {
 
 PHONENUMBER_DEFAULT_FORMAT = 'INTERNATIONAL'
 
-
 VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
     "products": [
         ("user_gallery", "thumbnail__540x540"),
@@ -399,7 +401,6 @@ VERSATILEIMAGEFIELD_SETTINGS = {
     "create_images_on_demand": DEBUG,
     # 'placeholder_directory_name': 'pl'
 }
-
 
 SOCIALACCOUNT_ADAPTER = 'bootcamp.accounts.adapters.SocialAccountAdapter'
 SOCIALACCOUNT_EMAIL_VERIFICATION = False
@@ -425,6 +426,16 @@ SOCIALACCOUNT_PROVIDERS = {
         # 'LOCALE_FUNC': 'path.to.callable',
         'VERIFIED_EMAIL': False,
         'VERSION': 'v13.0',
+    },
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
     }
 }
 
+ADS_GOOGLE_ADSENSE_CLIENT = os.environ.get("ADS_GOOGLE_ADSENSE_CLIENT", None)

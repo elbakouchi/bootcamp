@@ -43,6 +43,6 @@ django-versatileimagefield = "*"
 django-contact-form= "*"
 akismet="*"
 django-ads="*"
-
+django-sekizai="*"
 [requires]
 python_version = "3.6"

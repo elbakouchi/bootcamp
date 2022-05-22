@@ -48,7 +48,7 @@
                         <div class="text-center">
                             <h3>Connectez-vous à Redico</h3>
                             <p>Vous n'avez pas encore de compte? <a href="{% url 'accounts:custom_signup' %}">Inscrivez-vous ici</a></p>
-                            <a href="#" class="btn-google"><img src="{% static 'img/signup/gmail.png' %}" alt=""><span class="btn-text">Sign in with Gmail</span></a><a href="{% provider_login_url 'facebook' process='connect' %}" class="btn-google"><img src="{% static 'img/signup/fb.jpg' %}" alt=""><span class="btn-text">Connexion Facebook</span></a>
+                            <a href="{% provider_login_url 'google' process='connect' %}" class="btn-google"><img src="{% static 'img/signup/gmail.png' %}" alt=""><span class="btn-text">Sign in with Gmail</span></a><a href="{% provider_login_url 'facebook' process='connect' %}" class="btn-google"><img src="{% static 'img/signup/fb.jpg' %}" alt=""><span class="btn-text">Connexion Facebook</span></a>
                         </div>
                         <div class="divider">
                             <span class="or-text">Ou</span>

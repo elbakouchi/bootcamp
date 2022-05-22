@@ -1,10 +1,10 @@
-{% extends "redico/redico_base.html" %}
+{% extends "socialaccount/base.html" %}
 
 {% load i18n %}
 
 {% block head_title %}{% trans "Account Connections" %}{% endblock %}
 
-{% block content %}
+{% block inner %}
 <h1>{% trans "Account Connections" %}</h1>
 
 {% if form.accounts %}
