@@ -49,6 +49,11 @@ class NotificationQuerySet(models.query.QuerySet):
         """Returns the most recent unread elements in the queryset"""
         return self.unread()[:5]
 
+    def mark_as_read(self, recipient, action_obj=None):
+        if action_obj:
+            qs = self.filter(recipient=recipient, action_object_object_id=action_obj)
+            return qs.update(unread=False)
+
 
 class Notification(models.Model):
     """

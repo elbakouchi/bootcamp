@@ -8,6 +8,7 @@ from bootcamp.articles.models import Article
 from bootcamp.custom import AjaxListView
 from bootcamp.demand.forms import DemandForm
 from bootcamp.demand.models import Demand
+from bootcamp.notifications.models import Notification
 from bootcamp.helpers import AuthorRequiredMixin
 from django.shortcuts import redirect
 
@@ -101,7 +102,7 @@ class EditDemandView(LoginRequiredMixin, AuthorRequiredMixin, UpdateView):
 
 
 def demandRedirect(request, pk):
-    # pk = request.GET.get('pk', None)
     demand = Demand.objects.get(pk=pk)
     if demand:
+        Notification.objects.mark_as_read(recipient=request.user, action_obj=pk)
         return redirect(reverse('demands:demand', args=[demand.slug]))
