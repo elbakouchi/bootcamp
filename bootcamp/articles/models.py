@@ -122,7 +122,7 @@ def set_demand_has_revision(**kwargs):
 
 def broadcast_revision_created(sender, user, request, **kwargs):
     demand = kwargs["demand"]
-    notification_handler(user, demand.user, Notification.REVISION_ADDED)
+    notification_handler(user, demand.user, Notification.REVISION_ADDED, action_object=demand)
 
 
 demand_has_revision = Signal()

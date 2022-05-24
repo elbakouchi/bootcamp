@@ -2,9 +2,15 @@
 <ul>
   {% if notifications %}
     {% for notification in notifications %}
+      {% if notification.action_object_object_id %}
+       <li class="clearfix">
+        <p><a href="{% url 'demands:redirect_demand' notification.action_object_object_id %}">{{ notification|safe }}&nbsp;<small>{{ notification.timestamp }}</small></a></p>
+      </li>
+      {%else%}
       <li class="clearfix">
         <p><a href="{% url 'notifications:unread' %}">{{ notification|safe }}&nbsp;<small>{{ notification.timestamp }}</small></a></p>
       </li>
+      {%endif%}
     {% endfor %}
     <!--a class="doc_border_btn btn_small" href="{#% url 'notifications:unread' %#}">{#% trans 'Tout voir' %#}</a-->
     <a class="doc_border_btn btn_small" href="{% url 'notifications:mark_all_read' %}">{% trans 'Marquer en tant que lues' %}</a>

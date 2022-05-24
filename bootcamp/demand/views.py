@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-from django.views.generic import CreateView, DetailView, ListView, UpdateView
+from django.views.generic import CreateView, DetailView, ListView, UpdateView, RedirectView
 from django.contrib import messages
 from django.db.models import OuterRef
 from bootcamp.articles.forms import SuggestedRevisionForm
@@ -9,6 +9,7 @@ from bootcamp.custom import AjaxListView
 from bootcamp.demand.forms import DemandForm
 from bootcamp.demand.models import Demand
 from bootcamp.helpers import AuthorRequiredMixin
+from django.shortcuts import redirect
 
 
 class DetailDemandView(DetailView):
@@ -97,3 +98,10 @@ class EditDemandView(LoginRequiredMixin, AuthorRequiredMixin, UpdateView):
     def get_success_url(self):
         messages.success(self.request, self.message)
         return reverse("home:home")
+
+
+def demandRedirect(request, pk):
+    # pk = request.GET.get('pk', None)
+    demand = Demand.objects.get(pk=pk)
+    if demand:
+        return redirect(reverse('demands:demand', args=[demand.slug]))
