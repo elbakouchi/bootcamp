@@ -101,7 +101,7 @@ class EditDemandView(LoginRequiredMixin, AuthorRequiredMixin, UpdateView):
         return reverse("home:home")
 
 
-def demandRedirect(request, pk):
+def demand_redirect(request, pk):
     demand = Demand.objects.get(pk=pk)
     if demand:
         Notification.objects.mark_as_read(recipient=request.user, action_obj=pk)
