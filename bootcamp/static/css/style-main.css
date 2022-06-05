@@ -15887,6 +15887,12 @@ input[type="number"] {
   margin-top: 15px;
 }
 
+.original {
+  background: #0099ff;
+  margin-left: 10px;
+  display: inline-block;
+}
+
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 /*=========== blog_top_post_area css ==========*/

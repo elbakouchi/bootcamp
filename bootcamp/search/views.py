@@ -117,6 +117,24 @@ def get_suggestions(request):
 
 
 class DemandAutocomplete(autocomplete.Select2ListView):
+    def autocomplete_results(self, results):
+        print(results)
+        """Return list of strings that match the autocomplete query."""
+        if all(isinstance(el, list) for el in results) and len(results) > 0:
+            return [[x, y] for [x, y] in results if self.q.lower() == y.lower()]
+        if all(isinstance(el, tuple) for el in results) and len(results) > 0:
+            return [[x, y] for (x, y) in results if self.q.lower() == y.lower()]
+        else:
+            return [x for x in results if self.q.lower() == x.lower()]
+
+    def results(self, results):
+        """Return the result dictionary."""
+        if all(isinstance(el, list) for el in results) and len(results) > 0:
+            return [dict(id=x, text=y) for [x, y] in results]
+        elif all(isinstance(el, tuple) for el in results) and len(results) > 0:
+            return [dict(id=x, text=y) for (x, y) in results]
+        else:
+            return [dict(id=x, text=x) for x in results]
 
     def get_list(self):
         self.q = self.request.GET.get('term', '')
@@ -138,7 +156,7 @@ class DemandAutocomplete2(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         q = self.request.GET.get('q', None)
         if q:
-            qs = Demand.objects.get_published().filter(title__icontains=q, content__icontains=q)
+            qs = Demand.objects.get_published().filter(title__exact=q, content__exact=q)
             return qs
         return Demand.objects.none()
 
