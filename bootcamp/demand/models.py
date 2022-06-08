@@ -79,8 +79,8 @@ class DemandQuerySet(models.query.QuerySet):
             last_revision_content=self.get_last_revision(),
         )
 
-    def get_published_unverified_demands(self):
-        return self.filter(status="P", verified=False).distinct().order_by('-timestamp').annotate(
+    def get_published_unverified_demands(self, limit=None):
+        qs = self.filter(status="P", verified=False).distinct().order_by('-timestamp').annotate(
             client_firstname=models.F('user__first_name'),
             client_lastname=models.F('user__last_name'),
             category_name=models.F('category__name'),
@@ -89,6 +89,9 @@ class DemandQuerySet(models.query.QuerySet):
             service_name=models.F('service__name'),
             revision_count=models.Count('revision__id', None)
         )  # .filter(revision_count=0)
+        if limit:
+            return qs[:limit]
+        return qs
 
     def get_without_revisions(self):
         # return self.get_category().filter(has_revision=False)

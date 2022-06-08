@@ -118,7 +118,7 @@ def get_suggestions(request):
 
 class DemandAutocomplete(autocomplete.Select2ListView):
     def autocomplete_results(self, results):
-        print(results)
+        # print(results)
         """Return list of strings that match the autocomplete query."""
         if all(isinstance(el, list) for el in results) and len(results) > 0:
             return [[x, y] for [x, y] in results if self.q.lower() == y.lower()]
@@ -138,7 +138,7 @@ class DemandAutocomplete(autocomplete.Select2ListView):
 
     def get_list(self):
         self.q = self.request.GET.get('term', '')
-        print(self.q)
+        # print(self.q)
         _dump = []
         tokens = Demand.objects.get_published().values_list('tokens')
         for words in tokens:

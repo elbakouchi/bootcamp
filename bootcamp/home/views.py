@@ -17,6 +17,20 @@ class HomePageView(ListView):
     queryset = Demand.objects.homepage()
 
 
+class HomePageListView(ListView):
+    model = Demand
+    paginate_by = 10
+    context_object_name = "demands"
+    template_name = 'redico/homepage3.html'
+    queryset = Demand.objects.homepage()
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(HomePageListView, self).get_context_data(*args, **kwargs)
+        context['unfulfilled'] = Demand.objects.get_published_unverified_demands(self.paginate_by)
+        print(context['unfulfilled'])
+        return context
+
+
 class HomepageView(CategoriesListView):
     template_name = 'redico/homepage.html'
 
