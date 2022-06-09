@@ -86,7 +86,8 @@ THIRD_PARTY_APPS = [
     "versatileimagefield",
     "contact_form",
     "ads",
-    "sekizai"
+    "sekizai",
+    'safedelete',
 ]
 LOCAL_APPS = [
     "bootcamp.home.apps.HomeConfig",

@@ -14,6 +14,9 @@ from bootcamp.custom import word_counter_validator
 from bootcamp.notifications.models import Notification, notification_handler
 from bootcamp.category.models import Category, Service
 
+from safedelete.models import SafeDeleteModel
+
+
 try:
     nlp = spacy.load("fr_core_news_sm")
 except:
@@ -131,7 +134,7 @@ class DemandQuerySet(models.query.QuerySet):
         return tag_dict.items()
 
 
-class Demand(models.Model):
+class Demand(SafeDeleteModel):
     DRAFT = "D"
     PUBLISHED = "P"
     DEACTIVATED = "X"

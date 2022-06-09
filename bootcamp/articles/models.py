@@ -15,6 +15,8 @@ import bootcamp.demand.models
 from bootcamp.custom import word_counter_validator
 from bootcamp.notifications.models import Notification, notification_handler
 
+from safedelete.models import SafeDeleteModel
+
 
 class ArticleQuerySet(models.query.QuerySet):
     """Personalized queryset created to improve model usability"""
@@ -40,7 +42,7 @@ class ArticleQuerySet(models.query.QuerySet):
         return self.filter()
 
 
-class Article(models.Model):
+class Article(SafeDeleteModel):
     DRAFT = "D"
     PUBLISHED = "P"
     STATUS = ((DRAFT, _("Draft")), (PUBLISHED, _("Published")))
