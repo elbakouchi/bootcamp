@@ -1,2 +1,5 @@
+{% extends 'email/redico.html' %}
 {% load i18n %}
+{% block content%}
 {% blocktrans %}Compte déconnecté.{% endblocktrans %}
+{% endblock content%}

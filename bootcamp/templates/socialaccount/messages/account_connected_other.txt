@@ -1,2 +1,6 @@
+{% extends 'email/redico.html' %}
 {% load i18n %}
+{% block content%}
 {% blocktrans %}ce compte réseau social est attribué à un autre compte.{% endblocktrans %}
+{% endblock content%}
+
