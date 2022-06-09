@@ -27,7 +27,7 @@ class HomePageListView(ListView):
     def get_context_data(self, *args, **kwargs):
         context = super(HomePageListView, self).get_context_data(*args, **kwargs)
         context['unfulfilled'] = Demand.objects.get_published_unverified_demands(self.paginate_by)
-        print(context['unfulfilled'])
+        # print(context['unfulfilled'])
         return context
 
 
