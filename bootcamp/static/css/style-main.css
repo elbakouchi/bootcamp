@@ -511,8 +511,7 @@ p kbd {
   background: #0099ff;
   display: inline-block;
   padding: 14px 28px;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
- border-color 0.15s ease-in-out, box-shadow 0.18s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.18s ease-in-out;
 }
 
 .action_btn i {
@@ -1083,8 +1082,8 @@ p kbd {
 }
 
 .menu > .nav-item {
-  padding-bottom: 17px;
-  padding-top: 17px;
+  padding-bottom: 10px;
+  padding-top: 10px;
   transition: all 0.3s linear;
 }
 
@@ -3704,11 +3703,8 @@ p kbd {
 ============================================================================================ */
 .doc_banner_area.search-banner-light {
   background-color: #f3f3f3;
-  padding-top: 70px;
-  padding-bottom: 70px;
-  background-image: url(../img/banner-bg.png);
-  background-position: bottom;
-  background-repeat: no-repeat;
+  padding-top: 50px;
+  padding-bottom: 60px;
 }
 
 .doc_banner_area.search-banner-light .banner_shap_img li:first-child {
@@ -4287,8 +4283,7 @@ body.remove .header_tabs_area.tab_fixed .header_tab_items {
   transition: background 500ms ease, -webkit-transform 500ms ease;
   -o-transition: transform 500ms ease, background 500ms ease;
   transition: transform 500ms ease, background 500ms ease;
-  transition: transform 500ms ease, background 500ms ease,
- -webkit-transform 500ms ease;
+  transition: transform 500ms ease, background 500ms ease, -webkit-transform 500ms ease;
   -webkit-transition: transform 500ms ease, background 500ms ease;
   z-index: 30;
 }
@@ -14454,7 +14449,7 @@ ul.forum-titles .forum-freshness .freshness-box .freshness-btm .bbp-author-avata
 .forum_l_inner .forum_body .topic_list li .media .media-body h6 {
   display: inline-block;
   margin-bottom: 0;
-  font-size: 14px;
+  font-size: 12px;
   color: #838793;
   font-weight: 400;
   font-family: "Roboto", sans-serif;

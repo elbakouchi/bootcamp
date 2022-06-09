@@ -1574,8 +1574,15 @@
   .signup_area_height {
     min-height: 760px;
   }
-
 }
+
+@media (max-width: 768px) {
+.doc_banner_area.search-banner-light {
+  padding-top: 60px;
+  padding-bottom: 10px;
+}
+}
+
 
 @media (max-width: 768px) {
 
@@ -1590,13 +1597,17 @@
 .forum_body .topic_list li .media .media-right {
   display: none!important;
 }
-.forum_l_inner .forum_body .topic_list li .media .media-body h6 {
-  
-display: block;
-margin-bottom: 12px;
+.forum_l_inner .forum_body .topic_list li .media .media-body h6:last-child {
+  margin-bottom: 12px;
+}
+.forum_l_inner .forum_body .topic_list li .media .media-body a.doc_border_btn{
+  display: block;
+}
+
 
 }
-}
+
+
 
 @media (max-width: 768px) {
   .tip_banner_area {
