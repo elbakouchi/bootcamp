@@ -14,7 +14,7 @@ from bootcamp.custom import word_counter_validator
 from bootcamp.notifications.models import Notification, notification_handler
 from bootcamp.category.models import Category, Service
 
-from safedelete.models import SafeDeleteModel
+from safedelete.models import SafeDeleteModel, SOFT_DELETE
 
 
 try:
@@ -135,6 +135,7 @@ class DemandQuerySet(models.query.QuerySet):
 
 
 class Demand(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
     DRAFT = "D"
     PUBLISHED = "P"
     DEACTIVATED = "X"

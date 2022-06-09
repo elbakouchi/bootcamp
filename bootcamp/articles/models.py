@@ -15,7 +15,7 @@ import bootcamp.demand.models
 from bootcamp.custom import word_counter_validator
 from bootcamp.notifications.models import Notification, notification_handler
 
-from safedelete.models import SafeDeleteModel
+from safedelete.models import SafeDeleteModel, SOFT_DELETE
 
 
 class ArticleQuerySet(models.query.QuerySet):
@@ -43,6 +43,8 @@ class ArticleQuerySet(models.query.QuerySet):
 
 
 class Article(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
+
     DRAFT = "D"
     PUBLISHED = "P"
     STATUS = ((DRAFT, _("Draft")), (PUBLISHED, _("Published")))
