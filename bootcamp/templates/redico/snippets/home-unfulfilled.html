@@ -40,10 +40,10 @@
             </h6>
             {% if not demand.verified %}
             <a href="{% url 'demands:demand' demand.slug %}"
-               class="doc_border_btn btn_small btn-block text-center mt-2">Modifier le texte</a>
+               class="doc_border_btn btn_small text-center mt-2">Modifier le texte</a>
             {% endif %}
             <a href="{% url 'demands:demand' demand.slug %}"
-               class="doc_border_btn btn_small btn-block text-center mt-2">Accéder aux révisions</a>
+               class="doc_border_btn btn_small text-center mt-2">Accéder aux révisions</a>
         </div>
     </div>
 </li>
