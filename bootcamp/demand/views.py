@@ -101,6 +101,14 @@ class EditDemandView(LoginRequiredMixin, AuthorRequiredMixin, UpdateView):
         return reverse("home:home")
 
 
+class CorrectedDemandsView(ListView):
+    model = Demand
+    paginate_by = 5
+    context_object_name = "demands"
+    template_name = 'redico/homepage.html'
+    queryset = Demand.objects.homepage()
+
+
 def demand_redirect(request, pk):
     demand = Demand.objects.get(pk=pk)
     if demand:

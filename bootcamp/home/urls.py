@@ -12,6 +12,6 @@ urlpatterns = [
 
     url(r"^$", HomePageListView.as_view(), name="home"),
     url(r"^old-home/$", homepage, name="old-home"),
-    url(r"^corrected/$", HomePageView.as_view(), name="corrected"),
+    url(r"^corrected/$", HomePageView.as_view(), name="corrected3"),
 
 ]

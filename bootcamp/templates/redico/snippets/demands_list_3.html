@@ -80,7 +80,7 @@
                 <div class="doc_title text-center mt-40">
 
                     {% if is_paginated and page_obj.has_next %}
-                    <a id="feed" href="{% url 'home:home' %}?page={{ page_obj.next_page_number }}"
+                    <a id="feed" href="{% url 'demands:corrected' %}?page={{ page_obj.next_page_number }}"
                        class="action_btn box_shadow_none wow fadeInUp infinite-more-link">Voir&nbsp;plus</a>
                     {% endif %}
                 </div>
