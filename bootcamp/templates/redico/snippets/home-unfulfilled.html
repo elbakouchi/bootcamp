@@ -24,7 +24,7 @@
                     {% endspaceless %}
                 </div>
             </div>
-            <a href="#">
+            <a href="{% url 'demands:category' demand.category_slug %}">
                 <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>  {{demand.category_name}}
                 </h6>
             </a>

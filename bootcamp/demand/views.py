@@ -53,6 +53,20 @@ class CreateDemandView(LoginRequiredMixin, CreateView):
         return reverse("demands:edit_demand", kwargs={'pk': self.object.pk})
 
 
+class CategoryDemandsList(ListView):
+    model = Demand
+    paginate_by = 5
+    template_name = "redico/category-demands.html"
+    
+
+    def get_context_data(self, **kwargs):
+        context = super(CategoryDemandsList, self).get_context_data(**kwargs)
+        category = self.request.GET.get('slug', 'extraits-d-articles')
+        context['category'] = category
+        context['demands'] =  Demand.objects.get_category_demands(category)
+        return context
+
+
 class DemandsList(ListView):
     model = Demand
     paginate_by = 5
