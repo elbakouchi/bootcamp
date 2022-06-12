@@ -1,3 +1,10 @@
+{% comment %}
+{% load ads_tags %}
+<div class="col-sm-2 d-none d-sm-block">
+    {% render_ads_zone 'sidebar' %}
+</div>
+{% endcomment %}
+
 {% load static %}
 <div class="col-sm-2 d-none d-sm-block">
     <img src="{% static 'img/ads.png' %}" class="rounded mx-auto d-block img-fluid" alt="...">
