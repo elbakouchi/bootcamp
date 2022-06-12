@@ -34,6 +34,53 @@
                     <div class="forum_body">
                         <ul class="navbar-nav topic_list infinite-container">
                             {% for demand in object_list%}
+                            <li>
+                                <div class="media">
+                                    <div class="media-body">
+                                        <div class="t_title">
+                                            <a href="{% url 'demands:demand' demand.slug %}">
+                                                <h4>
+                                                    {{demand.title}}
+                                                    {% if demand.verified %}
+                                                    <ion-icon name="checkmark-circle" role="img"
+                                                              class="md hydrated"
+                                                              aria-label="checkmark circle"></ion-icon>
+                                                    {% endif %}
+                                                </h4>
+                                            </a>
+                                            <div>
+                                                {% spaceless %}
+                                                {% if demand.last_revision_content %}
+                                                {{demand.last_revision_content|truncatewords_html:10|safe}}
+                                                {%else%}
+                                                {{demand.content|truncatewords_html:10|safe}}
+                                                {%endif%}
+                                                {% endspaceless %}
+                                            </div>
+                                        </div>
+                                        <a href="{% url 'demands:category' demand.category_slug %}">
+                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>  {{demand.category_name}}
+                                            </h6>
+                                        </a>
+                                        <h6><i class="icon_clock_alt"></i> {{ demand.timestamp|timesince }}</h6>
+                                        <h6 class="count">
+                                            <ion-icon name="create-outline"></ion-icon>
+                                            {{ demand.revision_count }}
+                                        </h6>
+                                        <h6 class="count">
+                                            <ion-icon name="eye-outline"></ion-icon>
+                                            {{ demand.pageviews.count }}
+                                        </h6>
+                                        {% if not demand.verified %}
+                                        <a href="{% url 'demands:demand' demand.slug %}"
+                                           class="doc_border_btn btn_small text-center mt-2">Modifier le texte</a>
+                                        {% endif %}
+                                        <a href="{% url 'demands:demand' demand.slug %}"
+                                           class="doc_border_btn btn_small text-center mt-2">Accéder aux révisions</a>
+                                    </div>
+                                </div>
+                            </li>
+                            {%comment%}
                             <li class="infinite-item">
                                 <div class="media">
                                     <div class="media-body">
@@ -79,6 +126,7 @@
                                     </div>
                                 </div>
                             </li>
+                            {% endcomment %}
                             {% endfor %}
                         </ul>
                     </div>
