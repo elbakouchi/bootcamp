@@ -25,7 +25,7 @@
                 </div>
             </div>
             <a href="{% url 'demands:category' demand.category_slug %}">
-                <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>  {{demand.category_name}}
+                <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>  {{demand.categoryName}}
                 </h6>
             </a>
             <h6><i class="icon_clock_alt"></i> {{ demand.timestamp|timesince }}</h6>
