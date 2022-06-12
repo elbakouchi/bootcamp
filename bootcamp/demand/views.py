@@ -1,8 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-from django.views.generic import CreateView, DetailView, ListView, UpdateView, RedirectView
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
+from django.views.generic.detail import SingleObjectMixin
 from django.contrib import messages
-from django.db.models import OuterRef
+from bootcamp.category.models import Category
 from bootcamp.articles.forms import SuggestedRevisionForm
 from bootcamp.articles.models import Article
 from bootcamp.custom import AjaxListView
@@ -53,18 +54,16 @@ class CreateDemandView(LoginRequiredMixin, CreateView):
         return reverse("demands:edit_demand", kwargs={'pk': self.object.pk})
 
 
-class CategoryDemandsList(ListView):
-    model = Demand
+class CategoryDemandsList(SingleObjectMixin, ListView):
     paginate_by = 5
     template_name = "redico/category-demands.html"
-    
 
-    def get_context_data(self, **kwargs):
-        context = super(CategoryDemandsList, self).get_context_data(**kwargs)
-        category = self.request.GET.get('slug', 'extraits-d-articles')
-        context['category'] = category
-        context['demands'] =  Demand.objects.get_category_demands(category)
-        return context
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object(queryset=Category.objects.get_activated())
+        return super().get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return Demand.objects.get_category_demands(self.object.slug)
 
 
 class DemandsList(ListView):
