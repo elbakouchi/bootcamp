@@ -85,7 +85,7 @@
                     <div class="doc_title text-center mt-40">
                         {% if page_obj.has_next %}
                         <a class="action_btn box_shadow_none wow fadeInUp infinite-more-link" data-wow-delay="0.2s"
-                           href="{% url 'demands:category' category %}?page={{ page_obj.next_page_number }}" id="feed">Voir&nbsp;plus</a>
+                           href="{% url 'demands:category' object.slug %}?page={{ page_obj.next_page_number }}" id="feed">Voir&nbsp;plus</a>
                         {% endif %}
                     </div>
                 </div>
