@@ -56,6 +56,7 @@ class CreateDemandView(LoginRequiredMixin, CreateView):
 
 class CategoryDemandsList(SingleObjectMixin, ListView):
     paginate_by = 5
+    paginate_orphans = 1
     template_name = "redico/category-demands.html"
 
     def get(self, request, *args, **kwargs):
