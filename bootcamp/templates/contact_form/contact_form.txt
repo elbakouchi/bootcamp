@@ -1,13 +1,5 @@
-{% extends 'email/redico.html' %}
-{% load i18n %}
-{% block content%}
-
 RediCo {{site}} contact message
 
 De la par de {{name}} <{{email}}>:
 
 {{body}}
-{% endblock content %}
-{% block signature%}
-Bonne réception.
-{% endblock signature%}
