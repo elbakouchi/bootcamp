@@ -132,6 +132,9 @@ class DemandQuerySet(models.query.QuerySet):
         """Returns only the items marked as DRAFT in the current queryset."""
         return self.filter(status="D")
 
+    #def search_tokens(self, token):
+    #    return self.filter(status="P").annotate(tokens=[yield token for token in self.tokens])
+
     def get_counted_tags(self):
         tag_dict = {}
         query = (
@@ -206,7 +209,7 @@ class Demand(SafeDeleteModel):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(
-                f"{self.user.username}-{self.title}", lowercase=True, max_length=80
+                f"{self.title}-{self.category.name}", lowercase=True, max_length=80
             )
         doc = nlp(strip_tags(self.content))
         if not self.tokens:
