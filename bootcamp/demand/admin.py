@@ -5,7 +5,7 @@ from safedelete.admin import SafeDeleteAdmin, SafeDeleteAdminFilter, highlight_d
 
 @admin.register(Demand)
 class DemandAdmin(SafeDeleteAdmin):
-    list_display = ("title", "user", "status", "verified", "has_revision") \
+    list_display = (highlight_deleted, "title", "user", "status", "verified", "has_revision") \
                    + SafeDeleteAdmin.list_display
     list_filter = ("user", "status", "timestamp", "verified", "has_revision", SafeDeleteAdminFilter,) \
                   + SafeDeleteAdmin.list_filter
