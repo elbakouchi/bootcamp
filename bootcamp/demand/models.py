@@ -209,7 +209,7 @@ class Demand(SafeDeleteModel):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(
-                f"{self.title}-{self.category.name}", lowercase=True, max_length=80
+                f"{self.title}-{self.demand_category.name}", lowercase=True, max_length=80
             )
         doc = nlp(strip_tags(self.content))
         if not self.tokens:
