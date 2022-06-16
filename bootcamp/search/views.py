@@ -141,7 +141,7 @@ class DemandAutocomplete(autocomplete.Select2ListView):
         self.q = self.request.GET.get('term', '')
         # print(self.q)
         _dump = []
-        tokens = Demand.objects.get_published().values_list('tokens')
+        tokens = Demand.objectz.get_published().values_list('tokens')
         for words in tokens:
             try:
                 _dump.extend([w.lower() for w in words[0].split(',') if len(w) > 2])
@@ -157,9 +157,9 @@ class DemandAutocomplete2(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         q = self.request.GET.get('q', None)
         if q:
-            qs = Demand.objects.get_published().filter(title__exact=q, content__exact=q)
+            qs = Demand.objectz.get_published().filter(title__exact=q, content__exact=q)
             return qs
-        return Demand.objects.none()
+        return Demand.objectz.none()
 
 
 class SearchDemands(ListView):
@@ -171,6 +171,6 @@ class SearchDemands(ListView):
     def get_queryset(self):
         q = self.request.GET.get('q', None)
         if q:
-            qs = Demand.objects.search(q)
+            qs = Demand.objectz.search(q)
             return qs
-        return Demand.objects.none()
+        return Demand.objectz.none()

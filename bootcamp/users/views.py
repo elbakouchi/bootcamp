@@ -39,9 +39,9 @@ class UserDetailView(LoginRequiredMixin, ModelFormMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super(UserDetailView, self).get_context_data()
         try:
-            demands = Demand.objects.profile(self.request.user.pk, self.request.GET.o)
+            demands = Demand.objectz.profile(self.request.user.pk, self.request.GET.o)
         except:
-            demands = Demand.objects.profile(self.request.user.pk, '')
+            demands = Demand.objectz.profile(self.request.user.pk, '')
         context["demands_count"] = demands.count()
 
         page = self.request.GET.get("page", 1)
@@ -108,9 +108,9 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super(UserUpdateView, self).get_context_data()
         try:
-            demands = Demand.objects.profile(self.request.user.pk, self.request.GET.o)
+            demands = Demand.objectz.profile(self.request.user.pk, self.request.GET.o)
         except Exception as e:
-            demands = Demand.objects.profile(self.request.user.pk, '')
+            demands = Demand.objectz.profile(self.request.user.pk, '')
         context["demands_count"] = demands.count()
         page = self.request.GET.get("page", 1)
         paginator = Paginator(demands, 5)

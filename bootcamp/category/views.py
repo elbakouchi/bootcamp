@@ -32,7 +32,7 @@ class CategoryDemandsView(SingleObjectMixin, ListView):
         return super().get(request, *args, **kwargs)
 
     def get_queryset(self):
-        return Demand.objects.get_category().filter(category__pk=self.object.pk)
+        return Demand.objectz.get_category().filter(category__pk=self.object.pk)
 
 
 class CategoryArticlesView(SingleObjectMixin, ListView):

@@ -165,7 +165,7 @@ class VisitorTrackingMiddleware(MiddlewareMixin):
         pageview.demand.add(demand)
 
     def get_demand(self, slug):
-        return Demand.objects.get(slug=slug)
+        return Demand.objectz.get(slug=slug)
 
     def process_response(self, request, response):
         # If dealing with a non-authenticated user, we still should track the

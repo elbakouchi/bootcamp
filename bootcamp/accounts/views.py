@@ -21,7 +21,7 @@ class ProfileView(UserDetailView):
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data()
         user_form = UserForm()
-        demands = Demand.objects.filter(user=self.object.pk).order_by('pk', 'timestamp')
+        demands = Demand.objectz.filter(user=self.object.pk).order_by('pk', 'timestamp')
         revisions = Article.objects.filter(user=self.object.pk).order_by('pk', 'timestamp')
         if revisions.count():
             context["last_revision"] = revisions.last().content
