@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
-from safedelete.config import DELETED_VISIBLE_BY_PK
+from safedelete.config import DELETED_VISIBLE
 from slugify import slugify
 import spacy
 from django.utils.html import strip_tags
@@ -20,7 +20,7 @@ from safedelete.models import SafeDeleteModel, SOFT_DELETE
 
 
 class DemandManager(SafeDeleteManager):
-    _safedelete_visibility = DELETED_VISIBLE_BY_PK
+    _safedelete_visibility = DELETED_VISIBLE
 
 
 try:
