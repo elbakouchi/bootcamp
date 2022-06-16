@@ -32,7 +32,6 @@ except:
 
 class DemandQuerySet(models.query.QuerySet, DemandManager):
     """Personalized queryset created to improve model usability"""
-    _safedelete_visibility = DELETED_VISIBLE_BY_PK
 
     @staticmethod
     def get_last_revision():
