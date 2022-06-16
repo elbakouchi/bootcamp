@@ -14,7 +14,7 @@ class HomePageView(ListView):
     paginate_by = 5
     context_object_name = "demands"
     template_name = 'redico/homepage.html'
-    queryset = Demand.objects.homepage()
+    queryset = Demand.objectz.homepage()
 
 
 class HomePageListView(ListView):
@@ -22,11 +22,11 @@ class HomePageListView(ListView):
     paginate_by = 10
     context_object_name = "demands"
     template_name = 'redico/homepage3.html'
-    queryset = Demand.objects.homepage()
+    queryset = Demand.objectz.homepage()
 
     def get_context_data(self, *args, **kwargs):
         context = super(HomePageListView, self).get_context_data(*args, **kwargs)
-        context['unfulfilled'] = Demand.objects.get_published_unverified_demands(self.paginate_by)
+        context['unfulfilled'] = Demand.objectz.get_published_unverified_demands(self.paginate_by)
         # print(context['unfulfilled'])
         return context
 
@@ -42,7 +42,7 @@ class HomepageView(CategoriesListView):
 
 def paginate2(page):
     demands = \
-        Demand.objects.get_demands_with_category_and_page_views()
+        Demand.objectz.get_demands_with_category_and_page_views()
 
     paginator = Paginator(demands, 5)
 
@@ -58,7 +58,7 @@ def paginate2(page):
 
 def paginate(page):
     demands = \
-        Demand.objects.filter(verified=True).annotate(
+        Demand.objectz.filter(verified=True).annotate(
             categoryName=F('category__name'), last_revision=Max('revision__id')).order_by("-pk", "-timestamp")
 
     paginator = Paginator(demands, 5)

@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
+from safedelete.config import DELETED_VISIBLE_BY_PK
 from slugify import slugify
 import spacy
 from django.utils.html import strip_tags
@@ -14,7 +15,13 @@ from bootcamp.custom import word_counter_validator
 from bootcamp.notifications.models import Notification, notification_handler
 from bootcamp.category.models import Category, Service
 
+from safedelete.managers import SafeDeleteManager
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
+
+
+class DemandManager(SafeDeleteManager):
+    _safedelete_visibility = DELETED_VISIBLE_BY_PK
+
 
 try:
     nlp = spacy.load("fr_core_news_sm")
@@ -23,8 +30,9 @@ except:
     nlp = spacy.load("fr_core_news_sm")
 
 
-class DemandQuerySet(models.query.QuerySet):
+class DemandQuerySet(models.query.QuerySet, DemandManager):
     """Personalized queryset created to improve model usability"""
+    _safedelete_visibility = DELETED_VISIBLE_BY_PK
 
     @staticmethod
     def get_last_revision():
@@ -94,7 +102,7 @@ class DemandQuerySet(models.query.QuerySet):
             last_revision_content=self.get_last_revision(),
             service_name=models.F('service__name'),
             revision_count=models.Count('revision__id', None)
-        )#.filter(category_slug=category)
+        )  # .filter(category_slug=category)
 
     def get_published_unverified_demands(self, limit=None):
         qs = self.filter(status="P", verified=False).distinct().order_by('-timestamp').annotate(
@@ -132,7 +140,7 @@ class DemandQuerySet(models.query.QuerySet):
         """Returns only the items marked as DRAFT in the current queryset."""
         return self.filter(status="D")
 
-    #def search_tokens(self, token):
+    # def search_tokens(self, token):
     #    return self.filter(status="P").annotate(tokens=[yield token for token in self.tokens])
 
     def get_counted_tags(self):
@@ -193,7 +201,8 @@ class Demand(SafeDeleteModel):
     has_revision = models.BooleanField("N'est pas en attente", default=False)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
-    objects = DemandQuerySet.as_manager()
+    objectz = DemandQuerySet.as_manager()
+    objects = DemandManager()
     keywords = models.TextField(blank=True, verbose_name="Mots clés SEO", help_text="nécessaire à la SEO")
     tokens = models.TextField(blank=True, verbose_name="Mots clés Recherche",
                               help_text="nécessaire pour la recherche texte")

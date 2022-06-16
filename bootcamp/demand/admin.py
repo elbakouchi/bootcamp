@@ -12,5 +12,8 @@ class DemandAdmin(SafeDeleteAdmin):
 
     field_to_highlight = "id"
 
+    def queryset(self, request):
+        return self.model.object
+
 
 DemandAdmin.highlight_deleted_field.short_description = DemandAdmin.field_to_highlight

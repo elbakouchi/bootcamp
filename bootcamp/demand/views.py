@@ -120,11 +120,11 @@ class CorrectedDemandsView(ListView):
     paginate_by = 5
     context_object_name = "demands"
     template_name = 'redico/homepage.html'
-    queryset = Demand.objects.homepage()
+    queryset = Demand.objectz.homepage()
 
 
 def demand_redirect(request, pk):
-    demand = Demand.objects.get(pk=pk)
+    demand = Demand.objectz.get(pk=pk)
     if demand:
         Notification.objects.mark_as_read(recipient=request.user, action_obj=pk)
         return redirect(reverse('demands:demand', args=[demand.slug]))

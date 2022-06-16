@@ -13,7 +13,7 @@ class SuggestedRevisionForm(forms.ModelForm):
         widget=forms.HiddenInput(), required=False, initial=False
     )
     content = forms.CharField(widget=forms.HiddenInput())
-    demand = forms.ModelChoiceField(widget=forms.HiddenInput(), queryset=Demand.objects.get_published())
+    demand = forms.ModelChoiceField(widget=forms.HiddenInput(), queryset=Demand.objectz.get_published())
 
     class Meta:
         model = Article
