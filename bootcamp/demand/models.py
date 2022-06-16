@@ -15,12 +15,9 @@ from bootcamp.custom import word_counter_validator
 from bootcamp.notifications.models import Notification, notification_handler
 from bootcamp.category.models import Category, Service
 
-from safedelete.managers import SafeDeleteManager
+from safedelete.managers import SafeDeleteAllManager
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 
-
-class DemandManager(SafeDeleteManager):
-    _safedelete_visibility = DELETED_VISIBLE
 
 
 try:
@@ -201,7 +198,7 @@ class Demand(SafeDeleteModel):
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     objectz = DemandQuerySet.as_manager()
-    objects = DemandManager()
+    objects = SafeDeleteAllManager()
     keywords = models.TextField(blank=True, verbose_name="Mots clés SEO", help_text="nécessaire à la SEO")
     tokens = models.TextField(blank=True, verbose_name="Mots clés Recherche",
                               help_text="nécessaire pour la recherche texte")
