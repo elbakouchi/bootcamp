@@ -27,7 +27,7 @@ except:
     nlp = spacy.load("fr_core_news_sm")
 
 
-class DemandQuerySet(models.query.QuerySet, DemandManager):
+class DemandQuerySet(models.query.QuerySet):
     """Personalized queryset created to improve model usability"""
 
     @staticmethod
