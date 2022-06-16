@@ -15,7 +15,7 @@ from bootcamp.custom import word_counter_validator
 from bootcamp.notifications.models import Notification, notification_handler
 from bootcamp.category.models import Category, Service
 
-from safedelete.managers import SafeDeleteAllManager
+from safedelete.managers import SafeDeleteManager, SafeDeleteAllManager
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 
 
@@ -27,7 +27,7 @@ except:
     nlp = spacy.load("fr_core_news_sm")
 
 
-class DemandQuerySet(models.query.QuerySet):
+class DemandQuerySet(models.query.QuerySet, SafeDeleteManager):
     """Personalized queryset created to improve model usability"""
 
     @staticmethod
@@ -38,7 +38,7 @@ class DemandQuerySet(models.query.QuerySet):
         ).order_by("-timestamp").values('content')[:1])
 
     def homepage(self):
-        return self.filter(verified=True).distinct().annotate(
+        return self.filter(verified=True, deleted=None).distinct().annotate(
             categoryName=models.F('category__name'),
             category_slug=models.F('category__slug'),
             last_revision_content=self.get_last_revision(),
