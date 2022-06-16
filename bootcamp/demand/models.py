@@ -68,7 +68,7 @@ class DemandQuerySet(models.query.QuerySet, SafeDeleteManager):
             revision_count=models.Count('revision__id', None)).order_by("-pk", "-timestamp")
 
     def get_category(self):
-        return self.filter(verified=True).order_by('-updatedAt', '-createdAt').annotate(
+        return self.filter(verified=True, deleted=None).order_by('-updatedAt', '-createdAt').annotate(
             client_firstname=models.F('user__first_name'),
             client_lastname=models.F('user__last_name'),
             category_name=models.F('category__name'),
@@ -90,7 +90,7 @@ class DemandQuerySet(models.query.QuerySet, SafeDeleteManager):
 
     def get_category_demands(self, category):
         print(category)
-        return self.filter(status="P", category__slug=category).distinct().order_by('-timestamp').annotate(
+        return self.filter(status="P", deleted=None, category__slug=category).distinct().order_by('-timestamp').annotate(
             client_firstname=models.F('user__first_name'),
             client_lastname=models.F('user__last_name'),
             category_name=models.F('category__name'),
@@ -101,7 +101,7 @@ class DemandQuerySet(models.query.QuerySet, SafeDeleteManager):
         )  # .filter(category_slug=category)
 
     def get_published_unverified_demands(self, limit=None):
-        qs = self.filter(status="P", verified=False).distinct().order_by('-timestamp').annotate(
+        qs = self.filter(status="P", deleted=None, verified=False).distinct().order_by('-timestamp').annotate(
             client_firstname=models.F('user__first_name'),
             client_lastname=models.F('user__last_name'),
             category_name=models.F('category__name'),
