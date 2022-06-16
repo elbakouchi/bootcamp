@@ -47,15 +47,15 @@ class DemandQuerySet(models.query.QuerySet, SafeDeleteManager):
 
     def profile(self, user_pk, order_by):
         if order_by == 'oldest':
-            return self.filter(user=user_pk).order_by('pk', 'timestamp').annotate(
+            return self.filter(user=user_pk, deleted=None).order_by('pk', 'timestamp').annotate(
                 service_name=models.F('service__name'),
                 revision_count=models.Count('revision__id', None))
         elif order_by == 'newest':
-            return self.filter(user=user_pk).order_by('-pk', '-timestamp').annotate(
+            return self.filter(user=user_pk, deleted=None).order_by('-pk', '-timestamp').annotate(
                 service_name=models.F('service__name'),
                 revision_count=models.Count('revision__id', None))
         else:
-            return self.filter(user=user_pk).order_by('pk', 'timestamp').annotate(
+            return self.filter(user=user_pk, deleted=None).order_by('pk', 'timestamp').annotate(
                 service_name=models.F('service__name'),
                 revision_count=models.Count('revision__id', None))
 
