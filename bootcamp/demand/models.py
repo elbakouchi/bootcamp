@@ -60,7 +60,7 @@ class DemandQuerySet(models.query.QuerySet, SafeDeleteManager):
                 revision_count=models.Count('revision__id', None))
 
     def search(self, q):
-        return self.filter(status="P", tokens__icontains=q).distinct().annotate(
+        return self.filter(status="P", tokens__icontains=q, deleted=None).distinct().annotate(
             categoryName=models.F('category__name'),
             category_slug=models.F('category__slug'),
             last_revision_content=self.get_last_revision(),
