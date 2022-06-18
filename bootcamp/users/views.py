@@ -45,7 +45,7 @@ class UserDetailView(LoginRequiredMixin, ModelFormMixin, DetailView):
         context["demands_count"] = demands.count()
 
         page = self.request.GET.get("page", 1)
-        paginator = Paginator(demands, 5, 3)
+        paginator = Paginator(demands, 5, 2)
 
         try:
             paginated_demands = paginator.page(page)
