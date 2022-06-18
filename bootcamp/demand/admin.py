@@ -5,6 +5,7 @@ from safedelete.admin import SafeDeleteAdmin, SafeDeleteAdminFilter, highlight_d
 
 
 class RevisionInline(admin.TabularInline):
+    exclude = ['user', 'slug']
     extra = 1
     model = Article
 
