@@ -212,10 +212,11 @@ class Demand(SafeDeleteModel):
         return self.title
 
     def save(self, *args, **kwargs):
+        self.slug = slugify(
+            f"{self.title}-{self.user.pk}", lowercase=True, max_length=80
+        )
         if not self.slug:
-            self.slug = slugify(
-                f"{self.title}-{self.user.pk}", lowercase=True, max_length=80
-            )
+            pass
         doc = nlp(strip_tags(self.content))
         if not self.tokens:
             tags = [token.lemma_ for token in doc if token.pos_ in ["VERB", "ADVERB", "NOUN"]]
