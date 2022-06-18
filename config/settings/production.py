@@ -9,7 +9,7 @@ from .base import env
 SECRET_KEY = env("SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = env.list(
-    "ALLOWED_HOSTS", default=["queneau.herokuapp.com"]
+    "ALLOWED_HOSTS", default=["queneau.herokuapp.com", "redico1.herokuapp.com", "redico.wiki", "www.redico.wiki", "*.redico.wiki"]
 )
 
 # DATABASES
@@ -205,5 +205,3 @@ RAVEN_CONFIG = {
 
 # Your stuff...
 # ------------------------------------------------------------------------------
-
-from .summernote import SUMMERNOTE_CONFIG, SUMMERNOTE_THEME
