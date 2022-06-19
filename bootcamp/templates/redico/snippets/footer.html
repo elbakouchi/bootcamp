@@ -24,8 +24,10 @@
                                 <ul class="list-unstyled">
                                     <li><a href="{% url 'contact_us' %}">Contact</a></li>
                                     <li><a href="/conditionsgenerales/">Conditions générales d'utilisation</a></li>
+                                    {% comment %}
                                     <li><a href="{% url 'cookies' %}">Cookies</a></li>
-
+                                    {% endcomment %}
+                                     <li><a href="/gestion-des-cookies/">Cookies</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -35,7 +37,10 @@
                                 <ul class="list-unstyled">
                                     <li><a href="/redico/">À propos</a></li>
                                     <!--li><a href="{% url 'temoignages">Témoignages</a></li-->
+                                    {% comment %}
                                     <li><a href="{% url 'partners' %}">Partenaires</a></li>
+                                    {% endcomment %}
+                                    <li><a href="/nos-partenaires/">Partenaires</a></li>
                                     {% if user.is_authenticated %}
                                     <li><a href="{% url 'users:detail' user.username  %}">Mon Profil</a></li>
                                     {% endif %}
