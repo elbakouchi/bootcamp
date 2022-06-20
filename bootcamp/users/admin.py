@@ -2,11 +2,11 @@ from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
-from allauth.account.admin import EmailAddressAdmin, EmailConfirmation, EmailConfirmationAdmin, EmailAddress
+#from allauth.account.admin import EmailAddressAdmin, EmailConfirmation, EmailConfirmationAdmin, EmailAddress
 from bootcamp.users.models import User
 
-admin.site.register(EmailConfirmation, EmailConfirmationAdmin)
-admin.site.register(EmailAddress, EmailAddressAdmin)
+#admin.site.register(EmailConfirmation, EmailConfirmationAdmin)
+#admin.site.register(EmailAddress, EmailAddressAdmin)
 
 
 class MyUserChangeForm(UserChangeForm):
