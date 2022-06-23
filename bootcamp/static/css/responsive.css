@@ -1701,6 +1701,9 @@
   ul.forum-titles li {
     text-align: left;
   }
+  .support-info span {
+    font-size: 12px;
+  }
   .forums-header .support-category-menus {
     display: none;
   }
