@@ -118,6 +118,7 @@ class EditDemandView(LoginRequiredMixin, AuthorRequiredMixin, UpdateView):
 class CorrectedDemandsView(ListView):
     model = Demand
     paginate_by = 5
+    paginate_orphans = 1
     context_object_name = "demands"
     template_name = 'redico/homepage.html'
     queryset = Demand.objectz.homepage()
