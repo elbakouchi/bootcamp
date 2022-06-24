@@ -1,0 +1,121 @@
+{% extends 'redico/redico_base.html' %}
+{% load static %}
+
+{% block title%}  Redico — Textes corrigés {% endblock title%}
+{% block seo %}
+<meta name="title" content="Redico — Textes corrigés">
+<meta name="keywords" content="plateforme,aide,rédaction,francophone,français,langue française"/>
+<meta name="description" content="Redico est une plateforme d’aide à la rédaction qui s’adresse à la population francophone.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://redico.wiki/">
+<meta property="og:title" content="Redico — Plateforme d'aide à la rédaction">
+<meta property="og:description" content="RediCo est une plateforme d’aide à la rédaction qui s’adresse à la population francophone.">
+<meta property="og:image" content="https://redico.wiki/media/redico.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://redico.wiki/">
+<meta property="twitter:title" content="Redico — Plateforme d'aide à la rédaction">
+<meta property="twitter:description" content="RediCo est une plateforme d’aide à la rédaction qui s’adresse à la population francophone.">
+<meta property="twitter:image" content="https://redico.wiki/media/redico.png">
+{% endblock %}
+{% block content %}
+{% include 'redico/snippets/banner.html' with heading="Textes corrigés" %}
+{#% include 'redico/snippets/categories-breadcumb.html' with categoryName=object.name %#}
+<section class="doc_blog_grid_area sec_pad forum-page-content">
+    <div class="container">
+        {% include 'redico/snippets/messages.html' %}
+        <div class="row">
+            {% include 'redico/snippets/leftside-ad.html' %}
+            <div class="col-lg-8">
+                <div class="forum_l_inner">
+                    <div class="forum_body">
+                        <ul class="navbar-nav topic_list infinite-container">
+                            {#% for demand in object_list%#}
+                            {% for demand in demands %}
+                            <li>
+                                <div class="media">
+                                    <div class="media-body">
+                                        <div class="t_title">
+                                            <a href="{% url 'demands:demand' demand.slug %}">
+                                                <h4>
+                                                    {{demand.title}}
+                                                    {% if demand.verified %}
+                                                    <ion-icon name="checkmark-circle" role="img"
+                                                              class="md hydrated"
+                                                              aria-label="checkmark circle"></ion-icon>
+                                                    {% endif %}
+                                                </h4>
+                                            </a>
+                                            <div>
+                                                {% spaceless %}
+                                                {% if demand.last_revision_content %}
+                                                {{demand.last_revision_content|truncatewords_html:10|safe}}
+                                                {%else%}
+                                                {{demand.content|truncatewords_html:80|safe}}
+                                                {%endif%}
+                                                {% endspaceless %}
+                                            </div>
+                                        </div>
+                                        <a href="{% url 'demands:category' demand.category_slug %}">
+                                            <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>  {{demand.categoryName}}
+                                            </h6>
+                                        </a>
+                                        <h6><i class="icon_clock_alt"></i> {{ demand.timestamp|timesince }}</h6>
+                                        <h6 class="count">
+                                            <ion-icon name="create-outline"></ion-icon>
+                                            {{ demand.revision_count }}
+                                        </h6>
+                                        <h6 class="count">
+                                            <ion-icon name="eye-outline"></ion-icon>
+                                            {{ demand.pageviews.count }}
+                                        </h6>
+                                        {% if not demand.verified %}
+                                        <a href="{% url 'demands:demand' demand.slug %}"
+                                           class="doc_border_btn btn_small btn-block text-center mt-2">Modifier le texte</a>
+                                        {% endif %}
+                                        <a href="{% url 'demands:demand' demand.slug %}"
+                                           class="doc_border_btn btn_small btn-block text-center mt-2">Accéder aux révisions</a>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="row center pagination_inner">
+                    <div class="doc_title text-center mt-40">
+                        {% if page_obj.has_next %}
+                        <a class="action_btn box_shadow_none wow fadeInUp infinite-more-link" data-wow-delay="0.2s"
+                           href="{% url 'demands:corrected' %}?page={{ page_obj.next_page_number }}" id="feed">Voir&nbsp;plus</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% include 'redico/snippets/rightside-ad.html' %}
+        </div>
+    </div>
+</section>
+
+{#% include 'redico/snippets/joinus.html' %#}
+{% endblock content %}
+
+{% block javascript%}
+{{block.super}}
+<script src="{% static 'js/jquery.waypoints.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/infinite.min.js' %}" type="text/javascript"></script>
+<script>
+        var infinite = new Waypoint.Infinite({
+           element: $('.infinite-container')[0],
+           offset: 'bottom-in-view',
+           onBeforePageLoad: function () {
+                $('.loading').show();
+           },
+           onAfterPageLoad: function ($items) {
+                $('.loading').hide();
+           }
+        });
+</script>
+{% endblock %}

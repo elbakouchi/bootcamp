@@ -120,8 +120,8 @@ class CorrectedDemandsView(ListView):
     paginate_by = 5
     paginate_orphans = 1
     context_object_name = "demands"
-    template_name = 'redico/homepage.html'
-    queryset = Demand.objectz.homepage()
+    template_name = 'redico/corrected-demands.html'
+    queryset = Demand.objectz.corrected_demands()
 
 
 def demand_redirect(request, pk):

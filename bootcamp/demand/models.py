@@ -154,6 +154,14 @@ class DemandQuerySet(models.query.QuerySet, SafeDeleteManager):
 
         return tag_dict.items()
 
+    def corrected_demands(self):
+        return self.filter(verified=True, deleted=None).distinct().annotate(
+            categoryName=models.F('category__name'),
+            category_slug=models.F('category__slug'),
+            last_revision_content=self.get_last_revision(),
+            service_name=models.F('service__name'),
+            revision_count=models.Count('revision__id', None)).order_by("-timestamp")    
+
 
 class Demand(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
