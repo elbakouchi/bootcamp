@@ -1,18 +1,65 @@
 import os
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.conf import settings as django_settings
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 from django.views.generic.edit import ModelFormMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.conf import settings
+from contact_form.views import ContactFormView
+from contact_form.forms import StringKeyedDict
+import requests
+
 from .models import User
+from .forms import CustomContactForm
 
 from PIL import Image
 from django import forms
 
 from ..demand.models import Demand
+
+
+class CustomContactFormView(ContactFormView):
+    form_class = CustomContactForm
+    recipient_list = None
+    success_url = reverse_lazy("contact_form_sent")
+    template_name = "redico/contact.html"
+
+    def form_valid(self, form) -> HttpResponse:
+        recaptcha_response = self.request.POST.get('g-recaptcha-response')
+        data = {
+            'secret': settings.RECAPTCHA_PRIVATE_KEY,
+            'response': recaptcha_response
+        }
+        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result = r.json()
+
+        print(result)
+
+        ''' if reCAPTCHA returns True '''
+        if result['success']:
+            form.save()
+            return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(CustomContactFormView, self).get_context_data(**kwargs)
+        context['recaptcha_site_key'] = settings.RECAPTCHA_PUBLIC_KEY
+        return context
+
+    def get_form_kwargs(self) -> StringKeyedDict:
+        # ContactForm instances require instantiation with an
+        # HttpRequest.
+        kwargs = super().get_form_kwargs()
+        kwargs.update({"request": self.request})
+
+        # We may also have been given a recipient list when
+        # instantiated.
+        if self.recipient_list is not None:
+            kwargs.update({"recipient_list": self.recipient_list})
+        return kwargs
 
 
 class CustomUserForm(forms.ModelForm):
