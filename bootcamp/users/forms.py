@@ -5,7 +5,7 @@ from captcha.fields import ReCaptchaField
 
 
 class CustomContactForm(ContactForm):
-    #captcha = ReCaptchaField()
+    captcha = ReCaptchaField()
 
     def save(self, fail_silently: bool = False) -> None:
         kwargs = self.get_message_dict()
