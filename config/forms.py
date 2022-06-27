@@ -1,8 +1,17 @@
 from contact_form.forms import ContactForm, StringKeyedDict
 from django.template import loader
+from django.core.mail import send_mail
+from captcha.fields import ReCaptchaField
 
 
 class CustomContactForm(ContactForm):
+    captcha = ReCaptchaField()
+
+    def save(self, fail_silently: bool = False) -> None:
+        kwargs = self.get_message_dict()
+        if not 'CrytoKagKag' in kwargs.get('subject'):
+         send_mail(fail_silently=fail_silently, **kwargs)
+
     def message_html(self) -> str:
         """
         Render the body of the message to a string.
