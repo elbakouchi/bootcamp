@@ -42,7 +42,7 @@ class CustomContactFormView(ContactFormView):
         ''' if reCAPTCHA returns True '''
         if result['success']:
             form.save()
-            return super().form_valid(form)
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super(CustomContactFormView, self).get_context_data(**kwargs)
