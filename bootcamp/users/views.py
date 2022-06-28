@@ -29,19 +29,19 @@ class CustomContactFormView(ContactFormView):
     template_name = "redico/contact.html"
 
     def form_valid(self, form) -> HttpResponse:
-        recaptcha_response = self.request.POST.get('g-recaptcha-response')
-        data = {
-            'secret': settings.RECAPTCHA_PRIVATE_KEY,
-            'response': recaptcha_response
-        }
-        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
-        result = r.json()
+        # recaptcha_response = self.request.POST.get('g-recaptcha-response')
+        # data = {
+        #     'secret': settings.RECAPTCHA_PRIVATE_KEY,
+        #    'response': recaptcha_response
+        # }
+        # r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        # result = r.json()
 
-        print(result)
+        # print(result)
 
         ''' if reCAPTCHA returns True '''
-        if result['success']:
-            form.save()
+        # if result['success']:
+        form.save()
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):

@@ -25,16 +25,3 @@
 </section>
 
 {% endblock content %}
-
-{% block javascript %}
-{{block.super}}
-<script src='https://www.google.com/recaptcha/api.js?render={{Demand.objectz}}'></script>
- <script>
-    //global grecaptcha
-    grecaptcha.ready(function() {
-      grecaptcha.execute('{{recaptcha_site_key}}', {action: "{% url 'contact_us' %}"}).then(function(token) {
-        document.getElementById('g-recaptcha-response').value = token;
-      });
-    });
-  </script>
-{% endblock %}
