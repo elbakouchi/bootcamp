@@ -238,9 +238,9 @@ class Demand(SafeDeleteModel):
                 self.keywords = ','.join(tags)
         super().save(*args, **kwargs)
         if self.status == self.PUBLISHED:
-            demand_is_published.send(sender=self.__class__, demand=self.pk)
+            demand_is_published.send(sender=self.__class__, demand=self)
             if self.verified:
-                demand_is_validated.send(sender=self.__class__, demand=self.pk)
+                demand_is_validated.send(sender=self.__class__, demand=self)
 
     def get_markdown(self):
         return markdownify(self.content)
