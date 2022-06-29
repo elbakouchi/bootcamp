@@ -258,18 +258,20 @@ def notify_comment(**kwargs):  # pragma: no cover
 comment_was_posted.connect(receiver=notify_comment)
 
 
-def broadcast_demand_validated(sender, user, request, **kwargs):
+def broadcast_demand_validated(**kwargs):
+    actor = kwargs["request"].user
     demand = kwargs["demand"]
-    exists = notification_checker(user, demand.user, Notification.DEMAND_VALIDATED, action_object=demand)
+    exists = notification_checker(actor, demand.user, Notification.DEMAND_VALIDATED, action_object=demand)
     if not exists:
-        notification_handler(user, demand.user, Notification.DEMAND_VALIDATED, action_object=demand)
+        notification_handler(actor, demand.user, Notification.DEMAND_VALIDATED, action_object=demand)
 
 
-def broadcast_demand_published(sender, user, request, **kwargs):
+def broadcast_demand_published(**kwargs):
+    actor = kwargs["request"].user
     demand = kwargs["demand"]
-    exists = notification_checker(user, demand.user, Notification.DEMAND_PUBLISHED, action_object=demand)
+    exists = notification_checker(actor, demand.user, Notification.DEMAND_PUBLISHED, action_object=demand)
     if not exists:
-        notification_handler(user, demand.user, Notification.DEMAND_PUBLISHED, action_object=demand)
+        notification_handler(actor, demand.user, Notification.DEMAND_PUBLISHED, action_object=demand)
 
 
 demand_is_published = demand_is_validated = Signal()
