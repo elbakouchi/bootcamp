@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
-from safedelete.config import DELETED_VISIBLE
+from django.dispatch import Signal
 from slugify import slugify
 import spacy
 from django.utils.html import strip_tags
@@ -12,13 +12,11 @@ from markdownx.utils import markdownify
 from taggit.managers import TaggableManager
 
 from bootcamp.custom import word_counter_validator
-from bootcamp.notifications.models import Notification, notification_handler
+from bootcamp.notifications.models import Notification, notification_handler, notification_checker
 from bootcamp.category.models import Category, Service
 
 from safedelete.managers import SafeDeleteManager, SafeDeleteAllManager
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
-
-
 
 try:
     nlp = spacy.load("fr_core_news_sm")
@@ -90,7 +88,8 @@ class DemandQuerySet(models.query.QuerySet, SafeDeleteManager):
 
     def get_category_demands(self, category):
         print(category)
-        return self.filter(status="P", deleted=None, category__slug=category).distinct().order_by('-timestamp').annotate(
+        return self.filter(status="P", deleted=None, category__slug=category).distinct().order_by(
+            '-timestamp').annotate(
             client_firstname=models.F('user__first_name'),
             client_lastname=models.F('user__last_name'),
             category_name=models.F('category__name'),
@@ -160,7 +159,7 @@ class DemandQuerySet(models.query.QuerySet, SafeDeleteManager):
             category_slug=models.F('category__slug'),
             last_revision_content=self.get_last_revision(),
             service_name=models.F('service__name'),
-            revision_count=models.Count('revision__id', None)).order_by("-timestamp")    
+            revision_count=models.Count('revision__id', None)).order_by("-timestamp")
 
 
 class Demand(SafeDeleteModel):
@@ -238,6 +237,10 @@ class Demand(SafeDeleteModel):
             except:
                 self.keywords = ','.join(tags)
         super().save(*args, **kwargs)
+        if self.status == self.PUBLISHED:
+            demand_is_published.send(sender=self.__class__, demand=self.demand)
+            if self.verified:
+                demand_is_validated.send(sender=self.__class__, demand=self.demand)
 
     def get_markdown(self):
         return markdownify(self.content)
@@ -252,4 +255,24 @@ def notify_comment(**kwargs):  # pragma: no cover
     notification_handler(actor, receiver, Notification.COMMENTED, action_object=obj)
 
 
+comment_was_posted.connect(receiver=notify_comment)
+
+
+def broadcast_demand_validated(sender, user, request, **kwargs):
+    demand = kwargs["demand"]
+    exists = notification_checker(user, demand.user, Notification.DEMAND_VALIDATED, action_object=demand)
+    if not exists:
+        notification_handler(user, demand.user, Notification.DEMAND_VALIDATED, action_object=demand)
+
+
+def broadcast_demand_published(sender, user, request, **kwargs):
+    demand = kwargs["demand"]
+    exists = notification_checker(user, demand.user, Notification.DEMAND_PUBLISHED, action_object=demand)
+    if not exists:
+        notification_handler(user, demand.user, Notification.DEMAND_PUBLISHED, action_object=demand)
+
+
+demand_is_published = demand_is_validated = Signal()
+demand_is_published.connect(broadcast_demand_published)
+demand_is_validated.connect(broadcast_demand_validated)
 comment_was_posted.connect(receiver=notify_comment)

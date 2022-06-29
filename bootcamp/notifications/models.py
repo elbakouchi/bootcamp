@@ -88,6 +88,8 @@ class Notification(models.Model):
     SIGNUP = "U"
     REPLY = "R"
     REVISION_ADDED = "Q"
+    DEMAND_PUBLISHED = "P"
+    DEMAND_VALIDATED = "T"
     NOTIFICATION_TYPES = (
         (LIKED, _("liked")),
         (COMMENTED, _("commented")),
@@ -102,7 +104,9 @@ class Notification(models.Model):
         (SHARED, _("shared")),
         (SIGNUP, _("created an account")),
         (REPLY, _("replied to")),
-        (REVISION_ADDED, _("nouvelle révision"))
+        (REVISION_ADDED, _("nouvelle révision")),
+        (DEMAND_PUBLISHED, _('demande publiée')),
+        (DEMAND_VALIDATED, _('demande validée')),
     )
     actor = models.ForeignKey(
         settings.AUTH_USER_MODEL, related_name="notify_actor", on_delete=models.CASCADE
@@ -203,6 +207,19 @@ class Notification(models.Model):
             self.save()
 
 
+def notification_checker(actor, recipient, verb, **kwargs):
+    if isinstance(recipient, get_user_model()):
+        notification = Notification.objects.filter(
+            actor=actor,
+            recipient=recipient,
+            verb=verb,
+            action_object=kwargs.pop("action_object", None),
+        )
+        if notification.exists():
+            return True
+        else:
+            return False
+
 def notification_handler(actor, recipient, verb, **kwargs):
     """
     Handler function to create a Notification instance.
@@ -255,7 +272,7 @@ def notification_handler(actor, recipient, verb, **kwargs):
 
 
 def notification_broadcast(actor, key, **kwargs):
-    """Notification handler to broadcast calls to the recieve layer of the
+    """Notification handler to broadcast calls to the receive layer of the
     WebSocket consumer of this app.
     :requires:
     :param actor: User instance of that user who makes the action.
