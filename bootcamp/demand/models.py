@@ -259,7 +259,10 @@ comment_was_posted.connect(receiver=notify_comment)
 
 
 def broadcast_demand_validated(**kwargs):
-    actor = kwargs["request"].user
+    try:
+        actor = kwargs["request"].user
+    except:
+        actor = None
     demand = kwargs["demand"]
     exists = notification_checker(actor, demand.user, Notification.DEMAND_VALIDATED, action_object=demand)
     if not exists:
@@ -267,7 +270,10 @@ def broadcast_demand_validated(**kwargs):
 
 
 def broadcast_demand_published(**kwargs):
-    actor = kwargs["request"].user
+    try:
+        actor = kwargs["request"].user
+    except:
+        actor = None
     demand = kwargs["demand"]
     exists = notification_checker(actor, demand.user, Notification.DEMAND_PUBLISHED, action_object=demand)
     if not exists:
