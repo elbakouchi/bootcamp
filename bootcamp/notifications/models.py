@@ -208,17 +208,16 @@ class Notification(models.Model):
 
 
 def notification_checker(actor, recipient, verb, **kwargs):
-    if isinstance(recipient, get_user_model()):
-        notification = Notification.objects.filter(
-            actor=actor,
-            recipient=recipient,
-            verb=verb,
-            action_object=kwargs.get("action_object"),
-        )
-        if notification.exists():
-            return True
-        else:
-            return False
+    notification = Notification.objects.filter(
+        actor=actor,
+        recipient=recipient,
+        verb=verb,
+        action_object_object_id=kwargs.get("action_object_object_id"),
+    )
+    if notification.exists():
+        return True
+    else:
+        return False
 
 
 def notification_handler(actor, recipient, verb, **kwargs):

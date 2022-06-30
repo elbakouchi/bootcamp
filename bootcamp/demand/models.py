@@ -261,7 +261,7 @@ comment_was_posted.connect(receiver=notify_comment)
 
 
 def notify_demand_author(actor, demand, verb):
-    exists = notification_checker(actor, demand.user, verb, action_object=demand)
+    exists = notification_checker(actor, demand.user, verb, action_object_object_id=demand.pk)
     if not exists:
         notification_handler(actor, demand.user, Notification.DEMAND_VALIDATED, action_object=demand)
 
