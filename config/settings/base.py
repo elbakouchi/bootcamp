@@ -448,4 +448,7 @@ RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
 
 RECAPTCHA_USE_SSL = True
 
-ACCOUNT_SIGNUP_FORM_CLASS = 'bootcamp.accounts.forms.AllAuthSignInForm'
+ACCOUNT_FORMS = {
+    'login': 'bootcamp.accounts.forms.AllAuthSignInForm',
+    'signup': 'bootcamp.accounts.forms.AllAuthSignUpForm',
+}
