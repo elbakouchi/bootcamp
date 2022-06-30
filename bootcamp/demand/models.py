@@ -18,6 +18,8 @@ from bootcamp.category.models import Category, Service
 from safedelete.managers import SafeDeleteManager, SafeDeleteAllManager
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 
+from bootcamp.users.models import User
+
 try:
     nlp = spacy.load("fr_core_news_sm")
 except:
@@ -238,9 +240,9 @@ class Demand(SafeDeleteModel):
                 self.keywords = ','.join(tags)
         super().save(*args, **kwargs)
         if self.status == self.PUBLISHED:
-            demand_is_published.send(sender=self.__class__, demand=self)
+            notify_demand_author(self.user, self, Notification.DEMAND_PUBLISHED)
             if self.verified:
-                demand_is_validated.send(sender=self.__class__, demand=self)
+                notify_demand_author(self.user, self, Notification.DEMAND_VALIDATED)
 
     def get_markdown(self):
         return markdownify(self.content)
@@ -258,6 +260,12 @@ def notify_comment(**kwargs):  # pragma: no cover
 comment_was_posted.connect(receiver=notify_comment)
 
 
+def notify_demand_author(actor, demand, verb):
+    exists = notification_checker(actor, demand.user, verb, action_object=demand)
+    if not exists:
+        notification_handler(actor, demand.user, Notification.DEMAND_VALIDATED, action_object=demand)
+
+
 def broadcast_demand_validated(**kwargs):
     demand = kwargs["demand"]
     try:
@@ -266,7 +274,7 @@ def broadcast_demand_validated(**kwargs):
         actor = demand.user
     exists = notification_checker(actor, demand.user, Notification.DEMAND_VALIDATED, action_object=demand)
     if not exists:
-        notification_handler(actor, demand.user, Notification.DEMAND_VALIDATED, action_object=demand)
+        notification_handler(actor, demand.user, Notification.DEMAND_VALIDATED, action_object=demand.content_object)
 
 
 def broadcast_demand_published(**kwargs):

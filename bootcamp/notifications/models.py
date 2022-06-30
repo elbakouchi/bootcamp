@@ -104,7 +104,7 @@ class Notification(models.Model):
         (SHARED, _("shared")),
         (SIGNUP, _("created an account")),
         (REPLY, _("replied to")),
-        (REVISION_ADDED, _("nouvelle révision")),
+        (REVISION_ADDED, _("Une nouvelle correction a été proposée pour votre texte")),
         (DEMAND_PUBLISHED, _('demande publiée')),
         (DEMAND_VALIDATED, _('demande validée')),
     )
@@ -273,7 +273,7 @@ def notification_handler(actor, recipient, verb, **kwargs):
 
 
 def notification_broadcast(actor, key, **kwargs):
-    """Notification handler to broadcast calls to the receive layer of the
+    """Notification handler to broadcast calls to the receiver layer of the
     WebSocket consumer of this app.
     :requires:
     :param actor: User instance of that user who makes the action.
