@@ -212,8 +212,8 @@ def notification_checker(actor, recipient, verb, **kwargs):
         notification = Notification.objects.filter(
             actor=actor,
             recipient=recipient,
-            verb=verb # ,
-            # action_object=kwargs.pop("action_object", None),
+            verb=verb,
+            action_object=kwargs.get("action_object"),
         )
         if notification.exists():
             return True

@@ -87,7 +87,7 @@ class DemandQuerySet(models.query.QuerySet, SafeDeleteManager):
         )
 
     def get_category_demands(self, category):
-        print(category)
+        # print(category)
         return self.filter(status="P", deleted=None, category__slug=category).distinct().order_by(
             '-timestamp').annotate(
             client_firstname=models.F('user__first_name'),
@@ -253,9 +253,6 @@ def notify_comment(**kwargs):  # pragma: no cover
     receiver = kwargs["comment"].content_object.user
     obj = kwargs["comment"].content_object
     notification_handler(actor, receiver, Notification.COMMENTED, action_object=obj)
-
-#notification_handler(demand.user, demand.user, Notification.DEMAND_PUBLISHED, ation_object=demand)
-#notification_handler(demand.user, demand.user, Notification.DEMAND_VALIDATED, ation_object=demand)
 
 
 comment_was_posted.connect(receiver=notify_comment)
