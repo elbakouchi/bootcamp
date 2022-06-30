@@ -264,7 +264,7 @@ def broadcast_demand_validated(**kwargs):
         actor = kwargs["request"].user
     except:
         actor = demand.user
-    exists = notification_checker(actor, demand.user, Notification.DEMAND_VALIDATED)
+    exists = notification_checker(actor, demand.user, Notification.DEMAND_VALIDATED, action_object=demand)
     if not exists:
         notification_handler(actor, demand.user, Notification.DEMAND_VALIDATED, action_object=demand)
 
@@ -276,7 +276,7 @@ def broadcast_demand_published(**kwargs):
     except:
         actor = demand.user
     
-    exists = notification_checker(actor, demand.user, Notification.DEMAND_PUBLISHED)
+    exists = notification_checker(actor, demand.user, Notification.DEMAND_PUBLISHED, action_object=demand)
     if not exists:
         notification_handler(actor, demand.user, Notification.DEMAND_PUBLISHED, action_object=demand)
 
