@@ -3,7 +3,6 @@ from captcha.fields import ReCaptchaField
 
 
 class AllAuthSignInForm(LoginForm):
-
     captcha = ReCaptchaField()
 
     def save(self, request, user):
@@ -14,6 +13,6 @@ class AllAuthSignInForm(LoginForm):
 class AllAuthSignUpForm(SignupForm):
     captcha = ReCaptchaField()
 
-    def save(self, request, user):
+    def save(self, request):
         user = super(AllAuthSignUpForm, self).save(request)
         return user
