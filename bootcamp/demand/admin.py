@@ -5,9 +5,11 @@ from safedelete.admin import SafeDeleteAdmin, SafeDeleteAdminFilter, highlight_d
 
 
 class RevisionInline(admin.TabularInline):
-    exclude = ['user', 'slug']
+    exclude = ['user', 'slug', 'status']
     extra = 1
     model = Article
+    can_delete = False
+    show_change_link = True
 
 
 @admin.register(Demand)
