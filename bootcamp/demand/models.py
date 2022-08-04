@@ -226,11 +226,12 @@ class Demand(SafeDeleteModel):
         )
         if not self.slug:
             pass
-        doc = nlp(strip_tags(self.content))
-        if not self.tokens:
-            tags = [token.lemma_ for token in doc if token.pos_ in ["VERB", "ADVERB", "NOUN"]]
-            chunks = [chunk.text for chunk in doc.noun_chunks]
-            self.tokens = ",".join(tags + chunks)
+        doc = nlp(self.title + strip_tags(self.content))
+        # if not self.tokens:
+        tags = [token.lemma_ for token in doc if token.pos_ in ["VERB", "ADVERB", "NOUN"]]
+        chunks = [chunk.text for chunk in doc.noun_chunks]
+        self.tokens = ",".join(tags + chunks)
+        self.tokens = self.tokens.replace('&nbps;', '')
         if not self.keywords:
             # doc = nlp(strip_tags(self.content))
             tags = [token.lemma_ for token in doc if token.pos_ in ["NOUN"]]
