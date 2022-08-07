@@ -69,7 +69,7 @@ class CategoryDemandsList(SingleObjectMixin, ListView):
 
 class DemandsList(ListView):
     model = Demand
-    paginate_by = 5
+    paginate_by = 1
     paginate_orphans = 1
     template_name = "redico/unfulfilled-demands.html"
 
