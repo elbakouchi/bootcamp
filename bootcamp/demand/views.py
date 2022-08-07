@@ -80,7 +80,7 @@ class DemandsList(ListView):
 
 class PaginatedDemandsFeed(AjaxListView):
     model = Demand
-    paginate_by = 10
+    paginate_by = 1
     paginate_orphans = 1
     page_template = "redico/snippets/demand-list-item-2.html"
     context_object_name = "demands"
