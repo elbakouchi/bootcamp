@@ -42,7 +42,7 @@
                         article</a>
                     {% endif %}
                     {% if not user.is_authenticated %}
-                    <a href="{% url 'account_login' %}?next={% url 'demands:write_new' %}"  class="nav_btn tp_btn">Ajouter un article</a>
+                    <a href="{% url 'account_login' %}?next={% url 'demands:write_new' %}"  class="nav_btn tp_btn">Ajouter un texte</a>
                     {% endif %}
                     {% if not request.user.is_authenticated %}
                     <a href="{% url 'account_login' %}" class="px-2"><i class="icon_profile"></i> Se connecter</a>
