@@ -46,11 +46,11 @@
             <div class="right-nav">
                 {% if request.user.is_authenticated %}
                 <a href="{% url 'demands:write_new' %}" target="_blank" class="action_btn btn_small">Ajouter un
-                    article</a>
+                    texte</a>
                 {% endif %}
                 {% if not user.is_authenticated %}
                 <a href="{% url 'account_login' %}?next={% url 'demands:write_new' %}" class="action_btn btn_small">Ajouter
-                    un article</a>
+                    un texte</a>
                 {% endif %}
                 {% if not request.user.is_authenticated %}
                 <a href="{% url 'account_login' %}" class="px-2"><i class="icon_profile"></i>Se connecter</a>
