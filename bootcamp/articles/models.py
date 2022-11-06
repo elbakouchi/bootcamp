@@ -102,10 +102,13 @@ class Article(SafeDeleteModel):
             demand_has_revision.send(sender=self,
                                      demand=self.demand
                                     )
-            revision_created.send(sender=self.__class__,
+            try:                        
+                revision_created.send(sender=self.__class__,
                                      demand=self.demand
                                     )                        
-
+            except:
+                pass
+            
     def get_markdown(self):
         return markdownify(self.content)
 
