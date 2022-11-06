@@ -99,9 +99,12 @@ class Article(SafeDeleteModel):
 
         super().save(*args, **kwargs)
         if self.verified:
-            demand_has_revision.send(sender=self.__class__,
+            demand_has_revision.send(sender=self,
                                      demand=self.demand
-                                     )
+                                    )
+            revision_created.send(sender=self.__class__,
+                                     demand=self.demand
+                                    )                        
 
     def get_markdown(self):
         return markdownify(self.content)
@@ -118,10 +121,13 @@ def notify_comment(**kwargs):  # pragma: no cover
 
 def set_demand_has_revision(**kwargs):
     demand = kwargs["demand"]
+    revision = kwargs['sender']
+    print(revision.content)
     if not demand.has_revision:
         demand.has_revision = True
-        demand.save()
-        print(kwargs["demand"], "has revision")
+    demand.update_when_revisioned(revision.content)
+    demand.save()
+    print(kwargs["demand"], "has revision")
 
 
 def broadcast_revision_created(sender, user, request, **kwargs):
@@ -133,6 +139,10 @@ def broadcast_revision_created(sender, user, request, **kwargs):
 
 
 demand_has_revision = Signal()
+revision_created = Signal()
 demand_has_revision.connect(receiver=set_demand_has_revision)
-demand_has_revision.connect(broadcast_revision_created)
+try:
+ revision_created.connect(receiver=broadcast_revision_created)
+except Exception as e:
+    print(e) 
 comment_was_posted.connect(receiver=notify_comment)
