@@ -227,18 +227,21 @@ class Demand(SafeDeleteModel):
         if not self.slug:
             pass
         doc = nlp(self.title + strip_tags(self.content))
+        self.update_keywords(doc)
+        self.update_tokens(doc)
         # if not self.tokens:
-        tags = [token.lemma_ for token in doc if token.pos_ in ["VERB", "ADVERB", "NOUN"]]
-        chunks = [chunk.text for chunk in doc.noun_chunks]
-        self.tokens = ",".join(tags + chunks)
-        self.tokens = self.tokens.replace('&nbps;', '')
-        if not self.keywords:
+        #tags = [token.lemma_ for token in doc if token.pos_ in ["VERB", "ADVERB", "NOUN"]]
+        #chunks = [chunk.text for chunk in doc.noun_chunks]
+        #self.tokens = ",".join(tags + chunks)
+        #self.tokens = self.tokens.replace('&nbps;', '')
+        #if not self.keywords:
             # doc = nlp(strip_tags(self.content))
-            tags = [token.lemma_ for token in doc if token.pos_ in ["NOUN"]]
-            try:
-                self.keywords = f"{self.tags},{','.join(tags)}"
-            except:
-                self.keywords = ','.join(tags)
+        #    tags = [token.lemma_ for token in doc if token.pos_ in ["NOUN"]]
+        #    try:
+        #        self.keywords = f"{self.tags},{','.join(tags)}"
+        #    except:
+        #        self.keywords = ','.join(tags)
+        #    self.keywords = self.keywords.replace('&nbps;', '')    
         super().save(*args, **kwargs)
         if self.status == self.PUBLISHED:
             notify_demand_author(self.user, self, Notification.DEMAND_PUBLISHED)
@@ -247,6 +250,32 @@ class Demand(SafeDeleteModel):
 
     def get_markdown(self):
         return markdownify(self.content)
+
+    def update_when_revisioned(self, revision_content): 
+        doc = nlp(strip_tags(revision_content))
+        self.update_tokens(doc)
+        self.update_keywords(doc)
+        #super.save()
+
+    def update_tokens(self, doc):    
+        tags   = [token.lemma_ for token in doc if token.pos_ in ["NOUN"]]
+        # print (1,tags)
+        # chunks = [chunk.text for chunk in doc.noun_chunks]
+        _tokens = self.tokens.split(',')
+        tokens = ",".join(set(tags + _tokens))
+        tokens = tokens.replace('&nbps;', '').replace(',demand.Demand.None', '')
+        self.tokens = tokens
+        
+    def update_keywords(self, doc):    
+        tags = [token.lemma_ for token in doc if token.pos_ in ["VERB", "ADVERB","NOUN"]]
+        _keywords = self.keywords.split(',')
+        _tokens = self.tokens.split(',')
+        _ = set(tags+_keywords+_tokens)
+        keywords = ','.join(_)
+        keywords = keywords.replace('&nbps;', '').replace(',demand.Demand.None', '')
+        self.keywords = keywords
+        
+        
 
 
 def notify_comment(**kwargs):  # pragma: no cover
