@@ -452,3 +452,5 @@ ACCOUNT_FORMS = {
     'login': 'bootcamp.accounts.forms.AllAuthSignInForm',
     'signup': 'bootcamp.accounts.forms.AllAuthSignUpForm',
 }
+
+ACCOUNT_PRESERVE_USERNAME_CASING = True
