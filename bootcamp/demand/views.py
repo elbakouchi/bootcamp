@@ -71,7 +71,7 @@ class DemandsList(ListView):
     model = Demand
     paginate_by = 5
     paginate_orphans = 1
-    template_name = "redico/unfulfilled-demands.html"
+    template_name = "redico/unfulfilled-demands-paginated.html"
 
     def get_queryset(self):
         # return Demand.objectz.get_without_revisions().filter(revision_count__lt=1)
@@ -122,7 +122,7 @@ class CorrectedDemandsView(ListView):
     paginate_by = 10
     paginate_orphans = 1
     context_object_name = "demands"
-    template_name = 'redico/corrected-demands.html'
+    template_name = 'redico/corrected-demands-paginated.html'
     queryset = Demand.objectz.corrected_demands()
 
 
