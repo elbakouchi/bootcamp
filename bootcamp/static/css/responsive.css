@@ -1703,6 +1703,7 @@
   }
   .support-info span {
     font-size: 12px;
+    font-weight: bold;
   }
   .forums-header .support-category-menus {
     display: none;

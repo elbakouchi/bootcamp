@@ -511,7 +511,8 @@ p kbd {
   background: #0099ff;
   display: inline-block;
   padding: 10px 18px;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.18s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+ border-color 0.15s ease-in-out, box-shadow 0.18s ease-in-out;
 }
 
 .action_btn i {
@@ -1024,7 +1025,7 @@ p kbd {
 }
 
 .dark_menu .menu > .nav-item > .nav-link {
-  color: #444444;
+  color: #0099ff;
   font-size: 14px;
   font-weight: 500;
 }
@@ -1481,7 +1482,7 @@ p kbd {
 }
 
 .menu > .nav-item + .nav-item {
-  margin-left: 40px;
+  margin-left: 20px;
 }
 
 .mobile-dark-mode ion-icon {
@@ -2238,7 +2239,7 @@ p kbd {
 }
 
 .navbar:not(.navbar_fixed) .menu > .nav-item.submenu .dropdown-menu {
-  margin-top: -15px;
+  margin-top: -5px;
 }
 
 .popover-body ul {
@@ -2274,6 +2275,25 @@ p kbd {
   top: -33px;
   left: 17px;
   background: #f00;
+}
+
+p.headerslug {
+  color: #1f3763 !important;
+  font-weight: bold !important;
+  margin: 7px 0 0 !important;
+}
+
+.support-info span {
+  font-weight: bold;
+  color: #1f3763;
+}
+
+.media-body a h6 {
+  min-width: 116px;
+}
+
+.p_info_item_inner {
+  display: none;
 }
 
 /*---------------------------------------------------- */
@@ -4283,7 +4303,8 @@ body.remove .header_tabs_area.tab_fixed .header_tab_items {
   transition: background 500ms ease, -webkit-transform 500ms ease;
   -o-transition: transform 500ms ease, background 500ms ease;
   transition: transform 500ms ease, background 500ms ease;
-  transition: transform 500ms ease, background 500ms ease, -webkit-transform 500ms ease;
+  transition: transform 500ms ease, background 500ms ease,
+ -webkit-transform 500ms ease;
   -webkit-transition: transform 500ms ease, background 500ms ease;
   z-index: 30;
 }
@@ -17992,7 +18013,7 @@ ul.error {
 
 .header_search_form {
   max-width: 720px;
-  margin: 17px auto 0;
+  margin: 7px auto 0;
 }
 
 .header_search_form .form-group {
