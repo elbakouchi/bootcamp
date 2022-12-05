@@ -14,14 +14,40 @@ from contact_form.forms import StringKeyedDict
 import requests
 
 from .models import User
-from .forms import CustomContactForm
-
+from .forms import CustomContactForm, CustomServicesForm
+from django.views.generic.edit  import FormView
 from PIL import Image
 from django import forms
 
 from ..demand.models import Demand
 
 
+class CustomServicesFormView(ContactFormView):
+    form_class = CustomServicesForm
+    recipient_list = None
+    success_url = reverse_lazy("contact_form_sent")
+    template_name = "redico/services.html"
+
+    '''
+    def form_valid(self, form) -> HttpResponse:
+        #form.save()
+        return super().form_valid(form)
+    def get_context_data(self, **kwargs):
+        context = super(CustomServicesFormView, self).get_context_data(**kwargs)
+        #context['recaptcha_site_key'] = settings.RECAPTCHA_PUBLIC_KEY
+        return context
+    def get_form_kwargs(self) -> StringKeyedDict:
+        # ContactForm instances require instantiation with an
+        # HttpRequest.
+        kwargs = super().get_form_kwargs()
+        kwargs.update({"request": self.request})
+
+        # We may also have been given a recipient list when
+        # instantiated.
+        if self.recipient_list is not None:
+            kwargs.update({"recipient_list": self.recipient_list})
+        return kwargs
+    '''
 class CustomContactFormView(ContactFormView):
     form_class = CustomContactForm
     recipient_list = None
