@@ -1,0 +1,13 @@
+{% extends 'email/redico.html' %}
+{% load i18n %}
+{% block content%}
+
+RediCo {{site}} demande de service personalisé
+
+De la par de {{name}} ({{phone}}) <{{email}}>:
+
+{{body}}
+{% endblock content %}
+{% block signature%}
+Bonne réception.
+{% endblock signature%}

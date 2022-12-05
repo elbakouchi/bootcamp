@@ -1,0 +1,75 @@
+{% extends 'redico/redico_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title%}  Redico -  Contact {% endblock title%}
+
+{% block content %}
+<style>
+    .errorlist{
+        color: red;
+        list-style: none;
+    }
+</style>
+{% include 'redico/snippets/banner.html' with heading="Services Personnalisés" %}
+<section class="doc_blog_grid_area sec_pad forum-page-content">
+    <div class="container">
+        {% include 'redico/snippets/messages.html' %}
+        <div class="row">
+            {% include 'redico/snippets/leftside-ad.html' %}
+            {% comment %}
+            <div class="col-lg-8">
+                <form method="post" action="{% url 'services' %}" id="demand_form" class="contact_form">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <div class="col-lg-12 form-group">
+                        <input type="submit" class="btn action_btn thm_btn" value="Envoyer"/>
+                    </div>
+                </form>
+            </div>
+            {% endcomment %}
+            <div class="col-lg-6">
+                <div class="contact_info">
+                    <div class="text-center">
+                        <p>Demandez un devis pour un service personnalisé.</p>
+                    </div>
+                    <form method="post" action="{% url 'services' %}" id="demand_form" class="contact_form">
+                        {% csrf_token %}
+                        <div class="row contact_fill">
+                            <div class="col-lg-12 form-group">
+                                <input type="text" class="form-control" name="name" id="name"
+                                    placeholder="Nom complet">
+                                    {{ form.name.errors }}
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <input type="email" class="form-control" name="email" id="email"
+                                    placeholder="Email: info@Redico.Wiki">
+                                    {{ form.email.errors }}
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <input type="tel" class="form-control" name="phone" id="phone"
+                                    placeholder="Numéro de téléphone">
+                                    {{ form.phone.errors }}
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <textarea class="form-control message" name="body" id="message"
+                                    placeholder="Saisissez votre texte..."></textarea>
+                                    {{ form.body.errors }}
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                {{form.captcha}}
+                                {{ form.captcha.errors }}
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <button type="submit" class="btn action_btn thm_btn">Envoyer le message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            {% include 'redico/snippets/rightside-ad.html' %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
