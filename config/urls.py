@@ -7,7 +7,7 @@ from django.views import defaults as default_views
 from django.contrib.flatpages import views as flatpages
 from allauth.account.views import LogoutView
 from allauth.socialaccount.providers.facebook.views import oauth2_callback
-from bootcamp.users.views import CustomContactFormView
+from bootcamp.users.views import CustomContactFormView, CustomServicesFormView
 from graphene_django.views import GraphQLView
 # from bootcamp.home.views import feed_pagination
 
@@ -31,6 +31,7 @@ urlpatterns = [
     # url(r"^articles", TemplateView.as_view(template_name="redico/liste-article.html"), name="articles"),
     # url(r"^contactez-nous", TemplateView.as_view(template_name="redico/contact.html"), name="contact_us"),
     url(r"^contactez-nous", CustomContactFormView.as_view(), name="contact_us"),
+    url(r"^services-personnalises", CustomServicesFormView.as_view(), name="services"),
     url(r'^contact/sent/', TemplateView.as_view(template_name='redico/contact_form_sent.html'), name='contact_form_sent'),
     url(r"^gestion-des-cookies", TemplateView.as_view(template_name="redico/cookies.html"), name="cookies"),
     url(r"^index", TemplateView.as_view(template_name="redico/index2.html"), name="index"),
