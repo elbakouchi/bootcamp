@@ -1,0 +1,286 @@
+{% extends 'redico/profile2.html' %}
+{% load static %}
+
+{%block sidebar%}
+    {% include 'redico/snippets/parameters-sidebar1.html' %}
+{%endblock%}
+
+{% block tabs %}
+<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <div class="profile_info">
+        <div class="row p_info_item_inner">
+            <div class="col-sm-4">
+                <div class="p_info_item">
+                    <img src="{% static 'img/icon/p-icon-1.png' %}" alt="">
+                    <a href="#">
+                        <h4>Role</h4>
+                    </a>
+                    <a class="info_btn" href="#">Master?</a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="p_info_item">
+                    <img src="{% static 'img/icon/p-icon-2.png' %}" alt="">
+                    <a href="#">
+                        <h4>Nouveaux Textes</h4>
+                    </a>
+                    <a class="info_number" href="#">{{demands_count}}</a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="p_info_item">
+                    <img src="{% static 'img/icon/p-icon-3.png' %}" alt="">
+                    <a href="#">
+                        <h4>Révisions</h4>
+                    </a>
+                    <a class="info_number" href="#">{{revisions_count}}</a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <form action="{% url 'users:update' %}" method="post" enctype="multipart/form-data"
+            id="userForm" class="contact_form mt-3">
+            {% csrf_token %}
+            <div class="row contact_fill">
+                <div class="col-lg-6 form-group">
+                    {{form.first_name}}
+                    <ul class="error">
+                        {% for error in form.first_name.errors %}
+                        <li>{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-lg-6 form-group">
+                    {{form.last_name}}
+                    <ul class="error">
+                        {% for error in form.last_name.errors %}
+                        <li>{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-lg-6 form-group">
+                    {{form.email}}
+                    <ul class="error">
+                        {% for error in form.email.errors %}
+                        <li>{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-lg-6 form-group">
+                    {{form.phone}}
+                    <ul class="error">
+                        {% for error in form.phone.errors %}
+                        <li>{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-lg-12 form-group">
+                    <h6>Biographie:</h6>
+                    {{form.bio}}
+                    <ul class="error">
+                        {% for error in form.bio.errors %}
+                        <li>{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {%comment%}
+                <div class="col-lg-12 form-group">
+                    <h6>Image profile:</h6>
+                    {{form.picture}}
+                    <!-- CONTAINER TO DISPLAY THE CROPPED IMAGES -->
+                    {% if user.picture %}
+                    <div class="row" style="margin-top: 20px">
+                        <div class="col-sm-4 col-md-3">
+                            <img src="{{ user.picture.url }}" class="thumbnail">
+                        </div>
+                    </div>
+                    {%endif%}
+                </div>
+                {{form.x}}
+                {{form.y}}
+                {{form.width}}
+                {{form.height}}
+                {%endcomment%}
+                <div class="col-lg-12 form-group">
+                    <button type="submit" class="btn action_btn thm_btn">Sauvegarder
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="tab-pane fade" id="texts" role="tabpanel" aria-labelledby="texts-tab">
+
+    <div class="forum_l_inner">
+        <div class="forum_head d-flex justify-content-between">
+            <ul class="nav right">
+                <li>
+                    <div class="dropdown list_sirt">
+                        <button class="btn dropdown-toggle" type="button"
+                            id="dropdownMenuButton5" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Filtrer par <i class="arrow_carrot-down"></i>
+                        </button>
+                        <div class="dropdown-menu short-by"
+                            aria-labelledby="dropdownMenuButton5">
+                            <a class="dropdown-item active-short"
+                                href="{% url 'users:detail' user.username %}?o=oldest">plus
+                                ancien</a>
+                            <a class="dropdown-item"
+                                href="{% url 'users:detail' user.username %}?o=newest">plus
+                                récent</a>
+                            {% comment %}
+                            <a class="dropdown-item" href="#0">First Comments</a>
+                            <a class="dropdown-item" href="#0">New Comments</a>
+                            {% endcomment %}
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            {% comment %}
+            <div class="page">Page {{ demands.number }} de {{
+                demands.paginator.num_pages|add:revisions.paginator.num_pages }}</div>
+            {% endcomment %}
+            <div class="page">Page {{ demands.number }} de {{ demands.paginator.num_pages }}
+            </div>
+        </div>
+        <div class="forum_body">
+            <ul class="navbar-nav topic_list">
+                {% for text in demands %}
+                <li {% if text.verified %}class="check" {% endif %}>
+                    <div class="media">
+
+                        <div class="media-body">
+                            <div class="t_title">
+                                <a href="{% url 'demands:demand' text.slug %}">
+                                    <h4>{{text.title}}</h4>
+                                </a>
+                            </div>
+                            <a href="#">
+                                <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>
+                                    {{text.service_name}} </h6>
+                            </a>
+                            <h6><i class="icon_calendar"></i> {{text.timestamp|timesince}}
+                            </h6>
+                        </div>
+                        <div class="media-right">
+                            <a class="count " href="#"><i
+                                    class="icon_chat_alt"></i>{{text.revision_count}}</a>
+                            <!--a class="count rate" href="#"><i
+                                    class="icon_star"></i>33</a-->
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+                {% comment%}
+                {% for text in revisions %}
+                <li {% if text.verified %}class="check" {% endif %}>
+                    <div class="media">
+                        <div class="media-body">
+                            <div class="t_title">
+                                <a href="{% url 'demands:demand' text.slug %}">
+                                    <h4>{{text.title}}</h4>
+                                </a>
+                            </div>
+                            <a href="#">
+                                <h6><i class="icon_lightbulb_alt" aria-hidden="true"></i>
+                                    {{text.service}} </h6>
+                            </a>
+                            <h6><i class="icon_calendar"></i> {{text.timestamp|timesince}}
+                            </h6>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+                {%endcomment%}
+            </ul>
+        </div>
+    </div>
+    <div class="list_pagination d-flex justify-content-between">
+        <div class="left">
+            {% comment %}
+            <p>{{ demands.paginator.num_pages|add:revisions.paginator.num_pages }} total</p>
+            {% endcomment %}
+            <p>{{ demands_count}} total</p>
+        </div>
+        <div class="right">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if demands.has_previous or revisions.has_previous %}
+                    {% if demands.previous_page_number %}
+                    <li class="page-item"><a class="page-link"
+                            href="{{request.path}}?page={{ demands.previous_page_number }}#profile">{{
+                            demands.previous_page_number }}</a></li>
+                    {% endif %}
+                    {% if revisions.previous_page_number %}
+                    <li class="page-item"><a class="page-link"
+                            href="{{request.path}}?page={{ revisions.previous_page_number }}#profile">{{
+                            revisions.previous_page_number }}</a></li>
+                    {% endif %}
+                    {% endif %}
+                    <li class="page-item active"><a class="page-link" href="#">{{
+                            demands.number }}</a></li>
+                    {% if demands.has_next or revisions.has_next %}
+                    {% if demands.next_page_number %}
+                    <li class="page-item"><a class="page-link"
+                            href="{{request.path}}?page={{ demands.next_page_number }}#profile">{{
+                            demands.next_page_number }}</a></li>
+                    {% endif %}
+                    {% if revisions.next_page_number %}
+                    <li class="page-item"><a class="page-link"
+                            href="{{request.path}}?page={{ revisions.next_page_number }}#profile">{{
+                            revisions.next_page_number }}</a></li>
+                    {% endif %}
+                    {% endif %}
+
+                    <!--li class="page-item"><a class="page-link" href="#"><i
+                            class="arrow_carrot-right"></i></a></li-->
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="tab-pane fade show" id="mdp" role="tabpanel" aria-labelledby="mdp-tab">
+    <div class="forum_l_inner">
+        <div class="forum_head d-flex justify-content-between">
+            <form action="{% url 'users:passwd' %}" method="post" id="passwForm" class="contact_form mt-3">
+                {% csrf_token %}
+                <div class="row contact_fill">
+                    <div class="col-lg-12 form-group">
+                        {{passwform.old_password}}
+                        <ul class="error">
+                            {% for error in form.old_password.errors %}
+                            <li>{{error}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="row contact_fill">
+                    <div class="col-lg-12 form-group">
+                        {{passwform.new_password1}}
+                        <ul class="error">
+                            {% for error in form.new_password1.errors %}
+                            <li>{{error}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="row contact_fill">
+                    <div class="col-lg-12 form-group">
+                        {{passwform.new_password2}}
+                        <ul class="error">
+                            {% for error in form.new_password2.errors %}
+                            <li>{{error}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-12 form-group">
+                    <button type="submit" class="btn action_btn thm_btn">Changer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}
