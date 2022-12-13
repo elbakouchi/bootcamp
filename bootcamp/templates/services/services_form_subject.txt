@@ -1,1 +1,1 @@
-RediCo contact message de la par de {{name}}
+[RediCo] De la part de {{name}}: demande de service personnalisé 
