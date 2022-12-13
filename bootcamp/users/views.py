@@ -108,7 +108,7 @@ class UserDetailView(LoginRequiredMixin, ModelFormMixin, DetailView):
     # These next two lines tell the view to index lookups by username
     slug_field = "username"
     slug_url_kwarg = "username"
-    template_name = 'redico/profile-tabs.html'
+    template_name = 'redico/profile3.html'
     # fields = ['first_name', 'last_name', 'phone', 'email', 'bio', 'picture']
     success_url = "/users/{username}/"
 
