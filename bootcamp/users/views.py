@@ -1,8 +1,10 @@
 import os
 from django.http import HttpResponse
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.conf import settings as django_settings
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
@@ -11,6 +13,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
 from contact_form.views import ContactFormView
 from contact_form.forms import StringKeyedDict
+from django.template import loader
 import requests
 
 from .models import User
@@ -105,7 +108,7 @@ class UserDetailView(LoginRequiredMixin, ModelFormMixin, DetailView):
     # These next two lines tell the view to index lookups by username
     slug_field = "username"
     slug_url_kwarg = "username"
-    template_name = 'redico/profile.html'
+    template_name = 'redico/profile-tabs.html'
     # fields = ['first_name', 'last_name', 'phone', 'email', 'bio', 'picture']
     success_url = "/users/{username}/"
 
@@ -127,6 +130,7 @@ class UserDetailView(LoginRequiredMixin, ModelFormMixin, DetailView):
         except EmptyPage:
             paginated_demands = paginator.page(paginator.num_pages)
         context["demands"] = paginated_demands
+        context['passwform'] = PasswordChangeForm(self.request.user, self.request.POST )
         return context
 
     def get_success_url(self):
@@ -135,13 +139,58 @@ class UserDetailView(LoginRequiredMixin, ModelFormMixin, DetailView):
 
 class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
-
     def get_redirect_url(self):
         return reverse("users:detail", kwargs={"username": self.request.user.username})
 
 
+from django.template import Context
+
+
+class ChangePasswordView(LoginRequiredMixin, UpdateView):
+    form_class = PasswordChangeForm
+    template_name = 'redico/change-password.html'
+    def get_object(self):
+        # Only get the User record for the user making the request
+        return User.objects.get(username=self.request.user.username)
+    model = User
+    def get_success_url(self):
+        return reverse("users:detail", kwargs={"username": self.request.user.username})
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+        return loader.render_to_string(
+            self.template_name, self.get_context_data(), request=self.request
+        ) 
+
+    def get_context_data(self, **kwargs):
+        try:
+            context = super(ChangePasswordView, self).get_context_data()
+        except:
+            context = dict()
+        try:
+            demands = Demand.objectz.profile(self.request.user.pk, self.request.GET.o)
+        except Exception as e:
+            demands = Demand.objectz.profile(self.request.user.pk, '')
+        context["demands_count"] = demands.count()
+        page = self.request.GET.get("page", 1)
+        paginator = Paginator(demands, 5)
+
+        try:
+            paginated_demands = paginator.page(page)
+        except PageNotAnInteger:
+            paginated_demands = paginator.page(1)
+        except EmptyPage:
+            paginated_demands = paginator.page(paginator.num_pages)
+        context["demands"] = paginated_demands
+        context['passwform'] = PasswordChangeForm(self.request.user, self.request.POST )
+        return context
+
+
+
 class UserUpdateView(LoginRequiredMixin, UpdateView):
-    template_name = 'redico/profile.html'
+    template_name = 'redico/profile3.html'
     fields = [
         "first_name",
         "last_name",
