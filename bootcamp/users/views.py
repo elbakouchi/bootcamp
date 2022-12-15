@@ -148,7 +148,7 @@ from django.template import Context
 
 class ChangePasswordView(LoginRequiredMixin, UpdateView):
     form_class = PasswordChangeForm
-    template_name = 'redico/change-password.html'
+    template_name = 'redico/profile3.html'
     def get_object(self):
         # Only get the User record for the user making the request
         return User.objects.get(username=self.request.user.username)
