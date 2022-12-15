@@ -3251,7 +3251,7 @@ p.headerslug {
 /*=========== Start breadcrumb_area_three css ============*/
 .breadcrumb_area_three {
   background: #f8fafd;
-  padding: 80px 0 30px;
+  padding: 65px 0 15px;
   position: relative;
   z-index: 1;
 }
