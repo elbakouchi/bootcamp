@@ -3,9 +3,9 @@
 {% load thumbnail %}
 {% block css%}
 {{block.super}}
- <link href="{% static 'css/cropper.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/cropper.min.css' %}" rel="stylesheet">
 <style>
-    .modal-backdrop{
+    .modal-backdrop {
         z-index: -1 !important;
 
     }
@@ -13,7 +13,9 @@
 {%endblock%}
 {% block content %}
 <section class="doc_banner_area search-banner-light">
-
+    <div class="breadcrumb_text">
+    <p class="headerslug">Bienvenue sur votre compte<br>Redico</p>   
+    </div>
 </section>
 
 <!--================Forum Content Area =================-->
@@ -25,30 +27,31 @@
                     {%comment%}
                     <div class="author_img">
                         {% if user.picture %}
-                            {#% thumbnail user.picture "x250" as im %#}
-                                <img src="{{MEDIA_URL}}{{ user.picture }}" width="250" alt="Picture Profile" id="pic" class="img-fluid"/>
-                            {#% endthumbnail %#}
+                        {#% thumbnail user.picture "x250" as im %#}
+                        <img src="{{MEDIA_URL}}{{ user.picture }}" width="250" alt="Picture Profile" id="pic"
+                            class="img-fluid" />
+                        {#% endthumbnail %#}
                         {%else%}
-                            <img class="img-fluid" src="{% static 'img/forum/author-1.jpg' %}" alt="">
+                        <img class="img-fluid" src="{% static 'img/forum/author-1.jpg' %}" alt="">
                         {%endif%}
                     </div>
                     {%endcomment%}
                     <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                               aria-controls="home" aria-selected="true">
+                                aria-controls="home" aria-selected="true">
                                 <i class="icon_profile"></i> Profil
                             </a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                               aria-controls="profile" aria-selected="false">
+                                aria-controls="profile" aria-selected="false">
                                 <i class="icon_documents"></i> Textes créés
                             </a>
                         </li>
                         <li class="nav-item" role="presentation" style="display: none;">
                             <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                               aria-controls="contact" aria-selected="false">
+                                aria-controls="contact" aria-selected="false">
                                 <i class="icon_chat"></i> Correction
                             </a>
                         </li>
@@ -59,8 +62,7 @@
                 <div class="forum_body_area">
                     <div class="forum_topic_list">
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel"
-                                 aria-labelledby="home-tab">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <div class="profile_info">
                                     <div class="row p_info_item_inner">
                                         <div class="col-sm-4">
@@ -92,28 +94,29 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <form action="{% url 'users:update' %}" method ="post"  enctype="multipart/form-data" id="userForm" class="contact_form mt-3">
-                                         {% csrf_token %}
+                                    <form action="{% url 'users:update' %}" method="post" enctype="multipart/form-data"
+                                        id="userForm" class="contact_form mt-3">
+                                        {% csrf_token %}
                                         <div class="row contact_fill">
                                             <div class="col-lg-6 form-group">
                                                 {{form.first_name}}
-                                                 <ul class="error">
+                                                <ul class="error">
                                                     {% for error in form.first_name.errors %}
                                                     <li>{{error}}</li>
                                                     {% endfor %}
                                                 </ul>
                                             </div>
                                             <div class="col-lg-6 form-group">
-                                                  {{form.last_name}}
-                                                 <ul class="error">
+                                                {{form.last_name}}
+                                                <ul class="error">
                                                     {% for error in form.last_name.errors %}
                                                     <li>{{error}}</li>
                                                     {% endfor %}
                                                 </ul>
                                             </div>
                                             <div class="col-lg-6 form-group">
-                                                 {{form.email}}
-                                                 <ul class="error">
+                                                {{form.email}}
+                                                <ul class="error">
                                                     {% for error in form.email.errors %}
                                                     <li>{{error}}</li>
                                                     {% endfor %}
@@ -121,7 +124,7 @@
                                             </div>
                                             <div class="col-lg-6 form-group">
                                                 {{form.phone}}
-                                                 <ul class="error">
+                                                <ul class="error">
                                                     {% for error in form.phone.errors %}
                                                     <li>{{error}}</li>
                                                     {% endfor %}
@@ -130,7 +133,7 @@
                                             <div class="col-lg-12 form-group">
                                                 <h6>Biographie:</h6>
                                                 {{form.bio}}
-                                                 <ul class="error">
+                                                <ul class="error">
                                                     {% for error in form.bio.errors %}
                                                     <li>{{error}}</li>
                                                     {% endfor %}
@@ -141,10 +144,10 @@
                                                 <h6>Image profile:</h6>
                                                 {{form.picture}}
                                                 <!-- CONTAINER TO DISPLAY THE CROPPED IMAGES -->
-                                                 {% if user.picture %}
+                                                {% if user.picture %}
                                                 <div class="row" style="margin-top: 20px">
                                                     <div class="col-sm-4 col-md-3">
-                                                      <img src="{{ user.picture.url }}" class="thumbnail">
+                                                        <img src="{{ user.picture.url }}" class="thumbnail">
                                                     </div>
                                                 </div>
                                                 {%endif%}
@@ -162,8 +165,7 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel"
-                                 aria-labelledby="profile-tab">
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
                                 <div class="forum_l_inner">
                                     <div class="forum_head d-flex justify-content-between">
@@ -171,15 +173,18 @@
                                             <li>
                                                 <div class="dropdown list_sirt">
                                                     <button class="btn dropdown-toggle" type="button"
-                                                            id="dropdownMenuButton5" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
+                                                        id="dropdownMenuButton5" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
                                                         Filtrer par <i class="arrow_carrot-down"></i>
                                                     </button>
                                                     <div class="dropdown-menu short-by"
-                                                         aria-labelledby="dropdownMenuButton5">
-                                                         <a class="dropdown-item active-short"
-                                                           href="{% url 'users:detail' user.username %}?o=oldest">plus ancien</a>
-                                                        <a class="dropdown-item" href="{% url 'users:detail' user.username %}?o=newest">plus récent</a>
+                                                        aria-labelledby="dropdownMenuButton5">
+                                                        <a class="dropdown-item active-short"
+                                                            href="{% url 'users:detail' user.username %}?o=oldest">plus
+                                                            ancien</a>
+                                                        <a class="dropdown-item"
+                                                            href="{% url 'users:detail' user.username %}?o=newest">plus
+                                                            récent</a>
                                                         {% comment %}
                                                         <a class="dropdown-item" href="#0">First Comments</a>
                                                         <a class="dropdown-item" href="#0">New Comments</a>
@@ -189,14 +194,16 @@
                                             </li>
                                         </ul>
                                         {% comment %}
-                                        <div class="page">Page {{ demands.number }} de {{ demands.paginator.num_pages|add:revisions.paginator.num_pages }}</div>
+                                        <div class="page">Page {{ demands.number }} de {{
+                                            demands.paginator.num_pages|add:revisions.paginator.num_pages }}</div>
                                         {% endcomment %}
-                                        <div class="page">Page {{ demands.number }} de {{ demands.paginator.num_pages }}</div>
+                                        <div class="page">Page {{ demands.number }} de {{ demands.paginator.num_pages }}
+                                        </div>
                                     </div>
                                     <div class="forum_body">
                                         <ul class="navbar-nav topic_list">
                                             {% for text in demands %}
-                                            <li {% if text.verified %}class="check"{% endif %}>
+                                            <li {% if text.verified %}class="check" {% endif %}>
                                                 <div class="media">
 
                                                     <div class="media-body">
@@ -222,8 +229,8 @@
                                             </li>
                                             {% endfor %}
                                             {% comment%}
-                                             {% for text in revisions %}
-                                            <li {% if text.verified %}class="check"{% endif %}>
+                                            {% for text in revisions %}
+                                            <li {% if text.verified %}class="check" {% endif %}>
                                                 <div class="media">
                                                     <div class="media-body">
                                                         <div class="t_title">
@@ -255,22 +262,31 @@
                                     <div class="right">
                                         <nav aria-label="Page navigation example">
                                             <ul class="pagination">
-                                               {% if demands.has_previous or revisions.has_previous %}
-                                                    {% if demands.previous_page_number %}
-                                                    <li class="page-item"><a class="page-link" href="{{request.path}}?page={{ demands.previous_page_number }}#profile">{{ demands.previous_page_number }}</a></li>
-                                                    {% endif %}
-                                                    {% if revisions.previous_page_number %}
-                                                     <li class="page-item"><a class="page-link" href="{{request.path}}?page={{ revisions.previous_page_number }}#profile">{{ revisions.previous_page_number }}</a></li>
-                                                    {% endif %}
+                                                {% if demands.has_previous or revisions.has_previous %}
+                                                {% if demands.previous_page_number %}
+                                                <li class="page-item"><a class="page-link"
+                                                        href="{{request.path}}?page={{ demands.previous_page_number }}#profile">{{
+                                                        demands.previous_page_number }}</a></li>
                                                 {% endif %}
-                                                <li class="page-item active"><a class="page-link" href="#">{{ demands.number }}</a></li>
-                                                {% if demands.has_next or  revisions.has_next %}
-                                                    {% if demands.next_page_number %}
-                                                     <li class="page-item"><a class="page-link" href="{{request.path}}?page={{ demands.next_page_number }}#profile">{{ demands.next_page_number }}</a></li>
-                                                    {% endif %}
-                                                    {% if revisions.next_page_number %}
-                                                     <li class="page-item"><a class="page-link" href="{{request.path}}?page={{ revisions.next_page_number }}#profile">{{ revisions.next_page_number }}</a></li>
-                                                    {% endif %}
+                                                {% if revisions.previous_page_number %}
+                                                <li class="page-item"><a class="page-link"
+                                                        href="{{request.path}}?page={{ revisions.previous_page_number }}#profile">{{
+                                                        revisions.previous_page_number }}</a></li>
+                                                {% endif %}
+                                                {% endif %}
+                                                <li class="page-item active"><a class="page-link" href="#">{{
+                                                        demands.number }}</a></li>
+                                                {% if demands.has_next or revisions.has_next %}
+                                                {% if demands.next_page_number %}
+                                                <li class="page-item"><a class="page-link"
+                                                        href="{{request.path}}?page={{ demands.next_page_number }}#profile">{{
+                                                        demands.next_page_number }}</a></li>
+                                                {% endif %}
+                                                {% if revisions.next_page_number %}
+                                                <li class="page-item"><a class="page-link"
+                                                        href="{{request.path}}?page={{ revisions.next_page_number }}#profile">{{
+                                                        revisions.next_page_number }}</a></li>
+                                                {% endif %}
                                                 {% endif %}
 
                                                 <!--li class="page-item"><a class="page-link" href="#"><i
@@ -280,8 +296,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade " id="contact" role="tabpanel"
-                                 aria-labelledby="contact-tab">
+                            <div class="tab-pane fade " id="contact" role="tabpanel" aria-labelledby="contact-tab">
 
                                 <h2>Forum Topics Started</h2>
                                 <div class="forum_l_inner comment_l">
@@ -290,15 +305,16 @@
                                             <li>
                                                 <div class="dropdown list_sirt">
                                                     <button class="btn dropdown-toggle" type="button"
-                                                            id="dropdownMenuButton5" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
+                                                        id="dropdownMenuButton5" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
                                                         Sirt by <i class="arrow_carrot-down"></i>
                                                     </button>
                                                     <div class="dropdown-menu short-by"
-                                                         aria-labelledby="dropdownMenuButton5">
+                                                        aria-labelledby="dropdownMenuButton5">
                                                         <a class="dropdown-item active-short"
-                                                           href="{% url 'users:detail' user.username %}?o=oldest">Oldest</a>
-                                                        <a class="dropdown-item" href="{% url 'users:detail' user.username %}?o=newest">Newest</a>
+                                                            href="{% url 'users:detail' user.username %}?o=oldest">Oldest</a>
+                                                        <a class="dropdown-item"
+                                                            href="{% url 'users:detail' user.username %}?o=newest">Newest</a>
                                                         {% comment %}
                                                         <a class="dropdown-item" href="#0">First Comments</a>
                                                         <a class="dropdown-item" href="#0">New Comments</a>
@@ -308,169 +324,6 @@
                                             </li>
                                         </ul>
                                         <div class="page">Page 1 of 4</div>
-                                    </div>
-                                    <div class="forum_body">
-                                        <ul class="navbar-nav topic_comment_list">
-                                            <li>
-                                                <div class="media">
-                                                    <div class="d-flex">
-                                                        <img class="rounded-circle"
-                                                             src="{% static 'img/forum/user-2.png' %}"
-                                                             alt="">
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <div class="t_title">
-                                                            <a href="#">
-                                                                <h4>Eh Jewel</h4>
-                                                            </a>
-                                                        </div>
-                                                        <div class="dropdown">
-                                                            <button class="btn dropdown-toggle" type="button"
-                                                                    data-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false">
-                                                                ...
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Flag as
-                                                                    inappropriate</a>
-                                                                <a class="dropdown-item" href="#">Get direct
-                                                                    link</a>
-                                                            </div>
-                                                        </div>
-                                                        <a href="#">
-                                                            <h6><i class="icon_check_alt"></i> Moderator</h6>
-                                                        </a>
-                                                        <h6><i class="icon_calendar"></i> January 16 at 10:32 PM
-                                                        </h6>
-                                                        <p>Cheeky chap jolly good mufty a load of old tosh I
-                                                            don't want no agro a chinwag amongst tickety-boo,
-                                                            tosser victoria sponge horse play happy days give us
-                                                            a bell nice one cup of tea young delinquent wellies,
-                                                            cockup absolutely bladdered barmy bleeding.!</p>
-                                                        <div class="button_list">
-                                                            <a class="reply_btn" href="#">Reply</a>
-                                                            <a class="help_btn" href="#">Helpful</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="media">
-                                                    <div class="d-flex">
-                                                        <img class="rounded-circle"
-                                                             src="{% static 'img/forum/user-7.png' %}"
-                                                             alt="">
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <div class="t_title">
-                                                            <a href="#">
-                                                                <h4>Penny Tool</h4>
-                                                            </a>
-                                                        </div>
-                                                        <div class="dropdown">
-                                                            <button class="btn dropdown-toggle" type="button"
-                                                                    data-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false">
-                                                                ...
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Flag as
-                                                                    inappropriate</a>
-                                                                <a class="dropdown-item" href="#">Get direct
-                                                                    link</a>
-                                                            </div>
-                                                        </div>
-                                                        <a href="#">
-                                                            <h6><i class="icon_check_alt"> </i>Moderator</h6>
-                                                        </a>
-                                                        <h6><i class="icon_calendar"></i> January 22 at 09:44 AM
-                                                        </h6>
-                                                        <p>That cockup bleeding skive off such a fibber cup of
-                                                            char squiffy car boot, lemon squeezy lavatory
-                                                            Richard jolly good tosser excuse my French, mush
-                                                            barney.</p>
-                                                        <div class="button_list">
-                                                            <a class="reply_btn" href="#">Reply</a>
-                                                            <a class="help_btn" href="#">Helpful</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="media">
-                                                    <div class="d-flex">
-                                                        <img class="rounded-circle"
-                                                             src="{% static 'img/forum/user-12.png' %}"
-                                                             alt="">
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <div class="t_title">
-                                                            <a href="#">
-                                                                <h4>Dianne Ameter</h4>
-                                                            </a>
-                                                        </div>
-                                                        <a class="help_start" href="#"><i class="icon_star"></i>
-                                                            Helpful</a>
-                                                        <a href="#">
-                                                            <h6><i class="icon_check_alt"></i>Moderator</h6>
-                                                        </a>
-                                                        <h6><i class="icon_calendar"></i> January 18 at 11:24 AM
-                                                        </h6>
-                                                        <p>Cheeky chap jolly good mufty a load of old tosh I
-                                                            don't want no agro a chinwag amongst tickety-boo,
-                                                            tosser victoria sponge horse play happy days give us
-                                                            a bell nice one cup.!</p>
-                                                        <div class="button_list">
-                                                            <a class="reply_btn" href="#">Reply</a>
-                                                            <a class="help_btn" href="#">Helpful</a>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="media">
-                                                    <div class="d-flex">
-                                                        <img class="rounded-circle"
-                                                             src="{% static 'img/forum/user-13.png' %}"
-                                                             alt="">
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <div class="t_title">
-                                                            <a href="#">
-                                                                <h4>Pelican Steve</h4>
-                                                            </a>
-                                                        </div>
-                                                        <div class="dropdown">
-                                                            <button class="btn dropdown-toggle" type="button"
-                                                                    data-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false">
-                                                                ...
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#">Flag as
-                                                                    inappropriate</a>
-                                                                <a class="dropdown-item" href="#">Get direct
-                                                                    link</a>
-                                                            </div>
-                                                        </div>
-                                                        <a href="#">
-                                                            <h6>Explore</h6>
-                                                        </a>
-                                                        <h6><i class="icon_calendar"></i> March 12 at 10:25 PM
-                                                        </h6>
-                                                        <p>That cockup bleeding skive off such a fibber cup of
-                                                            char squiffy car boot, lemon squeezy lavatory
-                                                            Richard jolly good tosser excuse my French, mush
-                                                            barney.</p>
-                                                        <div class="button_list">
-                                                            <a class="reply_btn" href="#">Reply</a>
-                                                            <a class="help_btn" href="#">Helpful</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
                                     </div>
                                 </div>
                                 <div class="list_pagination d-flex justify-content-between">
@@ -487,116 +340,13 @@
                                                 <li class="page-item"><a class="page-link" href="#">3</a>
                                                 </li>
                                                 <li class="page-item"><a class="page-link" href="#"><i
-                                                        class="arrow_carrot-right"></i></a></li>
+                                                            class="arrow_carrot-right"></i></a></li>
                                             </ul>
                                         </nav>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade " id="eng" role="tabpanel" aria-labelledby="eng-tab">
-                                <div class="profile_info">
-                                    <div class="row p_info_item_inner">
-                                        <div class="col-sm-4">
-                                            <div class="p_info_item">
-                                                <img src="{% static 'img/icon/p-icon-1.png' %}" alt="">
-                                                <a href="#">
-                                                    <h4>Forum Role</h4>
-                                                </a>
-                                                <a class="info_btn" href="#">Keymaster</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="p_info_item">
-                                                <img src="{% static 'img/icon/p-icon-2.png' %}" alt="">
-                                                <a href="#">
-                                                    <h4>Topics Started</h4>
-                                                </a>
-                                                <a class="info_number" href="#">32</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="p_info_item">
-                                                <img src="{% static 'img/icon/p-icon-3.png' %}" alt="">
-                                                <a href="#">
-                                                    <h4>Replies Created</h4>
-                                                </a>
-                                                <a class="info_number" href="#">76</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <ul class="navbar-nav info_list">
-                                        <li><span>Name:</span><a href="#">Lance Bogrol</a></li>
-                                        <li><span>Age:</span><a href="#">32</a></li>
-                                        <li><span>Gender:</span><a href="#">Male</a></li>
-                                        <li><span>Location:</span><a href="#">Berlin</a></li>
-                                        <li><span>Biographical Info:</span><a href="#">Trusted by thousands of
-                                            customers,
-                                            our unique themes, templates</a></li>
-                                        <li><span>Website: </span><a
-                                                href="#">https://html.spider-themes.com/Docy/</a></li>
-                                        <li><span>Blog:</span><a
-                                                href="#">https://wp.spider-themes.com/Docy/</a></li>
-                                        <li><span>Registered:</span><a href="#">3 years, 6 months ago</a></li>
-                                    </ul>
-                                    <ul class="nav p_social">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade " id="fav" role="tabpanel" aria-labelledby="fav-tab">
-                                <div class="profile_info">
-                                    <div class="row p_info_item_inner">
-                                        <div class="col-sm-4">
-                                            <div class="p_info_item">
-                                                <img src="{% static 'img/icon/p-icon-1.png' %}" alt="">
-                                                <a href="#">
-                                                    <h4>Forum Role</h4>
-                                                </a>
-                                                <a class="info_btn" href="#">Keymaster</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="p_info_item">
-                                                <img src="{% static 'img/icon/p-icon-2.png' %}" alt="">
-                                                <a href="#">
-                                                    <h4>Topics Started</h4>
-                                                </a>
-                                                <a class="info_number" href="#">32</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <div class="p_info_item">
-                                                <img src="{% static 'img/icon/p-icon-3.png' %}" alt="">
-                                                <a href="#">
-                                                    <h4>Replies Created</h4>
-                                                </a>
-                                                <a class="info_number" href="#">76</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <ul class="navbar-nav info_list">
-                                        <li><span>Name:</span><a href="#">Lance Bogrol</a></li>
-                                        <li><span>Age:</span><a href="#">32</a></li>
-                                        <li><span>Gender:</span><a href="#">Male</a></li>
-                                        <li><span>Location:</span><a href="#">Berlin</a></li>
-                                        <li><span>Biographical Info:</span><a href="#">Trusted by thousands of
-                                            customers,
-                                            our unique themes, templates</a></li>
-                                        <li><span>Website: </span><a
-                                                href="#">https://html.spider-themes.com/Docy/</a></li>
-                                        <li><span>Blog:</span><a
-                                                href="#">https://wp.spider-themes.com/Docy/</a></li>
-                                        <li><span>Registered:</span><a href="#">3 years, 6 months ago</a></li>
-                                    </ul>
-                                    <ul class="nav p_social">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
@@ -607,31 +357,31 @@
 {%comment%}
 <!-- MODAL TO CROP THE IMAGE -->
 <div class="modal fade" id="modalCrop">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title">Crop the photo</h4>
-      </div>
-      <div class="modal-body">
-        <img src="" id="image" style="max-width: 100%;">
-      </div>
-      <div class="modal-footer">
-        <div class="btn-group pull-left" role="group">
-          <button type="button" class="btn btn-default js-zoom-in">
-            <span class="glyphicon glyphicon-zoom-in"></span>
-          </button>
-          <button type="button" class="btn btn-default js-zoom-out">
-            <span class="glyphicon glyphicon-zoom-out"></span>
-          </button>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Crop the photo</h4>
+            </div>
+            <div class="modal-body">
+                <img src="" id="image" style="max-width: 100%;">
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group pull-left" role="group">
+                    <button type="button" class="btn btn-default js-zoom-in">
+                        <span class="glyphicon glyphicon-zoom-in"></span>
+                    </button>
+                    <button type="button" class="btn btn-default js-zoom-out">
+                        <span class="glyphicon glyphicon-zoom-out"></span>
+                    </button>
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
+                <button type="button" class="btn btn-primary js-crop-and-upload">Crop and upload</button>
+            </div>
         </div>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
-        <button type="button" class="btn btn-primary js-crop-and-upload">Crop and upload</button>
-      </div>
     </div>
-  </div>
 </div>
 {%endcomment%}
 <!--================End Forum Content Area =================-->
@@ -642,71 +392,74 @@
 <script src="{% static 'js/cropper.min.js' %}"></script>
 <script src="{% static 'js/jquery-cropper.js' %}"></script>
 <script>
-$(function() {
-$('#id_first_name').addClass('form-control').attr("placeholder", "Prénom");
-$('#id_last_name').addClass('form-control').attr("placeholder", "Nom");
-$('#id_email').addClass('form-control').attr("placeholder", "Email");
-$('#id_phone').addClass('form-control').attr("placeholder", "N° téléphone");
-$('#id_bio').addClass('form-control').attr("placeholder", "…");
-});
+    $(function () {
+        $('#id_first_name').addClass('form-control').attr("placeholder", "Prénom");
+        $('#id_last_name').addClass('form-control').attr("placeholder", "Nom");
+        $('#id_email').addClass('form-control').attr("placeholder", "Email");
+        $('#id_phone').addClass('form-control').attr("placeholder", "N° téléphone");
+        $('#id_bio').addClass('form-control').attr("placeholder", "…");
+        $('#id_old_password').addClass('form-control').attr("placeholder", "Mot de passe actuel");
+        $('#id_new_password1').addClass('form-control').attr("placeholder", "Nouveau mot de passe");
+        $('#id_new_password2').addClass('form-control').attr("placeholder", "Confirmer nouveau mot de passe");
+    });
 </script>
 {%comment%}
 <script>
- $(function () {
-      /* SCRIPT TO OPEN THE MODAL WITH THE PREVIEW */
-      $("#id_picture").change(function () {
-        if (this.files && this.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            $("#image").attr("src", e.target.result);
-            $("#modalCrop").modal("show");
-          }
-          reader.readAsDataURL(this.files[0]);
-        }
-      });
-
-      /* SCRIPTS TO HANDLE THE CROPPER BOX */
-      var $image = $("#image");
-      var cropBoxData;
-      var canvasData;
-      $("#modalCrop").on("shown.bs.modal", function () {
-       var $image = $("#image");
-        $("#image").cropper({
-          viewMode: 1,
-          aspectRatio: 1/1,
-          minCropBoxWidth: 200,
-          minCropBoxHeight: 200,
-          ready: function () {
-            $("#image").cropper("setCanvasData", canvasData);
-            $("#image").cropper("setCropBoxData", cropBoxData);
-          }
+    $(function () {
+        /* SCRIPT TO OPEN THE MODAL WITH THE PREVIEW */
+        $("#id_picture").change(function () {
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#image").attr("src", e.target.result);
+                    $("#modalCrop").modal("show");
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
         });
-      }).on("hidden.bs.modal", function () {
-        cropBoxData = $("#image").cropper("getCropBoxData");
-        canvasData = $("#image").cropper("getCanvasData");
-       $("#image").cropper("destroy");
-      });
 
-      $(".js-zoom-in").click(function () {
-        $("#image").cropper("zoom", 0.1);
-      });
+        /* SCRIPTS TO HANDLE THE CROPPER BOX */
+        var $image = $("#image");
+        var cropBoxData;
+        var canvasData;
+        $("#modalCrop").on("shown.bs.modal", function () {
+            var $image = $("#image");
+            $("#image").cropper({
+                viewMode: 1,
+                aspectRatio: 1 / 1,
+                minCropBoxWidth: 200,
+                minCropBoxHeight: 200,
+                ready: function () {
+                    $("#image").cropper("setCanvasData", canvasData);
+                    $("#image").cropper("setCropBoxData", cropBoxData);
+                }
+            });
+        }).on("hidden.bs.modal", function () {
+            cropBoxData = $("#image").cropper("getCropBoxData");
+            canvasData = $("#image").cropper("getCanvasData");
+            $("#image").cropper("destroy");
+        });
 
-      $(".js-zoom-out").click(function () {
-        $("#image").cropper("zoom", -0.1);
-      });
+        $(".js-zoom-in").click(function () {
+            $("#image").cropper("zoom", 0.1);
+        });
 
-      /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
-      $(".js-crop-and-upload").click(function () {
-        var cropData = $("#image").cropper("getData");
-        console.log(cropData);
-        $("#id_x").val(cropData["x"]);
-        $("#id_y").val(cropData["y"]);
-        $("#id_height").val(cropData["height"]);
-        $("#id_width").val(cropData["width"]);
-        $("#userForm").submit();
-      });
+        $(".js-zoom-out").click(function () {
+            $("#image").cropper("zoom", -0.1);
+        });
+
+        /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
+        $(".js-crop-and-upload").click(function () {
+            var cropData = $("#image").cropper("getData");
+            console.log(cropData);
+            $("#id_x").val(cropData["x"]);
+            $("#id_y").val(cropData["y"]);
+            $("#id_height").val(cropData["height"]);
+            $("#id_width").val(cropData["width"]);
+            $("#userForm").submit();
+        });
 
     });
-  </script>
+</script>
 {%endcomment%}
 {%endblock javascript%}
