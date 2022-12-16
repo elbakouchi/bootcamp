@@ -260,27 +260,22 @@
                                                 {% if demands.has_previous or revisions.has_previous %}
                                                 {% if demands.previous_page_number %}
                                                 <li class="page-item"><a class="page-link"
-                                                        href="{{request.path}}?page={{ demands.previous_page_number }}#profile">{{
-                                                        demands.previous_page_number }}</a></li>
+                                                        href="{{request.path}}?page={{ demands.previous_page_number }}#profile">{{ demands.previous_page_number }}</a></li>
                                                 {% endif %}
                                                 {% if revisions.previous_page_number %}
                                                 <li class="page-item"><a class="page-link"
-                                                        href="{{request.path}}?page={{ revisions.previous_page_number }}#profile">{{
-                                                        revisions.previous_page_number }}</a></li>
+                                                        href="{{request.path}}?page={{ revisions.previous_page_number }}#profile">{{ revisions.previous_page_number }}</a></li>
                                                 {% endif %}
                                                 {% endif %}
-                                                <li class="page-item active"><a class="page-link" href="#">{{
-                                                        demands.number }}</a></li>
+                                                <li class="page-item active"><a class="page-link" href="#">{{ demands.number }}</a></li>
                                                 {% if demands.has_next or revisions.has_next %}
                                                 {% if demands.next_page_number %}
                                                 <li class="page-item"><a class="page-link"
-                                                        href="{{request.path}}?page={{ demands.next_page_number }}#profile">{{
-                                                        demands.next_page_number }}</a></li>
+                                                        href="{{request.path}}?page={{ demands.next_page_number }}#profile">{{ demands.next_page_number }}</a></li>
                                                 {% endif %}
                                                 {% if revisions.next_page_number %}
                                                 <li class="page-item"><a class="page-link"
-                                                        href="{{request.path}}?page={{ revisions.next_page_number }}#profile">{{
-                                                        revisions.next_page_number }}</a></li>
+                                                        href="{{request.path}}?page={{ revisions.next_page_number }}#profile">{{ revisions.next_page_number }}</a></li>
                                                 {% endif %}
                                                 {% endif %}
 
@@ -351,6 +346,8 @@
 </section>
 <section class="forum-user-wrapper">
     <hr>
+</section>
+<section class="forum-user-wrapper">
     <div class="container">
         <div class="row forum_main_inner">
             <div class="col-lg-3">
