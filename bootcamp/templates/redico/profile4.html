@@ -300,22 +300,34 @@
                             <div class="tab-pane fade " id="password" role="tabpanel" aria-labelledby="password-tab">
                                 <div class="profile_info">
                                     <h2>Modifier le mot de passe</h2>
-                                    <form action="" method="post" class="contact_form mt-3">
+                                    <form action="{% url 'users:passwd' %}" method="post" id="passwForm" class="contact_form mt-3">
                                         <div class="row contact_fill">
                                             <div class="col-lg-6 form-group">
                                                 <label>Mot de passe actuel</label>
-                                                <input type="password" name="" placeholder="******"
-                                                    autocomplete="current-password" class="form-control">
+                                                    {{passwform.old_password}}
+                                                    <ul class="error">
+                                                        {% for error in form.old_password.errors %}
+                                                        <li>{{error}}</li>
+                                                        {% endfor %}
+                                                    </ul>
                                             </div>
                                             <div class="col-lg-6 form-group">
                                                 <label>Nouveau mot de passe</label>
-                                                <input type="password" name="" placeholder="******"
-                                                    autocomplete="current-password" class="form-control">
+                                                {{passwform.new_password1}}
+                                                <ul class="error">
+                                                    {% for error in form.new_password1.errors %}
+                                                    <li>{{error}}</li>
+                                                    {% endfor %}
+                                                </ul>
                                             </div>
                                             <div class="col-lg-6 form-group">
                                                 <label>Confirmez le mot de passe</label>
-                                                <input type="password" name="" placeholder="******"
-                                                    autocomplete="current-password" class="form-control">
+                                                {{passwform.new_password2}}
+                                                <ul class="error">
+                                                    {% for error in form.new_password2.errors %}
+                                                    <li>{{error}}</li>
+                                                    {% endfor %}
+                                                </ul>
                                             </div>
                                             <div class="col-lg-12 form-group">
                                                 <button type="submit" class="btn action_btn thm_btn">Sauvegarder
@@ -376,9 +388,9 @@
         $('#id_email').addClass('form-control').attr("placeholder", "Email");
         $('#id_phone').addClass('form-control').attr("placeholder", "N° téléphone");
         $('#id_bio').addClass('form-control').attr("placeholder", "…");
-        $('#id_old_password').addClass('form-control').attr("placeholder", "Mot de passe actuel");
-        $('#id_new_password1').addClass('form-control').attr("placeholder", "Nouveau mot de passe");
-        $('#id_new_password2').addClass('form-control').attr("placeholder", "Confirmer nouveau mot de passe");
+        $('#id_old_password').addClass('form-control').attr("placeholder", "******");
+        $('#id_new_password1').addClass('form-control').attr("placeholder", "******");
+        $('#id_new_password2').addClass('form-control').attr("placeholder", "******");
     });
 </script>
 {%comment%}
