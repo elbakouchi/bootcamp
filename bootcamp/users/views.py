@@ -108,7 +108,7 @@ class UserDetailView(LoginRequiredMixin, ModelFormMixin, DetailView):
     # These next two lines tell the view to index lookups by username
     slug_field = "username"
     slug_url_kwarg = "username"
-    template_name = 'redico/profile3.html'
+    template_name = 'redico/profile4.html'
     # fields = ['first_name', 'last_name', 'phone', 'email', 'bio', 'picture']
     success_url = "/users/{username}/"
 
@@ -148,7 +148,7 @@ from django.template import Context
 
 class ChangePasswordView(LoginRequiredMixin, UpdateView):
     form_class = PasswordChangeForm
-    template_name = 'redico/profile3.html'
+    template_name = 'redico/profile4.html'
     def get_object(self):
         # Only get the User record for the user making the request
         return User.objects.get(username=self.request.user.username)
@@ -184,13 +184,14 @@ class ChangePasswordView(LoginRequiredMixin, UpdateView):
         except EmptyPage:
             paginated_demands = paginator.page(paginator.num_pages)
         context["demands"] = paginated_demands
+        context['form'] = CustomUserForm(self.request.user, self.request.POST)
         context['passwform'] = PasswordChangeForm(self.request.user, self.request.POST )
         return context
 
 
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
-    template_name = 'redico/profile3.html'
+    template_name = 'redico/profile4.html'
     fields = [
         "first_name",
         "last_name",
