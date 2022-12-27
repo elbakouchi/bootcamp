@@ -160,6 +160,7 @@ class ChangePasswordView(LoginRequiredMixin, UpdateView):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
+        return reverse("users:detail", kwargs={"username": self.request.user.username})    
         """return loader.render_to_string(
             self.template_name, self.get_context_data(), request=self.request
         )""" 
