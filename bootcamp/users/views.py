@@ -154,6 +154,11 @@ class ChangePasswordView(LoginRequiredMixin, UpdateView):
     model = User
     def get_success_url(self):
         return reverse("users:detail", kwargs={"username": self.request.user.username})
+    def get(self, request, *args, **kwargs):
+        response = render(request, 'redico/profile4.html', {
+           'passwform':  PasswordChangeForm(), 'demands': self.get_demands(), 'form': CustomUserForm()
+        })    
+        return HttpResponse(response, content_type='text/html')     
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.user, request.POST)
         if form.is_valid():
