@@ -4,7 +4,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.conf import settings as django_settings
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
@@ -14,11 +14,10 @@ from django.conf import settings
 from contact_form.views import ContactFormView
 from contact_form.forms import StringKeyedDict
 from django.template import loader
-import requests
+from django.contrib import messages
 
 from .models import User
 from .forms import CustomContactForm, CustomServicesForm
-from django.views.generic.edit  import FormView
 from PIL import Image
 from django import forms
 
@@ -160,21 +159,19 @@ class ChangePasswordView(LoginRequiredMixin, UpdateView):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
-        #return reverse("users:detail", kwargs={"username": self.request.user.username})    
-        return loader.render_to_string(
-            self.template_name, self.get_context_data(), request=self.request
-        ) 
+            messages.success(request, 'Mot de passe changé avec succès!')
+            return reverse("users:detail", kwargs={"username": self.request.user.username})
+        else:
+            messages.error(request, 'Veuillez corriger!')
+        return render(request, 'redico/profile4.html', {
+            'passwform':  form, 'demands': self.get_demands(), 'form': CustomUserForm(self.request.user)
+         })     
 
-    def get_context_data(self, **kwargs):
-        try:
-            context = super(ChangePasswordView, self).get_context_data()
-        except:
-            context = dict()
+    def get_demands(self, **kwargs):
         try:
             demands = Demand.objectz.profile(self.request.user.pk, self.request.GET.o)
         except Exception as e:
             demands = Demand.objectz.profile(self.request.user.pk, '')
-        context["demands_count"] = demands.count()
         page = self.request.GET.get("page", 1)
         paginator = Paginator(demands, 5)
 
@@ -184,10 +181,10 @@ class ChangePasswordView(LoginRequiredMixin, UpdateView):
             paginated_demands = paginator.page(1)
         except EmptyPage:
             paginated_demands = paginator.page(paginator.num_pages)
-        context["demands"] = paginated_demands
-        context['form'] = CustomUserForm(self.request.user, self.request.POST)
-        context['passwform'] = PasswordChangeForm(self.request.user, self.request.POST )
-        return context
+        #context["demands"] = paginated_demands
+        #context['form'] = CustomUserForm(self.request.user, self.request.POST)
+        #context['passwform'] = PasswordChangeForm(self.request.user, self.request.POST )
+        return paginated_demands
 
 
 
