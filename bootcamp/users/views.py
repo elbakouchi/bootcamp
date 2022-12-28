@@ -142,7 +142,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
         return reverse("users:detail", kwargs={"username": self.request.user.username})
 
 
-from django.template import Context
+from django.http import HttpResponse
 
 
 class ChangePasswordView(LoginRequiredMixin, UpdateView):
@@ -163,9 +163,10 @@ class ChangePasswordView(LoginRequiredMixin, UpdateView):
             return reverse("users:detail", kwargs={"username": self.request.user.username})
         else:
             messages.error(request, 'Veuillez corriger!')
-        return render(request, 'redico/profile4.html', {
+        response = render(request, 'redico/profile4.html', {
             'passwform':  form, 'demands': self.get_demands(), 'form': CustomUserForm(self.request.user)
-         })     
+         })    
+        return HttpResponse(response, content_type='text/html')  
 
     def get_demands(self, **kwargs):
         try:
