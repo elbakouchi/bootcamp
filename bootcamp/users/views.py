@@ -174,7 +174,7 @@ class ChangePasswordView(LoginRequiredMixin, UpdateView):
         else:
             messages.error(request, 'Veuillez corriger!')
         response = render(request, 'redico/profile4.html', {
-            'passwform':  form, 'demands': self.get_demands(), 'form': CustomUserForm(self.request.user)
+            'passwform':  form, 'demands': self.get_demands(), 'form': CustomUserForm()
          })    
         return HttpResponse(response, content_type='text/html')  
 
