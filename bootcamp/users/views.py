@@ -170,7 +170,7 @@ class ChangePasswordView(LoginRequiredMixin, UpdateView):
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
             messages.success(request, 'Mot de passe changé avec succès!')
-            return reverse("users:detail", kwargs={"username": self.request.user.username})
+            #return reverse("users:detail", kwargs={"username": self.request.user.username})
         else:
             messages.error(request, 'Veuillez corriger!')
         response = render(request, 'redico/profile4.html', {
