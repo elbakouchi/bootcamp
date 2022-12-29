@@ -161,7 +161,7 @@ class ChangePasswordView(LoginRequiredMixin, UpdateView):
 
     def get(self, request, *args, **kwargs):
         response = render(request, 'redico/profile4.html', {
-           'passwform':  PasswordChangeForm(self.request.user), 'demands': self.get_demands(), 'form': CustomUserForm(self.request.user)
+           'passwform':  PasswordChangeForm(self.request.user), 'demands': self.get_demands(), 'form': CustomUserForm()
         })    
         return HttpResponse(response, content_type='text/html')     
     def post(self, request, *args, **kwargs):
