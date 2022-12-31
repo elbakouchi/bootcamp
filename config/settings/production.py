@@ -146,7 +146,7 @@ ANYMAIL = {
 # WhiteNoise
 # ------------------------------------------------------------------------------
 # http://whitenoise.evans.io/en/latest/django.html#enable-whitenoise
-MIDDLEWARE = ["whitenoise.middleware.WhiteNoiseMiddleware"] + MIDDLEWARE  # noqa F405
+MIDDLEWARE = ["django.middleware.gzip.GZipMiddleware","whitenoise.middleware.WhiteNoiseMiddleware"] + MIDDLEWARE  # noqa F405
 
 # raven
 # ------------------------------------------------------------------------------
