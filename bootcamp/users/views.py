@@ -4,7 +4,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.conf import settings as django_settings
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
@@ -339,3 +339,18 @@ def save_uploaded_picture(request):
         pass
 
     #return redirect("/users/picture/")
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Mot de passe changé avec succès!')
+            return redirect('home:home')
+        else:
+            messages.error(request, 'Veuillez corriger!')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request,  'redico/profile4.html', {
+        'passwform': form
+    })
