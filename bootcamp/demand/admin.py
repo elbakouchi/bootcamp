@@ -3,9 +3,7 @@ from django.urls import path, reverse
 from django.utils.html import format_html
 from bootcamp.demand.models import Demand, DemandAuthor
 from bootcamp.articles.models import Article
-from .views import AuthorDemandsListView
 from safedelete.admin import SafeDeleteAdmin, SafeDeleteAdminFilter, highlight_deleted
-import logging
 from django.conf import settings
 
 class RevisionInline(admin.TabularInline):
