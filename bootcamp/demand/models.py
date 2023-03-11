@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 from django.dispatch import Signal
 from slugify import slugify
-import spacy
+import spacy, logging, os
 from django.utils.html import strip_tags
 
 from django_comments.signals import comment_was_posted
@@ -14,9 +14,13 @@ from taggit.managers import TaggableManager
 from bootcamp.custom import word_counter_validator
 from bootcamp.notifications.models import Notification, notification_handler, notification_checker
 from bootcamp.category.models import Category, Service
+from bootcamp.users.models import User
 
 from safedelete.managers import SafeDeleteManager, SafeDeleteAllManager
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
+
+from django.utils.html import format_html
+from django.urls import reverse
 
 from bootcamp.users.models import User
 
@@ -26,6 +30,13 @@ except:
     spacy.cli.download("fr_core_news_sm")
     nlp = spacy.load("fr_core_news_sm")
 
+
+class DemandAuthor(User):
+    class Meta:
+        proxy = True
+        verbose_name = _("Auteur")
+        verbose_name_plural = _("Auteurs")
+        
 
 class DemandQuerySet(models.query.QuerySet, SafeDeleteManager):
     """Personalized queryset created to improve model usability"""
@@ -243,7 +254,7 @@ class Demand(SafeDeleteModel):
         #        self.keywords = ','.join(tags)
         #    self.keywords = self.keywords.replace('&nbps;', '')    
         super().save(*args, **kwargs)
-        if self.status == self.PUBLISHED:
+        if self.status == self.PUBLISHED and os.environ.get("DJANGO_SETTINGS_MODULE") == "config.settings.production":
             notify_demand_author(self.user, self, Notification.DEMAND_PUBLISHED)
             if self.verified:
                 notify_demand_author(self.user, self, Notification.DEMAND_VALIDATED)
@@ -274,7 +285,11 @@ class Demand(SafeDeleteModel):
         keywords = ','.join(_)
         keywords = keywords.replace('&nbps;', '').replace(',demand.Demand.None', '')
         self.keywords = keywords
-        
+
+    def user_link(self):
+        if self.user:
+            return format_html('<a href="{url}">{text}</a>', url=self.user.id, text=self.user)
+        return "-"
         
 
 
