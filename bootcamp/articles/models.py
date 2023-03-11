@@ -7,16 +7,27 @@ from django.utils.translation import ugettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 from django.db.models import F
 from slugify import slugify
+from django.utils.html import format_html
 
+import bootcamp.demand.models
 from django_comments.signals import comment_was_posted
 from markdownx.utils import markdownify
 
-import bootcamp.demand.models
 from bootcamp.custom import word_counter_validator
 from bootcamp.notifications.models import Notification, notification_handler
+from bootcamp.users.models import User
+
+import os
 
 from safedelete.models import SafeDeleteModel, SOFT_DELETE
 
+
+class ArticleAuthor(User):
+    class Meta:
+        proxy = True
+        verbose_name = _("Auteur")
+        verbose_name_plural = _("Auteurs")
+        
 
 class ArticleQuerySet(models.query.QuerySet):
     """Personalized queryset created to improve model usability"""
@@ -98,7 +109,7 @@ class Article(SafeDeleteModel):
             )
 
         super().save(*args, **kwargs)
-        if self.verified:
+        if self.verified and os.environ.get("DJANGO_SETTINGS_MODULE") == "config.settings.production":
             demand_has_revision.send(sender=self,
                                      demand=self.demand
                                     )
@@ -141,11 +152,12 @@ def broadcast_revision_created(sender, user, request, **kwargs):
         pass
 
 
-demand_has_revision = Signal()
-revision_created = Signal()
-demand_has_revision.connect(receiver=set_demand_has_revision)
-try:
- revision_created.connect(receiver=broadcast_revision_created)
-except Exception as e:
+if os.environ.get("DJANGO_SETTINGS_MODULE") == "config.settings.production":
+  demand_has_revision = Signal()
+  revision_created = Signal()
+  demand_has_revision.connect(receiver=set_demand_has_revision)
+  try:
+   revision_created.connect(receiver=broadcast_revision_created)
+  except Exception as e:
     print(e) 
-comment_was_posted.connect(receiver=notify_comment)
+  comment_was_posted.connect(receiver=notify_comment)
